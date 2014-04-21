@@ -25,7 +25,7 @@ mongoose.connection.on('disconnected', function () {
 });
 
 // Models
-var models_path = config.root + "app/models";
+var models_path = "/app/models";
 fs.readdirSync(models_path).forEach(function (file) {
     if (~file.indexOf('.js')) require (models_path + '/' + file)
 });
