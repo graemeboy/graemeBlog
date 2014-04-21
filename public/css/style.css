@@ -1,8 +1,63 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Navigation Bar */
+.graeme-nav {
+    background-color: #ffffff;
+    font-size:25px;
+}
+/* Branding */
+.graeme-nav .graeme-brand {
+    width: 230px;
+    height:48px;
+}
+.graeme-nav .graeme-brand .graeme-picture {
+    float: left;
+    position: relative;
+    height: 48px;
+    width: 48px;
+}
+.graeme-nav .graeme-brand .graeme-picture img {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 2px solid #eee;
+    top: 2px;
+    left: 10px;
+    position: absolute;
+}
+.graeme-nav .graeme-brand h2.graeme-name {
+    font-size: 26px;
+    font-weight: 100;
+    float: left;
+    margin: 13px 0 0 30px;
+    color: #555;
+}
+/* Navigational Items */
+.graeme-nav .navbar-nav li a:hover {
+    background-color: #efefef;
+}
+/* Main */
+.main {
+    border-top: 1px solid #eee;
+}
+/* Sidebar */
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    color: #999;
+    font-size: 12px;
+    font-weight: 300;
+}
+/* General */
+.page-title {
+    margin-bottom: 20px;
 }
 
-a {
-  color: #00B7FF;
+.page-content {
+    font-size: 14px;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+    font-weight: 300;
 }

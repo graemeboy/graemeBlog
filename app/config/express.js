@@ -21,7 +21,7 @@ module.exports = function (app, config, db)
 
     // Favicon
     app.use(require("static-favicon")());
-    app.use(express.static(config.root + "public"));
+    app.use(express.static(path.resolve(config.root + '/../public/')));
 
     // Set views
     app.set('views', path.join(__dirname, '../views'));
@@ -55,10 +55,17 @@ module.exports = function (app, config, db)
     
     // Error Handling
     /// catch 404 and forwarding to error handler
-    app.use(function(req, res, next) {
-        var err = new Error('Not Found');
-        err.status = 404;
-        next(err);
+//    app.use(function(req, res, next) {
+//        var err = new Error('Not Found');
+//        err.status = 404;
+//        next(err);
+//    });
+    
+    app.use(function(req, res) {
+        res.status(404).render('404', {
+           url: req.originalUrl,
+           error: 'Page not found'
+        });
     });
     
     // Print Stacktrace
