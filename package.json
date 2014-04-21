@@ -1,0 +1,23 @@
+{
+  "name": "graemeboy",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "~4.0.0",
+    "static-favicon": "^1.0.2",
+    "morgan": "~1.0.0",
+    "cookie-parser": "^1.0.1",
+    "body-parser": "^1.0.2",
+    "debug": "~0.7.4",
+    "ejs": "^1.0.0",
+    "mongoose": "^3.8.8",
+    "connect-mongo": "^0.4.0",
+    "compression": "^1.0.1",
+    "express-session": "^1.0.3",
+    "view-helpers": "^0.1.4",
+    "method-override": "^1.0.0"
+  }
+}
