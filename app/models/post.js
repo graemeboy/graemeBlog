@@ -7,6 +7,7 @@ var PostSchema = new Schema({
     body: { type: String, default: '' },
     slug: { type: String, default: '' },
     tags: { type: Array, default: [] },
+    cat: { type: String, default: '' },
 });
 
 mongoose.model("Post", PostSchema);

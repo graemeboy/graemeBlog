@@ -18,9 +18,9 @@ function getTags()
 exports.home = function (req, res) {
     // Render the home page
     tags = getTags();
-    
     res.render('index', {
         title: "Graeme Boy - Home",
+        cats: getCats(),
     }); // render
 };
 
@@ -32,6 +32,12 @@ exports.rishan = function (req, res) {
         title: "Rishan Test Location and Device",
     }); // render
 };
+
+function getCats ()
+{
+    var cats = [{ name: "nodejs", count: 1}];
+    return cats;
+}
 
 exports.post = function (req, res, next, slugIn) {
     console.log("Slug is " + slugIn);
@@ -60,6 +66,7 @@ exports.showPost = function (req, res) {
         postTitle: post.title,
         postSlug: post.slug,
         postContent: post.body,
+        postCat: post.cat,
         postTags: post.tags,
     }); // render
 } // show

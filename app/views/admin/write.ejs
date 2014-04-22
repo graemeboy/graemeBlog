@@ -11,17 +11,20 @@
                     <div class="clearfix"></div>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" placeholder="Post Slug" class="post-slug form-control" name="postSlug" />
+                            <input type="text" placeholder="Post Slug" class="post-slug form-control" value="<%= editSlug %>" name="postSlug" />
                         </div>
-                        <div class="col-sm-6">
-                            <input type="text" placeholder="Post Tags" class="post-tags form-control" name="postTags" />
+                        <div class="col-sm-3">
+                            <input type="text" placeholder="Post Tags" class="post-tags form-control" value="<%= editTags %>" name="postTags" />
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" placeholder="Post Category" class="post-cat form-control" value="<%= editCat %>" name="postCat" />
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="form-group">
-                    <textarea placeholder="Post Body" class="post-body form-control" id="postBody" name="postBody"></textarea>
+                    <textarea placeholder="Post Body" class="post-body form-control" id="postBody" name="postBody"><%= editContent %></textarea>
                 </div>
                 <div>
                     <input type="submit" class="pull-right btn btn-default" value="Publish Post">

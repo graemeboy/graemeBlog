@@ -7,9 +7,22 @@
     font-size: 14px;
 }
 
+.post-meta {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    color: #999;
+    font-size: 13px;
+    font-weight: 300;
+    margin-left: 5px;
+}
+
 /* Headings */
 h1, h2, h3, h4 {
     font-weight: 300;
+}
+
+.cat-list li a {
+    
 }
 
 

@@ -1,6 +1,10 @@
 <div class="sidebar col-sm-3">
     <div class="container-fluid">
-        <h3>Sidebar</h3>
-        <p>this where sidebar things go</p>
+        <h3>categories</h3>
+        <ul class="cat-list">
+        <% for(var i=0; i<cats.length; i++) {%>
+           <li><a href="/cat/<%= cats[i].name %>"><%= cats[i].name %> (<%= cats[i].count %>)</a></li>
+        <% } %>
+        </ul>
     </div>
 </div>
