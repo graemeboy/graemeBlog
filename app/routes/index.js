@@ -9,6 +9,7 @@ var index = require('../controllers/index');
 
 // Parameters
 router.param('postSlug', index.post);
+router.param('postCat', index.cat);
 
 // Home Page
 router.get('/', index.home);
@@ -27,5 +28,6 @@ router.get('/admin/write/:postSlug', admin.edit);
 
 // Single Posts
 router.get('/:postSlug', index.showPost);
+router.get('/cat/:postCat', index.showCatPosts);
 
 module.exports = router;

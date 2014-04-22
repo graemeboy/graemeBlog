@@ -1,0 +1,30 @@
+<% include includes/header %>
+
+    <div class="main col-sm-9">
+        <div class="container-fluid">
+        <h1>Posts about <%= cat %></h1>
+            
+        <% if (catPosts.length > 0) { %>
+        <p>Click on a title to read the whole article</p>
+        <% for (var i = 0; i < catPosts.length; i++) { %>
+        <div class="container-fluid">
+            <h3 class="page-title"><a href="/<%= catPosts[i].slug %>"><%= catPosts[i].title %></a></h3>
+            <div class="post-meta"></div>
+            <div class="page-content">
+                
+                <% if (catPosts[i].body.length > 350) { %>
+                    <%- catPosts[i].body.substring(0,350) %>...
+                <% } else { %> <%- catPosts[i].body %> <% } %>
+            </div>
+        </div>
+        <% } %>
+            <% } else { %>
+            <p>There are no posts yet about this topic.</p>
+            <p>If you are interested in this topic, and want me to write about it, please <a href="http://twitter.com/share?text=Hey @graeme_boy, please write a little about <%= cat %>">send me a tweet</a> about it.</p>
+            <% } %>
+            </div>
+        <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+        <% include includes/footer %>

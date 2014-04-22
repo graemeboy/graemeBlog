@@ -38,6 +38,7 @@ exports.write = function (req, res) {
         editTitle: '',
         editSlug: '',
         editCat: '',
+        editTags: '',
         editContent: '',
     }); // render
 } // write
@@ -53,7 +54,7 @@ exports.writeProcess = function (req, res) {
         body: req.body.postBody,
         slug: slug,
         tags: tags,
-        cat: req.body.postCat
+        cat: req.body.postCat.toLowerCase()
     });
     
     console.log("New post: " + post);
