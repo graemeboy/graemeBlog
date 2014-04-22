@@ -56,8 +56,7 @@ function getRecentPosts()
 function getCats ()
 {
     var cats = [
-        { name: "nodejs", count: 1},
-        { name: "php", count: 1},
+//        { name: "nodejs", count: 1},
     ];
     return cats;
 }
