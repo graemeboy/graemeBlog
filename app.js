@@ -33,9 +33,8 @@ fs.readdirSync(models_path).forEach(function (file) {
 require("./app/config/express")(app, config, db);
 
 //app.set('port', 3000);
-
 // Server
-http.createServer(app).listen(app.get('port'), function () {
+http.createServer(app).listen(process.env.PORT || 3000, function () {
   console.log('Express server listening on port ' + app.get('port'));
 }); // createServer
 
