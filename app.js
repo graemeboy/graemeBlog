@@ -32,7 +32,7 @@ fs.readdirSync(models_path).forEach(function (file) {
 
 require("./app/config/express")(app, config, db);
 
-app.set('port', 3000);
+//app.set('port', 3000);
 
 // Server
 http.createServer(app).listen(app.get('port'), function () {
