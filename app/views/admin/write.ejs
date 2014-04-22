@@ -1,0 +1,45 @@
+<% include includes/header %>
+
+    <div class="container">
+        <h1>Write a Post</h1>
+        <div>
+            <form class="form" action="/admin/write" method="post">
+                <div class="col-sm-8">
+                    <div class="form-group col-sm-12">
+                        <input type="text" placeholder="Post Title" class="post-title form-control" name="postTitle" value="<%= editTitle %>" />
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Post Slug" class="post-slug form-control" name="postSlug" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Post Tags" class="post-tags form-control" name="postTags" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <textarea placeholder="Post Body" class="post-body form-control" id="postBody" name="postBody"></textarea>
+                </div>
+                <div>
+                    <input type="submit" class="pull-right btn btn-default" value="Publish Post">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/admin/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea",
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+        });
+    </script>
+    <% include includes/footer %>

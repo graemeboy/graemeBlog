@@ -1,0 +1,49 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    
+    <div id="rishan">
+        <h4>Hi Rishan,</h4>
+        
+        <p>Are these your details? (give 5 seconds to load) ... </p>
+        <div id="rishan-data">
+            <div id="data-country"></div>
+            <div id="data-city"></div>
+            <div id="data-region"></div>
+            <div id="data-zip"></div>
+            
+            <div style="margin-top:20px" id="data-device"></div>
+        </div>
+    </div>
+    
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $.ajax({
+                url: 'http://freegeoip.net/json/?callback=?',
+                dataType: 'json',
+                type: 'GET',
+                crossDomain: true,
+                success: function(data) {
+                    console.log("Location: ");
+                    console.log(data);
+                    $('#data-country').text("Country: " + data.country_name);
+                    $('#data-city').text("City: " + data.city);
+                    $('#data-region').text("Region: " + data.region_name);
+                    $('#data-zip').text("Zip: " + data.zipcode);
+                    
+                    $("#data-device")
+                        .text("Device: " + navigator.userAgent.toLowerCase());
+                }
+
+            });
+        });
+    </script>
+
+</body>
+
+</html>

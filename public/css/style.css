@@ -1,3 +1,18 @@
+/* General */
+.page-title {
+    margin-bottom: 20px;
+}
+
+.page-content {
+    font-size: 14px;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+    font-weight: 300;
+}
+
+
 /* Navigation Bar */
 .graeme-nav {
     background-color: #ffffff;
@@ -46,18 +61,5 @@ footer {
     border-top: 1px solid #eee;
     color: #999;
     font-size: 12px;
-    font-weight: 300;
-}
-/* General */
-.page-title {
-    margin-bottom: 20px;
-}
-
-.page-content {
-    font-size: 14px;
-}
-
-/* Headings */
-h1, h2, h3, h4 {
     font-weight: 300;
 }

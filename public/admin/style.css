@@ -1,0 +1,19 @@
+/* General */
+.page-title {
+    margin-bottom: 20px;
+}
+
+.page-content {
+    font-size: 14px;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+    font-weight: 300;
+}
+
+/* Writing area */
+textarea.post-body {
+    height: 250px;
+    
+}
