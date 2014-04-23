@@ -32,7 +32,8 @@ exports.loginProcess = function (req, res) {
 
 // Write post
 exports.write = function (req, res) {
-    // Check if there is a session
+    
+    res.redirect('/admin');
     res.render('admin/write', {
         title: 'Write a post on graemeboy.com',
         editTitle: '',
