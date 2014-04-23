@@ -40,13 +40,13 @@ module.exports = function (app, config, db) {
     app.use(require('method-override')());
 
     // Sessions
-    app.use(session({
-        secret: config.sessionSecret,
-        store: new mongoStore({
-            db: db.connection.db,
-            collection: config.sessionCollection
-        })
-    }));
+//    app.use(session({
+//        secret: config.sessionSecret,
+//        store: new mongoStore({
+//            db: db.connection.db,
+//            collection: config.sessionCollection
+//        })
+//    }));
 
     // Helpers
     app.use(helpers(config.app.name));

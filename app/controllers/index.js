@@ -66,7 +66,7 @@ exports.cat = function (req, res, next, catIn) {
         cat: catIn
     }, function (err, posts) {
         if (err) {
-            return next(err)
+            return next(err);
         } else if (posts) {
             req.catPosts = posts;
             req.cat = catIn;
@@ -76,21 +76,25 @@ exports.cat = function (req, res, next, catIn) {
             return next();
         }
     });
-}; // .post
+}; // .cat
         
-    exports.post = function (req, res, next, slugIn) {
+exports.post = function (req, res, next, slugIn) {
 
     var post = Post.findOne({
         slug: slugIn
     }, function (err, post) {
         if (err) {
-            return next(err)
+            return next(err);
         } else if (post) {
             req.post = post;
             return next();
         } else {
             // Nothing was found
-            return next();
+            res.status(404).render('404', {
+                url: req.originalUrl,
+                title: "404 - Page not found",
+                error: 'Page not found'
+            });
         }
     });
 }; // .post
