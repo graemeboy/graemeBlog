@@ -28,6 +28,7 @@ router.get('/admin/write/:postSlug', admin.edit);
 // Other special things
 // Rishan test
 router.get('/rishan', index.rishan);
+router.get('/viperchill-404', index.viperchill);
 
 // Qlock
 router.get('/qlock', index.qlock);

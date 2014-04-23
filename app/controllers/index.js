@@ -15,6 +15,13 @@ var Post = mongoose.model('Post');
 //    return tags;
 //}
 
+exports.viperchill = function (req, res)
+{
+    res.render('viperchill/index', {
+        title: "Rishan Test Location and Device",
+    }); // render
+}
+
 exports.home = function (req, res, next) {
     // Get the recent posts
 //    Post.remove({}, function(err) { 
