@@ -1,13 +1,10 @@
 <% include includes/header %>
-
-    <div class="main col-sm-9">
-        <div class="container-fluid">
-        <h1>Posts about <%= cat %></h1>
+        <h1 class="page-title">Posts about <%= cat %></h1>
             
         <% if (catPosts.length > 0) { %>
         <p>Click on a title to read the whole article</p>
         <% for (var i = 0; i < catPosts.length; i++) { %>
-        <div class="container-fluid">
+        <div class="archive-post-container container-fluid">
             <h3 class="page-title"><a href="/<%= catPosts[i].slug %>"><%= catPosts[i].title %></a></h3>
             <div class="post-meta"></div>
             <div class="page-content">

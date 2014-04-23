@@ -56,10 +56,10 @@ function getRecentPosts()
 function getCats ()
 {
     var cats = [
-//        { name: "nodejs", count: 1},
+        { name: "nodejs", count: 1},
     ];
     return cats;
-}
+} // getCat()
 
 exports.cat = function (req, res, next, catIn) {
     console.log("cat is " + catIn);
@@ -114,13 +114,17 @@ exports.showCatPosts = function (req, res) {
         
 exports.showPost = function (req, res) {
     var post = req.post;
+    
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on ' + post.cat + '">send me a tweet.</a>';
+    
     res.render('post', {
-        title: "Graeme Boy - " + post.title,
+        title: post.title,
         postTitle: post.title,
         postSlug: post.slug,
         postContent: post.body,
         postCat: post.cat,
         postTags: post.tags,
-        cats: getCats()
+        cats: getCats(),
+        callToAction: callToAction
     }); // render
 } // show

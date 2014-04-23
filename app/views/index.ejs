@@ -1,12 +1,10 @@
 <% include includes/header %>
-        <div class="main col-sm-9">
-            <div class="container-fluid">
                 <h1 class="page-title">Blog Posts</h1>
                 <p>Click on a title to read the whole article</p>
                 
                 <!-- Loop through recent 5 posts --><% 
                 for (var i = 0; i < recentPosts.length; i++) { %>
-                <div class="container-fluid">
+                <div class="archive-post-container container-fluid">
                     <h3 class="page-title"><a href="<%= recentPosts[i].slug %>"><%= recentPosts[i].title %></a></h3>
                     <div class="post-meta"></div>
                     <div class="page-content">

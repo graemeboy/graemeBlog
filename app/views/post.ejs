@@ -1,11 +1,9 @@
 <% include includes/header %>
-
-    <div class="main col-sm-9">
-        <div class="container-fluid">
             <h1 class="page-title"><%= postTitle %></h1>
-            <div class="post-meta">A post on <%= postCat %></div>
+            <div class="post-meta"></div>
             <div class="page-content">
                 <%- postContent %>
+                <div class="call-to-action"><%- callToAction %></div>
             </div>
         </div>
         <!-- .container -->
