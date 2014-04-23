@@ -15,7 +15,7 @@ var Post = mongoose.model('Post');
 //    return tags;
 //}
 
-exports.home = function (req, res) {
+exports.home = function (req, res, next) {
     // Get the recent posts
 //    Post.remove({}, function(err) { 
 //   console.log('collection removed') 

@@ -58,7 +58,6 @@ exports.writeProcess = function (req, res) {
         cat: req.body.postCat.toLowerCase()
     });
     
-    console.log("New post: " + post);
     // Save the Post
     post.save(function (err) {
         if (err) {
