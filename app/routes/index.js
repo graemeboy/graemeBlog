@@ -14,8 +14,7 @@ router.param('postCat', index.cat);
 // Home Page
 router.get('/', index.home);
 
-// Rishan test
-router.get('/rishan', index.rishan);
+
 
 // Admin area
 var admin = require('../controllers/admin');
@@ -25,6 +24,13 @@ router.post('/admin/login', admin.loginProcess);
 router.get('/admin/write', admin.write);
 router.post('/admin/write', admin.writeProcess);
 router.get('/admin/write/:postSlug', admin.edit);
+
+// Other special things
+// Rishan test
+router.get('/rishan', index.rishan);
+
+// Qlock
+router.get('/qlock', index.qlock);
 
 // Single Posts
 router.get('/:postSlug', index.showPost);

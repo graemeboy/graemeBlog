@@ -1,0 +1,127 @@
+/*
+	Author: Graeme Boy (graemeboy@gmail.com)
+	Github: https://github.com/graemeboy/
+*/
+
+/*
+	Start - For the examples page
+*/
+body {
+	font-family:'Helvetica Neue', helvetica;
+	
+}
+h2 {
+	font-weight: 200;
+}
+h3 {
+	font-size: 22px;
+	font-weight: 100;
+}
+.container{
+	padding-right:15px;
+	padding-left:15px;
+	margin-right:auto;
+	margin-left:auto
+}
+/*
+	End - For the examples page
+*/
+
+
+/*
+	Start - Dark theme
+*/
+.qlock-dark {
+	background-color: #000;
+}
+.qlock-dark .qlock-char {
+	color: #333;
+}
+.qlock-dark .qlock-on, .qlock-dark .qlock-period {
+	color: #fff;
+}
+/*
+	End - Dark theme
+*/
+
+/*
+	Start - Light theme
+*/
+.qlock-light .qlock-on {
+	color: #000 !important;
+}
+/*
+	End - Light theme
+*/
+
+
+/*
+	Start - General Style
+*/
+.qlock-char {
+	color: #eee;
+	width: 28px;
+	text-align: center;
+	display: inline-block;
+}
+.qlock-row {
+	display: block;
+	clear:both;
+}
+.qlock-field {
+	border: none;
+	padding: 5px;
+	font-size: 28px;
+	float:left;
+	font-family:'Helvetica Neue', helvetica;
+	font-weight: 100;
+	text-transform: uppercase;
+	line-height: 1.428571429;
+	width: auto;
+}
+.qlock-period {
+	font-size: 16px;
+	text-align: center;
+	margin-top: 10px;
+}
+/*
+	End - General Style
+*/
+
+/*
+	Start - Using boarders to show minutes
+*/
+.qlock-min-1 {
+	border-top: 1px solid #ccc !important;
+}
+.qlock-min-2 {
+	border-top: 1px solid #ccc !important;
+	border-right: 1px solid #ccc !important;
+}
+.qlock-min-3 {
+	border-top: 1px solid #ccc !important;
+	border-right: 1px solid #ccc !important;
+	border-bottom: 1px solid #ccc !important;
+}
+.qlock-min-4 {
+	border: 1px solid #ccc !important;
+}
+
+.qlock-dark qlock-min-1 {
+	border-top: 1px solid #fff !important;
+}
+.qlock-dark .qlock-min-2 {
+	border-top: 1px solid #fff !important;
+	border-right: 1px solid #fff !important;
+}
+.qlock-dark .qlock-min-3 {
+	border-top: 1px solid #fff !important;
+	border-right: 1px solid #fff !important;
+	border-bottom: 1px solid #fff !important;
+}
+.qlock-dark .qlock-min-4 {
+	border: 1px solid #fff !important;
+}
+/*
+	End - Using boarders to show minutes
+*/

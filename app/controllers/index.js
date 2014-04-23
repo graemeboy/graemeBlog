@@ -29,7 +29,6 @@ exports.home = function (req, res) {
         if (err) {
             return next(err)
         } else{
-            console.log(posts);
             // Render page
             res.render('index', {
                 title: "Graeme Boy - Home",
@@ -62,7 +61,6 @@ function getCats ()
 } // getCat()
 
 exports.cat = function (req, res, next, catIn) {
-    console.log("cat is " + catIn);
 
     var posts = Post.find({
         cat: catIn
@@ -81,7 +79,6 @@ exports.cat = function (req, res, next, catIn) {
 }; // .post
         
     exports.post = function (req, res, next, slugIn) {
-    console.log("Slug is " + slugIn);
 
     var post = Post.findOne({
         slug: slugIn
@@ -96,8 +93,6 @@ exports.cat = function (req, res, next, catIn) {
             return next();
         }
     });
-
-    console.log(post);
 }; // .post
 
         
@@ -127,4 +122,9 @@ exports.showPost = function (req, res) {
         cats: getCats(),
         callToAction: callToAction
     }); // render
+} // show
+
+// Qlock
+exports.qlock = function (req, res) {
+    res.render('qlock/qlock'); // render
 } // show

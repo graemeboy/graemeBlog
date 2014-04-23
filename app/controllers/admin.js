@@ -33,7 +33,7 @@ exports.loginProcess = function (req, res) {
 // Write post
 exports.write = function (req, res) {
     
-    res.redirect('/admin');
+    res.redirect('/admin'); // uncomment when pushing to heroku
     res.render('admin/write', {
         title: 'Write a post on graemeboy.com',
         editTitle: '',
