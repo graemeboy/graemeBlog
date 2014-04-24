@@ -54,6 +54,13 @@ exports.rishan = function (req, res) {
     }); // render
 };
 
+exports.validMan = function (req, res) {
+    // Render the home page
+    res.render('validMan', {
+        title: "Show a validation man",
+    }); // render
+};
+
 function getRecentPosts()
 {
     

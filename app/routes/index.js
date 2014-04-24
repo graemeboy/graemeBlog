@@ -32,6 +32,7 @@ router.get('/css-buttons', index.css12);
 // Rishan test
 router.get('/rishan', index.rishan);
 router.get('/viperchill-404', index.viperchill);
+router.get('/valid-man', index.validMan);
 
 // Qlock
 router.get('/qlock', index.qlock);

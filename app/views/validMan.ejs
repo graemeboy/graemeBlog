@@ -1,0 +1,156 @@
+<% include includes/header %>
+    <style type="text/css">
+        .form label {
+            margin-top: 10px;
+        }
+        #valid-man {
+            height: 429px;
+            top: 0;
+            width: 180px;
+            z-index: 1000;
+            display: block;
+        }
+        #valid-man-wrapper div {
+            background-image: url('/img/validManParts.png');
+            position: absolute;
+        }
+        .valid-man-arm {
+            background-position: 270px 0;
+            left: 0;
+            display: none;
+        }
+        #arm-top {
+            background-position: -181px 0;
+            left: 115px;
+            height: 169px;
+            top: 62px;
+            width: 199px;
+            z-index: 0;
+            display: block;
+        }
+        #arm-middle-top {
+            background-position: -181px -169px;
+            height: 117px;
+            left: 79px;
+            top: 124px;
+            width: 241px;
+        }
+        #arm-middle-bottom {
+            background-position: -181px -286px;
+            height: 140px;
+            left: 47px;
+            top: 121px;
+            width: 271px;
+        }
+        #arm-bottom {
+            background-position: -181px -426px;
+            height: 128px;
+            left: 115px;
+            top: 163px;
+            width: 204px;
+        }
+        #valid-man-wrapper {
+            position: relative;
+        }
+        
+        #validationContainer {
+            height: 450px;
+            margin-top: 50px;
+        }
+        #face-good {
+            background-position: 0px -429px;
+            height: 87px;
+            left: 50px;
+            top: 82px;
+            width: 75px;
+            z-index: 2000;
+            display: block;
+        }
+        #face-bad {
+            background-position: -75px -429px;
+            height: 92px;
+            left: 55px;
+            overflow: hidden;
+            top: 69px;
+            width: 71px;
+            z-index: 2000;
+            display: none;
+        }
+    </style>
+    <h1 class="page-title">Validation Man</h1>
+    <div class="post-meta"></div>
+    <div class="page-content">
+        <p>This is a recreation of https://basecamp.com/start for the fun of it.</p>
+
+
+        <div id="validationContainer">
+            <div class="col-md-6">
+                <div id="valid-man-wrapper">
+                    <div id="valid-man" class="valid-face"></div>
+                    <div id="face-good" class="valid-face"></div>
+                    <div id="face-bad"></div>
+                    <div id="arm-top" class="valid-man-arm"></div>
+                    <div id="arm-middle-top" class="valid-man-arm"></div>
+                    <div id="arm-middle-bottom" class="valid-man-arm"></div>
+                    <div id="arm-bottom" class="valid-man-arm"></div>
+                </div>
+            </div>
+            <div id="form-container" class="col-md-6">
+                <form class="form">
+                    <div class="form-group">
+                        <label class="col-md-12 form-label">First Name</label>
+                        <div class="col-md-12">
+                            <input type="text" data-arm="top" id="first-name-in" class="form-control arm-control" placeholder="Graeme" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12 form-label">Last Name</label>
+                        <div class="col-md-12">
+                            <input type="text" data-arm="middle-top" id="last-name-in" class="form-control arm-control" placeholder="Boy" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12 form-label">Email</label>
+                        <div class="col-md-12">
+                            <input type="text" data-arm="middle-bottom" id="email-in" class="form-control arm-control" placeholder="graemeboy@gmail.com" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12 form-label">Location</label>
+                        <div class="col-md-12">
+                            <input type="text" data-arm="bottom" id="location-in" class="form-control arm-control" placeholder="Grinnell, IA" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            var probs = false;
+            $('.arm-control').focus(function() {
+                if (!probs) {
+                $('.valid-man-arm').hide();
+                console.log('#arm-' + $(this).attr('data-arm'));
+                $('#arm-' + $(this).attr('data-arm')).show();
+                }
+            });
+            
+            $('#email-in').blur(function () {
+                if ($(this).val().indexOf('@') === -1)
+                {
+                    probs = true;
+                    $('#face-good').hide();
+                    $('#face-bad').show();
+                }
+                else
+                {
+                    probs = false;
+                    $('#face-good').show();
+                    $('#face-bad').hide();
+                }
+            });
+        });
+    </script>
+    <% include includes/footer %>
