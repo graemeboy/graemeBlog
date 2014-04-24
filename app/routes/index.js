@@ -25,6 +25,9 @@ router.get('/admin/write', admin.write);
 router.post('/admin/write', admin.writeProcess);
 router.get('/admin/write/:postSlug', admin.edit);
 
+// Specific posts (usually popular ones)
+router.get('/css-buttons', index.css12);
+
 // Other special things
 // Rishan test
 router.get('/rishan', index.rishan);

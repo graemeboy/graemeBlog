@@ -117,7 +117,20 @@ exports.showCatPosts = function (req, res) {
         cats: getCats()
     }); // render
 } // show
-        
+
+// Specific posts
+
+exports.css12 = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on CSS buttons">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/css12', {
+        title: "12 Professional CSS Buttons",
+        postTitle: "12 Professional CSS Buttons",
+        cats: getCats(),
+        callToAction: callToAction
+    }); // render
+};
 exports.showPost = function (req, res) {
     var post = req.post;
     
