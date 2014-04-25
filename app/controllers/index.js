@@ -140,12 +140,24 @@ exports.css12 = function (req, res) {
 };
 
 exports.phpVsNode = function (req, res) {
-    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on CSS buttons">send me a tweet.</a>';
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on PHP vs Node.js">send me a tweet.</a>';
     
     // Render the custom page
     res.render('posts/php-vs-node', {
         title: "PHP vs Node.js",
         postTitle: "PHP vs Node.js",
+        cats: getCats(),
+        callToAction: callToAction
+    }); // render
+};
+
+exports.googleWebDesigner = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on the Google Web Designer">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/google-web-designer', {
+        title: "Google Web Designer First Impressions: Review",
+        postTitle: "Google Web Designer First Impressions: Review",
         cats: getCats(),
         callToAction: callToAction
     }); // render

@@ -14,6 +14,7 @@ router.get('/', index.home);
 
 // Specific posts (usually popular ones)
 router.get('/css-buttons', index.css12);
+router.get('/google-web-designer-review', index.googleWebDesigner);
 
 // Other special things
 // Rishan test
