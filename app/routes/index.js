@@ -36,9 +36,10 @@ router.get('/valid-man', index.validMan);
 
 // Qlock
 router.get('/qlock', index.qlock);
+router.get('/php-vs-node', index.phpVsNode);
 
 // Single Posts
-router.get('/:postSlug', index.showPost);
+//router.get('/:postSlug', index.showPost);
 router.get('/cat/:postCat', index.showCatPosts);
 
 module.exports = router;

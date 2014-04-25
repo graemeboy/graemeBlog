@@ -138,6 +138,21 @@ exports.css12 = function (req, res) {
         callToAction: callToAction
     }); // render
 };
+
+exports.phpVsNode = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on CSS buttons">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/php-vs-node', {
+        title: "PHP vs Node.js",
+        postTitle: "PHP vs Node.js",
+        cats: getCats(),
+        callToAction: callToAction
+    }); // render
+};
+
+
+
 exports.showPost = function (req, res) {
     var post = req.post;
     
