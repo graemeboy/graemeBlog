@@ -23,16 +23,10 @@ router.get('/how-to-hide-that-you-use-wordpress', index.hideWordpress);
 router.get('/cbt', index.cbt);
 router.get('/qlock', index.qlock);
 
-
 // Other special things
 // Rishan test
 router.get('/rishan', index.rishan);
 router.get('/viperchill-404', index.viperchill);
 router.get('/valid-man', index.validMan);
-
-
-
-
-
 
 module.exports = router;

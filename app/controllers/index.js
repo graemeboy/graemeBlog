@@ -1,19 +1,4 @@
 // Fields
-// Data fields
-var mongoose = require('mongoose');
-var Post = mongoose.model('Post');
-//var Tag = mongoose.model('PostTag');
-
-//function getTags()
-//{
-//    var tagsRaw = Tag.find();
-//    
-//    for (var tag in tagsRaw) {
-//        console.log("Name : " + tag.name);
-//    }
-//    var tags = {};
-//    return tags;
-//}
 
 exports.viperchill = function (req, res)
 {
@@ -23,27 +8,11 @@ exports.viperchill = function (req, res)
 }
 
 exports.home = function (req, res, next) {
-    // Get the recent posts
-//    Post.remove({}, function(err) { 
-//   console.log('collection removed') 
-//});
-//    Tag.remove({}, function(err) { 
-//   console.log('collection removed') 
-//});
-    Post.find({}).
-        limit(5)
-        .exec(function (err, posts) {
-        if (err) {
-            return next(err)
-        } else{
-            // Render page
-            res.render('index', {
-                title: "Graeme Boy - Home",
-                recentPosts: posts
-            }); // render
-        }
-    });
-    
+    // Decide what to do here
+    res.render('index', {
+        title: "Graeme Boy",
+        cats: getCats()
+    }); // render
     
 }; // .home
 
@@ -61,35 +30,47 @@ exports.validMan = function (req, res) {
     }); // render
 };
 
-function getRecentPosts()
-{
-    
-}
-
 function getCats ()
 {
     var cats = [
         { name: "nodejs", count: 1},
+        { name: "css", count: 1},
+        { name: "wordpress", count: 1},
+        { name: "google", count: 1},
+        { name: "psychology", count: 0},
     ];
     return cats;
 } // getCat()
+        
+function getCategoryPosts (catIn)
+{
+    var cats = { 
+        "nodejs": [{
+            name: 'PHP vs Node.js',
+            slug: 'php-vs-node',
+        }],
+        "css": [{
+            name: '12 Professional CSS Buttons',
+            slug: 'css-buttons',
+        }],
+        "wordpress": [{
+            name: 'How to Hide That You Use Wordpress',
+            slug: 'how-to-hide-that-you-use-wordpress',
+        }],
+        "google": [{
+            name: 'Google Web Designer First Impressions: Review',
+            slug: 'google-web-designer-review',
+        }],
+        "psychology": []};
+    
+    return cats[catIn];
+}
 
 exports.cat = function (req, res, next, catIn) {
-
-    var posts = Post.find({
-        cat: catIn
-    }, function (err, posts) {
-        if (err) {
-            return next(err);
-        } else if (posts) {
-            req.catPosts = posts;
-            req.cat = catIn;
-            return next();
-        } else {
-            // Nothing was found
-            return next();
-        }
-    });
+    var posts = getCategoryPosts(catIn);
+    req.catPosts = posts;
+    req.category = catIn;
+    return next();
 }; // .cat
         
 exports.post = function (req, res, next, slugIn) {
@@ -120,7 +101,7 @@ exports.showCatPosts = function (req, res) {
     res.render('archive', {
         title: "Graeme Boy - " + req.cat,
         catPosts: catPosts,
-        cat: req.cat,
+        category: req.category,
         cats: getCats()
     }); // render
 } // show
@@ -135,7 +116,8 @@ exports.css12 = function (req, res) {
         title: "12 Professional CSS Buttons",
         postTitle: "12 Professional CSS Buttons",
         cats: getCats(),
-        callToAction: callToAction
+        callToAction: callToAction,
+        category: "css",
     }); // render
 };
 
@@ -147,6 +129,7 @@ exports.phpVsNode = function (req, res) {
         title: "PHP vs Node.js",
         postTitle: "PHP vs Node.js",
         cats: getCats(),
+        category: "nodejs",
         callToAction: callToAction
     }); // render
 };
@@ -160,6 +143,7 @@ exports.hideWordpress = function (req, res) {
         postTitle: "How to Hide That You Use Wordpress",
         callToAction: callToAction,
         cats: getCats(),
+        category: "wordpress",
     }); // render
 };
 
@@ -183,6 +167,7 @@ exports.googleWebDesigner = function (req, res) {
         title: "Google Web Designer First Impressions: Review",
         postTitle: "Google Web Designer First Impressions: Review",
         cats: getCats(),
+        category: "google",
         callToAction: callToAction
     }); // render
 };

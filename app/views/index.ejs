@@ -1,18 +1,12 @@
 <% include includes/header %>
                 <h1 class="page-title">Blog Posts</h1>
-                <p>Click on a title to read the whole article</p>
-                
-                <!-- Loop through recent 5 posts --><% 
-                for (var i = 0; i < recentPosts.length; i++) { %>
-                <div class="archive-post-container container-fluid">
-                    <h3 class="page-title"><a href="<%= recentPosts[i].slug %>"><%= recentPosts[i].title %></a></h3>
-                    <div class="post-meta"></div>
-                    <div class="page-content">
-                        <% if (recentPosts[i].body.length > 350) { %>
-                            <%- recentPosts[i].body.substring(0,350) %>...
-                        <% } else { %> <%- recentPosts[i].body %> <% } %>
-                    </div>
-                </div><% } %>
+            <p>I have written posts on the following topics</p>
+                <ul class="cat-list">
+                    
+        <% for(var i=0; i<cats.length; i++) {
+        %>  <li> <a href="/cat/<%= cats[i].name %>"><%= cats[i].name %> (<%= cats[i].count %>)</a></li>
+        <% } 
+        %></ul>
             </div> <!-- .container -->
             <div class="clearfix"></div>
         </div> <!-- .main .col-sm-9 -->

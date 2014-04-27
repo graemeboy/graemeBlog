@@ -1,9 +1,5 @@
 // Fields
 var express = require("express");
-var session = require("express-session");
-var mongoStore = require("connect-mongo")({
-    session: session
-});
 var helpers = require("view-helpers");
 var package = require("../../package.json");
 var path = require("path");
@@ -39,29 +35,13 @@ module.exports = function (app, config, db) {
     // Method Override
     app.use(require('method-override')());
 
-    // Sessions
-//    app.use(session({
-//        secret: config.sessionSecret,
-//        store: new mongoStore({
-//            db: db.connection.db,
-//            collection: config.sessionCollection
-//        })
-//    }));
 
     // Helpers
     app.use(helpers(config.app.name));
 
     // Routes
     app.use("/", require("../routes"));
-
-    // Error Handling
-    /// catch 404 and forwarding to error handler
-    //    app.use(function(req, res, next) {
-    //        var err = new Error('Not Found');
-    //        err.status = 404;
-    //        next(err);
-    //    });
-
+    
     app.use(function (req, res) {
         res.status(404).render('404', {
             url: req.originalUrl,

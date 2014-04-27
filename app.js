@@ -5,32 +5,8 @@ var fs = require('fs');
 var app = express();
 var http = require('http');
 var config = require("./app/config/config");
-var mongoose = require("mongoose");
 
-// Database
-var dbStart = function () {
-    // Connect
-    return mongoose.connect(config.db);
-}; // dbStart ()
-
-db = dbStart();
-    
-// Database Error Handling
-mongoose.connection.on('error', function (err) {
-  console.log(err)
-});
-// Reconnect when closed
-mongoose.connection.on('disconnected', function () {
-  dbStart()
-});
-
-// Models
-var models_path = __dirname + "/app/models";
-fs.readdirSync(models_path).forEach(function (file) {
-    if (~file.indexOf('.js')) require (models_path + '/' + file)
-});
-
-require("./app/config/express")(app, config, db);
+require("./app/config/express")(app, config);
 
 //app.set('port', 3000);
 // Server

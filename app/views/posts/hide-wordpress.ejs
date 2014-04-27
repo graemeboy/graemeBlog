@@ -1,22 +1,38 @@
 
 <% include ../includes/header %>
-
+<style type="text/css">pre {background-color: #f8f8f8;border: 1px solid #ddd;}.highlight .nb {color: #0086b3;}.highlight .s1 {color: #dd1144;}.highlight .o {font-weight: bold;}.highlight .nv {color: teal;}</style>
     <h1 class="page-title">
         <%= postTitle %>
     </h1>
     <div class="post-meta">April 26 2014</div>
     <div class="page-content">
+        <p>Many people, for whatever reasons, want to hide the fact that they use Wordpress. Two methods to do so are described below. I also give a reason why you might like to do this.</p>
+        
+        <h2>Using the "Change WP-Content" Plugin</h2>
         <p>If you want to change your wp-content folder, you can use this plugin called <a href="http://www.graemeboy.com/wp-plugins/change-wp-content.zip">change wp-content</a>. It works just fine on my Wordpress websites - though I cannot guarantee that nothing will go wrong on yours. So please be careful while using it. While I can't accept responsibility if something goes wrong, feel free to <a href="http://twitter.com/share?text=Hey @graeme_boy, I just used your change wp-content plugin">send me a tweet</a> to let me know how it goes.</p>
+        
+        <h2>How Do I Rename WP-Content Myself?</h2>
+        For one, add this to your wp-config file, at the bottom, just before wp-settings.php are included:
+        
+    <div class="highlight"><pre><span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_CONTENT_FOLDERNAME'</span><span class="p">,</span> <span class="s1">'media'</span> <span class="p">);</span>
+<span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_CONTENT_DIR'</span><span class="p">,</span> <span class="nx">ABSPATH</span> <span class="o">.</span> <span class="nx">WP_CONTENT_FOLDERNAME</span> <span class="p">);</span>
+<span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_SITEURL'</span><span class="p">,</span> <span class="s1">'http://'</span> <span class="o">.</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'HTTP_HOST'</span><span class="p">]</span> <span class="o">.</span> <span class="s1">'/'</span> <span class="p">);</span>
+<span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_CONTENT_URL'</span><span class="p">,</span> <span class="nx">WP_SITEURL</span> <span class="o">.</span> <span class="nx">WP_CONTENT_FOLDERNAME</span> <span class="p">);</span>
+</pre></div>
+        
+        <p>Then, simply rename your directory from wp-content to "media"!</p>
+        
         
         <h2>Why Remove Traces of Wordpress?</h2>
         <p>A lot has been said about the security flaws in Wordpress, and in PHP (the language in which Wordpress is written.) I definitely think that there is truth in that, and the <a href="http://www.wpwhitesecurity.com/wordpress-news/statistics-70-percent-wordpress-installations-vulnerable/">data speak for themselves</a>. Moreover, many people who write Wordpress themes and plugins are not particularly good coders (the barrier to entry is low), which creates further vulnerabilities on Wordpress sites. So it's not just that <em>Wordpress</em> might have security flaws (which it does), but all of the content stored in your <em>wp-content</em> directory might expose vulnerabilities, too.</p>
         <p>Wordpress ought to take some notice of this and give some options to allow for these changes to be made. Although it would be impossible to remove <emm>all trace of Wordpress</em>, there are some measures that will take you quite far. For example, you can rename your wp-content directory to something such as "media" or "assets," which is usually the biggest giveaway (it's the first thing that I look for). The next problem, which has not been solved yet, is how to change the "wp-includes" directory. If you have any good ideas on that, please contact me about that on Twitter, and I'd be more than happy to see if I can make it into a plugin!</p>
-        <h2>Is it really so much of a problem?</h2>
-        <p>This all said, I've seen the admin area of many high profile Wordpress websites, and it would surprise (and perhaps frighten you) to know how many of them are running versions of Wordpress that are way out of date, and plugins that are not secure. However, I've had my own Wordpress site hacked before, and the path to resolving this is definitely not worth the convenience of not updating and maintaining the security of your online software.</p>
-        <p>Keep it secret; keep it safe!</p>
-        <p></p>
         
-        <p></p>
+        <h2>Are Traces of Wordpress Really a Problem?</h2>
+        <p>No, it's not such a big deal. I've seen the admin area of many high profile Wordpress websites, and it would surprise (and perhaps frighten you) to know how many of them are running versions of Wordpress that are way out of date, and plugins that are not secure. Even they don't seem to get hacked. However, I've had my own Wordpress site hacked before, and the path to resolving this is definitely not worth the convenience of not updating and maintaining the security of your online software. This type of hacking can be done with simple automated tools.</p>
+        <p>Keep it secret; keep it safe!</p>
+        
+        
+        
         <div class="call-to-action"><%- callToAction %></div>
 </div>
         <!-- .container -->
