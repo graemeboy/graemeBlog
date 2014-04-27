@@ -12,9 +12,17 @@ router.param('postCat', index.cat);
 // Home Page
 router.get('/', index.home);
 
-// Specific posts (usually popular ones)
+// Single Posts
+router.get('/php-vs-node', index.phpVsNode);
+router.get('/cat/:postCat', index.showCatPosts);
 router.get('/css-buttons', index.css12);
 router.get('/google-web-designer-review', index.googleWebDesigner);
+router.get('/how-to-hide-that-you-use-wordpress', index.hideWordpress);
+
+// Pages
+router.get('/cbt', index.cbt);
+router.get('/qlock', index.qlock);
+
 
 // Other special things
 // Rishan test
@@ -22,11 +30,9 @@ router.get('/rishan', index.rishan);
 router.get('/viperchill-404', index.viperchill);
 router.get('/valid-man', index.validMan);
 
-// Qlock
-router.get('/qlock', index.qlock);
 
-// Single Posts
-router.get('/php-vs-node', index.phpVsNode);
-router.get('/cat/:postCat', index.showCatPosts);
+
+
+
 
 module.exports = router;

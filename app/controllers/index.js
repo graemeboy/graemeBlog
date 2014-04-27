@@ -151,6 +151,30 @@ exports.phpVsNode = function (req, res) {
     }); // render
 };
 
+exports.hideWordpress = function (req, res) {
+    var callToAction = 'If you enjoyed this page or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your page on hiding Wordpress info">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/hide-wordpress', {
+        title: "How to Hide That You Use Wordpress",
+        postTitle: "How to Hide That You Use Wordpress",
+        callToAction: callToAction,
+        cats: getCats(),
+    }); // render
+};
+
+
+exports.cbt = function (req, res) {
+    var callToAction = 'If you enjoyed this page or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just used your cbt app">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('pages/cbt', {
+        title: "Cognitive Behavioral Therapy - Self-Help App",
+        postTitle: "Cognitive Behavioral Therapy - Self-Help App",
+        callToAction: callToAction
+    }); // render
+};
+
 exports.googleWebDesigner = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on the Google Web Designer">send me a tweet.</a>';
     

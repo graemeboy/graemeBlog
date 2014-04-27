@@ -1,0 +1,26 @@
+
+<% include ../includes/header %>
+
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">April 26 2014</div>
+    <div class="page-content">
+        <p>If you want to change your wp-content folder, you can use this plugin called <a href="http://www.graemeboy.com/wp-plugins/change-wp-content.zip">change wp-content</a>. It works just fine on my Wordpress websites - though I cannot guarantee that nothing will go wrong on yours. So please be careful while using it. While I can't accept responsibility if something goes wrong, feel free to <a href="http://twitter.com/share?text=Hey @graeme_boy, I just used your change wp-content plugin">send me a tweet</a> to let me know how it goes.</p>
+        
+        <h2>Why Remove Traces of Wordpress?</h2>
+        <p>A lot has been said about the security flaws in Wordpress, and in PHP (the language in which Wordpress is written.) I definitely think that there is truth in that, and the <a href="http://www.wpwhitesecurity.com/wordpress-news/statistics-70-percent-wordpress-installations-vulnerable/">data speak for themselves</a>. Moreover, many people who write Wordpress themes and plugins are not particularly good coders (the barrier to entry is low), which creates further vulnerabilities on Wordpress sites. So it's not just that <em>Wordpress</em> might have security flaws (which it does), but all of the content stored in your <em>wp-content</em> directory might expose vulnerabilities, too.</p>
+        <p>Wordpress ought to take some notice of this and give some options to allow for these changes to be made. Although it would be impossible to remove <emm>all trace of Wordpress</em>, there are some measures that will take you quite far. For example, you can rename your wp-content directory to something such as "media" or "assets," which is usually the biggest giveaway (it's the first thing that I look for). The next problem, which has not been solved yet, is how to change the "wp-includes" directory. If you have any good ideas on that, please contact me about that on Twitter, and I'd be more than happy to see if I can make it into a plugin!</p>
+        <h2>Is it really so much of a problem?</h2>
+        <p>This all said, I've seen the admin area of many high profile Wordpress websites, and it would surprise (and perhaps frighten you) to know how many of them are running versions of Wordpress that are way out of date, and plugins that are not secure. However, I've had my own Wordpress site hacked before, and the path to resolving this is definitely not worth the convenience of not updating and maintaining the security of your online software.</p>
+        <p>Keep it secret; keep it safe!</p>
+        <p></p>
+        
+        <p></p>
+        <div class="call-to-action"><%- callToAction %></div>
+</div>
+        <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>
