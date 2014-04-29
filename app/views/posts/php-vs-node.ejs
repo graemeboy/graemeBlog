@@ -6,55 +6,80 @@
     <div class="post-meta">24 April 2014</div>
     <div class="page-content">
         <p>This is a YAPNAP: Yet Another Post on Node and PHP.</p>
-<h3>What is Node.js?</h3>
-<img alt="Thumbnail for version as of 14:30, 28 June 2013" src="http://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" class="post-thumb pull-left" width="120" height="32" data-file-width="233" data-file-height="63"><p>Node.js is an efficient and scalable software platform that can execute JavaScript code on a server. It uses event-loops rather than traditional threading, which makes it faster and less memory-intensive than traditional platforms. Node uses Google&rsquo;s V8 virtual machine to execute JavaScript, and can be implemented on Mac, Windows, and Linux operating systems. The only alternative is Java&rsquo;s Rhino (now called Nashorn), which can execute strings of JavaScript code.</p>
-<h3>In Defense of PHP</h3>
-<p>Node.js is not "faster" than PHP, though some implementations on Node.js are indeed less performant than similar implementations that use PHP. Only the efficiency of <em>implementations</em> using either technology can be compared, not the technologies themselves.</p>
-<p>For now, let&rsquo;s talk about coding.&nbsp;</p>
-<h3>PHP Apps are Quicker to Make: A Testable Hypothesis</h3>
-<p>PHP is the simplest language to write small-to-medium sized web apps that require one&rsquo;s own server. Any counter-argument to this is probably an exceptional case.</p>
-<p>Here is a case in point. Last weekend, along with a <a href="http://jennellenystrom.com">friend</a>, I entered a hackathon, deciding to create a social payment system using Node.js. I had created and sold a similar system in PHP three years ago, which took me 48 hours to build. Since I had done this before in PHP, I thought it would be trivial to recreate in Node.js. 42 hours later, I just barely had a prototype to pitch to the audience and investors. Not because my team was bad at Node, but because it just takes a little longer to implement each feature. We came in second place, while a more swiftly written PHP version might have taken first. Node.js was the wrong choice for the hackathon.</p>
-<p>One of the reasons that PHP apps are quick to make, though, is that they allow for a lot of bad practices. So, you can write a somewhat crappy program in a shorter span of time. Move quickly and break things. Sometimes this is okay.</p>
-<h3>The 3 Reasons to Use Node.js</h3>
-<h4>1. Node.js implementations will generally run faster</h4>
-<p>There is a problem with saying that Node.js is faster than PHP. It&rsquo;s not. There is a trivial and humorous proof: No programming language in the world is, or will ever be, faster than the PHP &ldquo;Hello World&rdquo; app:</p>
-<p>Hello world in PHP:</p>
-<p><code>Hello world</code></p>
-<p>Hello world in JavaScript (without creating the server):</p>
-<p><code>console.log('Hello World');</code></p>
-<p>However, this is sort of a cheat, and for most common implementations and third-party packages, it is true that Node.js will out perform PHP. In one test between Ghost and Wordpress, for example, <a href="http://www.appdynamics.com/blog/nodejs/an-example-of-how-node-js-is-faster-than-php/">Ghost on NginX was over 6 times faster for certain operations than Wordpress on Apache</a>. The reason for this is that JavaScript is non-blocking, while PHP waits for each task to complete before it begins its next task (which also requires more memory). Similarly, for &ldquo;web scraping,&rdquo; a common Node.js library <a href="http://rojan.com.np/scraping-nodejs-vs-php/">outperformed a common PHP library by about 6 times</a>. In this case, the file_get_content() PHP function slowed it down considerably. What if the test were to use non-blocking PHP code instead? Luckily, someone has tested this, and found that the <a href="http://philsturgeon.co.uk/blog/2013/11/benchmarking-codswallop-nodejs-v-php">PHP code was faster than Node.js</a>.</p>
-<p>In fact, even when NodeJS used a higher-than-default maximum number of connections (64 rather than 5), its performance was practically the same as non-blocking PHP at web scraping.</p>
-<div><img src="http://i.imgur.com/TyHSqUM.png?1" alt="" width="600" height="293" /></div>
-<div class="img-citation">From http://philsturgeon.co.uk/blog/2013/11/benchmarking-codswallop-nodejs-v-php</div>
-<p>The take-away point is that many common PHP implementations and third-party packages are less performant than their Node.js counterparts will be. This is largely dependent on the quality of the third party developer, and not the language or platform, which is why <a href="#coder-community">community</a>&nbsp;is a huge part of this decision. For example, if you are implementing a blog on your site then the chances are you will use a third-party package such as Wordpress or Ghost. In that case, the Node.js implementation, designed to Node&rsquo;s strengths, will probably be a significant constant (say, 7) times faster. This argument can be run for countless packages that your app might depend on, and therefore Node.js software will very often come out performing faster. But this not because the &ldquo;language&rdquo; is faster. The speed of JavaScript on V8 vs. PHP has been argued with application-specific benchmarks <a href="http://benchmarksgame.alioth.debian.org/u32/benchmark.php?test=all&amp;lang=php&amp;lang2=v8">elsewhere</a>.</p>
-<h4>2. Node.js is Well Suited to Integrating Technologies</h4>
-<p>In 2009, <a href="http://gigaom.com/2009/04/03/google-may-buy-twitter-or-not-but-why-is-twitter-so-hot/">Om Malik</a>&nbsp;wrote about the web, saying that:</p>
-<blockquote>
-<p>&ldquo;The web is transitioning from mere interactivity to a more dynamic, real-time web where read-write functions are heading towards balanced synchronicity. The real-time web, as I have argued in the past, is the next logical step in the Internet&rsquo;s evolution... More and more people are publishing more and more &ldquo;social objects&rdquo; and sharing them online. That data deluge is creating a new kind of search opportunity.&rdquo;</p>
-</blockquote>
-<p>To add to that, most new good technologies have interactive features which rely on multiple APIs. Together, this means that the server is a &ldquo;middle-man,&rdquo; doing a lot of switching between user requests for both simple and complex objects, and communication with other servers. Moreover, there is usually no reason for the end user to have to wait while these operations are performed.</p>
-<p>Alex McCaw gives <a href="http://blog.alexmaccaw.com/asynchronous-ui">a good example</a>&nbsp;about non-blocking frontend interfaces. When a user sends an email on Gmail, there is no reason to show a &ldquo;sending&hellip;&rdquo; alert at the top of the page. For all intents and purposes, once I&rsquo;ve clicked &ldquo;send&rdquo; on my email, the email is sent! No-blocking servers and user-interfaces take this approach, though it takes a while to get used to creating projects in this way.</p>
-<p>Because Node.js is event-oriented, it is naturally well built for this.</p>
-<h4 id="coder-community">3. Good Coders are Excited to Use Node.js</h4>
-<p>Hackers want to hack on Node.js. If you&rsquo;re hiring programmers at some point in your project, you&rsquo;ll be better off if it&rsquo;s in Node.js. I can hardly stress this point enough. You want your coders to be excited about your technology stack.</p>
-<p>There is a paradoxical fact about hiring good coders. Good coders want to use the latest technology, even if it&rsquo;s only marginally better, and this keeps them out of the mainstream. Convincing a good hacker to use PHP is a challenge. Getting him or her excited about a PHP project is nearly impossible. Meanwhile, finding smart and creative coders who fancy harder-to-use language such as Scala or Scheme is actually quite easy. For now, Node.js is approaching a good midpoint between being new and exciting, and having been tried and tested.</p>
-<p>In Paul Graham&rsquo;s essay on the <a href="http://paulgraham.com/javacover.html">future of Java</a>, he had the following four argument about why the language will fail:</p>
-<blockquote>
-<p>&ldquo;No one loves it&hellip;I&rsquo;ve never heard anyone say that they loved Java&hellip;People are forced to use it. A lot of the people I know using Java are using it because they feel they have to.&rdquo;</p>
-<p>&ldquo;It's bureaucratic...Really good language aren&rsquo;t like that. They let you do what you want and get out of the way.&rdquo;</p>
-<p>&ldquo;The wrong people like it. The programmers I admire most are not, on the whole, captivated by Java. Who does like Java? Suits, who don't know one language from another&hellip;&rdquo;</p>
-<p>&ldquo;Like the creators of sitcoms or junk food or package tours, Java's designers were consciously designing a product for people not as smart as them.&rdquo;</p>
-</blockquote>
-<p>Graham was right on the mark, and Java never seemed to take off with pioneering coders. No team ever formed a startup and got excited about using Java for their product.</p>
-<p>Now think about Node.js. No business is forcing its employees to code in Node.js, and yet there are coders around the world writing open source books on it. In their free time, hackers at big companies such as Paypal are writing <a href="http://krakenjs.com/">open source Node.js frameworks</a>, to patch up its weaker points. A world of smart people are gathering around the Node.js movement, and now is the time to invest in them.</p>
-<h3>So, ought I to use Node.js to build my next application?</h3>
-<p>People will often say that it depends upon the type of application you are building. But nobody really knows exactly what application they are building before they build it. Software development meanders, and companies that have versatile infrastructure are at an advantage. Zuck didn&rsquo;t know what Facebook would become when he started hacking it in Kirkland. Had he known, he might have resisted using PHP, which Facebook has had to take <a href="https://code.facebook.com/posts/264544830379293/hack-a-new-programming-language-for-hhvm/">massive strides to optimize</a>.</p>
-<p>The success of your project will not depend much on the language itself in the end, so don&rsquo;t trash languages. The specific algorithms and the people who are writing that code will be more important. Node.js had an advantage in both of those factors.</p>
-        <div class="call-to-action"><%- callToAction %></div>
+        <h3>What is Node.js?</h3>
+        <img alt="Thumbnail for version as of 14:30, 28 June 2013" src="http://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" class="post-thumb pull-left" width="120" height="32" data-file-width="233" data-file-height="63">
+        <p>Node.js is an efficient and scalable software platform that can execute JavaScript code on a server. It uses event-loops rather than traditional threading, which makes it faster and less memory-intensive than traditional platforms. Node uses Google&rsquo;s V8 virtual machine to execute JavaScript, and can be implemented on Mac, Windows, and Linux operating systems. The only alternative is Java&rsquo;s Rhino (now called Nashorn), which can execute strings of JavaScript code.</p>
+        <h3>In Defense of PHP</h3>
+        <p>Node.js is not "faster" than PHP, though some implementations on Node.js are indeed less performant than similar implementations that use PHP. Only the efficiency of
+            <em>implementations</em>using either technology can be compared, not the technologies themselves.</p>
+        <p>For now, let&rsquo;s talk about coding.&nbsp;</p>
+        <h3>PHP Apps are Quicker to Make: A Testable Hypothesis</h3>
+        <p>PHP is the simplest language to write small-to-medium sized web apps that require one&rsquo;s own server. Any counter-argument to this is probably an exceptional case.</p>
+        <p>Here is a case in point. Last weekend, along with a
+            <a href="http://jennellenystrom.com">friend</a>, I entered a hackathon, deciding to create a social payment system using Node.js. I had created and sold a similar system in PHP three years ago, which took me 48 hours to build. Since I had done this before in PHP, I thought it would be trivial to recreate in Node.js. 42 hours later, I just barely had a prototype to pitch to the audience and investors. Not because my team was bad at Node, but because it just takes a little longer to implement each feature. We came in second place, while a more swiftly written PHP version might have taken first. Node.js was the wrong choice for the hackathon.</p>
+        <p>One of the reasons that PHP apps are quick to make, though, is that they allow for a lot of bad practices. So, you can write a somewhat crappy program in a shorter span of time. Move quickly and break things. Sometimes this is okay.</p>
+        <p>The "designer" of PHP probably says it best himself:</p>
+        <blockquote>
+            <p>Rasmus: "In the end, what I think set PHP apart in the early days, and still does today, is that <strong>it always tries to find the shortest path to solving the Web problem</strong>. It does not try to be a general-purpose scripting language and anybody who’s looking to solve a Web problem will usually find a very direct solution through PHP. Many of the alternatives that claim to solve the Web problem are just too complex. When you need something up and working by Friday so you don’t have to spend all weekend leafing through 800-page manuals, PHP starts to look pretty good."</p>
+        </blockquote>
+        <h3>The 3 Reasons to Use Node.js</h3>
+        <h4>1. Node.js implementations will generally run faster</h4>
+        <p>There is a problem with saying that Node.js is faster than PHP. It&rsquo;s not. There is a trivial and humorous proof: No programming language in the world is, or will ever be, faster than the PHP &ldquo;Hello World&rdquo; app:</p>
+        <p>Hello world in PHP:</p>
+        <p>
+            <code>Hello world</code>
+        </p>
+        <p>Hello world in JavaScript (without creating the server):</p>
+        <p>
+            <code>console.log('Hello World');</code>
+        </p>
+        <p>However, this is sort of a cheat, and for most common implementations and third-party packages, it is true that Node.js will out perform PHP. In one test between Ghost and Wordpress, for example,
+            <a href="http://www.appdynamics.com/blog/nodejs/an-example-of-how-node-js-is-faster-than-php/">Ghost on NginX was over 6 times faster for certain operations than Wordpress on Apache</a>. The reason for this is that JavaScript is non-blocking, while PHP waits for each task to complete before it begins its next task (which also requires more memory). Similarly, for &ldquo;web scraping,&rdquo; a common Node.js library
+            <a href="http://rojan.com.np/scraping-nodejs-vs-php/">outperformed a common PHP library by about 6 times</a>. In this case, the file_get_content() PHP function slowed it down considerably. What if the test were to use non-blocking PHP code instead? Luckily, someone has tested this, and found that the
+            <a href="http://philsturgeon.co.uk/blog/2013/11/benchmarking-codswallop-nodejs-v-php">PHP code was faster than Node.js</a>.</p>
+        <p>In fact, even when NodeJS used a higher-than-default maximum number of connections (64 rather than 5), its performance was practically the same as non-blocking PHP at web scraping.</p>
+        <div>
+            <img src="http://i.imgur.com/TyHSqUM.png?1" alt="" width="600" height="293" />
+        </div>
+        <div class="img-citation">From http://philsturgeon.co.uk/blog/2013/11/benchmarking-codswallop-nodejs-v-php</div>
+        <p>The take-away point is that many common PHP implementations and third-party packages are less performant than their Node.js counterparts will be. This is largely dependent on the quality of the third party developer, and not the language or platform, which is why
+            <a href="#coder-community">community</a>&nbsp;is a huge part of this decision. For example, if you are implementing a blog on your site then the chances are you will use a third-party package such as Wordpress or Ghost. In that case, the Node.js implementation, designed to Node&rsquo;s strengths, will probably be a significant constant (say, 7) times faster. This argument can be run for countless packages that your app might depend on, and therefore Node.js software will very often come out performing faster. But this not because the &ldquo;language&rdquo; is faster. The speed of JavaScript on V8 vs. PHP has been argued with application-specific benchmarks
+            <a href="http://benchmarksgame.alioth.debian.org/u32/benchmark.php?test=all&amp;lang=php&amp;lang2=v8">elsewhere</a>.</p>
+        <h4>2. Node.js is Well Suited to Integrating Technologies</h4>
+        <p>In 2009,
+            <a href="http://gigaom.com/2009/04/03/google-may-buy-twitter-or-not-but-why-is-twitter-so-hot/">Om Malik</a>&nbsp;wrote about the web, saying that:</p>
+        <blockquote>
+            <p>&ldquo;The web is transitioning from mere interactivity to a more dynamic, real-time web where read-write functions are heading towards balanced synchronicity. The real-time web, as I have argued in the past, is the next logical step in the Internet&rsquo;s evolution... More and more people are publishing more and more &ldquo;social objects&rdquo; and sharing them online. That data deluge is creating a new kind of search opportunity.&rdquo;</p>
+        </blockquote>
+        <p>To add to that, most new good technologies have interactive features which rely on multiple APIs. Together, this means that the server is a &ldquo;middle-man,&rdquo; doing a lot of switching between user requests for both simple and complex objects, and communication with other servers. Moreover, there is usually no reason for the end user to have to wait while these operations are performed.</p>
+        <p>Alex McCaw gives
+            <a href="http://blog.alexmaccaw.com/asynchronous-ui">a good example</a>&nbsp;about non-blocking frontend interfaces. When a user sends an email on Gmail, there is no reason to show a &ldquo;sending&hellip;&rdquo; alert at the top of the page. For all intents and purposes, once I&rsquo;ve clicked &ldquo;send&rdquo; on my email, the email is sent! No-blocking servers and user-interfaces take this approach, though it takes a while to get used to creating projects in this way.</p>
+        <p>Because Node.js is event-oriented, it is naturally well built for this.</p>
+        <h4 id="coder-community">3. Good Coders are Excited to Use Node.js</h4>
+        <p>Hackers want to hack on Node.js. If you&rsquo;re hiring programmers at some point in your project, you&rsquo;ll be better off if it&rsquo;s in Node.js. I can hardly stress this point enough. You want your coders to be excited about your technology stack.</p>
+        <p>There is a paradoxical fact about hiring good coders. Good coders want to use the latest technology, even if it&rsquo;s only marginally better, and this keeps them out of the mainstream. Convincing a good hacker to use PHP is a challenge. Getting him or her excited about a PHP project is nearly impossible. Meanwhile, finding smart and creative coders who fancy harder-to-use language such as Scala or Scheme is actually quite easy. For now, Node.js is approaching a good midpoint between being new and exciting, and having been tried and tested.</p>
+        <p>In Paul Graham&rsquo;s essay on the
+            <a href="http://paulgraham.com/javacover.html">future of Java</a>, he had the following four argument about why the language will fail:</p>
+        <blockquote>
+            <p>&ldquo;No one loves it&hellip;I&rsquo;ve never heard anyone say that they loved Java&hellip;People are forced to use it. A lot of the people I know using Java are using it because they feel they have to.&rdquo;</p>
+            <p>&ldquo;It's bureaucratic...Really good language aren&rsquo;t like that. They let you do what you want and get out of the way.&rdquo;</p>
+            <p>&ldquo;The wrong people like it. The programmers I admire most are not, on the whole, captivated by Java. Who does like Java? Suits, who don't know one language from another&hellip;&rdquo;</p>
+            <p>&ldquo;Like the creators of sitcoms or junk food or package tours, Java's designers were consciously designing a product for people not as smart as them.&rdquo;</p>
+        </blockquote>
+        <p>Graham was right on the mark, and Java never seemed to take off with pioneering coders. No team ever formed a startup and got excited about using Java for their product.</p>
+        <p>Now think about Node.js. No business is forcing its employees to code in Node.js, and yet there are coders around the world writing open source books on it. In their free time, hackers at big companies such as Paypal are writing
+            <a href="http://krakenjs.com/">open source Node.js frameworks</a>, to patch up its weaker points. A world of smart people are gathering around the Node.js movement, and now is the time to invest in them.</p>
+        <h3>So, ought I to use Node.js to build my next application?</h3>
+        <p>People will often say that it depends upon the type of application you are building. But nobody really knows exactly what application they are building before they build it. Software development meanders, and companies that have versatile infrastructure are at an advantage. Zuck didn&rsquo;t know what Facebook would become when he started hacking it in Kirkland. Had he known, he might have resisted using PHP, which Facebook has had to take
+            <a href="https://code.facebook.com/posts/264544830379293/hack-a-new-programming-language-for-hhvm/">massive strides to optimize</a>.</p>
+        <p>The success of your project will not depend much on the language itself in the end, so don&rsquo;t trash languages. The specific algorithms and the people who are writing that code will be more important. Node.js had an advantage in both of those factors.</p>
+        <div class="call-to-action">
+            <%- callToAction %>
+        </div>
     </div>
-</div>
-        <!-- .container -->
+    </div>
+    <!-- .container -->
     </div>
     <!-- .main .col-sm-9 -->
-<% include ../includes/sidebar %>
-<% include ../includes/footer %>
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
