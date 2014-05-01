@@ -1,0 +1,204 @@
+<% include ../includes/header %>
+    
+    <style type="text/css">
+        .button-example-1 {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            border-radius: 3px;   
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            -webkit-transition-property: background;
+            -moz-transition-property: background;
+            -o-transition-property: background;
+            transition-property: background;
+            -webkit-transition-duration: 0.3s;
+            -moz-transition-duration: 0.3s;
+            -o-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            color: #ffffff;
+            text-shadow: none;
+            border: none;
+            height: 32px;
+            line-height: 32px;
+            padding: 0px 25.6px;
+            font-weight: 300;
+            font-size: 14px;
+            font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            margin: 0;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block       
+        }
+        .button-example-1:hover {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .button-example-1:active {
+            -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.03), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03);
+            -moz-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03);
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.03), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03);
+        }
+        .button-example-red {
+            background: #e54028;
+        }
+        .button-example-red:hover {
+            background: #FF530D;
+        }
+        .button-example-blue {
+            background: #0971B2;
+        }
+        .button-example-blue:hover {
+            background: #0B88D6;
+        }
+        .button-example-green {
+            background: #00B233;
+        }
+        .button-example-green:hover {
+            background: #00BD36;
+        }
+        .button-example-pink {
+            background: #FF0090;
+        }
+        .button-example-pink:hover {
+            background: #FF2F90;
+        }
+        .button-example-dark-green {
+            background: #007F25;
+        }
+        .button-example-dark-green:hover {
+            background: #008F29;
+        }
+        .nc {
+            color: #445588;
+            font-weight: bold;
+        }
+        .c1 {
+            color: #999988;
+            font-style: italic;
+        }
+        .na {
+            color: teal;
+        }
+        .o {
+            font-weight: bold;
+        }
+        .mh {
+         color: #009999;   
+        }
+        .nt {
+         color: navy;   
+        }
+        .s {
+         color: #dd1144;
+        }
+    </style>
+
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">May 2014</div>
+    <div class="page-content">
+        
+        <div class="button-example">
+            <h3>Example 1</h3>
+            <h4>Preview</h4>
+            <a href="#" class="button-example-1 button-example-red">Click here</a>
+            <a href="#" class="button-example-1 button-example-blue">Click here</a>
+            <a href="#" class="button-example-1 button-example-green">Click here</a>
+            <a href="#" class="button-example-1 button-example-pink">Click here</a>
+            <a href="#" class="button-example-1 button-example-dark-green">Click here</a>
+            <h4>Code</h4>
+            
+            <pre>
+                <code>
+<span class="nt">&lt;style <span class="na">type=</span><span class="s">&quot;text/css&quot;</span>&gt;</span>
+    <span class="c1">/* This first block of code sets the common style for all example 1 buttons. */</span>
+    .<span class="nc">button-example-1</span> {
+        <span class="na">-webkit-border-radius</span><span class="0"><span class="0">:</span></span> <span class="mh">3px</span>;
+        <span class="na">-moz-border-radius</span><span class="0">:</span> <span class="mh">3px</span>;
+        <span class="na">-ms-border-radius</span><span class="0">:</span> <span class="mh">3px</span>;
+        <span class="na">-o-border-radius</span><span class="0">:</span> <span class="mh">3px</span>;
+        <span class="na">border-radius</span><span class="0">:</span> <span class="mh">3px</span>;   
+        <span class="na">-webkit-box-shadow</span><span class="0">:</span> <span class="mh">none</span>;
+        <span class="na">-moz-box-shadow</span><span class="0">:</span> <span class="mh">none</span>;
+        <span class="na">box-shadow</span><span class="0">:</span> <span class="mh">none</span>;
+        <span class="na">-webkit-transition-property</span><span class="0">:</span> <span class="mh">background</span>;
+        <span class="na">-moz-transition-property</span><span class="0">:</span> <span class="mh">background</span>;
+        <span class="na">-o-transition-property</span><span class="0">:</span> <span class="mh">background</span>;
+        <span class="na">transition-property</span><span class="0">:</span> <span class="mh">background</span>;
+        <span class="na">-webkit-transition-duration</span><span class="0">:</span> <span class="mh">0.3s</span>;
+        <span class="na">-moz-transition-duration</span><span class="0">:</span> <span class="mh">0.3s</span>;
+        <span class="na">-o-transition-duration</span><span class="0">:</span> <span class="mh">0.3s</span>;
+        <span class="na">transition-duration</span><span class="0">:</span> <span class="mh">0.3s</span>;
+        <span class="na">color</span><span class="0">:</span> <span class="mh">#ffffff</span>;
+        <span class="na">text-shadow</span><span class="0">:</span> <span class="mh">none</span>;
+        <span class="na">border</span><span class="0">:</span> <span class="mh">none</span>;
+        <span class="na">height</span><span class="0">:</span> <span class="mh">32px</span>;
+        <span class="na">line-height</span><span class="0">:</span> <span class="mh">32px</span>;
+        <span class="na">padding</span><span class="0">:</span> <span class="mh">0px 25.6px</span>;
+        <span class="na">font-weight</span><span class="0">:</span> <span class="mh">300</span>;
+        <span class="na">font-size</span><span class="0">:</span> <span class="mh">14px</span>;
+        <span class="na">font-family</span><span class="0">:</span> <span class="mh">&quot;Helvetica Neue Light&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida Grande&quot;, sans-serif</span>;
+        <span class="na">margin</span><span class="0">:</span> <span class="mh">0</span>;
+        <span class="na">text-decoration</span><span class="0">:</span> <span class="mh">none</span>;
+        <span class="na">text-align</span><span class="0">:</span> <span class="mh">center</span>;
+        <span class="na">display</span><span class="0">:</span> <span class="mh">inline-block</span>      
+    }
+    
+    <span class="c1">/* The next blocks of code are for user actions on the buttons. */</span>
+    <span class="nc">.button-example-1</span><span class="0">:</span>hover {
+        <span class="na">text-decoration</span><span class="0">:</span> <span class="mh">none</span>;
+        <span class="na">color</span><span class="0">:</span> <span class="mh">#ffffff</span>
+    }
+    <span class="nc">.button-example-1</span><span class="0">:</span>active {
+        <span class="na">-webkit-box-shadow</span><span class="0">:</span> <span class="mh">inset 0px 1px 0px rgba(255, 255, 255, 0.03), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03)</span>;
+        <span class="na">-moz-box-shadow</span><span class="0">:</span> <span class="mh">inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03)</span>;
+        <span class="na">box-shadow</span><span class="0">:</span> <span class="mh">inset 0px 1px 0px rgba(255, 255, 255, 0.03), inset 0px -1px 1px rgba(255, 255, 255, 0.05), 0px 1px 0px #777777, 0px 3px 3px rgba(0, 0, 0, 0.03)</span>
+    }
+        
+    <span class="c1">/* The next blocks of code are specific to the color. Copy the color you want. */</span>
+    .<span class="nc">.button-example-red</span> {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#e54028</span>;
+    }
+    <span class="nc">.button-example-red</span><span class="0">:</span>hover {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#FF530D</span>;
+    }
+    <span class="nc">.button-example-blue</span> {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#0971B2</span>;
+    }
+    <span class="nc">.button-example-blue</span><span class="0">:</span>hover {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#0B88D6</span>;
+    }
+    <span class="nc">.button-example-green</span> {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#00B233</span>;
+    }
+    <span class="nc">.button-example-green</span><span class="0">:</span>hover {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#00BD36</span>;
+    }
+    <span class="nc">.button-example-pink</span> {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#FF0090</span>;
+    }
+    <span class="nc">.button-example-pink</span><span class="0">:</span>hover {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#FF2F90</span>;
+    }
+    <span class="nc">.button-example-dark-green</span> {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#007F25</span>;
+    }
+    <span class="nc">.button-example-dark-green</span><span class="0">:</span>hover {
+        <span class="na">background</span><span class="0">:</span> <span class="mh">#008F29</span>;
+    }
+<span class="nt">&lt;/style&gt;</span>
+</code>
+            </pre>
+        </div>
+        
+        <div class="call-to-action"><%- callToAction %></div>
+    </div>
+        <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>

@@ -13,13 +13,18 @@ router.param('postCat', index.cat);
 router.get('/', index.home);
 
 // Single Posts
+router.get('/how-to-hide-that-you-use-wordpress', index.hideWordpress);
 router.get('/php-vs-node', index.phpVsNode);
+router.get('/modern-css-buttons', index.modernCSSButtons);
+router.get('/google-web-designer-review', index.googleWebDesigner);
 router.get('/cat/:postCat', index.showCatPosts);
 router.get('/css-buttons', index.css12);
-router.get('/google-web-designer-review', index.googleWebDesigner);
-router.get('/how-to-hide-that-you-use-wordpress', index.hideWordpress);
+
+
 
 // Pages
+router.get('/global-renaissance', index.globalRenaissance);
+router.get('/global-renaissance/about', index.globalRenaissanceAbout);
 router.get('/cbt', index.cbt);
 router.get('/qlock', index.qlock);
 

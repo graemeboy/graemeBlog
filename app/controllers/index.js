@@ -16,6 +16,22 @@ exports.home = function (req, res, next) {
     
 }; // .home
 
+
+
+exports.modernCSSButtons = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on modern CSS buttons">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/modern-buttons', {
+        title: "Modern CSS Buttons",
+        postTitle: "Modern CSS Buttons",
+        cats: getCats(),
+        callToAction: callToAction,
+        category: "css",
+    }); // render
+};
+
+
 exports.rishan = function (req, res) {
     // Render the home page
     res.render('rishan', {
@@ -94,7 +110,18 @@ exports.post = function (req, res, next, slugIn) {
     });
 }; // .post
 
-        
+exports.globalRenaissance = function (req, res) {
+    res.render('global-ren/index', {
+        title: "Global Renaissance Project",
+    }); // render
+}
+
+exports.globalRenaissanceAbout = function (req, res) {
+    res.render('global-ren/about', {
+        title: "Global Renaissance Project",
+    }); // render
+}
+
 // Show posts from category (Not necessrily about cats)
 exports.showCatPosts = function (req, res) {
     var catPosts = req.catPosts;
