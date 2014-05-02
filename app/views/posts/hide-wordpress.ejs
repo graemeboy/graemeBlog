@@ -1,15 +1,15 @@
 
 <% include ../includes/header %>
 <style type="text/css">pre {background-color: #f8f8f8;border: 1px solid #ddd;}.highlight .nb {color: #0086b3;}.highlight .s1 {color: #dd1144;}.highlight .o {font-weight: bold;}.highlight .nv {color: teal;}</style>
-    <h1 class="page-title">
-        <%= postTitle %>
-    </h1>
+    <h1 class="page-title">How to hide that you use Wordpress</h1>
     <div class="post-meta">April 26 2014</div>
     <div class="page-content">
-        <p>Many people, for whatever reasons, want to hide the fact that they use Wordpress. Two methods to do so are described below.</p>
+        <img alt="File:WordPress logo.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/2/20/WordPress_logo.svg/540px-WordPress_logo.svg.png" width="200" height="45" style="margin-bottom:15px;">
         
-        <h3>Using the "Change WP-Content" Plugin</h3>
-        <p>If you want to change your wp-content folder, you can use <a href="http://www.graemeboy.com/wp-plugins/change-wp-content.zip">this plugin</a>. You won't find it on the Wordpress repository - it's something that I made for myself. I've tested it on a few Wordpress sites, and it works just fine. The benefit of this plugin is that it takes exactly one click to get the entire job of renaming your wp-content directory done. Feel free to <a href="http://twitter.com/share?text=Hey @graeme_boy, I just used your change wp-content plugin">send me a short tweet</a> to let me know how it works for you.</p>
+        <p>Many people, for whatever reasons, want to hide the fact that they use Wordpress. Two methods to do so are described below.</p>
+
+        <h3>A Plugin to Change WP-Content</h3>
+        <p>If you want to change your wp-content folder, you can use <a href="http://www.graemeboy.com/wp-plugins/change-wp-content.zip">this plugin</a>. You won't find it on the Wordpress repository - it's something that I made for myself, but I will share it online for you, too. The benefit of this plugin is that it takes exactly <em>one click</em> to get the entire job of renaming your wp-content directory done. Feel free to <a href="http://twitter.com/share?text=Hey @graeme_boy, I just used your change wp-content plugin">send me a short tweet</a> to let me know how it works for you.</p>
         
         <h3>How Do I Rename WP-Content Myself?</h3>
         For one, add this to your wp-config file, at the bottom, just before wp-settings.php are included:
@@ -20,7 +20,7 @@
 <span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_CONTENT_URL'</span><span class="p">,</span> <span class="nx">WP_SITEURL</span> <span class="o">.</span> <span class="nx">WP_CONTENT_FOLDERNAME</span> <span class="p">);</span>
 </pre></div>
         
-        <p>Then, simply rename your directory from wp-content to "media"!</p>
+        <p>Then, simply rename your directory from wp-content to "media"</p>
         
         
         <h3>Why Remove Traces of Wordpress?</h3>
