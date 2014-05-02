@@ -74,7 +74,7 @@ function getCategoryPosts (catIn)
             slug: 'css-buttons',
         }],
         "wordpress": [{
-            name: 'How to Hide That You Use Wordpress',
+            name: 'How to Hide that You Use Wordpress',
             slug: 'how-to-hide-that-you-use-wordpress',
         }],
         "google": [{
@@ -170,8 +170,8 @@ exports.hideWordpress = function (req, res) {
     
     // Render the custom page
     res.render('posts/hide-wordpress', {
-        title: "How to Hide That You Use Wordpress",
-        postTitle: "How to Hide That You Use Wordpress",
+        title: "How to Hide that You Use Wordpress",
+        postTitle: "How to Hide that You Use Wordpress",
         callToAction: callToAction,
         cats: getCats(),
         category: "wordpress",
