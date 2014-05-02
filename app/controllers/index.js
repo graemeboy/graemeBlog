@@ -50,7 +50,7 @@ function getCats ()
 {
     var cats = [
         { name: "nodejs", count: 1},
-        { name: "css", count: 1},
+        { name: "css", count: 2},
         { name: "wordpress", count: 1},
         { name: "google", count: 1},
         { name: "psychology", count: 0},
@@ -66,6 +66,10 @@ function getCategoryPosts (catIn)
             slug: 'php-vs-node',
         }],
         "css": [{
+            name: 'Modern CSS Buttons',
+            slug: 'modern-css-buttons',
+        },
+        {
             name: '12 Professional CSS Buttons',
             slug: 'css-buttons',
         }],
