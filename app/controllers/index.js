@@ -53,7 +53,7 @@ function getCats ()
         { name: "css", count: 2},
         { name: "wordpress", count: 1},
         { name: "google", count: 1},
-        { name: "psychology", count: 1},
+        { name: "psychology", count: 2},
     ];
     return cats;
 } // getCat()
@@ -84,6 +84,10 @@ function getCategoryPosts (catIn)
         "psychology": [{
             name: 'Gendered Graffiti in a Liberal Arts College Bathroom',
             slug: 'gendered-graffiti',
+        },
+        {
+            name: 'Habit Formation 101',
+            slug: 'habits',
         }]};
     
     return cats[catIn];
@@ -122,6 +126,10 @@ exports.globalRenaissance = function (req, res) {
         title: "Global Renaissance Project",
     }); // render
 }
+
+exports.habitFormation = function (req, res) {
+    res.render('pages/habits'); // render
+} // habitFormation
 
 exports.globalRenaissanceAbout = function (req, res) {
     res.render('global-ren/about', {
