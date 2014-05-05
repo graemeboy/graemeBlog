@@ -82,13 +82,13 @@ function getCategoryPosts (catIn)
             slug: 'google-web-designer-review',
         }],
         "psychology": [{
-            name: 'Gendered Graffiti in a Liberal Arts College Bathroom',
-            slug: 'gendered-graffiti',
-        },
-        {
             name: 'Habit Formation 101',
             slug: 'habits',
-        }]};
+        },{
+            name: 'Gendered Graffiti in a Liberal Arts College Bathroom',
+            slug: 'gendered-graffiti',
+        }
+        ]};
     
     return cats[catIn];
 }
