@@ -53,7 +53,7 @@ function getCats ()
         { name: "css", count: 2},
         { name: "wordpress", count: 1},
         { name: "google", count: 1},
-        { name: "psychology", count: 0},
+        { name: "psychology", count: 1},
     ];
     return cats;
 } // getCat()
@@ -81,7 +81,10 @@ function getCategoryPosts (catIn)
             name: 'Google Web Designer First Impressions: Review',
             slug: 'google-web-designer-review',
         }],
-        "psychology": []};
+        "psychology": [{
+            name: 'Gendered Graffiti in a Liberal Arts College Bathroom',
+            slug: 'gendered-graffiti',
+        }]};
     
     return cats[catIn];
 }
@@ -161,6 +164,19 @@ exports.phpVsNode = function (req, res) {
         postTitle: "PHP vs Node.js",
         cats: getCats(),
         category: "nodejs",
+        callToAction: callToAction
+    }); // render
+};
+
+exports.genderedGraffiti = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on gendered graffiti">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/gendered-graffiti', {
+        title: "Stereotypically Gendered Graffiti in a Liberal Arts College Bathroom",
+        postTitle: "Collaborative and Depreciative: Gendered Graffiti in a Liberal Arts College Bathroom",
+        cats: getCats(),
+        category: "psychology",
         callToAction: callToAction
     }); // render
 };

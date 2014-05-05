@@ -17,6 +17,7 @@ router.get('/how-to-hide-that-you-use-wordpress', index.hideWordpress);
 router.get('/php-vs-node', index.phpVsNode);
 router.get('/modern-css-buttons', index.modernCSSButtons);
 router.get('/google-web-designer-review', index.googleWebDesigner);
+router.get('/gendered-graffiti', index.genderedGraffiti);
 router.get('/cat/:postCat', index.showCatPosts);
 router.get('/css-buttons', index.css12);
 
