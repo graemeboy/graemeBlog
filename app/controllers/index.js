@@ -82,6 +82,9 @@ function getCategoryPosts (catIn)
             slug: 'google-web-designer-review',
         }],
         "psychology": [{
+            name: 'Women are Outperforming Men - Confirmation from Commencement Day',
+            slug: 'gender-graduation',
+        },{
             name: 'Habit Formation 101',
             slug: 'habits',
         },{
