@@ -53,7 +53,7 @@ function getCats ()
         { name: "css", count: 2},
         { name: "wordpress", count: 1},
         { name: "google", count: 1},
-        { name: "psychology", count: 2},
+        { name: "psychology", count: 3},
     ];
     return cats;
 } // getCat()
