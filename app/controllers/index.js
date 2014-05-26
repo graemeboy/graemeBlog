@@ -125,7 +125,26 @@ exports.globalRenaissance = function (req, res) {
     res.render('global-ren/index', {
         title: "Global Renaissance Project",
     }); // render
-}
+} // globalRenaissance
+
+exports.genderGrad = function (req, res) {
+     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on gender graduation">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/genderTrouble', {
+        title: "Women are Outperforming Men - Confirmation from Commencement Day",
+        postTitle: "Women are Outperforming Men - Confirmation from Commencement Day",
+        cats: getCats(),
+        category: "psychology",
+        callToAction: callToAction
+    }); // render
+} // genderGrad
+
+exports.writeRoom = function (req, res) {
+    res.render('pages/write', {
+        title: "Online Write Room",
+    }); // render
+} // writeRoom
 
 exports.habitFormation = function (req, res) {
     res.render('pages/habits'); // render
@@ -135,7 +154,7 @@ exports.globalRenaissanceAbout = function (req, res) {
     res.render('global-ren/about', {
         title: "Global Renaissance Project",
     }); // render
-}
+} // globalRenaissance About
 
 // Show posts from category (Not necessrily about cats)
 exports.showCatPosts = function (req, res) {

@@ -1,0 +1,209 @@
+<% include ../includes/header %>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">May 2014</div>
+    <div class="page-content">
+        
+        <p>In November last year, I posted an observation that I had on Facebook. The gist of my observation was this: <strong>Women in the United States seem to be more competent at their work than men are.</strong> The post stirred some conversation, but I had no data to support my argument. That was a pity, because the data were freely available, and there are more so today.</p>
+        
+        <p>For example:
+        <ul>
+            <li>In the United States, 70% of all D's and F's are given to boys at school.</li>
+            <li>In Canada, 5 boys drop out of school for every 3 girls who do.</li>
+            <li>In 2016, it is predicted by experts that 60% of beachelors degrees will be earned by women, as well as 63% of masters, and 54% of doctorates.</li>
+        </ul></p>
+        
+        <h3>Observations on Commencement Day</h3>
+        <div class="pull-left" style="margin-right:20px"><img src="http://i.imgur.com/AM7LU8w.png" width="350"></div>
+        <p>On the day that I graduated, I casually flipped through the schedule of commencement day events. It contained the list of recipients of various awards - highest achievements in math, physics, sociology, and so on. I could tell that there was a large percentage of women who were winning these awards, and I wondered if they would support my intuition that women were performing better in my class than men were.</p>
+        <p>I began to tally the number of awards given out to the students. My college is small, and I know and am friends with almost all of the people in my year (at least Facebook officially). So I could quite accurately put a gender to each of the names.</p>
+        <div id="awardsPie" class="pull-right" style="margin-left:15px"></div>
+        <p>What I found was intriguing. I was almost certain that my data would support my intuition, but the results went far beyond my expectations. <strong>I found that 67% of the awards were given to women.</strong></p>
+        
+        
+        <h4>Honors</h4>
+        <p>Next, I tabulated the honors that were given with our degrees. Honors are granted by faculty members to students who make significant contributions to the department of their major. Since "contribution" can be subjective, I presumed that these would be biased in favor of men. Faculty, I thought, would overestimate the contributions of men, and undervalue the contributions of women, especially in male-female teams. This is in line with experimental data from <a href="http://psycnet.apa.org/journals/apl/90/5/905/">Heilman & Haynes (2005)</a>, who found that female members of male-female teams were undervalued in ambiguous work settings. On the other hand, <a href="http://www.jennellenystrom">Jennelle Nystrom</a> pointed out that, because women tend to form better relationships, they might have an advantage in receiving honors. So, there are arguments for biases going either way. Personally, I thought it would be fair if the distribution of honors reflected the distributions of awards. And they did. <strong>62% of the honors given were given to women.</strong>
+        </p>
+        <div id="honorsPie" class="pull-left" style="margin-right:20px"></div>
+        
+    <h4>Honor Societies</h4>
+        <p>Finally, I looked at honors societies. Phi Beta Kappa is awarded to exceptional students who fulfil requirements of foreign language and mathematics, and also perform excellently academically. Thirty-seven students in my year were awarded membership in Phi Beta Kappa, 25 of whom were women. <strong>At 68% female membership, this perflectly reflects the data observed in the distribution of awards and honors among students.</strong></p>
+        
+
+<h3>Poor Data?</h3>
+        <p>There are a few ways that these data could be biased. What good are these data, anyway? <strong>From my perspective, these results are comparable to a well-funded 4-year experiment on academic performance.</strong> There are some limits, of course. For one, these data points only include male and female genders, when others exist on campus. There are more females on campus than men (55% compared to 45%, though normalizing this doesn't change the significance of the findings), which is an interesting point in itself. Honors and awards are often subjective, in that faculty members evaluate the contributions of their students and decided which of them were the most industrious. If this relies somewhat on relationships between students and professors, then research indicates that this ought to favor women. On the other hand, it is commonly found in social research that the contributions of women are undervalued by supervisors, which would favor men. Moreover, research shows that women are less likely than men to take opportunities for which they don't feel 100% qualified. This would influence which students perform research with faculty members. There is a range of factors that would lead me to assume that men would be favored in this process over women. Because the data are so clearly significant, these questions are largely about whether they reflect achievement or recognition.</p>
+
+    <h3>Why do women consistently outperform men?</h3>
+    <p>Don't think that this is just about academics. Socially, men are getting steadily more "shy" over time compared to women. Socially, and academically, a gap is growing between men and women. I think that there are three reasons for this.</p>
+
+<h4>Entitlement</h4>
+<p>It's to me clear that men tend to have a higher sense of entitlement than do women. They haven't had to work as hard as women have to gain high expectations and approval from those around them.</p>
+<h4>Arousal Addiction</h4>
+<p>By the time men are 21, they have played on average 10, 000 hours of video games. That's enough to be an expert by some measure! But what does it do to attention? The average 15 year old watches 50 porn videos (the fastest growing entertainment industry in the world) a week - what does this do to his ability to interact socially with women? Both of these activities are largely skewed towards male partication.</p>
+        <p>Philip Zimbardo is getting a little old now, but I think that his TED talk on the "Demise of Guys" is spot-on.</p> <iframe src="http://embed.ted.com/talks/zimchallenge.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
+
+<div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+    <style type="text/css">
+        .slice text {
+            font-size: 11pt;
+            fill: #fff;
+        }
+        .vizTitle {
+            font-size: 12pt;
+        }
+    </style>
+    <script type="text/javascript">
+        /*
+         * Data points:
+         *
+         * By 8th grade, only 20% of boys are proficient at writing, and 24% are proficient in reading.
+         * In the United States, boys account for 70% of all the D's and F's given out at school. In Canada, 5 boys drop out of school for every 3 girls who do so. Two-thirds of students in special education remedial programs are guys.
+         *
+         * Prediction is that women will earn 60% of achelors, 63% of master's, and 54% of doctorate degrees by 2016.
+         *
+         * There are seperate awards for men and women who compete in intecollegiate athletics, which standardizes some of the differences. Also, there are just more awards in this category for men than there are for women (10 vs 8).
+         *
+         * Awards handed out:
+         * Female:	115 (67%)
+         * Male:	56
+         * Total:	171
+         *
+         * Number of Honors Given:
+         * Female:  83 (62%)
+         * Male:    51
+         * Total:   134
+         *
+         */
+
+
+        var w = 200, //width
+            h = 300, //height
+            r = 100, //radius
+            colors = ['#3498db', '#9b59b6'];
+            color = function (i) {
+                return colors[i];
+            };
+
+        honorsData = [{
+            "label": "Female",
+            "value": 83
+        }, {
+            "label": "Male (38%)",
+            "value": 51
+        }, ];
+        var vis = d3.select("#honorsPie")
+            .append("svg:svg")
+            .data([honorsData])
+            .attr("width", w)
+            .attr("height", h)
+            .append("svg:g")
+            .attr("transform", "translate(" + r + "," + (r + 40) + ")")
+        var arc = d3.svg.arc()
+            .outerRadius(r);
+        var pie = d3.layout.pie()
+            .value(function(d) {
+                return d.value;
+            });
+        var arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("svg:g")
+            .attr("class", "slice");
+        arcs.append("svg:path")
+            .attr("fill", function(d, i) {
+                return color(i);
+            })
+            .attr("d", arc);
+        arcs.append("svg:text")
+            .attr("transform", function(d) {
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                return "translate(" + arc.centroid(d) + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(function(d, i) {
+                return honorsData[i].label;
+            });
+        
+        vis.append("svg:text")
+            .attr("x", -70)
+            .attr("y", 125)
+            .text(function (d, i) {
+               return "Women: 83; Men: 51"; 
+            });
+        vis.append("svg:text")
+            .attr("x", -64)
+            .attr("class", "vizTitle")
+            .attr("y", -120)
+            .text(function (d, i) {
+               return "Honors by Gender"; 
+            });
+
+        awardsData = [{
+            "label": "Female",
+            "value": 115
+        }, {
+            "label": "Male (33%)",
+            "value": 56
+        }, ];
+        vis = d3.select("#awardsPie")
+            .append("svg:svg")
+            .data([awardsData])
+            .attr("width", w)
+            .attr("height", h)
+            .append("svg:g")
+            .attr("transform", "translate(" + r + "," + (r + 40) + ")")
+         arc = d3.svg.arc()
+            .outerRadius(r);
+        pie = d3.layout.pie()
+            .value(function(d) {
+                return d.value;
+            });
+        arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("svg:g")
+            .attr("class", "slice");
+        arcs.append("svg:path")
+            .attr("fill", function(d, i) {
+                return color(i);
+            })
+            .attr("d", arc);
+        arcs.append("svg:text")
+            .attr("transform", function(d) {
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                return "translate(" + arc.centroid(d) + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(function(d, i) {
+                return awardsData[i].label;
+            });
+        
+        vis.append("svg:text")
+            .attr("x", -70)
+            .attr("y", 125)
+            .text(function (d, i) {
+               return "Women: 115; Men: 56"; 
+            });
+        vis.append("svg:text")
+            .attr("x", -64)
+            .attr("class", "vizTitle")
+            .attr("y", -120)
+            .text(function (d, i) {
+               return "Awards by Gender"; 
+            });
+    </script>
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>

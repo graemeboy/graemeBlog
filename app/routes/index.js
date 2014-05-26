@@ -15,10 +15,12 @@ router.get('/', index.home);
 // Single Posts
 router.get('/how-to-hide-that-you-use-wordpress', index.hideWordpress);
 router.get('/php-vs-node', index.phpVsNode);
+router.get('/gender-graduation', index.genderGrad);
 router.get('/modern-css-buttons', index.modernCSSButtons);
 router.get('/google-web-designer-review', index.googleWebDesigner);
 router.get('/gendered-graffiti', index.genderedGraffiti);
 router.get('/habits', index.habitFormation);
+router.get('/write-room', index.writeRoom);
 router.get('/cat/:postCat', index.showCatPosts);
 router.get('/css-buttons', index.css12);
 
