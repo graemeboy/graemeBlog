@@ -128,7 +128,7 @@ exports.globalRenaissance = function (req, res) {
 } // globalRenaissance
 
 exports.genderGrad = function (req, res) {
-     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on gender graduation">send me a tweet.</a>';
+     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on the academic success of women">send me a tweet.</a>';
     
     // Render the custom page
     res.render('posts/genderTrouble', {
