@@ -54,6 +54,7 @@ function getCats ()
         { name: "wordpress", count: 1},
         { name: "google", count: 1},
         { name: "psychology", count: 3},
+        { name: "product", count: 1},
     ];
     return cats;
 } // getCat()
@@ -90,8 +91,12 @@ function getCategoryPosts (catIn)
         },{
             name: 'Gendered Graffiti in a Liberal Arts College Bathroom',
             slug: 'gendered-graffiti',
-        }
-        ]};
+        }],
+        "product": [{
+            name: "How to Discover Your Business' Core Identity",
+            slug: "market-identity",
+        }]
+    };
     
     return cats[catIn];
 }
@@ -184,6 +189,20 @@ exports.css12 = function (req, res) {
         category: "css",
     }); // render
 };
+
+exports.marketSegment = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on discovering market identity">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/market-segmentation', {
+        title: "How to Discover Your Business' Core Identity",
+        postTitle: "How to Discover Your Business' Core Identity",
+        cats: getCats(),
+        category: "product dev.",
+        callToAction: callToAction
+    }); // render
+};
+    
 
 exports.phpVsNode = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on PHP vs Node.js">send me a tweet.</a>';

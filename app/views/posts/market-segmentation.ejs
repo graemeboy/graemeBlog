@@ -1,0 +1,212 @@
+<% include ../includes/header %>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">June 2014</div>
+    <div class="page-content">
+
+        <p>I'm assuming that you either have one or more existing products that you are selling, or have at least one strong business plan.</p>
+
+        <p>A brand can be an important guide for planning and action. For example, <em>37Signals</em> have a product, called <em>Basecamp</em>, which they don't expand to serve larger clients. They do this even though they often lose their best customers, who grow beyond the capabilities of the service. Why would they do this? Because they are guided by their core identity, which plays to their strengths, and which will keep them competitive <em>within a specific domain</em>.</p>
+
+        <p>
+            <strong>Identifying product/market segments is the key to understanding the identity and strength of your enterprise</strong>, and is the topic of this post.</p>
+
+        <p>The way to discover your strong market segments is to begin by categorizing the products or services that you have to offer. Then, divide those up into specific customer groups.</p>
+
+        <h3>Example</h3>
+        <p>If you have a software company that makes plugins, you might have three categories of products:</p>
+
+        <ul>
+            <li>Wordpress plugins</li>
+            <li>Drupal Plugins</li>
+            <li>Joomla Plugins</li>
+        </ul>
+
+        <p>Within those three categories, you might have the follow categories of customers:</p>
+
+        <ul>
+            <li>Bloggers</li>
+            <li>Business Owners</li>
+            <li>Internet Marketers</li>
+        </ul>
+
+
+
+        <p>Therefore, you have 9 product/market segments (3 kinds of customers x 3 categories of products).</p>
+
+        <h3>Analyzing the Segments</h3>
+        <p>There are two ways to analyze these segments; by using <strong>sales</strong> and <strong> profit data</strong> from the last three years. Make a pie chart of the three segments with the largest sales, and then the three with the largest profit.</p>
+
+        <div class="pull-left" style="margin-right: 20px">
+            <div id="honorsPie"></div>
+        </div>
+        
+        <p>This will tell you which market segments are generating the greatest return, and where you, as a company, have the greatest market strength. Why are you particularly effective in one market segment? Is there some unmet need that you're serving there?</p>
+
+        <p>More importantly, <strong>which market segments will make or break your business?</strong></p>
+
+        <div class="clearfix"></div>
+        <h4>Further Reading:</h4>
+        <ul>
+            <li><em>The New Business Road Test: What Entrepreneurs and Executives Should Do Before Writing a Business Plan</em> by John Mullins</li>
+            <li><em>Creating You & Co.</em> by William Bridges</li>
+            <li><em>Key Strategy Tools</em> by Vaughn Evans</li>
+        </ul>
+
+
+
+        <div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+    <style type="text/css">
+        .slice text {
+            font-size: 11pt;
+            fill: #fff;
+        }
+        .vizTitle {
+            font-size: 12pt;
+            font-weight: bold
+        }
+    </style>
+    <script type="text/javascript">
+        var w = 280, //width
+            h = 360, //height
+            r = 140, //radius
+            colors = ['#2A587F', '#2873B2', '#53AFFF', '#6DBBFF', ];
+        color = function(i) {
+            return colors[i];
+        };
+
+        honorsData = [{
+            "label": "Wordpres/Bloggers",
+            "value": 95
+        }, {
+            "label": "Drupal/Business",
+            "value": 58
+        }, {
+            "label": "Jooma/Business",
+            "value": 48
+        }, {
+            "label": "Other",
+            "value": 42
+        }, ];
+        var vis = d3.select("#honorsPie")
+            .append("svg:svg")
+            .data([honorsData])
+            .attr("width", w)
+            .attr("height", h)
+            .append("svg:g")
+            .attr("transform", "translate(" + r + "," + (r + 40) + ")")
+         var arc = d3.svg.arc()
+            .outerRadius(r);
+        var pie = d3.layout.pie()
+            .value(function(d) {
+                return d.value;
+            });
+        var arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("svg:g")
+            .attr("class", "slice");
+        arcs.append("svg:path")
+            .attr("fill", function(d, i) {
+                return color(i);
+            })
+            .attr("d", arc);
+        arcs.append("svg:text")
+            .attr("transform", function(d) {
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                return "translate(" + arc.centroid(d) + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(function(d, i) {
+                return honorsData[i].label;
+            });
+
+         //        vis.append("svg:text")
+         //            .attr("x", -70)
+         //            .attr("y", 125)
+         //            .text(function(d, i) {
+         //                return "Women: 83; Men: 51";
+         //            });
+        vis.append("svg:text")
+            .attr("x", -75)
+            .attr("class", "vizTitle")
+            .attr("y", -160)
+            .text(function(d, i) {
+                return "High Sales Segments";
+            });
+
+        awardsData = [{
+            "label": "Wordpres/Bloggers",
+            "value": 92
+        }, {
+            "label": "Drupal/Business",
+            "value": 50
+        }, {
+            "label": "Other",
+            "value": 20
+        }, {
+            "label": "Jooma/Business",
+            "value": 54
+        }, ];
+        vis = d3.select("#awardsPie")
+            .append("svg:svg")
+            .data([awardsData])
+            .attr("width", w)
+            .attr("height", h)
+            .append("svg:g")
+            .attr("transform", "translate(" + r + "," + (r + 40) + ")")
+         arc = d3.svg.arc()
+            .outerRadius(r);
+        pie = d3.layout.pie()
+            .value(function(d) {
+                return d.value;
+            });
+        arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("svg:g")
+            .attr("class", "slice");
+        arcs.append("svg:path")
+            .attr("fill", function(d, i) {
+                return color(i);
+            })
+            .attr("d", arc);
+        arcs.append("svg:text")
+            .attr("transform", function(d) {
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                return "translate(" + arc.centroid(d) + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(function(d, i) {
+                return awardsData[i].label;
+            });
+
+         //        vis.append("svg:text")
+         //            .attr("x", -70)
+         //            .attr("y", 125)
+         //            .text(function(d, i) {
+         //                return "Women: 115; Men: 56";
+         //            });
+        vis.append("svg:text")
+            .attr("x", -64)
+            .attr("class", "vizTitle")
+            .attr("y", -160)
+            .text(function(d, i) {
+                return "High Profit Segments";
+            });
+    </script>
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>

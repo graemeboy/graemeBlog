@@ -23,7 +23,7 @@ router.get('/habits', index.habitFormation);
 router.get('/write-room', index.writeRoom);
 router.get('/cat/:postCat', index.showCatPosts);
 router.get('/css-buttons', index.css12);
-
+router.get('/market-identity', index.marketSegment);
 
 
 // Pages
