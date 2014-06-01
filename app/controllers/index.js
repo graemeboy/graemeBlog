@@ -89,7 +89,7 @@ function getCategoryPosts (catIn)
             name: 'Habit Formation 101',
             slug: 'habits',
         },{
-            name: 'Gendered Graffiti in a Liberal Arts College Bathroom',
+            name: 'Gendered Graffiti in a College Bathroom',
             slug: 'gendered-graffiti',
         }],
         "product": [{
@@ -222,8 +222,8 @@ exports.genderedGraffiti = function (req, res) {
     
     // Render the custom page
     res.render('posts/gendered-graffiti', {
-        title: "Stereotypically Gendered Graffiti in a Liberal Arts College Bathroom",
-        postTitle: "Collaborative and Depreciative: Gendered Graffiti in a Liberal Arts College Bathroom",
+        title: "Stereotypically Gendered Graffiti in a College Bathroom",
+        postTitle: "Collaborative and Depreciative: Gendered Graffiti in a College Bathroom",
         cats: getCats(),
         category: "psychology",
         callToAction: callToAction
