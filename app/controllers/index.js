@@ -93,7 +93,7 @@ function getCategoryPosts (catIn)
             slug: 'gendered-graffiti',
         }],
         "product": [{
-            name: "How to use Market Segmentation to Discover Your Business' Core Identity",
+            name: "How to Use Market Segmentation and Discover Your Business' Core Identity",
             slug: "market-identity",
         }]
     };
@@ -195,8 +195,8 @@ exports.marketSegment = function (req, res) {
     
     // Render the custom page
     res.render('posts/market-segmentation', {
-        title: "How to use Market Segmentation to Discover Your Business' Core Identity",
-        postTitle: "How to use Market Segmentation to Discover Your Business' Core Identity",
+        title: "How to use Market Segmentation and Discover Your Business' Core Identity",
+        postTitle: "How to use Market Segmentation and Discover Your Business' Core Identity",
         cats: getCats(),
         category: "product dev.",
         callToAction: callToAction
