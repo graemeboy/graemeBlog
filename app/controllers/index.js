@@ -54,7 +54,7 @@ function getCats ()
         { name: "wordpress", count: 1},
         { name: "google", count: 1},
         { name: "psychology", count: 3},
-        { name: "product", count: 1},
+        { name: "product", count: 2},
     ];
     return cats;
 } // getCat()
@@ -93,9 +93,13 @@ function getCategoryPosts (catIn)
             slug: 'gendered-graffiti',
         }],
         "product": [{
+            name: "Trends and Fads - Recognize the Difference or Die",
+            slug: "fads",
+        }, {
             name: "How to Use Market Segmentation and Discover Your Business' Core Identity",
             slug: "market-identity",
         }]
+        
     };
     
     return cats[catIn];
@@ -197,6 +201,19 @@ exports.marketSegment = function (req, res) {
     res.render('posts/market-segmentation', {
         title: "How to use Market Segmentation and Discover Your Business' Core Identity",
         postTitle: "How to use Market Segmentation and Discover Your Business' Core Identity",
+        cats: getCats(),
+        category: "product dev.",
+        callToAction: callToAction
+    }); // render
+};
+
+exports.fadsTrends = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on fads vs trends">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/fads-trends', {
+        title: "Trends and Fads - Recognize the Difference or Die",
+        postTitle: "Trends and Fads - Recognize the Difference or Die",
         cats: getCats(),
         category: "product dev.",
         callToAction: callToAction

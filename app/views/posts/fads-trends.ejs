@@ -1,0 +1,180 @@
+<% include ../includes/header %>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">June 2014</div>
+    <div class="page-content">
+
+        <p>I've been the developer of OptinSkin (a plugin that puts neat opt-in forms on Wordpress websites) now for over three years. We have thousands of paying customers, which means a high volume of ongoing support and product improvement. One of the most important things that I've learned during this time has been to distinguish between a <em>fad</em> (something that's popular for the time being), and a <em>trend</em> (which becomes mainstream).</p>
+        
+        <p>When we launched OptinSkin, Glen from Viperchill was talking a lot about creating email lists, which marketers could use for implementing some an email-blogging/marketing strategy. He said that this was one of the most important thing that a blogger or web marketer could do. Therefore, everyone ought to put "opt-in forms" on their websites - in the sidebars, at the bottom of posts, in the header, wherever. Was the opt-in form a fad, or trend?</p>
+        
+        <p>It turned out that opt-in forms were a trend. Over time, it really did become one of the most important things that bloggers and media companies did on their websites. It was similar to bloggers putting links to social media sites, so that readers could follow their authors on social media sites.</p>
+        
+        <p>But of course, there were many fads to do with these forms that have come and gone. I believe that the opt-in <em>popup</em> was a fad. Around the same time that OptinSkin launched, another internet marketer named Micheal Dunlop created a plugin called Popup Domination. Popup Domination was massive. Their website says that over 42k websites are currently using the plugin, and I believe it. At the time, it seemed as if every Wordpress website had the plugin installed!</p>
+        
+        <p>OptinSkin didn't have popups. We just displayed the opt-in form calmly and statically on the user's website. We had a little "fade-in" feature, but that was it - Glen firmly insisted that we don't implement a popup feature. I was curious about this, because it seemed to be so popular, and people were requesting it in support emails all the time. Man, did they requested it! I remember reading dozens to hundreds of these requests. Since Glen didn't do much of the support (support is mostly technical in nature), I figured that he just didn't realize that this was a priority, and I implemented it anyway.</p>
+        
+        <p>It turned out that Glen was right about not adding a popup feature (as he is with almost all of his intuitions - something that irritates me when I and wrong, and consistently astounds me). For one, we weren't a popup company, and we would always be beaten on that front. Second, popups were a fad. While I was getting dozens of emails two years ago requesting the feature, by the time that I pulled it out, the number of people wanting popups on their site had decreased dramatically. You can see this in the blogosphere now, too. It's as if a calm has come after the popup storm.</p>
+        
+        <p>If I had seen opt-in popups for the fad that they were, I wouldn't have spent development time on it. I would have waited it out, and continued to play to our product's strengths. Implementing and supporting that feature actually wasted extremely precious resources at the time.</p>
+        
+        <p>But I was smarter the second time around. The next fad that came was the "Sign in with Facebook/Twitter" button on the opt-in form. I'm not talking about Signup with Facebook for membership sites, I'm talking about a signup button for collecting emails. Glen and I spoke about implementing this feature somewhat, but it seemed clear to me that doing so would be a poor decision.</p>
+        <p>For one, the signup with Facebook button is not meant for collecting emails, which means that it's not a use case that Facebook supports, or is developing for. I think this is the main reason that those plugins died - it wasn't based on an appropriate technical foundation. For example, if a user installs that plugin on their site, then what Facebook app are they using for the Facebook API? Is it the plugin's app, or the website's? It's just not how Facebook thinks about their developer tools.<p>Secondly, people generally don't want to link their Facebook accounts to external sites, unless it's overcoming some larger overhead, such as confirming passwords and email addresses. There is a psychological overhead to signing up with Facebook, which actually makes it more complicated than just entering in an email address. But still, we had many, many requests for this feature for a few months. And then nothing.</p>
+        
+        <p>The demand for opt-in plugins hasn't seemed to fluctuate much over the years. It's a trend. It's mainstream - it's what everyone does now with their websites. It's like putting up social networking buttons, and it directly works on marketing goals. On the other hand, popups, special signup buttons, and such are fads. Fads go away. Marketers can exploit fads for traffic and sales, but as an engineer, don't bet your development and support time on a fad if you're developing for the long term. Learn to see what is a fad by creating the distinction in your mind, and then recognizing the examples around you.</p>
+
+        <div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+    <style type="text/css">
+        .slice text {
+            font-size: 11pt;
+            fill: #fff;
+        }
+        .vizTitle {
+            font-size: 12pt;
+            font-weight: bold
+        }
+    </style>
+    <script type="text/javascript">
+        var w = 280, //width
+            h = 360, //height
+            r = 140, //radius
+            colors = ['#2A587F', '#2873B2', '#53AFFF', '#6DBBFF', ];
+        color = function(i) {
+            return colors[i];
+        };
+
+        honorsData = [{
+            "label": "Wordpres/Bloggers",
+            "value": 95
+        }, {
+            "label": "Drupal/Business",
+            "value": 58
+        }, {
+            "label": "Jooma/Business",
+            "value": 48
+        }, {
+            "label": "Other",
+            "value": 42
+        }, ];
+        var vis = d3.select("#honorsPie")
+            .append("svg:svg")
+            .data([honorsData])
+            .attr("width", w)
+            .attr("height", h)
+            .append("svg:g")
+            .attr("transform", "translate(" + r + "," + (r + 40) + ")")
+         var arc = d3.svg.arc()
+            .outerRadius(r);
+        var pie = d3.layout.pie()
+            .value(function(d) {
+                return d.value;
+            });
+        var arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("svg:g")
+            .attr("class", "slice");
+        arcs.append("svg:path")
+            .attr("fill", function(d, i) {
+                return color(i);
+            })
+            .attr("d", arc);
+        arcs.append("svg:text")
+            .attr("transform", function(d) {
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                return "translate(" + arc.centroid(d) + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(function(d, i) {
+                return honorsData[i].label;
+            });
+
+         //        vis.append("svg:text")
+         //            .attr("x", -70)
+         //            .attr("y", 125)
+         //            .text(function(d, i) {
+         //                return "Women: 83; Men: 51";
+         //            });
+        vis.append("svg:text")
+            .attr("x", -75)
+            .attr("class", "vizTitle")
+            .attr("y", -160)
+            .text(function(d, i) {
+                return "High Sales Segments";
+            });
+
+        awardsData = [{
+            "label": "Wordpres/Bloggers",
+            "value": 92
+        }, {
+            "label": "Drupal/Business",
+            "value": 50
+        }, {
+            "label": "Other",
+            "value": 20
+        }, {
+            "label": "Jooma/Business",
+            "value": 54
+        }, ];
+        vis = d3.select("#awardsPie")
+            .append("svg:svg")
+            .data([awardsData])
+            .attr("width", w)
+            .attr("height", h)
+            .append("svg:g")
+            .attr("transform", "translate(" + r + "," + (r + 40) + ")")
+         arc = d3.svg.arc()
+            .outerRadius(r);
+        pie = d3.layout.pie()
+            .value(function(d) {
+                return d.value;
+            });
+        arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("svg:g")
+            .attr("class", "slice");
+        arcs.append("svg:path")
+            .attr("fill", function(d, i) {
+                return color(i);
+            })
+            .attr("d", arc);
+        arcs.append("svg:text")
+            .attr("transform", function(d) {
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                return "translate(" + arc.centroid(d) + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(function(d, i) {
+                return awardsData[i].label;
+            });
+
+         //        vis.append("svg:text")
+         //            .attr("x", -70)
+         //            .attr("y", 125)
+         //            .text(function(d, i) {
+         //                return "Women: 115; Men: 56";
+         //            });
+        vis.append("svg:text")
+            .attr("x", -64)
+            .attr("class", "vizTitle")
+            .attr("y", -160)
+            .text(function(d, i) {
+                return "High Profit Segments";
+            });
+    </script>
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
