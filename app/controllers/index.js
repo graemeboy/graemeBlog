@@ -89,7 +89,7 @@ function getCategoryPosts (catIn)
             name: 'The Modern Guru',
             slug: 'gurus',
         },{
-            name: 'Women are Outperforming Men - Confirmation from Commencement Day',
+            name: 'Women are Outperforming Men - Data to Confirm',
             slug: 'gender-graduation',
         },{
             name: 'Habit Formation 101',
