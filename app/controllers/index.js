@@ -53,7 +53,7 @@ function getCats ()
         { name: "css", count: 2},
         { name: "wordpress", count: 1},
         { name: "google", count: 1},
-        { name: "psychology", count: 4},
+        { name: "psychology", count: 5},
         { name: "product", count: 2},
     ];
     return cats;
@@ -83,6 +83,9 @@ function getCategoryPosts (catIn)
             slug: 'google-web-designer-review',
         }],
         "psychology": [{
+            name: 'WTF is Neuromarketing?',
+            slug: 'neuromarketing',
+        },{
             name: 'The Modern Guru',
             slug: 'gurus',
         },{
@@ -245,6 +248,19 @@ exports.fadsTrends = function (req, res) {
     }); // render
 };
     
+exports.neuromarketing = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on neuromarketing">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/wtfNeuromarketing', {
+        title: "WTF is Neuromarketing?",
+        postTitle: "WTF is Neuromarketing?",
+        cats: getCats(),
+        category: "psychology",
+        callToAction: callToAction
+    }); // render
+};
+
 
 exports.phpVsNode = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on PHP vs Node.js">send me a tweet.</a>';

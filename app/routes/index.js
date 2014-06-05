@@ -26,6 +26,7 @@ router.get('/css-buttons', index.css12);
 router.get('/market-identity', index.marketSegment);
 router.get('/fads', index.fadsTrends);
 router.get('/gurus', index.gurus);
+router.get('/neuromarketing', index.neuromarketing);
 
 
 
