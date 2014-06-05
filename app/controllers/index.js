@@ -53,7 +53,7 @@ function getCats ()
         { name: "css", count: 2},
         { name: "wordpress", count: 1},
         { name: "google", count: 1},
-        { name: "psychology", count: 3},
+        { name: "psychology", count: 4},
         { name: "product", count: 2},
     ];
     return cats;
@@ -83,6 +83,9 @@ function getCategoryPosts (catIn)
             slug: 'google-web-designer-review',
         }],
         "psychology": [{
+            name: 'The Modern Guru',
+            slug: 'gurus',
+        },{
             name: 'Women are Outperforming Men - Confirmation from Commencement Day',
             slug: 'gender-graduation',
         },{
@@ -104,6 +107,8 @@ function getCategoryPosts (catIn)
     
     return cats[catIn];
 }
+
+
 
 exports.cat = function (req, res, next, catIn) {
     var posts = getCategoryPosts(catIn);
@@ -136,6 +141,12 @@ exports.post = function (req, res, next, slugIn) {
 exports.globalRenaissance = function (req, res) {
     res.render('global-ren/index', {
         title: "Global Renaissance Project",
+    }); // render
+} // globalRenaissance
+
+exports.sitemap = function (req, res) {
+    res.render('pages/sitemap', {
+        title: "Sitemap",
     }); // render
 } // globalRenaissance
 
@@ -172,9 +183,10 @@ exports.globalRenaissanceAbout = function (req, res) {
 exports.showCatPosts = function (req, res) {
     var catPosts = req.catPosts;
     res.render('archive', {
-        title: "Graeme Boy - " + req.cat,
+        title: "Posts about " +
+            capitaliseFirstLetter(req.category),
         catPosts: catPosts,
-        category: req.category,
+        category: capitaliseFirstLetter(req.category),
         cats: getCats()
     }); // render
 } // show
@@ -203,6 +215,19 @@ exports.marketSegment = function (req, res) {
         postTitle: "How to use Market Segmentation and Discover Your Business' Core Identity",
         cats: getCats(),
         category: "product dev.",
+        callToAction: callToAction
+    }); // render
+};
+
+exports.gurus = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on modern gurus">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/modern-guru', {
+        title: "The Modern Guru",
+        postTitle: "The Modern Guru",
+        cats: getCats(),
+        category: "psychology",
         callToAction: callToAction
     }); // render
 };
@@ -308,3 +333,16 @@ exports.showPost = function (req, res) {
 exports.qlock = function (req, res) {
     res.render('qlock/qlock'); // render
 } // show
+
+
+function capitaliseFirstLetter(string)
+{
+    if (string === 'css') {
+        return 'CSS';
+    } else if (string == 'nodejs') {
+        return 'Node.js';   
+    } else if (string == 'product') {
+        return 'Product Development';   
+    }
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

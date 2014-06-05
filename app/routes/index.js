@@ -25,6 +25,9 @@ router.get('/cat/:postCat', index.showCatPosts);
 router.get('/css-buttons', index.css12);
 router.get('/market-identity', index.marketSegment);
 router.get('/fads', index.fadsTrends);
+router.get('/gurus', index.gurus);
+
+
 
 
 // Pages
@@ -32,6 +35,8 @@ router.get('/global-renaissance', index.globalRenaissance);
 router.get('/global-renaissance/about', index.globalRenaissanceAbout);
 router.get('/cbt', index.cbt);
 router.get('/qlock', index.qlock);
+
+router.get('/sitemap', index.sitemap);
 
 // Other special things
 // Rishan test
