@@ -1,0 +1,69 @@
+<% include ../includes/header %>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">9 June 2014</div>
+    <div class="page-content">
+
+<p>I've created more premium Wordpress plugins than I can count on one hand, and I've even made some money from a few of them. I'm not an expert, but I have learned some useful strategies for scalability, and here they are.</p>
+
+<h3>1. Consider using an MVC framework</h3>
+
+<p>It may seem like overkill to use the model-view-controller pattern for a simple plugin. However, plugins that seem simple at first can grow into Baskerville hounds over time. Especially when you start adding in rich customization features.</p>
+
+<p>This is especially important if you have an admin functions as well as front-end displays.</p>
+
+<p> An MVC will keep your plugin well organized, so that you can maintain it effectively in the long-term. It's not premature optimization - it's good planning.</p>
+
+<h3>2. Plan Support from Day One</h3>
+
+<p>It's not an overstatement to say that supporting Wordpress plugins can be one of the most tedious and consuming endevours in mainstraim software development. Forget the typical web developers concerns about browser conflicts (child's play for a WP plugin developer), and consider how your software will be installed on thousands of differnet servers, with conflicting plugins (often made by amatures), and various themes, all in multiple versions of the very language you're using (PHP), which has a plethora of libraries and security patches.</p>
+
+<p>So, there are a lot of moving parts, as the Dude would say. Figure out where the vulnerabilities are, and where users might get stuck, and do everything you can to help them <em>before they need to email you about it</em>. Put hints in your interface at the point where you know a newbie might have trouble. Newbie emails are easy to minimize, while plugin conflicts are not. Control what you can.</p>
+
+<p>Oftentimes, it's better just to get a working version "out there" in the beginning, before you focus on minimizing support questions. That way, you don't waste your time if the plugin doesn't take off. However, beware of this, because unlike  many other "lean" tech startups that are using website-based services, you can't automatically update everyone's plugin to fix your bugs and usabillity problems. If you have a serious bug, or if you shipped with an unintuitive interface, you're looking at weeks to months of emails from people who downloaded the buggy version, even after you've patched it up and pushed an update.</p>
+
+<h3>3. Keep something valuable on your own server</h3>
+
+<p>Everyone in the Wordpress plugin world has a problem with piracy. That's just the way that it is. In my experience, a very large number of people will still buy your product, even if they know they can get it for free on 50 different forums. This still amazes me.</p>
+
+<p>But there is a solution to this problem that I haven't seen mentioned by other authors on the topic: Keep some content on your server. Have the plugin post a license key to the server to request the content, and then log that license key and the request's source on your end. That way, you'll know how often a key is being used, and by which sites. If you suspect foul play or piracy, then just block the license key from accessing your server's content.</p>
+
+<p>This helps for updating, too, because any bug in code on your server can be fixed once for everyone.</p>
+
+<p>Of course, you can't keep the whole plugin on your server. And you probably shouldn't put front-end content on your server either, because soon you will be serving an incredibly large amount of traffic. So the trick is to find something that's valuable, but doesn't get requested very often, and keep that on your server. Output that data as JSON if you can, and you can even get the plugin to request it via Javascript for better performance. That's a win-win for you and your customer.</p>
+
+<h3>4. Don't try to "encrypt" your plugin</h3>
+
+<p>Wordpress plugins are necessarily easy to copy - the code is open. However, I do not recommend "encrypting" your plugin, using tools such as IonCube. This idea has always seemed especially stupid to me. For one, it's inevitably going to make some of your users unhappy - especially your first few. Initial buyers of software expect it to be a little buggy, but they buy it anyway because they love technology (these are called "early adopters" or "techies/innovators"). They often like open source, and they feel comfortable being able to look under the hood. As one of these people, it makes me nervous when I buy code that's meant to be open source (as all PHP is), and it's encrypted in a way that probably decreases performance and possibly introduces bugs or inefficiencies that I can't even investigate.</p>
+
+    <p>With open source products, you'll find that some of your early adopters will find bugs in your code and report them to you. Many startups today rely on these superusers for quick feedback.</p>
+
+<p>In any case, the main reason that it's stupid is that it doesn't work. You can't encrypt a plugin (which is why I've been using that term in quotes); what these services do is merely <em>obfuscation</em>. This obfuscation is solved by the server that installs the plugin, because at the end of it all, Wordpress still needs to execute readable PHP code. Anyone can solve that obfuscation and then copy and pirate your plugin. The cash you spent, the time, the decrease in performance, and slower development procedure all resulted in no real security at all. And that's a shame. Products such as IonCube are what business suits use to feel safe, all the while standing on the shoulders of open source developers.</p>
+
+<h3>5. Split major computations onto different pages</h3>
+
+<p>In PHP, the page will break if there's an error in computation before the page is loaded. As I've said, there are a lot of ways that WP plugins can go wrong - a thousand conflicts are waiting to happen. That means it's best to keep your functions per page down to a minimum. If someone wants to see statistics for a tool, don't try to add too much else to that page. The more you add, the more likely the page is to break, causing more support emails for you.</p>
+
+<p>A break can happen as easily as running out of memory - some of your users are bound to have stingy hosts who limit PHP's access to memory, while other users will have setups that will, for some reason, require massive amount of memory (perhaps they have an extremely popular site, collecting more data than you expected.) The way to solve this problem is to keep things simple. You can have a highly functional plugin, by all means, but keep it compartmentalized, and try to reduce the risk of key features breaking for the sake of lesser features.</p>
+
+<p>Moreover, you owe it to your users to keep the plugin efficient. For example, don't add a minor feature that you think is great, but will slow down the admin area by 5%. The user probably doesn't care about your minor feature as much as you think, but will hate your guts every time he or she edits a blog post and has to wait an extra 2 seconds just because you wanted your menu to use Lobster Font.</p>
+
+<h3>6. Keep your plugin's style consistent with the Wordpress admin area</h3>
+
+<p>Minimize the learning curve for your users. A surprising number of your customers won't be the end users of your plugin. You might think that you have a highly technical audience, because you run a web design blog where you promote your product, say, but many of those people actually do installs for their own clients. The end clients have to learn Wordpress in the first place, and then they have to come to grips with your custom interface. Wordpress has build a good reputation for being easy to use, and every time that you add striking colors, dancing fonts, or fancy AJAX tabs in your interface, you're wrecking that effort. Don't dishonor the planning and refactoring that the Wordpress team puts into maintaining a consistent front. Buy fully into the Wordpress interface design, and leverage the fact that your customers already know how to use it. This will decrease support, which is always a great thing. If you have to choose between having a fancier interface, and having fewer support emails to deal with, choose the later. Your product and yourself will survive for longer that way.</p>
+        
+        <div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
+

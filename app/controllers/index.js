@@ -51,7 +51,7 @@ function getCats ()
     var cats = [
         { name: "nodejs", count: 1},
         { name: "css", count: 2},
-        { name: "wordpress", count: 1},
+        { name: "wordpress", count: 2},
         { name: "google", count: 1},
         { name: "psychology", count: 5},
         { name: "product", count: 2},
@@ -75,6 +75,9 @@ function getCategoryPosts (catIn)
             slug: 'css-buttons',
         }],
         "wordpress": [{
+            name: '6 Tips for Building Premium Wordpress Plugins',
+            slug: 'wordpress-plugins',
+        },{
             name: 'How to Hide that You Use Wordpress',
             slug: 'how-to-hide-that-you-use-wordpress',
         }],
@@ -234,6 +237,20 @@ exports.gurus = function (req, res) {
         callToAction: callToAction
     }); // render
 };
+
+exports.tipsWPPlugins = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on 6 tips for building WP plugins">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/tips-wp-plugins', {
+        title: "6 Tips for Building Premium Wordpress Plugins",
+        postTitle: "6 Tips for Building Premium Wordpress Plugins",
+        cats: getCats(),
+        category: "wordpress",
+        callToAction: callToAction
+    }); // render
+};
+
 
 exports.fadsTrends = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on fads vs trends">send me a tweet.</a>';

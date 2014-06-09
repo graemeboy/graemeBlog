@@ -27,9 +27,7 @@ router.get('/market-identity', index.marketSegment);
 router.get('/fads', index.fadsTrends);
 router.get('/gurus', index.gurus);
 router.get('/neuromarketing', index.neuromarketing);
-
-
-
+router.get('/wordpress-plugins', index.tipsWPPlugins);
 
 // Pages
 router.get('/global-renaissance', index.globalRenaissance);
