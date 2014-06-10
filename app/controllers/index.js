@@ -50,7 +50,7 @@ function getCats ()
 {
     var cats = [
         { name: "nodejs", count: 1},
-        { name: "css", count: 2},
+        { name: "css", count: 3},
         { name: "wordpress", count: 2},
         { name: "google", count: 1},
         { name: "psychology", count: 5},
@@ -66,7 +66,12 @@ function getCategoryPosts (catIn)
             name: 'PHP vs Node.js',
             slug: 'php-vs-node',
         }],
-        "css": [{
+        "css": [    
+        {
+            name: 'Logout Buttons with CSS',
+            slug: 'logout-button-css',
+        },
+            {
             name: 'Modern CSS Buttons',
             slug: 'modern-css-buttons',
         },
@@ -265,6 +270,19 @@ exports.fadsTrends = function (req, res) {
     }); // render
 };
     
+exports.logoutButton = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post with the CSS for a logout button">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/logout-button-css', {
+        title: "Logout Buttons with CSS",
+        postTitle: "Logout Buttons with CSS",
+        cats: getCats(),
+        category: "css",
+        callToAction: callToAction
+    }); // render
+};
+
 exports.neuromarketing = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on neuromarketing">send me a tweet.</a>';
     

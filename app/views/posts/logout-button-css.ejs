@@ -1,0 +1,610 @@
+<% include ../includes/header %>
+<style type="text/css"> 
+    .nc {
+            color: #445588;
+            font-weight: bold;
+        }
+        .c1 {
+            color: #999988;
+            font-style: italic;
+        }
+        .na {
+            color: teal;
+        }
+        .o {
+            font-weight: bold;
+        }
+        .mh {
+         color: #009999;   
+        }
+        .nt {
+         color: navy;   
+        }
+        .s {
+         color: #dd1144;
+        }
+    
+      .graeme-logout-1 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #ececec;
+          text-decoration: none;
+          text-shadow: 1px 1px 0 #fff;
+          color: #333;
+          cursor: pointer;
+          outline: none;
+          background-color: #f4f4f4;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+          background-image: -webkit-linear-gradient(#f4f4f4, #ececec);
+          background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+          background-image: -o-linear-gradient(#f4f4f4, #ececec);
+          background-image: -ms-linear-gradient(#f4f4f4, #ececec);
+          background-image: linear-gradient(#f4f4f4, #ececec);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-1:hover {
+          text-decoration: none;
+          color: #333;
+      }
+        
+      .graeme-logout-2 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #3072b3;
+          text-decoration: none;
+          color: #fff;
+          cursor: pointer;
+          outline: none;
+          background-color: #599bdc;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+          background-image: -webkit-linear-gradient(#599bdc, #3072b3);
+          background-image: -moz-linear-gradient(#599bdc, #3072b3);
+          background-image: -o-linear-gradient(#599bdc, #3072b3);
+          background-image: -ms-linear-gradient(#599bdc, #3072b3);
+          background-image: linear-gradient(#599bdc, #3072b3);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-2:hover {
+          text-decoration: none;
+          color: #fff;
+      }
+        
+      .graeme-logout-3 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #A11E22;
+          text-decoration: none;
+          color: #fff;
+          cursor: pointer;
+          outline: none;
+          background-color: #bc2328;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#bc2328), to(#A11E22));
+          background-image: -webkit-linear-gradient(#bc2328, #A11E22);
+          background-image: -moz-linear-gradient(#bc2328, #A11E22);
+          background-image: -o-linear-gradient(#bc2328, #A11E22);
+          background-image: -ms-linear-gradient(#bc2328, #A11E22);
+          background-image: linear-gradient(#bc2328, #A11E22);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-3:hover {
+          text-decoration: none;
+          color: #fff;
+      }
+        
+      .graeme-logout-4 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #FFF11B;
+          text-decoration: none;
+          color: #000;
+          cursor: pointer;
+          outline: none;
+          background-color: #FFFC19;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFC19), to(#FFF11B));
+          background-image: -webkit-linear-gradient(#FFFC19, #FFF11B);
+          background-image: -moz-linear-gradient(#FFFC19, #FFF11B);
+          background-image: -o-linear-gradient(#FFFC19, #FFF11B);
+          background-image: -ms-linear-gradient(#FFFC19, #FFF11B);
+          background-image: linear-gradient(#FFFC19, #FFF11B);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-4:hover {
+          text-decoration: none;
+          color: #000;
+      }
+        
+      .graeme-logout-5 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #F51A4F;
+          text-decoration: none;
+          color: #333;
+          cursor: pointer;
+          outline: none;
+          background-color: #FF1B52;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FF1B52), to(#F51A4F));
+          background-image: -webkit-linear-gradient(#FF1B52, #F51A4F);
+          background-image: -moz-linear-gradient(#FF1B52, #F51A4F);
+          background-image: -o-linear-gradient(#FF1B52, #F51A4F);
+          background-image: -ms-linear-gradient(#FF1B52, #F51A4F);
+          background-image: linear-gradient(#FF1B52, #F51A4F);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-5:hover {
+          text-decoration: none;
+          color: #333;
+      }
+    </style><script type="text/javascript">var colors = [{"top":"#f4f4f4","bottom":"#ececec","font":"#333","icon":"1","shadow":true},{"top":"#599bdc","bottom":"#3072b3","font":"#fff","icon":"1","shadow":false},{"top":"#bc2328","bottom":"#A11E22","font":"#fff","icon":"1","shadow":false},{"top":"#FFFC19","bottom":"#FFF11B","font":"#000","icon":"2","shadow":false},{"top":"#FF1B52","bottom":"#F51A4F","font":"#333","icon":"2","shadow":false}];</script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">June 2014</div>
+    <div class="page-content">
+        <div style="margin-bottom:20px">
+            <p>Click on a button to view the HTML and CSS for each of these logout buttons.</p>
+        </div>
+
+         <style type="text/css"> 
+             .graeme-logout-icon-1 {
+                background-image: url('http://i.imgur.com/Bfchodb.png');
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 0px;
+                left: 5px;
+                background-repeat: no-repeat;
+            }
+             .graeme-logout-icon-2 {
+                background-image: url('http://i.imgur.com/xEDiKbv.png');
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 9px;
+                left: 10px;
+                background-repeat: no-repeat;
+            }
+            
+            .button-separator {
+                margin-bottom: 20px;
+                margin-right:10px;
+                display:inline-block;
+            }
+             
+             .logout-btn-code {
+                display:none;   
+             }
+        </style>
+        
+        <div id="logout-buttons"></div>
+        
+<style type="text/css">
+      .graeme-logout-1 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #ececec;
+          text-decoration: none;
+          text-shadow: 1px 1px 0 #fff;
+          color: #333;
+          cursor: pointer;
+          outline: none;
+          background-color: #f4f4f4;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+          background-image: -webkit-linear-gradient(#f4f4f4, #ececec);
+          background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+          background-image: -o-linear-gradient(#f4f4f4, #ececec);
+          background-image: -ms-linear-gradient(#f4f4f4, #ececec);
+          background-image: linear-gradient(#f4f4f4, #ececec);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-1:hover {
+          text-decoration: none;
+          color: #333;
+      }
+    
+      .graeme-logout-2 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #3072b3;
+          text-decoration: none;
+          color: #fff;
+          cursor: pointer;
+          outline: none;
+          background-color: #599bdc;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+          background-image: -webkit-linear-gradient(#599bdc, #3072b3);
+          background-image: -moz-linear-gradient(#599bdc, #3072b3);
+          background-image: -o-linear-gradient(#599bdc, #3072b3);
+          background-image: -ms-linear-gradient(#599bdc, #3072b3);
+          background-image: linear-gradient(#599bdc, #3072b3);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-2:hover {
+          text-decoration: none;
+          color: #fff;
+      }
+    
+      .graeme-logout-3 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #A11E22;
+          text-decoration: none;
+          color: #fff;
+          cursor: pointer;
+          outline: none;
+          background-color: #bc2328;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#bc2328), to(#A11E22));
+          background-image: -webkit-linear-gradient(#bc2328, #A11E22);
+          background-image: -moz-linear-gradient(#bc2328, #A11E22);
+          background-image: -o-linear-gradient(#bc2328, #A11E22);
+          background-image: -ms-linear-gradient(#bc2328, #A11E22);
+          background-image: linear-gradient(#bc2328, #A11E22);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-3:hover {
+          text-decoration: none;
+          color: #fff;
+      }
+    
+      .graeme-logout-4 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #FFF11B;
+          text-decoration: none;
+          color: #000;
+          cursor: pointer;
+          outline: none;
+          background-color: #FFFC19;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFC19), to(#FFF11B));
+          background-image: -webkit-linear-gradient(#FFFC19, #FFF11B);
+          background-image: -moz-linear-gradient(#FFFC19, #FFF11B);
+          background-image: -o-linear-gradient(#FFFC19, #FFF11B);
+          background-image: -ms-linear-gradient(#FFFC19, #FFF11B);
+          background-image: linear-gradient(#FFFC19, #FFF11B);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-4:hover {
+          text-decoration: none;
+          color: #000;
+      }
+    
+      .graeme-logout-5 {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          border: 1px solid #F51A4F;
+          text-decoration: none;
+          color: #333;
+          cursor: pointer;
+          outline: none;
+          background-color: #FF1B52;
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FF1B52), to(#F51A4F));
+          background-image: -webkit-linear-gradient(#FF1B52, #F51A4F);
+          background-image: -moz-linear-gradient(#FF1B52, #F51A4F);
+          background-image: -o-linear-gradient(#FF1B52, #F51A4F);
+          background-image: -ms-linear-gradient(#FF1B52, #F51A4F);
+          background-image: linear-gradient(#FF1B52, #F51A4F);
+          -webkit-border-radius: 0.2em;
+          -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+      }
+      .graeme-logout-5:hover {
+          text-decoration: none;
+          color: #333;
+      }
+    </style><script type="text/javascript">var colors = [{"top":"#f4f4f4","bottom":"#ececec","font":"#333","icon":"1","shadow":true},{"top":"#599bdc","bottom":"#3072b3","font":"#fff","icon":"1","shadow":false},{"top":"#bc2328","bottom":"#A11E22","font":"#fff","icon":"1","shadow":false},{"top":"#FFFC19","bottom":"#FFF11B","font":"#000","icon":"2","shadow":false},{"top":"#FF1B52","bottom":"#F51A4F","font":"#333","icon":"2","shadow":false}];</script>
+        
+       <div id="code-1" class="logout-btn-code" style="display:block;">
+  
+    
+    <h3>HTML:</h3>
+    <pre><code>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-1&quot;</span><span class="nt">&gt;</span>
+      Logout<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-icon-1&quot;</span>&gt;<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    </code></pre>
+    
+    <h3>CSS:</h3>
+     <pre><code>
+    <span class="nt">&lt;style <span class="na">type=</span><span class="s">"text/css"</span>&gt;</span>
+        <span class="nc">.graeme-logout-icon-1</span> {
+          <span class="na">background-image</span>: url('http://i.imgur.com/Bfchodb.png');
+          <span class="na">width</span>: 30px;
+          <span class="na">height</span>: 30px;
+          <span class="na">position</span>: absolute;
+          <span class="na">top</span>: 0px;
+          <span class="na">left</span>: 5px;
+          <span class="na">background-repeat</span>: no-repeat;
+        }
+        <span class="nc">.graeme-logout-1</span> {
+          <span class="na">position</span>: relative;
+          <span class="na">padding</span>: 10px 15px 10px 45px;
+          <span class="na">border</span>: 1px solid #ececec;
+          <span class="na">text-decoration</span>: none;
+          text-shadow: 1px 1px 0 #fff;
+          <span class="na">color</span>: #333;
+          <span class="na">cursor</span>: pointer;
+          <span class="na">outline</span>: none;
+          <span class="na">background-color</span>: #f4f4f4;
+          <span class="na">background-image</span>: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+          <span class="na">background-image</span>: -webkit-linear-gradient(#f4f4f4, #ececec);
+          <span class="na">background-image</span>: -moz-linear-gradient(#f4f4f4, #ececec);
+          <span class="na">background-image</span>: -o-linear-gradient(#f4f4f4, #ececec);
+          <span class="na">background-image</span>: -ms-linear-gradient(#f4f4f4, #ececec);
+          <span class="na">background-image</span>: linear-gradient(#f4f4f4, #ececec);
+          <span class="na">-webkit-border-radius</span>: 0.2em;
+          <span class="na">-moz-border-radius</span>: 0.2em;
+          <span class="na">border-radius</span>: 0.2em;
+        }
+        <span class="nc">.graeme-logout-1:hover</span> {
+            <span class="na">text-decoration</span>: none;
+            <span class="na">color</span>: #333;
+        }
+
+    <span class="nt">&lt;/style&gt;</span>
+  </code></pre>
+</div>
+<div id="code-2" class="logout-btn-code">
+  
+    
+    <h3>HTML:</h3>
+    <pre><code>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-2&quot;</span><span class="nt">&gt;</span>
+      Logout<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-icon-1&quot;</span>&gt;<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    </code></pre>
+    
+    <h3>CSS:</h3>
+     <pre><code>
+    <span class="nt">&lt;style <span class="na">type=</span><span class="s">"text/css"</span>&gt;</span>
+        <span class="nc">.graeme-logout-icon-1</span> {
+          <span class="na">background-image</span>: url('http://i.imgur.com/Bfchodb.png');
+          <span class="na">width</span>: 30px;
+          <span class="na">height</span>: 30px;
+          <span class="na">position</span>: absolute;
+          <span class="na">top</span>: 0px;
+          <span class="na">left</span>: 5px;
+          <span class="na">background-repeat</span>: no-repeat;
+        }
+        <span class="nc">.graeme-logout-2</span> {
+          <span class="na">position</span>: relative;
+          <span class="na">padding</span>: 10px 15px 10px 45px;
+          <span class="na">border</span>: 1px solid #3072b3;
+          <span class="na">text-decoration</span>: none;
+          <span class="na">color</span>: #fff;
+          <span class="na">cursor</span>: pointer;
+          <span class="na">outline</span>: none;
+          <span class="na">background-color</span>: #599bdc;
+          <span class="na">background-image</span>: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+          <span class="na">background-image</span>: -webkit-linear-gradient(#599bdc, #3072b3);
+          <span class="na">background-image</span>: -moz-linear-gradient(#599bdc, #3072b3);
+          <span class="na">background-image</span>: -o-linear-gradient(#599bdc, #3072b3);
+          <span class="na">background-image</span>: -ms-linear-gradient(#599bdc, #3072b3);
+          <span class="na">background-image</span>: linear-gradient(#599bdc, #3072b3);
+          <span class="na">-webkit-border-radius</span>: 0.2em;
+          <span class="na">-moz-border-radius</span>: 0.2em;
+          <span class="na">border-radius</span>: 0.2em;
+        }
+        <span class="nc">.graeme-logout-2:hover</span> {
+            <span class="na">text-decoration</span>: none;
+            <span class="na">color</span>: #fff;
+        }
+
+    <span class="nt">&lt;/style&gt;</span>
+  </code></pre>
+</div>
+<div id="code-3" class="logout-btn-code">
+  
+    
+    <h3>HTML:</h3>
+    <pre><code>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-3&quot;</span><span class="nt">&gt;</span>
+      Logout<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-icon-1&quot;</span>&gt;<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    </code></pre>
+    
+    <h3>CSS:</h3>
+     <pre><code>
+    <span class="nt">&lt;style <span class="na">type=</span><span class="s">"text/css"</span>&gt;</span>
+        <span class="nc">.graeme-logout-icon-1</span> {
+          <span class="na">background-image</span>: url('http://i.imgur.com/Bfchodb.png');
+          <span class="na">width</span>: 30px;
+          <span class="na">height</span>: 30px;
+          <span class="na">position</span>: absolute;
+          <span class="na">top</span>: 0px;
+          <span class="na">left</span>: 5px;
+          <span class="na">background-repeat</span>: no-repeat;
+        }
+        <span class="nc">.graeme-logout-3</span> {
+          <span class="na">position</span>: relative;
+          <span class="na">padding</span>: 10px 15px 10px 45px;
+          <span class="na">border</span>: 1px solid #A11E22;
+          <span class="na">text-decoration</span>: none;
+          <span class="na">color</span>: #fff;
+          <span class="na">cursor</span>: pointer;
+          <span class="na">outline</span>: none;
+          <span class="na">background-color</span>: #bc2328;
+          <span class="na">background-image</span>: -webkit-gradient(linear, 0 0, 0 100%, from(#bc2328), to(#A11E22));
+          <span class="na">background-image</span>: -webkit-linear-gradient(#bc2328, #A11E22);
+          <span class="na">background-image</span>: -moz-linear-gradient(#bc2328, #A11E22);
+          <span class="na">background-image</span>: -o-linear-gradient(#bc2328, #A11E22);
+          <span class="na">background-image</span>: -ms-linear-gradient(#bc2328, #A11E22);
+          <span class="na">background-image</span>: linear-gradient(#bc2328, #A11E22);
+          <span class="na">-webkit-border-radius</span>: 0.2em;
+          <span class="na">-moz-border-radius</span>: 0.2em;
+          <span class="na">border-radius</span>: 0.2em;
+        }
+        <span class="nc">.graeme-logout-3:hover</span> {
+            <span class="na">text-decoration</span>: none;
+            <span class="na">color</span>: #fff;
+        }
+
+    <span class="nt">&lt;/style&gt;</span>
+  </code></pre>
+</div>
+<div id="code-4" class="logout-btn-code">
+  
+    
+    <h3>HTML:</h3>
+    <pre><code>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-4&quot;</span><span class="nt">&gt;</span>
+      Logout<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-icon-2&quot;</span>&gt;<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    </code></pre>
+    
+    <h3>CSS:</h3>
+     <pre><code>
+    <span class="nt">&lt;style <span class="na">type=</span><span class="s">"text/css"</span>&gt;</span>
+        <span class="nc">.graeme-logout-icon-2</span> {
+          <span class="na">background-image</span>: url('http://i.imgur.com/xEDiKbv.png');
+          <span class="na">width</span>: 30px;
+          <span class="na">height</span>: 30px;
+          <span class="na">position</span>: absolute;
+          <span class="na">top</span>: 9px;
+          <span class="na">left</span>: 10px;
+          <span class="na">background-repeat</span>: no-repeat;
+        }
+        <span class="nc">.graeme-logout-4</span> {
+          <span class="na">position</span>: relative;
+          <span class="na">padding</span>: 10px 15px 10px 45px;
+          <span class="na">border</span>: 1px solid #FFF11B;
+          <span class="na">text-decoration</span>: none;
+          <span class="na">color</span>: #000;
+          <span class="na">cursor</span>: pointer;
+          <span class="na">outline</span>: none;
+          <span class="na">background-color</span>: #FFFC19;
+          <span class="na">background-image</span>: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFC19), to(#FFF11B));
+          <span class="na">background-image</span>: -webkit-linear-gradient(#FFFC19, #FFF11B);
+          <span class="na">background-image</span>: -moz-linear-gradient(#FFFC19, #FFF11B);
+          <span class="na">background-image</span>: -o-linear-gradient(#FFFC19, #FFF11B);
+          <span class="na">background-image</span>: -ms-linear-gradient(#FFFC19, #FFF11B);
+          <span class="na">background-image</span>: linear-gradient(#FFFC19, #FFF11B);
+          <span class="na">-webkit-border-radius</span>: 0.2em;
+          <span class="na">-moz-border-radius</span>: 0.2em;
+          <span class="na">border-radius</span>: 0.2em;
+        }
+        <span class="nc">.graeme-logout-4:hover</span> {
+            <span class="na">text-decoration</span>: none;
+            <span class="na">color</span>: #000;
+        }
+
+    <span class="nt">&lt;/style&gt;</span>
+  </code></pre>
+</div>
+<div id="code-5" class="logout-btn-code">
+  
+    
+    <h3>HTML:</h3>
+    <pre><code>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-5&quot;</span><span class="nt">&gt;</span>
+      Logout<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;graeme-logout-icon-2&quot;</span>&gt;<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/a&gt;</span>
+    </code></pre>
+    
+    <h3>CSS:</h3>
+     <pre><code>
+    <span class="nt">&lt;style <span class="na">type=</span><span class="s">"text/css"</span>&gt;</span>
+        <span class="nc">.graeme-logout-icon-2</span> {
+          <span class="na">background-image</span>: url('http://i.imgur.com/xEDiKbv.png');
+          <span class="na">width</span>: 30px;
+          <span class="na">height</span>: 30px;
+          <span class="na">position</span>: absolute;
+          <span class="na">top</span>: 9px;
+          <span class="na">left</span>: 10px;
+          <span class="na">background-repeat</span>: no-repeat;
+        }
+        <span class="nc">.graeme-logout-5</span> {
+          <span class="na">position</span>: relative;
+          <span class="na">padding</span>: 10px 15px 10px 45px;
+          <span class="na">border</span>: 1px solid #F51A4F;
+          <span class="na">text-decoration</span>: none;
+          <span class="na">color</span>: #333;
+          <span class="na">cursor</span>: pointer;
+          <span class="na">outline</span>: none;
+          <span class="na">background-color</span>: #FF1B52;
+          <span class="na">background-image</span>: -webkit-gradient(linear, 0 0, 0 100%, from(#FF1B52), to(#F51A4F));
+          <span class="na">background-image</span>: -webkit-linear-gradient(#FF1B52, #F51A4F);
+          <span class="na">background-image</span>: -moz-linear-gradient(#FF1B52, #F51A4F);
+          <span class="na">background-image</span>: -o-linear-gradient(#FF1B52, #F51A4F);
+          <span class="na">background-image</span>: -ms-linear-gradient(#FF1B52, #F51A4F);
+          <span class="na">background-image</span>: linear-gradient(#FF1B52, #F51A4F);
+          <span class="na">-webkit-border-radius</span>: 0.2em;
+          <span class="na">-moz-border-radius</span>: 0.2em;
+          <span class="na">border-radius</span>: 0.2em;
+        }
+        <span class="nc">.graeme-logout-5:hover</span> {
+            <span class="na">text-decoration</span>: none;
+            <span class="na">color</span>: #333;
+        }
+
+    <span class="nt">&lt;/style&gt;</span>
+  </code></pre>
+</div>
+
+
+
+
+
+
+
+
+
+        
+        
+        <script type="text/javascript">
+            for (var i = 1; i <= colors.length; i++) {
+                var wrap = document.createElement('div');
+                wrap.className = 'button-separator';
+                var btn = document.createElement('a');
+                btn.id = i;
+                btn.innerHTML = 'Logout';
+                btn.href = '#';
+                btn.className = 'logout-btn graeme-logout-' + i;
+                var icon = document.createElement('span');
+                icon.className = 'graeme-logout-icon-' + colors[i - 1].icon;
+                btn.appendChild(icon);
+                wrap.appendChild(btn);
+                var buttons = document.getElementById('logout-buttons');
+                buttons.appendChild(wrap);
+                
+            }
+            jQuery(document).ready(function ($) {
+               $('.logout-btn').click(function(e) {
+                   e.preventDefault();
+                   var id = $(this).attr('id');
+                   console.log("button clicked " + id);
+                   $('.logout-btn-code').hide();
+                   $('#code-' + id).show();
+               });
+                                      
+            });
+        </script>
+
+        <div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>

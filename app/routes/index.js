@@ -28,6 +28,7 @@ router.get('/fads', index.fadsTrends);
 router.get('/gurus', index.gurus);
 router.get('/neuromarketing', index.neuromarketing);
 router.get('/wordpress-plugins', index.tipsWPPlugins);
+router.get('/logout-button-css', index.logoutButton);
 
 // Pages
 router.get('/global-renaissance', index.globalRenaissance);
