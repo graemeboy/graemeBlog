@@ -55,6 +55,7 @@ function getCats ()
         { name: "google", count: 1},
         { name: "psychology", count: 5},
         { name: "product", count: 2},
+        { name: "php", count: 1},
     ];
     return cats;
 } // getCat()
@@ -63,6 +64,13 @@ function getCategoryPosts (catIn)
 {
     var cats = { 
         "nodejs": [{
+            name: 'PHP vs Node.js',
+            slug: 'php-vs-node',
+        }],
+        "php": [{
+            name: 'PHP is a Good Language',
+            slug: 'php-good',
+        },{
             name: 'PHP vs Node.js',
             slug: 'php-vs-node',
         }],
@@ -269,6 +277,19 @@ exports.fadsTrends = function (req, res) {
         callToAction: callToAction
     }); // render
 };
+
+exports.phpGood = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post with the CSS for a logout button">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/php-good', {
+        title: "PHP is a Good Language",
+        postTitle: "PHP is a Good Language",
+        cats: getCats(),
+        category: "php",
+        callToAction: callToAction
+    }); // render
+}
     
 exports.logoutButton = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post with the CSS for a logout button">send me a tweet.</a>';

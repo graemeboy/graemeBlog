@@ -1,0 +1,61 @@
+<% include ../includes/header %>
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">July 2014</div>
+    <div class="page-content">
+
+        <p>I learned while studying Psychology that in order to judge a complex entity as good, for example a person, one needs to measure its performance in terms of <em>basic outcomes</em>, rather than through comparison.</p>
+
+        <p><strong>What are the basic outcomes that we require for PHP? What <em>ought</em> PHP to achieve?</strong>
+        </p>
+
+        <p>Here is my list:</p>
+
+        <ol>
+            <li>Learning PHP ought to be achievable for people who build web applications</li>
+            <li>PHP ought to provide all of the logic and data structures of a mature language</li>
+            <li>PHP ought to allow the development of a repository of packages for advanced and reusable features</li>
+            <li>PHP ought run on a wide range of platforms</li>
+        </ol>
+
+
+        <p>Let's look at these in turn.</p>
+
+        <h3>1. PHP is highly learnable</h3>
+
+        <p>Check! It is widely recognized among all programmers that PHP is one of the easiest languages in which to learn how to program. Many highly skilled programmers started their web development careers using PHP.</p>
+
+        <h3>2. PHP provides features of mature languages</h3>
+
+        <p>Check! As of version 5.4 PHP is feature-rich to a fault. PHP supports anonymous functions, common data structures (and effective parsing among them, and manulation of those structures), namespaces, object-oriented programming, closures. The basic expectations are all there, and more.</p>
+
+        <h3>3. There is a great repository of PHP features</h3>
+
+        <p>Check! See also composer, as solid a package manager as one can find for any language.</p>
+
+        <p>An addition that one might want to make to my list of basic outcomes would probably have to do with web application security. But security outcomes evolve, are often best handled at the level of application implementation, rather than language. There are at least 20 commendable open-source (free to use) PHP frameworks that handle basic to advanced security, including CodeIgniter, Laravel, Symphony, Zend, Kajona, and Yii. Any of these frameworks provides security measures that are continuously updated, as security requirements change. Because these are open-source, anyone building an application from scratch has all the information necessary to take responsibility for these features.</p>
+
+        <h3>4. PHP runs anywhere where the web is</h3>
+
+        <p>While tthis heading might be an exaggeration, I'm certainly checking the point on "running on a wide range of platforms." If any language does it, it's PHP.</p>
+
+        <p>"Write once, run anywhere" is the holy grail for many languages. How many come close? Java? Javascript? ... PHP?</p>
+
+        <h3>Conclusion</h3>
+
+        <p>PHP meets its basic objectives, as any web developer knows. If one uses the appropriate design patterns, PHP can also be structured and beautiful - not because of the langauge, but because of the architectural technology that the software development field as a whole has created. PHP provides an effective, indeed a good, method to implement those ideas.</p>
+
+        <p>It's tempting for one to compare it to modern languages, such as Python, or Ruby, and find that one prefers those. But with a holistic view that includes a measure of how quickly a prototype can be developed, and how widely the project may be adopted, PHP is a competitive option. Stil, the point is not to compare, but to measure according to specific outcomes.</p>
+
+        <div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
