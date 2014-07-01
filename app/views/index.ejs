@@ -27,7 +27,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <style type="text/css">
     #exp-container {
-        background-image: url( 'http://i.imgur.com/gnMrCjB.jpg' );   
+        background-image: url( 'http://i.imgur.com/PWBdZ4J.jpg' );   
         height: 480px;
         color: #fff;
         font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -37,6 +37,19 @@
         font-weight: 100;   
         margin-top: 50px;
         font-size: 44px;
+        letter-spacing: 2;
+    }
+    .home-based {
+        text-align: center;
+        font-size: 18px;
+        line-height:25px;
+        font-weight: 100;
+        margin-top: 40px;
+        letter-spacing: 1.2;
+        min-height:50px;
+    }
+    .home-based-text, .home-based-twitter {
+        display:none;
     }
     .cat-list li a {
         color: #fff;
@@ -44,6 +57,8 @@
     .home-cat-container {
         margin-top: 40px;
         text-align:center;
+        padding: 15px 0;
+        background: rgba(0,0,0,0.1);
     }
     .home-cat {
 /*        margin-right: 15px;*/
@@ -66,7 +81,7 @@
         text-decoration: none;
     }
     .home-actions {
-        margin-top: 90px
+       
     }
     .visitor-stats {
         margin-top: 25px;
@@ -112,6 +127,11 @@
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript">
            jQuery(document).ready(function ($) {
+            
+               setTimeout(function () {
+                   $('.home-based-text').fadeIn(400);
+                   $('.home-based-twitter').fadeIn(1000);
+               }, 1000);
             var x;
             $('#creative-header').fadeIn(500);
             x = 1;
@@ -137,7 +157,7 @@
     <h1 id="creative-header" style="text-align:center;display:none">Creatively Building the Web</h1>
     <div class="home-cat-container">
         <div class="row-fluid col-sm-12 col-md-9 col-md-offset-3">
-            <div id="cat-product" class="col-sm-3 col-md-2 home-cat"><a href="cat/product">Product Dev.</a></div>
+            <div id="cat-product" class="col-sm-3 col-md-2 home-cat"><a href="cat/product">Product</a></div>
             <div id="cat-psych" class="col-sm-3 col-md-2 home-cat"><a href="cat/psychology">Psychology</a></div>
             <div id="cat-node" class="col-sm-3 col-md-2 home-cat"><a href="/cat/nodejs">Node.js</a></div>
             <div id="cat-css" class="col-sm-3 col-md-2 home-cat"><a href="cat/css">CSS</a></div>
@@ -152,6 +172,8 @@
         </div>
         <div class="clearfix"></div>
     </div>
+    
+    <div class="home-based"><div class="home-based-text">Writing beautiful code from South Africa</div><div class="home-based-twitter">@graeme-boy</div></div>
     
     <div class="home-actions">
         <div class="visitor-stats pull-left hidden-xs ">
