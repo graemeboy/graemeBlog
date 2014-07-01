@@ -122,7 +122,7 @@
                
             x = 1;
             $('.home-cat').each(function () {
-                $(this).fadeIn(x * 100);
+                $(this).fadeIn(x * 250);
                 x++;
             });
             
@@ -148,7 +148,7 @@
             <div id="cat-travel" class="col-sm-3 col-md-2 home-cat"><a href="cat/travel">Travel</a></div>
             
             
-            <div id="cat-misc" class="col-sm-3 col-md-2 home-cat"><a href="cat/misc">Miscellaneous</a></div>
+            <div id="cat-php" class="col-sm-3 col-md-2 home-cat"><a href="cat/php">PHP</a></div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -169,19 +169,6 @@
     </div>
 <div class="clearfix"></div>
     </div>
-<!--
-    <h3 class="page-title">Blog Posts</h3>
-    <p>I have written posts on the following topics</p>
-    <ul class="cat-list">
-
-        <% for(var i=0; i<cats.length; i++) { %>
-            <li>
-                <a href="/cat/<%= cats[i].name %>">
-                    <%= cats[i].name %> (<%= cats[i].count %>)</a>
-            </li>
-            <% } %>
-    </ul>
--->
     
     <!-- .container -->
     <div class="clearfix"></div>
