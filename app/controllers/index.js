@@ -171,6 +171,11 @@ exports.oceanVoyages = function (req, res) {
     }); // render
 } // oceanVoyages
 
+exports.oceanVoyagesSum = function (req, res) {
+    res.render('pages/ocean-voyages-sum', {
+        title: "Ocean Voyages Sum",
+    }); // render
+} // oceanVoyagesSum
 
 exports.sitemap = function (req, res) {
     res.render('pages/sitemap', {

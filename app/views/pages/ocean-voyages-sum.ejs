@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%- title %>
+    </title>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #map_canvas {
+            width: 100%;
+            height: 100%;
+        }
+        .control {
+            padding: 3px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, .90);
+            border: solid gray 1px;
+        }
+        #key {
+            margin-right: 10px;
+        }
+        .country {
+            padding: 1px;
+            margin-bottom: 3px;
+            border-radius: 3px;
+            text-align: center;
+        }
+        #controls {
+            width: 50%;
+            margin-top: 10px;
+        }
+        .slider-label {
+            float: left;
+            text-align: center;
+            font-weight: bold;
+            font-family: sans-serif;
+            width: 3em;
+        }
+        .slider {
+            width: 100%;
+        }
+        .slider-wrap {
+            display: block;
+            overflow: hidden;
+        }
+    </style>
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script>
+    <script src="/data/voyages.js"></script>
+    <script src="/js/map_style.js"></script>
+
+    <script>
+        var COLORS = ["#f66", "#6f6", "#66f", "#ff6", "#6ff", "#f6f", "#f96", "#fff"];
+        var COUNTRIES = ["DE", "DK", "ES", "FR", "NL", "SE", "UK", "US"];
+
+        var map;
+        var lines = [];
+
+        function initialize() {
+            map = new google.maps.Map(document.getElementById('map_canvas'), {
+                center: new google.maps.LatLng(0, 0),
+                zoom: 2,
+                maxZoom: 20,
+                mapTypeId: google.maps.MapTypeId.TERRAIN,
+                disableDefaultUI: true,
+                zoomControl: true,
+                styles: style
+            });
+            for (var i = 0; i < data.length; i++) {
+                var path = [];
+                for (var j = 0; j < data[i].path.length; j++) {
+                    path.push(new google.maps.LatLng(data[i].path[j].lat, data[i].path[j].lng));
+                }
+
+                var line = new google.maps.Polyline({
+                    path: path,
+                    strokeWeight: 1,
+                    strokeOpacity: .3,
+                    strokeColor: COLORS[data[i].country],
+                    visible: false,
+                    map: map
+                });
+                lines.push(line);
+            }
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('controls'));
+            map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(document.getElementById('key'));
+            var slider = document.getElementById('slider');
+            slider.max = data.length - 1;
+            slider.addEventListener('change', updateVoyages, false);
+            var key = document.getElementById('key');
+            for (i in COUNTRIES) {
+                var div = document.createElement('div');
+                div.setAttribute('class', 'country');
+                div.style.backgroundColor = COLORS[i];
+                div.textContent = COUNTRIES[i];
+                key.appendChild(div);
+            }
+            updateVoyages();
+        }
+
+        var oldVal = 0;
+
+        function updateVoyages() {
+            var val = parseInt(document.getElementById('slider').value);
+
+            if (val < oldVal) {
+                for (var i = val + 1; i <= oldVal; i++) {
+                    lines[i].setVisible(false);
+                }
+            } else {
+                for (var i = oldVal; i <= val; i++) {
+                    lines[i].setVisible(true);
+                }
+            }
+
+            oldVal = val;
+            document.getElementById('slider-label').textContent = data[val].path[0].time.substring(0, 4);
+        }
+    </script>
+</head>
+
+<body onload="initialize()">
+    <div id="map_canvas"></div>
+    <div id="controls" class="control">
+        <label id="slider-label" class="slider-label" for="year-slider">1750</label>
+        <span class="slider-wrap">
+      <input type="range" id="slider" class="slider" min="0" max="0" value="0" />
+    </span>
+    </div>
+    <div id="key" class="control"></div>
+</body>
+
+</html>
