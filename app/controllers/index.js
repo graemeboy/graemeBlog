@@ -54,7 +54,7 @@ function getCats ()
         { name: "wordpress", count: 2},
         { name: "google", count: 1},
         { name: "psychology", count: 5},
-        { name: "product", count: 2},
+        { name: "product", count: 3},
         { name: "php", count: 1},
     ];
     return cats;
@@ -115,6 +115,9 @@ function getCategoryPosts (catIn)
             slug: 'gendered-graffiti',
         }],
         "product": [{
+            name: "Design Pattern or Cliché?",
+            slug: "software-cliche",
+        },{
             name: "Trends and Fads - Recognize the Difference or Die",
             slug: "fads",
         }, {
@@ -303,6 +306,20 @@ exports.logoutButton = function (req, res) {
         callToAction: callToAction
     }); // render
 };
+
+exports.softwareCliche = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on software cliches">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/softwareCliche', {
+        title: "Design Pattern or Cliché?",
+        postTitle: "Design Pattern or Cliché?",
+        cats: getCats(),
+        category: "product",
+        callToAction: callToAction
+    }); // render
+    
+}
 
 exports.neuromarketing = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on neuromarketing">send me a tweet.</a>';
