@@ -140,7 +140,6 @@ exports.cat = function (req, res, next, catIn) {
 }; // .cat
         
 exports.post = function (req, res, next, slugIn) {
-
     var post = Post.findOne({
         slug: slugIn
     }, function (err, post) {
@@ -165,6 +164,13 @@ exports.globalRenaissance = function (req, res) {
         title: "Global Renaissance Project",
     }); // render
 } // globalRenaissance
+
+exports.oceanVoyages = function (req, res) {
+    res.render('pages/ocean-voyages', {
+        title: "Ocean Voyages",
+    }); // render
+} // oceanVoyages
+
 
 exports.sitemap = function (req, res) {
     res.render('pages/sitemap', {
