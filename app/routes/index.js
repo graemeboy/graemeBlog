@@ -31,6 +31,7 @@ router.get('/wordpress-plugins', index.tipsWPPlugins);
 router.get('/logout-button-css', index.logoutButton);
 router.get('/php-good', index.phpGood);
 router.get('/software-cliche', index.softwareCliche);
+router.get('/entertainment-luxury', index.entertainmentLuxury);
 
 // Pages
 router.get('/ocean-voyages', index.oceanVoyages);

@@ -17,6 +17,18 @@ exports.home = function (req, res, next) {
 }; // .home
 
 
+exports.entertainmentLuxury = function (req, res) {
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on entertainment not being a luxury">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/entertainment-not-luxury.ejs', {
+        title: "Entertainment is Not a Luxury",
+        postTitle: "Entertainment is Not a Luxury",
+        cats: getCats(),
+        callToAction: callToAction,
+        category: "travel",
+    }); // render
+};
 
 exports.modernCSSButtons = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on modern CSS buttons">send me a tweet.</a>';
@@ -56,6 +68,7 @@ function getCats ()
         { name: "psychology", count: 5},
         { name: "product", count: 3},
         { name: "php", count: 1},
+        { name: "travel", count: 1},
     ];
     return cats;
 } // getCat()
@@ -123,6 +136,10 @@ function getCategoryPosts (catIn)
         }, {
             name: "How to Use Market Segmentation and Discover Your Business' Core Identity",
             slug: "market-identity",
+        }],
+        "travel": [{
+            name: "Entertainment is Not a Luxury",
+            slug: "entertainment-luxury"
         }]
         
     };
