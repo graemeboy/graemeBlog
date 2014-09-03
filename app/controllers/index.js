@@ -43,6 +43,12 @@ exports.modernCSSButtons = function (req, res) {
     }); // render
 };
 
+exports.opa = function (req, res) {
+    // Render the home page
+    res.render('pages/opa', {
+        title: "OPA Planner",
+    }); // render
+};
 
 exports.rishan = function (req, res) {
     // Render the home page

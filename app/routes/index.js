@@ -39,6 +39,7 @@ router.get('/ocean-voyages-sum', index.oceanVoyagesSum);
 router.get('/global-renaissance', index.globalRenaissance);
 router.get('/global-renaissance/about', index.globalRenaissanceAbout);
 router.get('/cbt', index.cbt);
+router.get('/opa', index.opa);
 router.get('/qlock', index.qlock);
 
 router.get('/sitemap', index.sitemap);
