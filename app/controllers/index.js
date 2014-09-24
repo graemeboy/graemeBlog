@@ -396,7 +396,7 @@ exports.genderedGraffiti = function (req, res) {
 };
 
 exports.hideWordpress = function (req, res) {
-    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on hiding Wordpress info">sending me a tweet</a>, or connecting with me on <a href="www.linkedin.com/in/graemeab/" title="Visit Graeme\'s LinkedIn Profile">LinkedIn</a>';
+    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on hiding Wordpress info">sending me a tweet</a>, or connecting with me on <a href="http://www.linkedin.com/in/graemeab/" title="Visit Graeme\'s LinkedIn Profile">LinkedIn</a>.';
     
     // Render the custom page
     res.render('posts/hide-wordpress', {
