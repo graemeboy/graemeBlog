@@ -84,10 +84,7 @@ function getCategoryPosts (catIn)
         },{
             name: 'PHP is a Good Language',
             slug: 'php-good',
-        },{
-            name: 'PHP vs Node.js',
-            slug: 'php-vs-node',
-        },{
+        }, {
             name: 'Logout Buttons with CSS',
             slug: 'logout-button-css',
         },{
@@ -142,7 +139,11 @@ function getCategoryPosts (catIn)
     return cats[catIn];
 }
 
-
+exports.portfolio = function (req, res) {
+    res.render('pages/portfolio', {
+        title: "Portfolio",
+    });
+}
 
 exports.cat = function (req, res, next, catIn) {
     var posts = getCategoryPosts(catIn);
