@@ -100,7 +100,10 @@ function getCategoryPosts (catIn)
             name: 'How to Hide that You Use Wordpress',
             slug: 'how-to-hide-that-you-use-wordpress',
         }],
-        "psychology": [{
+        "psychology": [ {
+            name: "Attending to Threat: Race-based Patterns of Selective Attention",
+            slug: "trawalter"
+        },{
             name: 'What is Neuromarketing?',
             slug: 'neuromarketing',
         },{
@@ -151,6 +154,10 @@ exports.cat = function (req, res, next, catIn) {
     req.category = catIn;
     return next();
 }; // .cat
+
+exports.trawalter = function (req, res) {
+    res.render('pages/trawalter/index');
+}
         
 exports.post = function (req, res, next, slugIn) {
     var post = Post.findOne({

@@ -32,7 +32,6 @@ router.get('/logout-button-css', index.logoutButton);
 router.get('/php-good', index.phpGood);
 router.get('/software-cliche', index.softwareCliche);
 router.get('/entertainment-luxury', index.entertainmentLuxury);
-router.get('/portfolio', index.portfolio);
 
 // Pages
 router.get('/ocean-voyages', index.oceanVoyages);
@@ -42,6 +41,8 @@ router.get('/global-renaissance/about', index.globalRenaissanceAbout);
 router.get('/cbt', index.cbt);
 router.get('/opa', index.opa);
 router.get('/qlock', index.qlock);
+router.get('/portfolio', index.portfolio);
+router.get('/trawalter', index.trawalter);
 
 router.get('/sitemap', index.sitemap);
 
