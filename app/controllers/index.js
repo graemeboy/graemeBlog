@@ -67,14 +67,10 @@ exports.validMan = function (req, res) {
 function getCats ()
 {
     var cats = [
-        { name: "nodejs", count: 1},
-        { name: "css", count: 3},
-        { name: "wordpress", count: 2},
-        { name: "google", count: 1},
+        { name: "coding", count: 7},
         { name: "psychology", count: 5},
         { name: "product", count: 3},
-        { name: "php", count: 1},
-        { name: "travel", count: 1},
+        { name: "travel", count: 1}
     ];
     return cats;
 } // getCat()
@@ -82,43 +78,33 @@ function getCats ()
 function getCategoryPosts (catIn)
 {
     var cats = { 
-        "nodejs": [{
+        "coding": [{
             name: 'PHP vs Node.js',
             slug: 'php-vs-node',
-        }],
-        "php": [{
+        },{
             name: 'PHP is a Good Language',
             slug: 'php-good',
         },{
             name: 'PHP vs Node.js',
             slug: 'php-vs-node',
-        }],
-        "css": [    
-        {
+        },{
             name: 'Logout Buttons with CSS',
             slug: 'logout-button-css',
-        },
-            {
+        },{
             name: 'Modern CSS Buttons',
             slug: 'modern-css-buttons',
-        },
-        {
+        },{
             name: '12 Professional CSS Buttons',
             slug: 'css-buttons',
-        }],
-        "wordpress": [{
+        },{
             name: '6 Tips for Building Premium Wordpress Plugins',
             slug: 'wordpress-plugins',
         },{
             name: 'How to Hide that You Use Wordpress',
             slug: 'how-to-hide-that-you-use-wordpress',
         }],
-        "google": [{
-            name: 'Google Web Designer First Impressions: Review',
-            slug: 'google-web-designer-review',
-        }],
         "psychology": [{
-            name: 'WTF is Neuromarketing?',
+            name: 'What is Neuromarketing?',
             slug: 'neuromarketing',
         },{
             name: 'The Modern Guru',
@@ -142,12 +128,15 @@ function getCategoryPosts (catIn)
         }, {
             name: "How to Use Market Segmentation and Discover Your Business' Core Identity",
             slug: "market-identity",
+        },
+        {
+            name: 'Google Web Designer First Impressions: Review',
+            slug: 'google-web-designer-review',
         }],
         "travel": [{
             name: "Entertainment is Not a Luxury",
             slug: "entertainment-luxury"
         }]
-        
     };
     
     return cats[catIn];
@@ -360,8 +349,8 @@ exports.neuromarketing = function (req, res) {
     
     // Render the custom page
     res.render('posts/wtfNeuromarketing', {
-        title: "WTF is Neuromarketing?",
-        postTitle: "WTF is Neuromarketing?",
+        title: "What is Neuromarketing?",
+        postTitle: "What is Neuromarketing?",
         cats: getCats(),
         category: "psychology",
         callToAction: callToAction

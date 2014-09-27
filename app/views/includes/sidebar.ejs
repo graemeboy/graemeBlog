@@ -1,6 +1,6 @@
 <div class="sidebar col-sm-3 col-sm-offset-1" role="complimentary">
     <div class="container-fluid">
-        <h3>Related topics</h3>
+        <h3>Article Categories</h3>
         <ul class="cat-list">
         <% for(var i=0; i<cats.length; i++) {
         %>  <li <% if (cats[i].name == category) { %> class="active" <% } %>> <a href="/cat/<%= cats[i].name %>"><%= cats[i].name %> (<%= cats[i].count %>)</a></li>
