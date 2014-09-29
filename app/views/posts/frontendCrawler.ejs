@@ -1,0 +1,65 @@
+<% include ../includes/header %>
+
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">September 2014</div>
+    <div class="page-content">
+        <p>Common approaches to beginning web crawling include using libraries such as <a href="http://scrapy.org/">Scrapy</a>, the Python web crawling package, <a href="http://nutch.apache.org/">Nutch</a>, the Javascript web crawler, or the Node.js crawler (simply called <a href="https://www.npmjs.org/package/crawler">Crawler</a>.)</p>
+
+        <p>In this post, I will outline a very simple way to crawl a webpage using browser-side JavaScript and a little bit of creative thinking. This type of crawling is best used for "on-demand" crawling, where, for example, a
+            <em>user</em>of your service specifies the seeds to crawl. Examples of this type of service might include something like <a href="http://buzzsumo.com/">BuzzSumo</a>, which shows the social networking stats of certain domains in a niche.</p>
+
+        <h3>Benefits</h3>
+
+        <p>The benefits of crawling on the frontend, if it makes sense to your service model, are as follows:</p>
+         <ul>
+         	<li><strong>It leverages your users' CPU and bandwidth for crawling</strong> - Literally no strain is demanded from your server for the task. </li>
+         	<li><strong>The crawlling is performed from a wide distribution of sources</strong>, instead of all from your server or cluster - thereby making it unlikely that your service would be throttled or shut down</li>
+         	<li>This particular approach doesn't make requests to the sites themselves, but relies on already-cached HTML.</li>
+         </ul>
+
+         <p>This also has a downside, in that it becomes more tricky to implement caching mechanisms, but, as we will see, that might not be such a problem after all. You also could save the results of the crawl to your server once you have displayed them to your user.</p>
+
+        <h3>The Tech and API Stack</h3>
+
+        <p>This approach uses the <a href="https://developer.yahoo.com/everything.html">Yahoo! API</a>. Note that Yahoo has recently closed down some of their services, for example their directory, so it's unclear whether this particular strategy will always be available (perhaps a Yahoo employee could tweet me with an answer). For now though, it seems well supported, and has even just gone through a beautiful redesign.</p>
+
+        <h3>The Algorithm</h3>
+
+        <p>We need to send a request to Yahoo's HTML table, to get all of the internal links for a page. The basic algorithm is pretty simple (I won't include the entire code here, since it's fairly easy to figure out once you know the thought process).</p>
+
+        <ol>
+            <li>
+                <p>Create an empty array of links you have visited - var visitedLinks = [ ];</p>
+            </li>
+            <li>
+                <p>Define your seed URL and root domain - var link = "http://www.example.com/some-page", rootDomain = "example.com";</p>
+            </li>
+            <li>
+                <p>Define a function (called, say, getYahooLinks) that takes in a link (this function will be recursed on.)</p>
+            </li>
+            <li>
+                <p>Within that function, define a url to request from the Yahoo API all the internal links on a page. The query in the Yahoo Query Language looks like this: "SELECT * FROM html WHERE url = '" + encodeURI(link) + "' AND xpath=\"//a[not(contains(@href,'" + rootDomain + "'))][contains(@href,'http')]\"". The response will be a JSON object, and contains an array of JSON objects under data->query->results->a, with each object containing an "href" key. The value in this pair is an internal link.) Loop through this array.</p>
+            </li>
+            <li>
+                <p>Within the loop, check to see if the link is in your array of visitedLinks. If true, move on. Otherwise, add it to the visitedLinks array, and call the the getYahooLinks function again, using this new link as the parameter.</p>
+            </li>
+        </ol>
+
+
+        <p>You can of course set a limit to the number of links you want to crawl, or the depth of the search. In this case, you simply add a check before recusing on the getYahooLinks function - if (visitedLinks.length &lt;= 5000) { getYahooLinks(newLink); } else { console.log("All done"); }</p>
+
+        <h3>Conclusion</h3>
+
+        <p>And there you have it, a simple way to crawl a website, or a number of websites, by utilizing the cached HTML that Yahoo makes accessible from their API. Your service won't be a super fast big data machine, but I guarantee it will still be impressive to your users, and practically free to host.</p>
+        <div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>

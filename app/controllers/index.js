@@ -16,6 +16,18 @@ exports.home = function (req, res, next) {
     
 }; // .home
 
+exports.frontendCrawler = function (req, res)  {
+    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post building a frontend web crawler">sending me a tweet</a>';
+    
+    // Render the custom page
+    res.render('posts/frontendCrawler.ejs', {
+        title: "How to Build a Frontend Web Crawler",
+        postTitle: "How to Build a Frontend Web Crawler",
+        cats: getCats(),
+        callToAction: callToAction,
+        category: "coding",
+    }); // render
+}
 
 exports.entertainmentLuxury = function (req, res) {
     var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on entertainment not being a luxury">sending me a tweet</a>';
@@ -79,6 +91,9 @@ function getCategoryPosts (catIn)
 {
     var cats = { 
         "coding": [{
+            name: "How to Build a Frontend Web Craler",
+            slug: "frontend-crawler"
+        },{
             name: 'PHP vs Node.js',
             slug: 'php-vs-node',
         },{
