@@ -33,6 +33,7 @@ router.get('/php-good', index.phpGood);
 router.get('/software-cliche', index.softwareCliche);
 router.get('/entertainment-luxury', index.entertainmentLuxury);
 router.get('/frontend-crawler', index.frontendCrawler);
+router.get('/jan-smuts-legacy', index.smutsLegacy);
 
 // Pages
 router.get('/ocean-voyages', index.oceanVoyages);

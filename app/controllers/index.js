@@ -17,7 +17,7 @@ exports.home = function (req, res, next) {
 }; // .home
 
 exports.frontendCrawler = function (req, res)  {
-    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post building a frontend web crawler">sending me a tweet</a>';
+    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on building a frontend web crawler">sending me a tweet</a>';
     
     // Render the custom page
     res.render('posts/frontendCrawler.ejs', {
@@ -26,6 +26,19 @@ exports.frontendCrawler = function (req, res)  {
         cats: getCats(),
         callToAction: callToAction,
         category: "coding",
+    }); // render
+}
+
+exports.smutsLegacy = function (req, res)  {
+    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on the Jan Smuts legacy in South Africa">sending me a tweet</a>';
+    
+    // Render the custom page
+    res.render('posts/smutsLegacy.ejs', {
+        title: "The Legacy of Jan Smuts in South Africa",
+        postTitle: "The Legacy of Jan Smuts in South Africa",
+        cats: getCats(),
+        callToAction: callToAction,
+        category: "travel",
     }); // render
 }
 
@@ -79,10 +92,10 @@ exports.validMan = function (req, res) {
 function getCats ()
 {
     var cats = [
-        { name: "coding", count: 7},
+        { name: "coding", count: 8},
         { name: "psychology", count: 5},
         { name: "product", count: 3},
-        { name: "travel", count: 1}
+        { name: "travel", count: 2}
     ];
     return cats;
 } // getCat()
@@ -149,6 +162,9 @@ function getCategoryPosts (catIn)
             slug: 'google-web-designer-review',
         }],
         "travel": [{
+            name: "The Legacy of Jan Smuts in South Africa",
+            slug: "jan-smuts-legacy"
+        },{
             name: "Entertainment is Not a Luxury",
             slug: "entertainment-luxury"
         }]
