@@ -173,6 +173,13 @@ function getCategoryPosts (catIn)
     return cats[catIn];
 }
 
+exports.about = function (req, res) {
+    res.render('pages/about', {
+        cats: getCats(),
+        category: ""
+    });
+}
+
 exports.portfolio = function (req, res) {
     res.render('pages/portfolio', {
         title: "Portfolio",

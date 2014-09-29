@@ -35,6 +35,8 @@ router.get('/entertainment-luxury', index.entertainmentLuxury);
 router.get('/frontend-crawler', index.frontendCrawler);
 router.get('/jan-smuts-legacy', index.smutsLegacy);
 
+router.get('/about', index.about);
+
 // Pages
 router.get('/ocean-voyages', index.oceanVoyages);
 router.get('/ocean-voyages-sum', index.oceanVoyagesSum);
