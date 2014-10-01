@@ -378,7 +378,7 @@ exports.phpGood = function (req, res) {
 }
     
 exports.logoutButton = function (req, res) {
-    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post with the CSS for a logout button">send me a tweet.</a>';
+    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post with logout buttons">send me a tweet.</a>';
     
     // Render the custom page
     res.render('posts/logout-button-css', {
