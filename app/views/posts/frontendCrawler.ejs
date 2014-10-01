@@ -8,7 +8,9 @@
         <p>Common approaches to beginning web crawling include using libraries such as <a href="http://scrapy.org/">Scrapy</a>, the Python web crawling package, <a href="http://nutch.apache.org/">Nutch</a>, the Javascript web crawler, or the Node.js crawler (simply called <a href="https://www.npmjs.org/package/crawler">Crawler</a>.)</p>
 
         <p>In this post, I will outline a very simple way to crawl a webpage using browser-side JavaScript and a little bit of creative thinking. This type of crawling is best used for "on-demand" crawling, where, for example, a
-            <em>user </em>of your service specifies the seeds to crawl. Examples of this type of service might include something like <a href="http://buzzsumo.com/">BuzzSumo</a>, which shows the social networking stats of certain domains in a niche.</p>
+            <em>user </em>of your service specifies the seeds to crawl. Examples of this type of service might include something like <a href="http://buzzsumo.com/">BuzzSumo</a>, which shows the social networking stats of certain domains in a niche. Here is an example of something small small that I created using this frontend crawling approach - which crawls a website and returns social engagement statistics for each page (as you can seen, the screenshot is taking during the process of "crawling" for links, and actually updates the DOM with new links as it finds them, without having to communicate with my server):</p>
+
+        <img src="/img/posts/socialEngagement.jpg" style="max-width:100%;margin-top:10px">
 
         <h3>Benefits</h3>
 
