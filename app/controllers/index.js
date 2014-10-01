@@ -29,6 +29,17 @@ exports.frontendCrawler = function (req, res)  {
     }); // render
 }
 
+exports.nodeFS = function (req, res) {
+    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on using the #nodejs fs module">sending me a tweet</a>';
+    res.render('posts/nodeFS.ejs', {
+        title: "Using The Node.js FS Module",
+        postTitle: "Using The Node.js FS Module",
+        cats: getCats(),
+        callToAction: callToAction,
+        category: "coding",
+    }); // render
+}
+
 exports.smutsLegacy = function (req, res)  {
     var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on the Jan Smuts legacy in South Africa">sending me a tweet</a>';
     
@@ -92,7 +103,7 @@ exports.validMan = function (req, res) {
 function getCats ()
 {
     var cats = [
-        { name: "coding", count: 8},
+        { name: "coding", count: 9},
         { name: "psychology", count: 5},
         { name: "product", count: 3},
         { name: "travel", count: 2}
@@ -104,6 +115,9 @@ function getCategoryPosts (catIn)
 {
     var cats = { 
         "coding": [{
+            name: "Using the Node.js FS Module",
+            slug: "node-fs"
+        },{
             name: "How to Build a Frontend Web Craler",
             slug: "frontend-crawler"
         },{
@@ -431,7 +445,7 @@ exports.genderedGraffiti = function (req, res) {
 };
 
 exports.hideWordpress = function (req, res) {
-    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on hiding Wordpress info">sending me a tweet</a>, or connecting with me on <a href="http://www.linkedin.com/profile/view?id=78694591" title="Visit Graeme\'s LinkedIn Profile">LinkedIn</a>.';
+    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on hiding #Wordpress info">sending me a tweet</a>, or connecting with me on <a href="http://www.linkedin.com/profile/view?id=78694591" title="Visit Graeme\'s LinkedIn Profile">LinkedIn</a>.';
     
     // Render the custom page
     res.render('posts/hide-wordpress', {

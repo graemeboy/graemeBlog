@@ -1,0 +1,135 @@
+<% include ../includes/header %>
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">September 2014</div>
+    <div class="page-content">
+
+<h3>FS Module</h3>
+
+<p>Node.js provides a low-level API to read and write to local files, using the <em>fs</em> module. Node also has a higher level API, <em>ReadStream</em> and <em>WriteStream</em>, which should be used if the application will require concurrent reading from and writing to a file.</p>
+
+<p>Start simply by requiring the FS module:</p>
+
+<pre><code>var fs = require('fs');
+</code></pre>
+
+<p>Because fs performs I/O, all queries require callbacks.</p>
+
+<h3>FS Example: File Stats</h3>
+
+<p>If we want to gather information about a file, we can use <em>fs.stat()</em>. The stat function takes in a path and a callback, and is representive of many other functions in the fs module, which looks like this:</p>
+
+<pre><code>fs.stat('/documents/helloWorld.html', function (error, stast) {
+    if (error) {
+        // Trouble accessing the file.
+        throw error;
+    }
+    // Output information about the file to the console.
+    console.log(stats);
+});
+</code></pre>
+
+<p>In the above example, we have queried statistics about a filed called helloWorld.html, and chosen to log the data to the console, or to throw an error if the task could not be completed. The stats that will be returned is an object containing keys including "dev", "ino", "mode", "nlink", "uid", "gid", "rdev", "size", "blksize", " blocks", "atime", "mtime", "ctime". The values for each of these pairs is either an integer or a date-time value.</p>
+
+<p>You can call further functions on the stats class, including:</p>
+
+<ul>
+<li><em>stats.isFile()</em> - Returns true if file exists (and is not directory)</li>
+<li><em>stats.isDirectory()</em> - Returns true if directory</li>
+<li><em>stats.isBlockDevice()</em> - Returns true if the file is a block device</li>
+<li><em>stats.isCharacterDevice()</em> - Returns true if character device</li>
+<li><em>stast.isSymbolicLink()</em> - Returns true if symbolic link</li>
+<li><em>stats.isFifo()</em> - FIFO is a UNIX-named pipe</li>
+<li><em>stats.isSocket()</em> - Returns true if file is a UNIX domain socket</li>
+</ul>
+
+
+<h3>Manipulating Files</h3>
+
+<p>Before you can read or write to a file, you must open the file using the <em>fs.open()</em> function. This function takes in a file path, a flag (for reading, writing, appending, and so forth; all are fopen UNIX flags, including: r, r+, w, w+, a, a+. You can read about these in the fopen UNIX manual), and a callback function.</p>
+
+<p>Usage looks like this:</p>
+
+<pre><code>var fs = require('fs');
+fs.open('/path/to/your/file', 'r', function (error, fd) {
+    // Can now use the file descriptor (fd), to manipulate the file.
+});
+</code></pre>
+
+<h3>Reading from a File using the FS Module</h3>
+
+<p>Reading from a file requires using a buffer to contain the data. This gets passed to a function <em>fs.read</em>, which will fill the buffer with data read from the file.</p>
+
+<p>Usage looks like this:</p>
+
+<pre><code>// Require the fs module
+var fs = require('fs');
+fs.open('./datafile.txt', 'r', function (error, fd) {
+    if (error) { throw errror }
+
+    // Create a read buffer, and specify size
+    var readBuffer = new Buffer(1024);
+    // fs.read requires constraints on reading
+    var bufferOffset = 0,
+        bufferLength = readBuffer.length,
+        filePosition = 0;
+    fs.read(fd, 
+            readBuffer,
+            bufferOffset,
+            bufferLength,
+            filePosition,
+            function (error, readBytes) {
+                if (error) { throw error }
+                console.log("Just read " + readBytes + " bytes");
+                // Log those data to the console
+                console.log(readBuffer.slice(0, readBytes));
+            }
+    );
+});
+</code></pre>
+
+<p>In the above example, we attempted to open the file, and if that was successful, read a chunk of 1024 bytes from it, starting at position 0 (filePosiiton) of the buffer provided. The callback function for fs.read() will fire of there is an error, something is read, or if nothing could be read (in which case, readBytes will be zero.)</p>
+
+<h3>Writing to a file using the FS module</h3>
+
+<p>For writing to a file using FS, again you must create a buffer first. This time, the buffer will already contain the data you want to write to the file. The procedure is similar to that which is described in the above <em>fs.read()</em> example.</p>
+
+<pre><code>var fs = require('fs');
+fs.open('./datafile.txt', 'a', function (error, fd) {
+    if (error) { throw error }
+    // Create a buffer with the content to be written to the file.
+    var writeBuffer = new Buffer ("This must be written to the file.");
+    // Specify constraints for writing
+    var bufferPosition = 0,
+        bufferLength = writeBuffer.length,
+        filePosition = null;
+    fs.write( fd,
+        writeBuffer,
+        bufferPosition,
+        bufferLength,
+        filePosition,
+        function (error, written) {
+            if (error) { throw error }
+            console.log("Wrote " + written + " bytes.");
+        });
+});
+</code></pre>
+
+<p>In this example, we opened the file using the append flag (which means that the file will be created if it does not exist already, and that the stream is positioned at the end of the file.) Then, we wrote some data from the buffer ("This must be written to the file") to the open file. We started writing from position 0 in the buffer, and wrote for its entire length, which means that the whole buffer was written. We specified the position in the file to start writing as <em>null</em>, which indicates that the writing must start wherever the cursor is in the file (given that we used the 'a' flag, and it is our first time writing, it will begin at the end of the file.) Finally, the callback function will inform us of how many bytes were written to the file.</p>
+
+<h3>Closing Files</h3>
+
+<p>When your node process exists, all files are closed by the operating system. However, in larger applications, it's important to close files using the <em>fs.close()</em> function. This function takes in a file descriptor, and a callback function. For this reason, it is important to keep track of all file descriptors for the files that you have opened.</p>
+
+<div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
