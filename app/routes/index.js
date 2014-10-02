@@ -35,6 +35,7 @@ router.get('/entertainment-luxury', index.entertainmentLuxury);
 router.get('/frontend-crawler', index.frontendCrawler);
 router.get('/jan-smuts-legacy', index.smutsLegacy);
 router.get('/node-fs', index.nodeFS);
+router.get('/nuts-bolts-problem', index.nutsBolts);
 
 router.get('/about', index.about);
 

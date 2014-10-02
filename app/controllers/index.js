@@ -103,7 +103,7 @@ exports.validMan = function (req, res) {
 function getCats ()
 {
     var cats = [
-        { name: "coding", count: 9},
+        { name: "coding", count: 10},
         { name: "psychology", count: 5},
         { name: "product", count: 3},
         { name: "travel", count: 2}
@@ -115,6 +115,9 @@ function getCategoryPosts (catIn)
 {
     var cats = { 
         "coding": [{
+            name: "The Nuts and Bolts Problem (An Approach)",
+            slug: "nuts-bolts-problem"
+        },{
             name: "Using the Node.js FS Module",
             slug: "node-fs"
         },{
@@ -376,7 +379,23 @@ exports.phpGood = function (req, res) {
         callToAction: callToAction
     }); // render
 }
+
+
     
+exports.nutsBolts = function (req, res) {
+    var callToAction = 'If you enjoyed this post, or can help me improve it, please <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on the nuts and bolts problem">send me a tweet.</a>';
+    
+    // Render the custom page
+    res.render('posts/nutsBolts', {
+        title: "The Matching Nuts and Bolts Problem (An Approach)",
+        postTitle: "The Matching Nuts and Bolts Problem (An Approach)",
+        cats: getCats(),
+        category: "coding",
+        callToAction: callToAction
+    }); // render
+};
+
+
 exports.logoutButton = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post with logout buttons">send me a tweet.</a>';
     

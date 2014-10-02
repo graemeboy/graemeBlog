@@ -1,0 +1,178 @@
+<% include ../includes/header %>
+    <h1 class="page-title">
+        <%= postTitle %>
+    </h1>
+    <div class="post-meta">October 2014</div>
+    <div class="page-content">
+
+<p>This is a problem that has some real-world applications, and it can be a very challenging programming interview question. The problem was described by G.J.E. Rawlings, a computer scientist specializing in the field of genetic algorithms. The problem is as follows:</p>
+
+<h4>Problem Description</h4>
+
+<blockquote><p>There is a bad full of n nuts and n bolts, each of distinct sizes, such that there is one-to-one correspondence between the nuts and the bots, i.e., for every nut, there is a bolt and vice verse. Nuts cannot be compared to nuts and bolts cannot be compared to bolts directly, but nuts can be compared to bolts by trying to fit one into the other. Design and implement an optimal algorithm for fitting all nuts to bolts. By optimal we mean to minimize the number of comparisons involved in the algorithm.</p><footer>G.J.E. Rawlings</footer></blockquote>
+
+<p>Rawlings also described the problem in this way, which is a little more visual and literary, which may help to clarify it:</p>
+
+<blockquote><p>We wish to sort a bag of n nuts and n bolts by size in the dark. We can compare the sizes of a nut and a bolt by attempting to screw one into the other. This operation tells us that either the nut is bigger than the bolt,; the bolt is bigger than the nut; or they are the same size (and so fit together). Because it is dark we are not allowed to compare nuts directly or bolts directly. How many fitting operations do we need to sort the nuts and bolts in the worst case?</p><footer>G.J.E. Rawlings</footer></blockquote>
+
+<h4>Problem Analysis</h4>
+
+<p>First of all, we can describe this more formally. We are given two sets of entities: B [bolts] : { b1, ... bn } and N [nuts] : { n1, ..., nn }. B is a set of n distinct, real numbers, where each number refers to the size of a bolt. N is a permutation of B, and we want to find a unique permutation of N (called <em>o</em>), where N[i] = B[i] for all i.</p>
+
+<p>For each entity in B, there are three possibilities:</p>
+
+<ol>
+<li>b[i] > n[j], or</li>
+<li>b[i] = n[j], or</li>
+<li>b[i] &lt; n[j]</li>
+</ol>
+
+
+<p>Because there are n! possibilities for the set we are trying to find, <em>o</em>, and three possibilities for each comparison, a decision tree that solves the problem will have a depth of at least log3(n!). The tree will therefore be a <em>ternary tree</em>.</p>
+
+<p>The height of the tree is determined by the worst-case number of comparisons made by our algorith, which also determines the running time of the algorithm. We want a lower bound of nlog(n) on the height <em>H</em> of the tree. The number of leaves on the tree must satisfy <em>L</em> &lt;= 3^H, because it is a ternary tree.</p>
+
+<h3>Solution Algorithm</h3>
+
+<p>A modification of <em>Randomized Quicksort</em>  has an expected running time of O(nlog(n)). To being this algorithm, we start with a partitioning algorithm, which will consist of four steps, and will take O(n) running time:</p>
+
+<ol>
+<li>Pick a random bolt</li>
+<li>Compare it to each of the nuts, until a match is found</li>
+<li>Split the nuts into three parts (nuts smaller than, equal to, or greater than the bolt)</li>
+<li>Compare this matching nut to each of the remaining bolts, splitting the <em>bolts</em> into three parts (bolts smaller than, equal to, or greater than the nut)</li>
+</ol>
+
+
+<p>Thus, we have split the problem into two problems: nuts and bolts smaller than the matching pair, and those greater than the matching pair. The <em>pivot</em> nut and bolt are correctly matched, and all others are on the appropriate side of the pivot. In other words, all nuts that are smaller than the pivot nut (which was the nut that fit the randomly chosen bolt) are on the left side of that nut, and bigger nuts are on the right side. All bolts that are smaller than the pivot bolt are on the left side, and all those larger are on the right side.</p>
+
+<p>The next step is to recursively apply this strategy to the left and right side of these sets, these new subarrays of nuts and bolts - each time, dividing the new subarray by the pivot. By induction we know that at the end of this process, we will produce the set o that we are seeking, where the positions of all nuts and bolts in either set correspond by size.</p>
+
+<h3>Analyzing Running Time</h3>
+
+<p>The analysis of this algorithm is similar to that of randomized quicksort, in that it recursively performs a O(n) partitioning operation. Therefore, the expected running time will be O(nlog(n)).</p>
+
+<h4>Partitioning</h4>
+
+<p>The basic algorithm for the partitioning function is as follows:</p>
+
+<ol>
+<li>Pick a random entity from the array</li>
+<li>Set this entity as the pivot</li>
+<li>Create an index at the beginning of the array (if sorting in place)</li>
+<li>Loop through entities for the length of the array, minus one</li>
+<li>If an entity is &lt;= the pivot, swap the item at the index with this entity</li>
+<li>If the entity is > 6. Set the new pivot to be the last element in the array</li>
+</ol>
+
+
+<h3>Quicksort</h3>
+
+<p>Quicksort divides an array in two two subsets, a[l...p-1] (from the left index to the pivot) and a[p+1,r] (from after the pivot to the right index). Each element of a[l..p-1] &lt;= a[p] and each element of a[p+1,r] >= a[p]. These are loop invariants. We can combine these invariants into a neat statement:</p>
+
+<p>For all x in a[l..p-1] and for all y in a[p+1,r] : x &lt;= a[p] &lt;= y</p>
+
+<p>We recursively call quicksort to sort these two subsets in place (without creating a new array).</p>
+
+<p>The pseudo code for quicksort is:</p>
+
+<pre><code>function quicksort ( a, l, r )
+    p &lt;- partition ( a, l, r )
+    quicksort ( a, l, p -1 )
+    quicksort ( a, p + 1, r)
+end function
+</code></pre>
+
+<h3>Quicksort in JavaScript</h3>
+
+<p>Let's try to implement Quicksort now in JavaScript (view the gist on github at <a href="https://gist.github.com/graemeboy/e9d06c03325fac557778">Quicksort in Javascript</a>:</p>
+
+<pre><code>function quicksort ( arr ) {
+    // Launch the sorting process.
+    sort(arr, 0, arr.length - 1 );
+
+    /**
+     * swap
+     * takes in an array and two indicies,
+     * swaps the elements in the array at those indicies
+     */
+    function swap ( arr, a, b ) {
+        var temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    function partition ( arr, l, r) {
+        var p = arr[r],
+            i = l - 1,
+            j = l;
+        while ( j &lt; r) {
+            if (arr[j] &lt;= p) {
+                swap ( arr, ++i, j );
+            }
+            j++;
+        }
+        // Put the pivot in its correct place
+        swap (arr, i + 1, r);
+        return i + 1;
+    }
+
+    function sort ( arr, l, r ) {
+        var p;
+        if (l &lt; r) {
+            p = partition( arr, l, r );
+            sort( arr, l, p - 1);
+            sort( arr, p + 1, r);
+        } else {
+            // Log the resulting array
+                    console.log(arr);    
+                }
+    }
+}
+</code></pre>
+
+<p>There are more concise ways to do this, for example, Wikipedia gives <a href="http://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Quicksort#JavaScript">this</a>:</p>
+
+<pre><code>function qsort(a) {
+    if (a.length == 0) return [];
+
+    var left = [], right = [], pivot = a[0];
+
+    for (var i = 1; i &lt; a.length; i++) {
+        a[i] &lt; pivot ? left.push(a[i]) : right.push(a[i]);
+    }
+
+    return qsort(left).concat(pivot, qsort(right));
+}
+</code></pre>
+
+<h3>Randomized Quicksort</h3>
+
+<p>So far, this has been a deterministic algorithm. However, we can randomize the selection of the pivot if you assume that all input permutations are equally likely (which it is in the given problem.) On average, this will result in well balanced subsets during partitioning. This will prevent specifc input from causing worst-case performance. The total time then remains O(nlog(n), regardless of unbalanced partitioning.</p>
+
+<p>The only part of the algorithm that changes is that a random pivot is picked, and a swap takes place before partitioning (so that the pivot is at the end of the array.) In psuedo-code, it looks like this:</p>
+
+<pre><code>function randomized-partition ( arr, l, r ) 
+    i &lt;- random (l, r)
+    swap( arr[r], arr[i] )
+    return partition ( arr, l, r)
+end function
+</code></pre>
+
+<p>Futher work on this problem involves expander graphs, which are a bit beyong me right now. I refer to you the <em>futher reading</em> section below.</p>
+
+<h2>Further Reading</h2>
+
+<p>Read <a href="http://www.wisdom.weizmann.ac.il/~naor/PAPERS/nuts_bolts.ps">Alon et al.'s</a> paper for more information about solving this problem.</p>
+
+<div class="call-to-action">
+            <%- callToAction %>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
