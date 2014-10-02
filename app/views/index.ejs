@@ -258,11 +258,11 @@
         	<div class="home-cat-container-first">
         
             <div class="row-fluid col-sm-12 col-md-9 col-md-offset-3">
-                <div id="cat-product" class="col-sm-4 col-md-3 home-cat"><a href="portfolio">View Portfolio</a>
+                <div id="cat-product" class="col-sm-4 col-md-3 home-cat"><a id="btn-view-portfolio" href="portfolio">View Portfolio</a>
                 </div>
                 <div id="cat-node" class="col-sm-4 col-md-3 home-cat"><a id="btn-read-articles" href="#">Read Articles</a>
                 </div>
-                <div id="cat-css" class="col-sm-4 col-md-3 home-cat"><a href="http://www.linkedin.com/profile/view?id=78694591">Connect on LinkedIn</a>
+                <div id="cat-css" class="col-sm-4 col-md-3 home-cat"><a id="btn-connect-linkedin" href="http://www.linkedin.com/profile/view?id=78694591">Connect on LinkedIn</a>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -305,14 +305,36 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
     jQuery(document).ready(function(e) {
+        var onArticles = false,
+            introText = "Welcome, it's nice to meet you.";
     	$('#btn-read-articles').click(function (e) {
     		e.preventDefault();
+            onArticles = true;
     		$('.home-cat-container-first').hide();
     		$('.home-cat-container-second').show();
 
     		$('#header-sub').text("Choose a category that interests you below:");
+            $("#creative-header").text("Sometimes, I enjoy writing");
     		//$('.home-actions').hide();
-    	});
+    	}).mouseover(function () {
+            $("#creative-header").text("Sometimes, I enjoy writing");
+        }).mouseout(function () {
+            if (!onArticles)
+                $("#creative-header").text(introText);
+        });
+
+        $("#btn-view-portfolio").mouseover(function () {
+            $("#creative-header").text("I have about 10 projects to show");
+        }).mouseout(function () {
+            $("#creative-header").text(introText);
+        });
+
+        $("#btn-connect-linkedin").mouseover(function () {
+            $("#creative-header").text("Let's be LinkedIn buddies!");
+        }).mouseout(function () {
+            $("#creative-header").text(introText);
+        });
+
         setTimeout(function() {
             e(".home-based-text").fadeIn(400);
             e(".home-based-twitter").fadeIn(1e3)
