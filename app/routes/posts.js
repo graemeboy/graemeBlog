@@ -1,5 +1,9 @@
 var posts = {
 	// Coding
+	'validating-https-nodejs': {
+		'title': 'Validating HTTPS Connections in Node.js',
+		'cat': 'coding'
+	},
 	'node-udp': {
 		'title': 'Sending UDP Datagrams with Node.js',
 		'cat': 'coding',

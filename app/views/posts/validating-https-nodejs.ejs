@@ -1,0 +1,160 @@
+<% include ../includes/header %>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+    <h1 class="page-title">
+        <%= title %>
+    </h1>
+    <div class="post-meta">October 2014</div>
+    <div class="page-content">
+
+<p>This will be a shorter post, in which I examine creating a secure connection over HTTPS in Node.js, and validating server certificates.</p>
+
+<h3>Creating Secure Servers</h3>
+
+<p>To establish a server that uses https, we use Node's <em>https</em> module, which extends the <em>http</em> module, and which uses the <em>tls</em> . Because the https module extends http, the two connections are practically identical to establish. The difference is that we need to add certificate keys, which requires using the <a href="/node-fs">FS module</a>. Here is an example:</p>
+
+<pre><code>// Require the FS and https modules
+var fs = require('fs'),
+    https = require ('https');
+
+// Create an options object, as with http connections
+var options = {
+    // read in the server key
+    key: 
+        fs.readFileSync('server_key.pem'),
+    cert:
+        fs.readFileSync('server_cert.pem')
+};
+
+// Create the server object
+var server = https.createServer(options,
+    function (req, res) {
+        res.writeHead(200, 
+            { 'Content-Type': 'text/plain' });
+        res.end("Hello world!");
+});
+</code></pre>
+
+<p>As you can see, that looks just like setting up an http server. We used fs.readFileSync to read the certificate information syncronously, which happens <em>before the event loop</em>, and therefore does not block the loop. The function seems similar in this way to a require statement. If you have used the <em>TLS</em>  module before without creating an HTTPS server, then you will recognize the process of reading in the server key.</p>
+
+<p>We can now listen for connections on our server, by adding the following:</p>
+
+<pre><code>var port = 4000;
+// Optionally, we can add an address, e.g.
+var address = '22.231.113.64;
+server.listen(port, address, function () [
+    console.log("Listening on port: " + 
+        server.address().port);
+}]); // address is optional
+</code></pre>
+
+<p>If you choose not to add the address parameter, the server will listen on all interfaces of the network.</p>
+
+<h3>Validating Client Requests</h3>
+
+<p>It is a rare case that a server will need to validate the authenticity of the client, but it does happen - for example, in online-banking transactions. To do this with Node is fairly simple, and just requires adding two options to the <em>options</em> object that was passed in when creating the server. These two options are <em>requestCert</em> (to require that the client send a certificate) and <em>rejectUnauthorized</em> (to reject any certificate that is not validated by a Certificate Authority), both of which must be set to true, as in the following example:</p>
+
+<pre><code>var options = {
+    // read in the server key
+    key: 
+        fs.readFileSync('server_key.pem'),
+    cert:
+        fs.readFileSync('server_cert.pem'),
+    requestCert: true, // require client send certificate
+    rejectUnauthorized: true 
+};
+</code></pre>
+
+<p>Another way to check whether the certificate is authorized, without rejecting it out of hand, is to inspect the <em>authorized</em> attribute in the request stream:</p>
+
+<pre><code>var server = https.createServer(options,
+    function (req, res) {
+        console.log("Is authorized: " + 
+            req.socket.authorized);
+    }
+);
+</code></pre>
+
+<p>Once you have assertained that socket.authorized is true, you can trust the certificate, and inspect it further, using req.socket.getPeerCertificate().</p>
+
+<h3>Validating the HTTPS Server</h3>
+
+<p>Making HTTPS requests in Node is very similar to making HTTP requests. If you are not required to provide a client certificate and key, which is the usual case, then it can be almost identical, as in the following example:</p>
+
+<pre><code>// Require the HTTPS module
+var https = require('https');
+
+// Create an options object, with request options
+var options = {
+    host: '0.0.0.0',
+    port: '4000',
+    method: 'GET',
+    path: '/'
+};
+
+// Create a ClientRequest object
+var request = https.request(options,
+    function (response) {
+
+    // Listen for the data event
+    response.on('data', function (data) {
+        console.log("Data received: " + data);
+    }); 
+});
+
+request.write("Connected");
+request.end();
+</code></pre>
+
+<p>As you can see, we can use the request object to write, because it is a writeable stream - and therefore we can also pipe to it a readable stream. The server will only respond after the request has ended, using the request.end() function. When the server responds, we can access that response as a readable stream, in our callback for the 'data' event.</p>
+
+<p>Now, we can validate the server's certificate. We do that by calling the getPeerCertificate() function, with in the socket attribute of the response. We do that like so:</p>
+
+<pre><code>var fs = require('fs'),
+    https = require('https');
+
+var options = {
+    host: 'google.com',
+    method: 'get',
+    path: '/'
+};
+
+var req = https.request(options, 
+    function (res) {
+    // Always make sure that the certificate is authorized.
+    console.log('Is authorized:' + res.socket.authorized);
+    // The inspect the certificate:
+    console.log(res.socket.getPeerCertificate());
+});
+
+req.end();
+</code></pre>
+
+<p>The output from this inspection will contain something of the following:</p>
+
+<pre><code>res.socket.authorized: true
+peer certificate: {
+    subject: {
+        C: 'US',
+        ST: 'California',
+        L: 'Mountain View',
+        O: 'Google Inc',
+        CN: '*.google.com' 
+    },
+
+    issuer:  { 
+        C: 'US', 
+        O: 'Google Inc', 
+        CN: 'Google Internet Authority
+    }   // ...And so on.
+</code></pre>
+
+<p>To reiterate, once you have assertained that res.socket.authorized is true, you can use this response to assert whether the CN (common name) in the certificate is the same as the hostname to which you have sendt your client request.</p>
+
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
