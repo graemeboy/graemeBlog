@@ -6,7 +6,20 @@ var router = express.Router();
 var index = require('../controllers/index');
 
 // Home Page
-router.get('/', index.home);
+router.get('/', function (req, res) {
+
+	res.render('index', {
+        title: "Graeme Boy",
+        cats: getCats(),
+        numPosts: getNumPosts()
+    }); // render
+
+});
+
+function getNumPosts () {
+	return Object.keys(posts).length;
+}
+
 // Load all of the post data
 posts = require('./posts.js').posts;
 

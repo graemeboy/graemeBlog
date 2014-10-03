@@ -7,14 +7,11 @@ exports.viperchill = function (req, res)
     }); // render
 }
 
-exports.home = function (req, res, next) {
-    // Decide what to do here
-    res.render('index', {
-        title: "Graeme Boy",
-        cats: getCats()
-    }); // render
+// exports.home = function (req, res, next) {
+//     // Decide what to do here
     
-}; // .home
+    
+// }; // .home
 
 
 
