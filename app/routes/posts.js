@@ -1,7 +1,7 @@
 var posts = {
 	// Coding
 	'node-udp': {
-		'title': 'Sending UDP Datagraphs with Node.js',
+		'title': 'Sending UDP Datagrams with Node.js',
 		'cat': 'coding',
 	},
 	'nuts-bolts-problem': {
