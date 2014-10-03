@@ -5,40 +5,83 @@ var router = express.Router();
 // Index
 var index = require('../controllers/index');
 
-// Parameters
-//router.param('postSlug', index.post);
-router.param('postCat', index.cat);
-
 // Home Page
 router.get('/', index.home);
+// Load all of the post data
+posts = require('./posts.js').posts;
 
-// Single Posts
-router.get('/how-to-hide-that-you-use-wordpress', index.hideWordpress);
-router.get('/php-vs-node', index.phpVsNode);
-router.get('/gender-graduation', index.genderGrad);
-router.get('/modern-css-buttons', index.modernCSSButtons);
-router.get('/google-web-designer-review', index.googleWebDesigner);
-router.get('/gendered-graffiti', index.genderedGraffiti);
-router.get('/habits', index.habitFormation);
-router.get('/write-room', index.writeRoom);
-router.get('/cat/:postCat', index.showCatPosts);
-router.get('/css-buttons', index.css12);
-router.get('/market-identity', index.marketSegment);
-router.get('/fads', index.fadsTrends);
-router.get('/gurus', index.gurus);
-router.get('/neuromarketing', index.neuromarketing);
-router.get('/wordpress-plugins', index.tipsWPPlugins);
-router.get('/logout-button-css', index.logoutButton);
-router.get('/php-good', index.phpGood);
-router.get('/software-cliche', index.softwareCliche);
-router.get('/entertainment-luxury', index.entertainmentLuxury);
-router.get('/frontend-crawler', index.frontendCrawler);
-router.get('/jan-smuts-legacy', index.smutsLegacy);
-router.get('/node-fs', index.nodeFS);
-router.get('/nuts-bolts-problem', index.nutsBolts);
+/*
+	Category Archive
+ */
+router.param('postCat', function (req, res, next, catIn) {
+    req.catPosts = getCategoryPosts(catIn);
+    req.category = catIn;
+    return next();
+}); // .cat
+
+router.get('/cat/:postCat', function (req, res) {
+	var catPosts = req.catPosts;
+    res.render('archive', {
+        title: "Posts about " + req.category,
+        catPosts: catPosts,
+        category: req.category,
+        cats: getCats()
+    });
+});
+
+/**
+ * getCategoryPosts
+ * Loops through all posts and returns those that have a given category
+ */
+function getCategoryPosts(cat) {
+	appPosts = {}; // appropriate posts
+	for (post in posts)
+		if (posts[post].cat === cat)
+			appPosts[post] = posts[post].title;
+	return appPosts;
+}
+
+/**
+ * capitalizeFirstLetter
+ * Takes in a string, and depending on type returns capitalize.
+ */
+function capitalizeCat(stringIn) {
+    return stringIn.charAt(0).toUpperCase() + stringIn.slice(1);
+}
+
+/**
+ * getCats
+ * @return an array of unique categories
+ */
+function getCats () {
+	var cats = {},
+		cat;
+	for (slug in posts) {
+		cat = posts[slug].cat;
+		if (cats[cat] === undefined) {
+			cats[cat] = 1;
+		} else {
+			cats[cat] += 1;
+		}
+	}
+	return cats;
+}
+
+// Add routes for each post
+for (slug in posts) {
+	router.get('/' + slug, function (req, res) {
+		slug = req.url.slice(1);
+		res.render('posts/' + slug, {
+        	title: posts[slug].title,
+        	category: posts[slug].cat,
+        	cats: getCats()
+    	}); // render
+	});
+}
+
+
 
 router.get('/about', index.about);
-
 // Pages
 router.get('/ocean-voyages', index.oceanVoyages);
 router.get('/ocean-voyages-sum', index.oceanVoyagesSum);

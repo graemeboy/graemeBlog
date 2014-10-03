@@ -2,9 +2,10 @@
     <div class="container-fluid">
         <h3>Article Categories</h3>
         <ul class="cat-list">
-        <% for(var i=0; i<cats.length; i++) {
-        %>  <li <% if (cats[i].name == category) { %> class="active" <% } %>> <a href="/cat/<%= cats[i].name %>"><%= cats[i].name %> (<%= cats[i].count %>)</a></li>
-        <% } 
-        %></ul>
+        <% for (var cat in cats) { %>
+        	<li <% if (cat == category) { %> class="active" <% } %>>
+        		<a href="/cat/<%= cat %>"><%= cat %> (<%= cats[cat] %>)</a></li>
+        <% } %>
+        </ul>
     </div>
 </div>

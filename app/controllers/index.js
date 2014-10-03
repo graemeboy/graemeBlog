@@ -16,68 +16,7 @@ exports.home = function (req, res, next) {
     
 }; // .home
 
-exports.frontendCrawler = function (req, res)  {
-    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on building a frontend web crawler">sending me a tweet</a>';
-    
-    // Render the custom page
-    res.render('posts/frontendCrawler.ejs', {
-        title: "How to Build a Frontend Web Crawler",
-        postTitle: "How to Build a Frontend Web Crawler",
-        cats: getCats(),
-        callToAction: callToAction,
-        category: "coding",
-    }); // render
-}
 
-exports.nodeFS = function (req, res) {
-    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on using the #nodejs fs module">sending me a tweet</a>';
-    res.render('posts/nodeFS.ejs', {
-        title: "Using The Node.js FS Module",
-        postTitle: "Using The Node.js FS Module",
-        cats: getCats(),
-        callToAction: callToAction,
-        category: "coding",
-    }); // render
-}
-
-exports.smutsLegacy = function (req, res)  {
-    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on the Jan Smuts legacy in South Africa">sending me a tweet</a>';
-    
-    // Render the custom page
-    res.render('posts/smutsLegacy.ejs', {
-        title: "The Legacy of Jan Smuts in South Africa",
-        postTitle: "The Legacy of Jan Smuts in South Africa",
-        cats: getCats(),
-        callToAction: callToAction,
-        category: "travel",
-    }); // render
-}
-
-exports.entertainmentLuxury = function (req, res) {
-    var callToAction = 'Once you\'ve read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on entertainment not being a luxury">sending me a tweet</a>';
-    
-    // Render the custom page
-    res.render('posts/entertainment-not-luxury.ejs', {
-        title: "Entertainment is Not a Luxury",
-        postTitle: "Entertainment is Not a Luxury",
-        cats: getCats(),
-        callToAction: callToAction,
-        category: "travel",
-    }); // render
-};
-
-exports.modernCSSButtons = function (req, res) {
-    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on modern CSS buttons">send me a tweet.</a>';
-    
-    // Render the custom page
-    res.render('posts/modern-buttons', {
-        title: "Modern CSS Buttons",
-        postTitle: "Modern CSS Buttons",
-        cats: getCats(),
-        callToAction: callToAction,
-        category: "css",
-    }); // render
-};
 
 exports.opa = function (req, res) {
     // Render the home page
@@ -111,83 +50,10 @@ function getCats ()
     return cats;
 } // getCat()
         
-function getCategoryPosts (catIn)
-{
-    var cats = { 
-        "coding": [{
-            name: "The Nuts and Bolts Problem (An Approach)",
-            slug: "nuts-bolts-problem"
-        },{
-            name: "Using the Node.js FS Module",
-            slug: "node-fs"
-        },{
-            name: "How to Build a Frontend Web Craler",
-            slug: "frontend-crawler"
-        },{
-            name: 'PHP vs Node.js',
-            slug: 'php-vs-node',
-        },{
-            name: 'PHP is a Good Language',
-            slug: 'php-good',
-        }, {
-            name: 'Logout Buttons with CSS',
-            slug: 'logout-button-css',
-        },{
-            name: 'Modern CSS Buttons',
-            slug: 'modern-css-buttons',
-        },{
-            name: '12 Professional CSS Buttons',
-            slug: 'css-buttons',
-        },{
-            name: '6 Tips for Building Premium Wordpress Plugins',
-            slug: 'wordpress-plugins',
-        },{
-            name: 'How to Hide that You Use Wordpress',
-            slug: 'how-to-hide-that-you-use-wordpress',
-        }],
-        "psychology": [ {
-            name: "Attending to Threat: Race-based Patterns of Selective Attention",
-            slug: "trawalter"
-        },{
-            name: 'What is Neuromarketing?',
-            slug: 'neuromarketing',
-        },{
-            name: 'The Modern Guru',
-            slug: 'gurus',
-        },{
-            name: 'Women are Outperforming Men - Data to Confirm',
-            slug: 'gender-graduation',
-        },{
-            name: 'Habit Formation 101',
-            slug: 'habits',
-        },{
-            name: 'Gendered Graffiti in a College Bathroom',
-            slug: 'gendered-graffiti',
-        }],
-        "product": [{
-            name: "Design Pattern or Cliché?",
-            slug: "software-cliche",
-        },{
-            name: "Trends and Fads - Recognize the Difference or Die",
-            slug: "fads",
-        }, {
-            name: "How to Use Market Segmentation and Discover Your Business' Core Identity",
-            slug: "market-identity",
-        },
-        {
-            name: 'Google Web Designer First Impressions: Review',
-            slug: 'google-web-designer-review',
-        }],
-        "travel": [{
-            name: "The Legacy of Jan Smuts in South Africa",
-            slug: "jan-smuts-legacy"
-        },{
-            name: "Entertainment is Not a Luxury",
-            slug: "entertainment-luxury"
-        }]
-    };
+
+
+exports.nodeUDP = function (req, res) {
     
-    return cats[catIn];
 }
 
 exports.about = function (req, res) {
@@ -258,18 +124,6 @@ exports.sitemap = function (req, res) {
     }); // render
 } // globalRenaissance
 
-exports.genderGrad = function (req, res) {
-     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on the academic success of women">send me a tweet.</a>';
-    
-    // Render the custom page
-    res.render('posts/genderTrouble', {
-        title: "Women are Outperforming Men - Confirmation from Commencement Day",
-        postTitle: "Women are Outperforming Men - Confirmation from Commencement Day",
-        cats: getCats(),
-        category: "psychology",
-        callToAction: callToAction
-    }); // render
-} // genderGrad
 
 exports.writeRoom = function (req, res) {
     res.render('pages/write', {
@@ -300,58 +154,6 @@ exports.showCatPosts = function (req, res) {
 } // show
 
 // Specific posts
-
-exports.css12 = function (req, res) {
-    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on CSS buttons">send me a tweet.</a>';
-    
-    // Render the custom page
-    res.render('posts/css12', {
-        title: "12 Professional CSS Buttons",
-        postTitle: "12 Professional CSS Buttons",
-        cats: getCats(),
-        callToAction: callToAction,
-        category: "css",
-    }); // render
-};
-
-exports.marketSegment = function (req, res) {
-    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on discovering market identity">send me a tweet.</a>';
-    
-    // Render the custom page
-    res.render('posts/market-segmentation', {
-        title: "How to use Market Segmentation and Discover Your Business' Core Identity",
-        postTitle: "How to use Market Segmentation and Discover Your Business' Core Identity",
-        cats: getCats(),
-        category: "product dev.",
-        callToAction: callToAction
-    }); // render
-};
-
-exports.gurus = function (req, res) {
-    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on modern gurus">send me a tweet.</a>';
-    
-    // Render the custom page
-    res.render('posts/modern-guru', {
-        title: "The Modern Guru",
-        postTitle: "The Modern Guru",
-        cats: getCats(),
-        category: "psychology",
-        callToAction: callToAction
-    }); // render
-};
-
-exports.tipsWPPlugins = function (req, res) {
-    var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on 6 tips for building WP plugins">send me a tweet.</a>';
-    
-    // Render the custom page
-    res.render('posts/tips-wp-plugins', {
-        title: "6 Tips for Building Premium Wordpress Plugins",
-        postTitle: "6 Tips for Building Premium Wordpress Plugins",
-        cats: getCats(),
-        category: "wordpress",
-        callToAction: callToAction
-    }); // render
-};
 
 
 exports.fadsTrends = function (req, res) {

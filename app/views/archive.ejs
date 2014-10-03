@@ -1,11 +1,11 @@
 <% include includes/header %>
         <h1 class="page-title">Posts about <%= category %></h1>
             
-        <% if (catPosts !== undefined && catPosts.length > 0) { %>
-        <% for (var i = 0; i < catPosts.length; i++) { %>
+        <% if (catPosts !== undefined) { %>
+        <% for (var slug in catPosts) { %>
         <div class="archive-post-container container-fluid">
             <h3 class="archive-title">
-                <a href="/<%= catPosts[i].slug %>"><%= catPosts[i].name %></a>
+                <a href="/<%= slug %>"><%= catPosts[slug] %></a>
             </h3>
         </div>
         <% } %>

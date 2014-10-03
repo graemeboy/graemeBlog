@@ -1,0 +1,428 @@
+<html>
+
+<head>
+    <title>Habit Formation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/refresh.ico">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        .section {
+            padding: 20px 0 60px 0;
+            color: #fff;
+            border-bottom: 3px solid #fff;
+        }
+        #intro {
+            background-color: #c0392b;
+        }
+        /* Background colors for sections */
+        #general-1 {
+            background-color: #2980b9
+        }
+        #general-2 {
+            background-color: #8e44ad;
+        }
+        #general-3 {
+            background-color: #16a085;
+        }
+        #general-4 {
+            background-color: #2980b9;
+        }
+        #general-1 .section-title {
+            color: #2980b9;
+        }
+        #general-2 .section-title {
+            color: #8e44ad;
+        }
+        #general-3 .section-title {
+            color: #16a085;
+        }
+        #general-4 .section-title {
+            color: #2980b9;
+        }
+        #research-1 .section-title {
+            color: #fff;
+            background-color: transparent;
+            padding: 0;
+        }
+        #are-you h2 {
+            color: white;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            margin-top: 50px;
+            font-weight: 300
+        }
+        #intro-title {
+            text-align: center;
+            font-size: 44px;
+        }
+        #title,
+        #intro-choices .choice,
+        #intro-choices .choice-or {
+            text-align: center;
+            color: white;
+        }
+        #intro-choices {
+            padding-bottom: 20px;
+        }
+        .choice {
+            height: 60px;
+        }
+        .choice-btn {
+            margin: 0;
+            padding: 7px 25.6px;
+            font-weight: 300;
+            font-size: 22px;
+            text-decoration: none;
+            text-align: center;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            -webkit-transition-property: all;
+            -moz-transition-property: all;
+            -o-transition-property: all;
+            transition-property: all;
+            -webkit-transition-duration: 0.3s;
+            -moz-transition-duration: 0.3s;
+            -o-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            color: #fff;
+            border: 2px solid #fff;
+            background: none;
+            text-shadow: none;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            border-radius: 3px;
+        }
+        .choice-btn:hover {
+            background-color: #fff;
+            color: #c0392b;
+            text-decoration: none;
+        }
+        .section-title {
+            font-size: 35px;
+            background-color: #fff;
+            float: left;
+            text-align: center;
+            padding: 10px 20px;
+            margin: 40px 0 50px 0;
+        }
+        .section-p {
+            margin: 20px 0;
+            font-size: 18px;
+            clear: both;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .citation {} .references a:hover {
+            text-decoration: underline;
+        }
+        .references a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .references ol li {
+            margin-bottom: 3px;
+        }
+        .section-intro {
+            text-align: center;
+            color: #777;
+            padding: 17px 0 30px 0;
+        }
+        .full-ref {
+            padding-left: 22px;
+            text-indent: -22px;
+            line-height: 2;
+        }
+        #research-1 {
+            background-color: #2980b9
+        }
+        .example {
+            border-left: 3px solid #fff;
+            padding: 0 20px;
+            margin: 30px 10px;
+        }
+        .example h3 {
+            margin-top: 0;
+            font-weight: 600;
+        }
+        
+        .title-quote {
+         text-align: center;   
+        }
+    </style>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('.choice-btn').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $($.attr(this, 'href')).offset().top
+                }, 120);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="intro" class="section">
+        <div class="container-fluid">
+            <h1 id="intro-title">How to Form Healthful Habits</h1>
+            <div class="section-p text-center">An introduction to habit formation techniques and habit research</div>
+            
+            <div class="title-quote"><strong>"The soul grows into lovely habits as easily as into ugly ones"</strong>
+            <div class="citation">― Kate Douglas Wiggin, <em>Rebecca of Sunnybrook Farm</em></div>
+            </div>
+            <div class="hidden-xs">
+                <div id="are-you" class="container">
+                    <h2>Information for</h2>
+                </div>
+                <div id="intro-choices" class="container">
+                    <div class="choice col-sm-4 col-sm-offset-2">
+                        <a href="#general-intro" class="choice-btn col-sm-11">General Readers</a>
+                    </div>
+
+                    <div class="choice col-sm-4 ">
+                        <a href="#general-research" class="choice-btn col-sm-11">Psychology Researchers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div id="general-intro" class="section-intro">
+        <h1>Habit Formation 101</h1>
+        <h4>Tips for the general reader</h4>
+    </div>
+    <div id="general-1" class="section">
+        <div class="container">
+            <div class="title-quote pull-right hidden-sm hidden-xs" style="margin-top:15px;"><strong>“Sow a thought, and you reap an act;<br/>
+Sow an act, and you reap a habit;<br/>
+Sow a habit, and you reap a character;<br/>
+Sow a character, and you reap a destiny."</strong>
+<div class="citation">― Samuel Smiles</div></div>
+            <h1 class="section-title">1. Keep it Simple</h1>
+            <div class="section-p">Simpler tasks become habits much more quickly than complex ones do
+                <span class="citation">[1]</span>. In order to maximize the chance that you will follow through with your new habit, you want to start with simple behaviors.</div>
+
+            <div class="section-p example">
+                <h3>Example</h3>If you want to start a healthful exercising habit, you could start off just by walking. Every day, as soon as you get home, put on your walking shoes and begin. This simple behavior will become habit more quickly than a complex routine, such as driving to the gym and following a complicated fitness program.</div>
+
+            <div class="references">
+                <h4>Supporting References</h4>
+                <ol>
+                    <li>
+                        <a href="http://onlinelibrary.wiley.com/doi/10.1348/014466605X49122/full">Verplanken (2006) - Beyond frequency: Habit as a mental construct.
+                            <em>British Journal of Social Psychology (45)</em>pp. 639-656</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="general-2" class="section">
+        <div class="container">
+            <div class="title-quote pull-right hidden-sm hidden-xs" style="margin-top:35px;"><strong>"Motivation is what gets you started.<br/>Habit is what keeps you going." </strong><div class="citation">― Jim Ryun</div></div>
+
+            <h1 class="section-title">2. Create an Environmental Context</h1>
+
+            <div class="section-p">People are primed by
+                <strong>cues in the environment</strong> to take certain actions
+                <span class="citation">[1]</span>. If you want to perform a behavior more easily, specify a specific places where you are going to do this activity.</div>
+            <div class="section-p">Deciding
+                <em>where</em> to perform your habit will be more important than knowing
+                <em>why</em> you want to do it
+                <span class="citation">[2]</span>.</div>
+            <div class="section-p example">
+                <h3>Example</h3>If you want to drink more water, you could commit to drinking some water every time you enter your kitchen. The kitchen will serve as an environmental cue for you to perform your desired behavior.</div>
+
+            <div class="references">
+                <h4>Supporting References</h4>
+                <ol>
+                    <li>
+                        <a href="http://www.cuclasses.com/stat1001/homeworks/studies/socialbehavior.pdf">Bargh, Chen, & Burrows (1996) - Automaticity of social behavior: Direct effects of trait construct and stereotype activation on action.
+                            <em>Journal of Personality and Social Psychology (71)</em>pp. 230-244</a>
+                    </li>
+                    <li>
+                        <a href="http://www.sciencedirect.com/science/article/pii/S002210311100254X">Neal, Wood, Labrecque, & Lally (2012) - How do habits guide behavior? Perceived and actual triggers of habits in daily life.
+                            <em>Journal of Experimental Social Psychology (48)</em>pp. 492-498</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="general-3" class="section">
+        <div class="container">
+            
+            <div class="title-quote pull-right hidden-sm hidden-xs" style="margin-top:35px;"><strong>"Enthusiasm is the electricity of life.<br/>How do you get it? You act enthusiastic until you make it a habit."  </strong><div class="citation">― Gordon Parks</div></div>
+            
+            
+
+            
+            
+            <h1 class="section-title">3. Integrate into a Routine</h1>
+
+            <div class="section-p">New behaviors that are consistently performed
+                <em>after</em> a related activity, are more likely 18 months later to have become a habit
+                <span class="citation">[1]</span>.</div>
+            <div class="section-p">Whenever we have a behavioral routine, our brains create "event boundaries" around each action in that routine [2]. Whenever we complete one of these actions, moving across the event boundary, our brains are primed for the next related activity [3]. Because of this phenomenon, the best way to remember to perform a new behavior in the future is to start doing it after a related task.</div>
+
+            <div class="section-p example">
+                <h3>Example</h3>If you want to create a flossing habit, the best time to start flossing is right after you have brushed your teeth. Whenever you finish brushing your teeth in the future, you will be more likely to remember to floss.</div>
+
+            <div class="references">
+                <h4>Supporting References</h4>
+                <ol>
+                    <li>
+                        <a href="http://onlinelibrary.wiley.com/doi/10.1111/j.2044-8287.2012.02086.x/full">Judah, Gardner, & Aunger (2013) - Forming a flossing habit: An exploratory study of the psychological determinants of habit formation.
+                            <em>British Journal of Health Psychology (18)</em>pp. 338-353</a>
+                    </li>
+                    <li>
+                        <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3314399/">Zachs & Swallow (2007) - Event Segmentation.
+                            <em>Current Directions in Psychological Science (16)</em>pp 80-84</a>
+                    </li>
+                    <li>
+                        <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2819197/">Swallow, Zacks, & Abrams (2009) - Event boundaries in perception affect memory encoding and updating.
+                            <em>Journal of Experimental Psychology: General (138)</em>pp. 236</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="general-4" class="section">
+        <div class="container">
+            <div class="title-quote pull-right hidden-sm hidden-xs" style="margin-top:35px;"><strong>"Everything you are used to, once done long enough,<br/>starts to seem natural, even though it might not be."</strong><div class="citation">― Julien Smith, <em>The Flinch</em></div></div>
+            
+            <h1 class="section-title">4. Repeat the Behavior</h1>
+            <div class="section-p">Try to perform the task at least
+                <strong>once a day</strong>.</div>
+            <div class="section-p">The more that you perform an action,
+                <strong>the easier it gets to do it in the future</strong>, especially when performed in a specific context. This is because the brain creates "export neurons" that are designed specifically for the task
+                <span class="citation">[1]</span>.</div>
+
+            <div class="section-p example">
+                <h3>Example</h3>Remember how I said that complex habitual behaviors can develop over time? Well, long-time chess players can perform some amazingly complex feats very easily and reliably. By practicing every day, they have developed efficient networks of neurons in their brains that quickly calculate future positions for each chess piece, for several moves ahead
+                <span class="citation">[3]</span>. Some players are so good at this that they can do it for several different games at a time, all while blindfolded!</div>
+
+            <div class="references">
+                <h4>Supporting References</h4>
+                <ol>
+                    <li>
+                        <a href="http://www.nature.com/nature/journal/v437/n7062/abs/nature04053.html">Barnes, Kubota, Hu, Jin, & Graybiel (2005) - Activity of striatal neurons reflects dynamic encoding and recoding of procedural memories.
+                            <em>Nature (437)</em>pp. 1158-1161</a>
+                    </li>
+                    <li>
+                        <a href="http://csi.ufs.ac.za/resres/files/Saariluoma(2004).pdf">Saariluoma, Karlsson, Lyytinen, Teräs, & Geisler (2004) - Visuospatial representations used by chess experts: A preliminary study.
+                            <em>European Journal of Cognitive Psychology (16)</em>pp. 753-766</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="general-research" class="section-intro">
+        <h1>Concepts for Habit Reasearch</h1>
+        <h4>Concerns for the State of Habit Research</h4>
+    </div>
+    <div id="research-1" class="section">
+        <div class="container">
+            <h1 class="section-title">Problems of Control</h1>
+            <div class="section-p">The greatest challenge facing habit research is controlling the rate of habit formation.</div>
+            <div class="section-p">For example, in Lally, Van Jaarsveld, Potts, & Wardle's (2012) study on habit formation (published in the
+                <em>European Journal of Social Psychology</em>, and cited by, according to Google Scholar, 123 academic articles), formation took between 18 and 254 days. High variance such as this can cause concern among researchers over the study's validity. Surely, if there had been adequate control over important factors in the study, variance would not be this high.</div>
+            <div class="section-p">It is clear that sufficient care was not taken in the control of these factors. Participants did not have similar target behaviors, let alone repeating the tasks a similar number of times, or doing so in equivalent settings. Target behaviors ranged from "running for 15 minutes" to "eating a peice of fruit for lunch." The authors compared the study's data sets as if these were evidently comparable habits, without qualifying that assumption for the clarity of their audience. Why would <em>eating fruit</em> and <em>exercising</em> be comparable behaviors in a study to "model habit formation"?</div>
+
+            <div class="section-p">The fault is not merely that of these particular researchers. After all, the current formation of habits, having changed since that of the behaviorists, is fairly new to social psychology. Not enough research has been done to qualify what the influencing factors are.</div>
+
+            <div class="section-p">In an overview of the habit-formation literature, I found four direct influences and four indirect influences on formation, which all ought to be controlled during such research. They are as follows:</div>
+
+            <div class="section-p">
+                <strong>Direct influences</strong>
+                <ol>
+                    <li>Environmental Priming
+                        <ul>
+                            <li>Contextual cues prime and predict habit activation more powerfully than do intentions (Neal, Wood, Labrecque, & Lally, 2011)</li>
+                        </ul>
+                    </li>
+                    <li>Repetition
+                        <ul>
+                            <li>The number of times that the subject performs the task has an effect on the rate of habit formation (Barnes, Kubota, Hu, Jin, & Graybiel, 2005; Verplanken, 2006)</li>
+                        </ul>
+                    </li>
+                    <li>Complexity
+                        <ul>
+                            <li>Simple behaviors become habits more quickly than complex ones do (Verplanken, 2006)</li>
+                        </ul>
+                    </li>
+                    <li>Routine Integration
+                        <ul>
+                            <li>Behaviors that fit into a routine of related actions, and that follow a related activity, are more likely to become habits 18 months later (Judah, Gardener, & Aunger, 2012; Verplanken, 2006; Williamson, Muller, Rea, & Thaw, 1999)</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section-p">
+                <strong>Indirect influences</strong>
+                <ol>
+                    <li>Alcohol and stimulant abuse
+                        <ul>
+                            <li>The use of alcohol and stimulants has deleterious effects on the learning of new behaviors (Canales, 2010)</li>
+                        </ul>
+                    </li>
+                    <li>Stress
+                        <ul>
+                            <li>Stress increases the subject's reliance of previous habits, making it less likely that new behaviors will become habits (Ferragud, et al., 2010)</li>
+                        </ul>
+                    </li>
+                    <li>Diet
+                        <ul>
+                            <li>Numerous studies have shown the detrimental influence of fatty diets on hippocampal development of rats, and this is a concern for human participants as well (Lindqvist et al., 2006)</li>
+                        </ul>
+                    </li>
+                    <li>Exercise
+                        <ul>
+                            <li>Exercise has consistently been found to effect the learning of new behaviors in rats and humans (Speisman, et al., 2013 )</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="references">
+                <h4>Reference</h3>
+                    <div class="full-ref">Barnes, T. D., Kubota, Y., Hu, D., Jin, D. Z., & Graybiel, A. M. (2005). Activity of striatal neurons reflects dynamic encoding and recoding of procedural memories.
+                        <em>Nature, 437,</em>1158-1161.</div>
+                    <div class="full-ref">Canales, J. J. (2010). Comparative neuroscience of stimulant-induced memory dysfunction: role for neurogenesis in the adult hippocampus. Behavioural pharmacology, 21, 379-393.</div>
+                    <div class="full-ref">Ferragud, A., Haro, A., Sylvain, A., Velazquez-Sanchez, C., Hernandez-Rabaza, V., & Canales, J. J. (2010). Enhanced habit-based learning and decreased neurogenesis in the adult hippocampus in a murine model of chronic social stress. Behavioural Brain Research, 210, 134-139.</div>
+                    <div class="full-ref">Lally, P., Van Jaarsveld, C. H., Potts, H. W., & Wardle, J. (2010). How are habits formed: Modelling habit formation in the real world.
+                        <em>European Journal of Social Psychology, 40,</em>998-1009.</div>
+                    <div class="full-ref">Lindqvist, A., Mohapel, P., Bouter, B., Frielingsdorf, H., Pizzo, D., Brundin, P., & Erlanson‐Albertsson, C. (2006). High‐fat diet impairs hippocampal neurogenesis in male rats.
+                        <em>European Journal of Neurology, 13,</em>1385-1388.</div>
+                    <div class="full-ref">Neal, D. T., Wood, W., Labrecque, J. S., & Lally, P. (2012). How do habits guide behavior? Perceived and actual triggers of habits in daily life.
+                        <em>Journal of Experimental Social Psychology, 48,</em>492-498.</div>
+                    <div class="full-ref">Speisman, R. B., Kumar, A., Rani, A., Pastoriza, J. M., Severance, J. E., Foster, T. C., & Ormerod, B. K. (2013). Environmental enrichment restores neurogenesis and rapid acquisition in aged rats. Neurobiology of Aging, 34, 263-274.</div>
+
+                    <div class="full-ref">Verplanken, B. (2006). Beyond frequency: Habit as a mental construct.
+                        <em>British Journal of Social Psychology, 45,</em>639-656.</div>
+                    <div class="full-ref">Williamson, D. A., Muller, S. L., Reas, D. L., & Thaw, J. M. (1999). Cognitive bias in eating disorders: Implications for theory and treatment.
+                        <em>Behavior Modification, 23,</em>556-577.</div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 <% include ../includes/header %>
     <h1 class="page-title">
-        <%= postTitle %>
+        <%= title %>
     </h1>
     <div class="post-meta">September 2014</div>
     <div class="page-content">
@@ -122,9 +122,7 @@ fs.open('./datafile.txt', 'a', function (error, fd) {
 
 <p>When your node process exists, all files are closed by the operating system. However, in larger applications, it's important to close files using the <em>fs.close()</em> function. This function takes in a file descriptor, and a callback function. For this reason, it is important to keep track of all file descriptors for the files that you have opened.</p>
 
-<div class="call-to-action">
-            <%- callToAction %>
-        </div>
+
     </div>
     </div>
     <!-- .container -->

@@ -1,0 +1,135 @@
+<% include ../includes/header %>
+
+    <h1 class="page-title">
+        <%= title %>
+    </h1>
+    <div class="post-meta">October 2014</div>
+
+<p>Unlike TCP, which is a connection-oriented protocol that ensures reliable and ordered transfer of data, the User Datagram Protocol (UDP) is connection-less, unordered, and data (called <em>datagrams</em>) are not even guaranteed to arrive at their destination.</p>
+
+<p>Given that description, why might anyone want to use UDP? UDP is actually a very well used protocol, with multitudes of practical applications. Mostly, it is used when data need to be broadcast quickly or widely - when messages don't need to be perfectly ordered or guaranteed, or when addresses of the receiving servers or peers are unknown. Concrete examples include real-time applications like Voice over IP (VoIP), Domain Name System (DNS), Internet Protocol Television (IPTV), Dyamic Host Configuration Protocol (DHCP), and others. Another example would be clearing a cache that is distributed across a cluster of servers.</p>
+
+<h3>Creating a Datagram Client and Sending Data</h3>
+
+<p>To create a UDP client, we use the the <em>dgram</em> module to create a UDP socket.</p>
+
+<pre><code>var dgram = require('dgram');
+var client = dgram.createSocket('udp4');
+</code></pre>
+
+<p>You don't need to bind this client to a port (messages will be sent from a ranom UDP port), unless you want to, in which case you can add (optionally):</p>
+
+<pre><code>client.bind(port);
+</code></pre>
+
+<p>To send a message, you must create a buffer that contains the message, and send it to the server through the socket we created.</p>
+
+<pre><code>var message = new Buffer ('my datagram');
+client.send(message, 0, message.length, 4000, 'localhost');
+</code></pre>
+
+<p>In the above example, we created a buffer containing the string data we wanted to send. Then we used the socket's <em>send</em> function to send the buffer, starting at the begining, for the entirety of the message, to 'localhost' on port '4000'. And that's all that there is to sending a message using UDP.</p>
+
+<p>Note that once you pass the buffer into this function, it becomes under the control of the socket. Therefore, you can only use that buffer again once the message has been flushed. Moreover, you should close the socket after your messages have been sent. For both of these purposes, we can use the optional callback parameter to pass in a callback function. For example:</p>
+
+<pre><code>var message = new Buffer ('my datagram');
+client.send(message, 0, 
+    message.length, 4000, 
+    'localhost', function (err, bytes) {
+        if (err) {
+            throw err;
+        }
+        // Reuse the message buffer,
+        // or close client
+        client.close();
+    }
+);
+</code></pre>
+
+<h3>Listening to UDP Messages</h3>
+
+<p>In this article, we started with sending messages, because it was very straightforward to do. However, there is an adage that we ought to seek first to listen and then only to send datagrams. Or something like that. In any case, this is how we can listen to the datagrams. We start again by creating a socket using the <em>dgram</em> module, and listening for it to emit the "message" event.</p>
+
+<pre><code>var server = dgram.createSocket('udp4');
+
+// Listen for emission of the "message" event.
+server.on('message', function (message) {
+    console.log('received a message: ' + message);
+});
+
+// Bind to port 4000
+var port = 4000;
+server.bind(port);
+</code></pre>
+
+<p>In the above example, we binded our socket to the port 4000, and listened for the message event. When this event was emitted by the socket, we logged the message to the console.</p>
+
+<p>We can also listen for the "listening" event itself:</p>
+
+<pre><code>server.on("listening", function () {
+    var address = server.address();
+    console.log("I am listening on " + 
+        address.address + ":" + address.port);
+});
+</code></pre>
+
+<p>Now we have created a UDP server that listens to port 4000 for a message, and logs that message to the console, and a client that sends messages to that port. We can run both of those scripts and use them to communicate through datagrams.</p>
+
+<h3>UDP4 vs UDP6</h3>
+
+<p>In this article, I have been creating the "server" variable using dgram.createSocket('udp4'). The argument here could be replaced with 'udp6', which would just indicate using UDP over IPv6 (also known as <em>IPng</em> : IP "next generation") rather than over IPv4. [The project to move to IPv6 was started in the 1990's, out of concern that the demand for IP addresses would exceed the availability, given that IPDv4 can provide 4 billion addresses (it has a 32-bit address scheme, allowing for 2^32 addresses.)]</p>
+
+<h3>Creating a Command-Line UDP Client</h3>
+
+<p>Let's finish this off by created a real command-line client that can communicate with any UDP host. From the command line, we want to be able to write a command such as udpClient.js <host> <port>, following which we can type messages that are sent straight away to that host and port. The code for creating a client such as this would look like the following:</p>
+
+<pre><code>#! /user/bin/env node
+
+// Require the dgram module     
+var dgram = require('dgram');
+
+// Take in the host from command-line input
+var host = process.argv[2];
+// Take in port number (and parse as an integer)
+var port = parseInt()process.argv[3], 10);
+
+// Create the client
+client = dgram.createSocket('udp4');
+
+// Accept input  via standard input
+process.stdin.resume();
+
+// Listen for incoming standard input
+process.stdin.on('data', function (data) {
+    // Send all data to the client.
+    client.send(data, 0, data.length, port, host);
+});
+
+// Listen for messages from client
+client.on('message', function (message) {
+    console.log("Client: " + message.toString());
+});
+
+console.log("To send a message, " +
+    "type now and press return.");
+</code></pre>
+
+<p>After saving this script as "udpClient.js", run it by commading, for example, ./udpClient.js 0.0.0.0 4000. The following message will appear "To send a message, type now and press return." Type some characters, press return. Your characters will appear on the screen again, prepended by "Client: ", indicating that they have been sent via UDP to your client, received, and then logged.</p>
+
+<h3>Conclusion and Practical Examples</h3>
+
+<p>The nice thing about UDP, as you can see, is that you don't need to know the address of your peers in order to communicate. Those peers just need to tune into, or listen to your channel, and you can broadcast messages to them.</p>
+
+<p>To give an example: you might one server that controls most of the logic for your application. You might have multiple <em>other</em> servers that listen via UDP to the application server for datagrams, to produce analytics, or other types of logging.</p>
+
+<div class="call-to-action">
+           <p>Once you've read this post, let me know by <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on UDP with #nodejs">sending me a tweet</a>
+        </div>
+    </div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
