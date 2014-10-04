@@ -84,10 +84,19 @@ function getCats () {
 for (slug in posts) {
 	router.get('/' + slug, function (req, res) {
 		slug = req.url.slice(1);
+		var cat = posts[slug].cat;
+		var scripts = [],
+			styles = [];
+		if (cat === 'coding') {
+			//scripts.push('/js/prism.coy.min.js');
+			//styles.push('/css/prism.coy.min.css');
+		}
 		res.render('posts/' + slug, {
         	title: posts[slug].title,
-        	category: posts[slug].cat,
-        	cats: getCats()
+        	category: cat,
+        	cats: getCats(),
+        	scripts: scripts,
+        	styles: styles
     	}); // render
 	});
 }
