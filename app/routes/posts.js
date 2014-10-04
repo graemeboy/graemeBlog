@@ -1,5 +1,10 @@
 var posts = {
 	// Coding
+	
+	'node-child-processes': {
+		'title': 'Node.js External and Child Processes',
+		'cat': 'coding'
+	},
 	'validating-https-nodejs': {
 		'title': 'Validating HTTPS Connections in Node.js',
 		'cat': 'coding'

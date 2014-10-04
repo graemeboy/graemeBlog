@@ -1,0 +1,243 @@
+<% include ../includes/header %>
+    <h1 class="page-title">
+        <%= title %>
+    </h1>
+    <div class="post-meta">September 2014</div>
+    <div class="page-content">
+
+
+<p>The purpose of this post is to familiarize the reader with launching external processes in Node.</p>
+
+<p>Node is designed for efficient I/O processes, but sometimes applications require more CPU intensive work, which may block the event-loop. Processes that block the event-loop can slow down the application for all users. Fortunately, Node can externalize these CPU-intensive processes, thus freeing the event-loop. Applications can do this by spawning <em>spawn processes</em>, which are children of the process that launched them.</p>
+
+<p>Child processes and parent processes can communicate neatly back and forth, and parent processes can listen to and control (to some extent) their child processes.</p>
+
+<h3>Introduction using UNIX Commands</h3>
+
+<p>As an introduction to spawning processes, we can look at executing simple, external UNIX commands from a Node application. We start by loading the <em>child_process</em> module:</p>
+
+<pre><code>var child_process = require('child_process');
+</code></pre>
+
+<p>This module contains an <em>exec</em> function, which can execute commands, and return the result in a callback:</p>
+
+<pre><code>exec(command, callback)
+</code></pre>
+
+<p>We can put simple UNIX commands in the <em>command</em> parameter, for example <em>ls</em>:</p>
+
+<pre><code>child_process.exec('ls', function (err, stdout, stderr){
+    if (err) {
+        console.log("child processes failed with error code: " +
+            err.code);
+    }
+    console.log(stdout);
+});
+</code></pre>
+
+<h3>Adding Options for Child Process</h3>
+
+<p>We can also add an additional <em>options</em> parameter before the callback function. This object can contain a number of options, including:</p>
+
+<ol>
+<li><em>cwd</em> - forcibly change the current working directory</li>
+<li><em>encoding</em> - expected encoding for output; defaults to 'uft8' for UTF-8 encoding. Node supports 'ascii', 'utf8', 'ucs2' and 'base64'</li>
+<li><em>timeout</em> - number of milliseconds to wait for the child process to finish executing</li>
+<li><em>maxBuffer</em> - specify the maximum size of the std output stream</li>
+<li><em>killSignal</em> - define which signal is sent to the child process if timeout is exceeded (default is SIGTERM, but there are dozens of UNIX signals that I will not copy down here)</li>
+<li>env - defaults to null, specifies environment variables for the child process to inherit, aside from those in the parent environment</li>
+</ol>
+
+
+<h3>Changing the Child Process Environment</h3>
+
+<p>It is worthwhile here to talk about defining environment variables for child processes. Changing <em>process.env</em> will alter the environment variables for all modules of the parent process, which is probably not the goal. Instead, to extend the environment variables for a child process, the environemnt of the parent should be duplicated, and then extended, as follows:</p>
+
+<pre><code>var env = process.env,
+    someVar,
+    envDup = {},
+    child_process = require('child_process');
+
+// Duplicate the parent's environment object
+for (someVar in env) {
+    envDup[someVar] = env[somevar];
+}
+
+// Now, extend this with some new variables:
+envDup['VAR NAME'] = 'var value';
+
+// Run child process with these environment variables
+child_process.exec('ls', 
+    { env: envDup}, 
+    function (err, stdout, stderr) {
+        if (err) {
+            throw err;
+        }
+    console.log(stdout);
+});
+</code></pre>
+
+<p>Note that we can make this shorter by requiring only the exec function:</p>
+
+<pre><code>var exec = require('child_process').exec;
+
+exec('ls', function (err, stdout, stderr) {
+    console.log(stdout);
+});
+</code></pre>
+
+<p>A final thing to note about environment is that they are always strings. Therefore, even if you define an environment variable as a number, it will be accessed as a string in the child process, and this requires parsing it. E.g.:</p>
+
+<p>In parent.js:</p>
+
+<pre><code>var exec = require('child_process').exec;
+var env = { specialNumber = 13 }; 
+exec('node child.js', 
+    { env: evn }, 
+    function (err, stdout, stderr) {
+        if (err) {
+            throw err;
+        }
+        console.log(stdout);
+    }
+);
+</code></pre>
+
+<p>In child.js:</p>
+
+<pre><code>var specialNumber = process.env.specialNumber;
+
+console.log(typeof(specialNumber));
+// -&gt; "string"
+console.log(typeof(parseInt(specialNumber, 10)));
+// -&gt; "number"
+</code></pre>
+
+<p>Run node parent.js to confirm this result.</p>
+
+<h3>Spawning and Monitoring Child Processes</h3>
+
+<p>In the previous examples, we took a look at how to launch external commands through the <em>child_process.exec()</em> function. The exec() function, however, provides no communication between the parent and the child, which is important for most applications that spawn such processes, to send signals or terminate those processes. Moreover, the output from exec() is buffered, rather than a readable stream, which imposes some other limitations. An improvement on this method is to use the <em>child_process.spawn()</em> function, as in the following example:</p>
+
+<pre><code>var spawn = require('child_process').spawn;
+
+// Create a child process
+var child = spawn('tail', 
+    ['-f', '/var/log/system.log']);
+</code></pre>
+
+<p>In the above example, we run a <em>tail</em> command, passing in -f and '/var/log/system.log' as arguments. The <em>spawn</em> function that we have used will return a <em>ChildProcess</em> object, from which we can access the process's stdout stream. You can add a listener to this stream's 'data' event, like so:</p>
+
+<pre><code>child.stdout.on('data', 
+    function (data) {
+        console.log('tail output: ' + data);
+    }
+);
+</code></pre>
+
+<p>Whenever the child process outputs some data, it will emit this <em>data</em> event, which will be registered by the parent process. In this way, the parent process can monitor the child process.</p>
+
+<p>The <em>ChildProcess</em> object also has a stderr stream, which you can listen to in just the same way:</p>
+
+<pre><code>child.stderr.on('data',
+    function (data) {
+        console.log('err data: ' + data);
+    }
+);
+</code></pre>
+
+<h3>Communicating to Child Processes</h3>
+
+<p>We can also send some data to our child process, using the <em>ChildProcess</em> object's stdin stream. The child can listen to for data to this stream using <em>process.stdin</em>. However, it requires that this stream is resumed before it can be accessed (it is paused by default.) Here is an example:</p>
+
+<p>In child.js:</p>
+
+<pre><code>// Unpause the stdin stream:
+process.stdin.resume();
+
+// Listen for incoming data:
+process.stdin.on('data', function (data) {
+    console.log('Received data: ' + data);
+});
+</code></pre>
+
+<p>In parent.js:</p>
+
+<pre><code>// Require spawn from the child process module
+var spawn = require('child_process').spawn;
+
+// Run node with the child.js file as an argument
+var child = spawn('node', ['child.js']);
+
+// Send data to the child process via its stdin stream
+child.stdin.write("Hello there!");
+
+// Listen for any response from the child:
+child.stdout.on('data', function (data) {
+    console.log('We received a reply: ' + data);
+});
+
+// Listen for any errors:
+child.stderr.on('data', function (data) {
+    console.log('There was an error: ' + data);
+});
+</code></pre>
+
+<h3>Listening for Exit Events</h3>
+
+<p>When a child processes exists, it emits an event that can be listened to by the parent. The callback for the exit event contains an exit code. For example:</p>
+
+<pre><code>var spawn = require('child_process').spawn;
+
+var child = spawn('ls');
+
+// Listen for stdout data
+child.stdout.on('data', function (data) {
+    console.log("Got data from child: " + data);
+});
+
+// Listen for an exit event:
+child.on('exit', function (exitCode) {
+    console.log("Child exited with code: " + exitCode);
+});
+</code></pre>
+
+<h3>Killing Child Processes</h3>
+
+<p>Nobody wants to write "killing child" in a sentence, but unfortunately naming conventions in CS are often coarse like this. In any case, we need to learn how parents can kill children [processes] in Node.</p>
+
+<p>The simplest way to kill a child process is to use the <em>child.kill</em> method:</p>
+
+<pre><code>var spawn = require('child_process').spawn;
+
+// Make the child sleep for 3000 miliseconds
+var child = spawn('sleep', ['3000']);
+
+// Kill the child midway through its sleep.
+setTimeout(function () {
+    child.kill();
+}, 1500);
+</code></pre>
+
+<p>You can specify a range of signals to send while killing the child process, for example:</p>
+
+<pre><code>child.kill('SIGUSR2);
+</code></pre>
+
+<p>Child processes can override these signals, by listening and handling those events:</p>
+
+<pre><code>process.on('SIGUSER2', function () {
+    console.log("What doesn't kill me makes me stronger.");
+});
+</code></pre>
+
+<p>The exception to this is the SIGKILL and SIGSTOP signals, which are handled by the operating system, and cannot be overridden by the child process.</p>
+
+</div>
+    </div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
