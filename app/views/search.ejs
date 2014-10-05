@@ -1,7 +1,7 @@
 <% include includes/header %>
         <h1 class="page-title">Search results for "<%= q %>"</h1>
             
-        <% if (qPosts !== undefined) { %>
+        <% if (qPosts !== undefined && qPosts.length > 0) { %>
         <% for (var slug in qPosts) { %>
         <div class="archive-post-container container-fluid">
             <h3 class="archive-title">
