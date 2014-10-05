@@ -1,0 +1,33 @@
+<% include includes/header %>
+        <h1 class="page-title">Search results for <%= q %></h1>
+            
+        <% if (qPosts !== undefined) { %>
+        <% for (var slug in qPosts) { %>
+        <div class="archive-post-container container-fluid">
+            <h3 class="archive-title">
+                <a href="/<%= qPosts[slug].slug %>"><%= qPosts[slug].title %></a>
+            </h3>
+            <p class="q-post-desc"><%= qPosts[slug].desc %></p>
+        </div>
+        <% } %>
+            <% } else { %>
+            <p>There are no posts yet about this topic.</p>
+            <p>If you are interested in this topic, and want me to write about it, please <a href="http://twitter.com/share?text=Hey @graeme_boy, please write a little about <%= q %>">send me a tweet</a> about it.</p>
+            <% } %>
+            </div>
+        <!-- .container -->
+    </div>
+    <style>span.desc-highlight { background-color: #ffb; }</style>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            var q = '<%= q %>';
+            // highlight keywords in the description
+            $('.q-post-desc').each(function (index, item) {
+                $(item).html($(this).text().replace(q, '<span class="desc-highlight">'+q+'</span>'));
+            })
+        });
+    </script>
+    <!-- .main .col-sm-9 -->
+<% include includes/sidebar %>
+<% include includes/footer %>

@@ -2,6 +2,9 @@
 var express = require('express');
 var router = express.Router();
 
+var Emitter = require('events').EventEmitter
+    eventEmitter = new Emitter();
+
 // Index
 var index = require('../controllers/index');
 
@@ -14,6 +17,25 @@ router.get('/', function (req, res) {
         numPosts: getNumPosts()
     }); // render
 
+});
+
+// Search
+router.get('/search', function (req,res) {
+	var q;
+	if ((q = req.query.q) !== undefined && q !== '') {
+		searchAPI.find(q);
+		eventEmitter.on('searchComplete', function (relevantPosts) {
+			res.render('search', {
+				cats: getCats(),
+				category: 'search',
+				qPosts: relevantPosts,
+				q: q
+			});
+			//res.end(JSON.stringify(relevantPosts));
+		});
+	} else {
+		res.end("Please enter a real request for searching. Received an empty string.");
+	}
 });
 
 function getNumPosts () {
@@ -48,9 +70,10 @@ router.get('/cat/:postCat', function (req, res) {
  */
 function getCategoryPosts(cat) {
 	appPosts = {}; // appropriate posts
-	for (post in posts)
-		if (posts[post].cat === cat)
-			appPosts[post] = posts[post].title;
+	for (var i =0; i < posts.length; i++) {
+		if (posts[i].cat === cat)
+			appPosts[posts[i].slug] = posts[i].title;
+	}
 	return appPosts;
 }
 
@@ -69,8 +92,8 @@ function capitalizeCat(stringIn) {
 function getCats () {
 	var cats = {},
 		cat;
-	for (slug in posts) {
-		cat = posts[slug].cat;
+	for (var i =0; i < posts.length; i++) {
+		cat = posts[i].cat;
 		if (cats[cat] === undefined) {
 			cats[cat] = 1;
 		} else {
@@ -80,19 +103,27 @@ function getCats () {
 	return cats;
 }
 
+var postData = {};
 // Add routes for each post
-for (slug in posts) {
+for (var i = 0; i < posts.length; i++) {
+	var slug = posts[i].slug;
+	postData[slug] = {
+		'title': posts[i].title,
+		'cat' : posts[i].cat
+	};
+
 	router.get('/' + slug, function (req, res) {
-		slug = req.url.slice(1);
-		var cat = posts[slug].cat;
-		var scripts = [],
+		var slug = req.url.slice(1),
+			cat = postData[slug].cat,
+			scripts = [],
 			styles = [];
+		
 		if (cat === 'coding') {
 			//scripts.push('/js/prism.coy.min.js');
 			//styles.push('/css/prism.coy.min.css');
 		}
 		res.render('posts/' + slug, {
-        	title: posts[slug].title,
+        	title: postData[slug].title,
         	category: cat,
         	cats: getCats(),
         	scripts: scripts,
@@ -101,7 +132,34 @@ for (slug in posts) {
 	});
 }
 
+var searchAPI = require('./search-api');
 
+router.get('/search-request', function (req, res) {
+
+	// var postsArr = [];
+	// for (post in posts) {
+	// 	var obj = {
+	// 		'slug': post,
+	// 		'title': posts[post].title,
+	// 		'cat': posts[post].cat,
+	// 	}
+	// 	postsArr.push(obj);
+	// }
+	// console.log(postsArr);
+	// res.end("done");
+
+
+	var q,relevantPosts;
+	if ((q = req.query.q) !== undefined) {
+		searchAPI.find(q);
+		eventEmitter.on('searchComplete', function (relevantPosts) {
+			res.end(JSON.stringify(relevantPosts));
+		});
+		
+	} else {
+		res.end('No query found.');
+	}
+});
 
 router.get('/about', index.about);
 // Pages

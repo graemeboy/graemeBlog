@@ -1,11 +1,18 @@
 <div class="sidebar col-sm-3 col-sm-offset-1" role="complimentary">
     <div class="container-fluid">
-        <h3>Article Categories</h3>
-        <ul class="cat-list">
+        <h4>Article Categories</h4>
+        <ul class="cat-list" style="padding-left:0">
         <% for (var cat in cats) { %>
         	<li <% if (cat == category) { %> class="active" <% } %>>
         		<a href="/cat/<%= cat %>"><%= cat %> (<%= cats[cat] %>)</a></li>
         <% } %>
         </ul>
+
+        <h4>Search Articles</h4>
+        <div>
+        	<form method="get" action="/search" class="form-inline">
+        		<input type="text" class="form-control" value="<% if (category === 'search') { %> <%= q %> <% } %>" name="q" style="width:150px">
+        		<input type="submit" class="btn btn-default">
+        </div>
     </div>
 </div>
