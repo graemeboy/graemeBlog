@@ -106,10 +106,16 @@ function getCats () {
 var postData = {};
 // Add routes for each post
 for (var i = 0; i < posts.length; i++) {
-	var slug = posts[i].slug;
+	var slug = posts[i].slug,
+		tags;
+	if ((tags = posts[i].tags) === undefined) {
+		tags = [];
+	}
+
 	postData[slug] = {
 		'title': posts[i].title,
-		'cat' : posts[i].cat
+		'cat' : posts[i].cat,
+		'tags': tags
 	};
 
 	router.get('/' + slug, function (req, res) {
@@ -124,13 +130,15 @@ for (var i = 0; i < posts.length; i++) {
 			styles.push('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css');
 			inlineScripts.push('hljs.initHighlightingOnLoad();');
 		}
+
 		res.render('posts/' + slug, {
         	title: postData[slug].title,
         	category: cat,
         	cats: getCats(),
         	scripts: scripts,
         	styles: styles,
-        	inlineScripts: inlineScripts
+        	inlineScripts: inlineScripts,
+        	tags: postData[slug].tags
     	}); // render
 	});
 }

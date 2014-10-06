@@ -9,13 +9,21 @@
                 </div>
             </div>
         </footer>
+        
 
-        <% if (typeof category != 'undefined' && category !== 'none') { %>
-          <script>var y = document.getElementsByClassName('page-content');
-            var aNode = y[0];
-            var callAction = document.createElement('div');
+        <% if (typeof category != 'undefined' && category !== 'none' && typeof tags != 'undefined') { %>
+          <script>var y = document.getElementsByClassName('page-content'),
+              aNode = y[0],
+              callAction = document.createElement('div'),
+              hashtags = '';
             callAction.className = 'call-to-action';
-            callAction.innerHTML = '<strong>If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on <%- title.toLowerCase() %>">send me a tweet.</a></strong>';
+
+            var tags = '<%= tags %>';
+            if (tags != '') {
+              hashtags = '&hashtags=' + tags.replace('.', '');
+            }
+            console.log(hashtags);
+            callAction.innerHTML = '<strong>If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on <%- title.toLowerCase() %>' + hashtags + '">send me a tweet.</a></strong>';
             aNode.appendChild(callAction);
           </script>
         <% } %>
