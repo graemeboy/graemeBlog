@@ -41,7 +41,7 @@ var server = https.createServer(options,
 
 <pre><code>var port = 4000;
 // Optionally, we can add an address, e.g.
-var address = '22.231.113.64;
+var address = '22.231.113.64';
 server.listen(port, address, function () [
     console.log("Listening on port: " + 
         server.address().port);
@@ -132,7 +132,7 @@ req.end();
 
 <p>The output from this inspection will contain something of the following:</p>
 
-<pre><code>res.socket.authorized: true
+<pre><code>{ res.socket.authorized: true,
 peer certificate: {
     subject: {
         C: 'US',
