@@ -116,18 +116,21 @@ for (var i = 0; i < posts.length; i++) {
 		var slug = req.url.slice(1),
 			cat = postData[slug].cat,
 			scripts = [],
-			styles = [];
+			styles = [],
+			inlineScripts = [];
 		
 		if (cat === 'coding') {
-			//scripts.push('/js/prism.coy.min.js');
-			//styles.push('/css/prism.coy.min.css');
+			scripts.push('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js');
+			styles.push('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css');
+			inlineScripts.push('hljs.initHighlightingOnLoad();');
 		}
 		res.render('posts/' + slug, {
         	title: postData[slug].title,
         	category: cat,
         	cats: getCats(),
         	scripts: scripts,
-        	styles: styles
+        	styles: styles,
+        	inlineScripts: inlineScripts
     	}); // render
 	});
 }

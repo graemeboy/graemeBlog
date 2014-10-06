@@ -7,6 +7,7 @@
 
     <div class="page-content">
 
+
 <p>Just a few years ago, multiple interactions between the client (browser) and server, such as is required for real-time chat applications, were hacky. The accepted approach was for clients to send requests continuously to the server (for example, one every second), to see if new messages had been added, or progress had been made. There was no way for the server to broadcast progress or updates to the client; the HTTP protocol was built to allow the server to respond to client requests, but not to interact with clients dynamically. This was <em>incredibly</em> inefficient, because the server had to deal with client requests every second, even when a chat window was just sitting idle in the browser window, or when messages were really only coming through at a rate of one every ten seconds. <em>Long polling</em> was developed so that a client could send one request, and the server could keep the connection open and send data back when it was available. Implementations of long polling were still considered hacky and inefficient on the server, primarily because HTTP just was not designed for these types of connections.</p>
 
 <p>The WebSocket protocol, which creates a conventional TCP connection between client and server, was recently standardized, and it overcomes these problems. It allows HTTP clients and servers to communicate with one another in a bi-directional, efficient way. Because Node.js uses JavaScript and is asynchronous and event-oriented, it is an ideal technology for real-time interactions between client and server.</p>
@@ -15,12 +16,11 @@
 
 <p>The standard library for using the WebSocket protocol is called <em>Socket.IO.</em> This library provides a wrapper/adapter for building WebSocket servers, and also provides  backup features, such as long polling, for older clients or those that do not support the WebSocket protocol. Socket.IO is an NPM module, and call be installed as follows:</p>
 
-<pre><code>npm install socket.io
-</code></pre>
+<pre><code class="javascript">npm install socket.io</code></pre>
 
 <p>We can set up a server as follows:</p>
 
-<pre><code>// Set up HTTP server, as usual:
+<pre><code class="javascript">// Set up HTTP server, as usual:
 var httpd = require('http').createServer(serverHandler);
 // Have Socket.IO listen to the server
 var io = require('socket.io').listen(httpd);
@@ -65,7 +65,7 @@ io.sockets.on('connection', function (socket) {
 
 <p>In index.html:</p>
 
-<pre><code>&lt;html&gt;
+<pre><code class="html">&lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;Web Chat Application in Node.js&lt;/title&gt;
     &lt;/head&gt;
@@ -128,8 +128,6 @@ io.sockets.on('connection', function (socket) {
 </code></pre>
 
 <p>So there is the code to get started with a socket.IO, real-time chat application in node that is efficient. As you can see, it's hardly much code at all, which is a real testiment to how far we've come in web technologies in the last few years.</p>
-
 </div></div>
-
 <% include ../includes/sidebar %>
 <% include ../includes/footer %>
