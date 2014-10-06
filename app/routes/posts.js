@@ -1,4 +1,10 @@
-var posts = [ { slug: 'node-child-processes',
+var posts = [ 
+  {
+    slug: 'nodejs-chat-app',
+    title: 'Build a Chat App in Node.js with Socket.io',
+    cat: 'coding'
+  },
+  { slug: 'node-child-processes',
     title: 'Node.js External and Child Processes',
     cat: 'coding' },
   { slug: 'validating-https-nodejs',

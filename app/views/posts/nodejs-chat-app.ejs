@@ -1,0 +1,135 @@
+<% include ../includes/header %>
+
+    <h1 class="page-title">
+        <%= title %>
+    </h1>
+    <div class="post-meta">October 2014</div>
+
+    <div class="page-content">
+
+<p>Just a few years ago, multiple interactions between the client (browser) and server, such as is required for real-time chat applications, were hacky. The accepted approach was for clients to send requests continuously to the server (for example, one every second), to see if new messages had been added, or progress had been made. There was no way for the server to broadcast progress or updates to the client; the HTTP protocol was built to allow the server to respond to client requests, but not to interact with clients dynamically. This was <em>incredibly</em> inefficient, because the server had to deal with client requests every second, even when a chat window was just sitting idle in the browser window, or when messages were really only coming through at a rate of one every ten seconds. <em>Long polling</em> was developed so that a client could send one request, and the server could keep the connection open and send data back when it was available. Implementations of long polling were still considered hacky and inefficient on the server, primarily because HTTP just was not designed for these types of connections.</p>
+
+<p>The WebSocket protocol, which creates a conventional TCP connection between client and server, was recently standardized, and it overcomes these problems. It allows HTTP clients and servers to communicate with one another in a bi-directional, efficient way. Because Node.js uses JavaScript and is asynchronous and event-oriented, it is an ideal technology for real-time interactions between client and server.</p>
+
+<h3>Socket.IO</h3>
+
+<p>The standard library for using the WebSocket protocol is called <em>Socket.IO.</em> This library provides a wrapper/adapter for building WebSocket servers, and also provides  backup features, such as long polling, for older clients or those that do not support the WebSocket protocol. Socket.IO is an NPM module, and call be installed as follows:</p>
+
+<pre><code>npm install socket.io
+</code></pre>
+
+<p>We can set up a server as follows:</p>
+
+<pre><code>// Set up HTTP server, as usual:
+var httpd = require('http').createServer(serverHandler);
+// Have Socket.IO listen to the server
+var io = require('socket.io').listen(httpd);
+
+// For rendering our HTML client, we can use the FS module
+// This wouldn't be necessary if using a framework, e.g. Express.js
+var fs = require('fs');
+
+// Activate the server
+httpd.listen(3000);
+
+function serverHandler(req, res) {
+    // Read our HTML file from wherever that view is:
+    fs.readFile(__dirname + '/index.html', function (err, data) {
+        if (err) {
+            res.writeHead(500);
+            res.end('Error loading chat view.');
+        } else {
+            res.writeHead(200);
+            // Output the index.html content
+            res.end(data);
+        }
+    });
+}
+
+// Write a handler for the event of a client connecting
+io.sockets.on('connection', function (socket) {
+    // Listen for client responses
+    socket.on('clientResponse', function (response) {
+        // Create a response to send to all clients
+        var reply = socket.id + ": " + response;
+        // Broadcast, using a "serverResponse" event
+        socket.broadcast.emit('serverResponse', reply);
+    });
+
+    // Emit a welcome message
+    var welcome = socket.id + 
+        " just joined the chat. Welcome!";
+    socket.broadcast.emit('serverResponse', welcome);
+});
+</code></pre>
+
+<p>In index.html:</p>
+
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Web Chat Application in Node.js&lt;/title&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;div id="messageLog"&gt;
+            &lt;!-- Messages will appear here --&gt;  
+        &lt;/div&gt;
+
+        &lt;input type="text" id="messageInput"&gt;
+
+        &lt;!-- Load the socket.io script --&gt;
+        &lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+
+        &lt;!-- Add chat functionality --&gt;
+        &lt;script&gt;
+            // Get the message log element
+            var messageLog = 
+                document.getElementById('messageLog');
+
+            // Create a function for appending messages from the server
+            function appendResponse(msg) {
+                // Create an element for the message
+                var msgEl = 
+                    document.createElement('div');
+                // Set a text node with whatever the server response is
+                var textNode = document.createTextNode(msg);
+                // Append text node to message element
+                msgEl.appendChild(textNode);
+                // Append the message element to the log
+                messageLog.appendChild(msgEl);
+            }
+
+            // Set up a connection to the chat server
+            var socket = io.connect('http://localhost:3000');
+
+            // Listen for responses
+            socket.on('serverResponse', function (response) {
+                appendResponse(response);
+            });
+
+            // Create functionality for sending messages
+            var inEl = document.getElementById('messageInput');
+            inEl.onkeydown = function (keyEvent) {
+                // Check if it's the 'enter' key:
+                if (keyEvent.keyCode === 13) {
+                    // Send the current value of this input
+                    var inputVal = inEl.value;
+                    socket.emit('clientResponse', inputVal);
+                    // Reset the input to have no value once sent
+                    inEl.value = '';
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>So there is the code to get started with a socket.IO, real-time chat application in node that is efficient. As you can see, it's hardly much code at all, which is a real testiment to how far we've come in web technologies in the last few years.</p>
+
+</div></div>
+
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>
