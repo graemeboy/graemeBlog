@@ -15,7 +15,7 @@
             var aNode = y[0];
             var callAction = document.createElement('div');
             callAction.className = 'call-to-action';
-            callAction.innerHTML = '<strong>If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on <%= title %>">send me a tweet.</a></strong>';
+            callAction.innerHTML = '<strong>If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on <%- title.toLowerCase() %>">send me a tweet.</a></strong>';
             aNode.appendChild(callAction);
           </script>
         <% } %>
