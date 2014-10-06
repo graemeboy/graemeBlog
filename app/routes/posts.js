@@ -3,22 +3,22 @@ var posts = [
     slug: 'nodejs-chat-app',
     title: 'Build a Chat App in Node.js with Socket.io',
     cat: 'coding',
-    tags: ['node.js', 'javascript']
+    tags: ['node.js']
   },
   { slug: 'node-child-processes',
     title: 'Node.js External and Child Processes',
     cat: 'coding',
-    tags: ['node.js', 'javascript']
+    tags: ['node.js']
   },
   { slug: 'validating-https-nodejs',
     title: 'Validating HTTPS Connections in Node.js',
     cat: 'coding',
-    tags: ['node.js', 'javascript']
+    tags: ['node.js']
    },
   { slug: 'node-udp',
     title: 'Sending UDP Datagrams with Node.js',
     cat: 'coding',
-    tags: ['node.js', 'javascript']
+    tags: ['node.js']
    },
   { slug: 'nuts-bolts-problem',
     title: 'The Nuts and Bolts Problem (An Approach)',
@@ -28,7 +28,7 @@ var posts = [
   { slug: 'node-fs',
     title: 'Using the Node.js FS Module',
     cat: 'coding',
-    tags: ['node.js', 'javascript']
+    tags: ['node.js']
    },
   { 
     slug: 'frontend-crawler',
