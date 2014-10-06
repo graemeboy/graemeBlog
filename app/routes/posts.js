@@ -105,7 +105,7 @@ var posts = [
   { slug: 'gender-graduation',
     title: 'Women are Outperforming Men - Confirmation from Commencement Day',
     cat: 'psychology',
-    tags: ['gender', 'women']
+    tags: ['gender']
    },
   { slug: 'habits', title: 'Habit Formation', cat: 'psychology' },
   { slug: 'gendered-graffiti',
