@@ -1,6 +1,5 @@
 
 <% include ../includes/header %>
-<style type="text/css">pre {background-color: #f8f8f8;border: 1px solid #ddd;}.highlight .nb {color: #0086b3;}.highlight .s1 {color: #dd1144;}.highlight .o {font-weight: bold;}.highlight .nv {color: teal;}</style>
     <h1 class="page-title"><%= title %></h1>
     <div class="post-meta">April 26 2014</div>
     <div class="page-content">
@@ -14,11 +13,11 @@
         <h3>How Do I Rename WP-Content Myself?</h3>
         For one, add this to your wp-config file, at the bottom, just before wp-settings.php are included:
         
-    <div class="highlight"><pre><span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_CONTENT_FOLDERNAME'</span><span class="p">,</span> <span class="s1">'media'</span> <span class="p">);</span>
-<span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_CONTENT_DIR'</span><span class="p">,</span> <span class="nx">ABSPATH</span> <span class="o">.</span> <span class="nx">WP_CONTENT_FOLDERNAME</span> <span class="p">);</span>
-<span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_SITEURL'</span><span class="p">,</span> <span class="s1">'http://'</span> <span class="o">.</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'HTTP_HOST'</span><span class="p">]</span> <span class="o">.</span> <span class="s1">'/'</span> <span class="p">);</span>
-<span class="nb">define</span> <span class="p">(</span> <span class="s1">'WP_CONTENT_URL'</span><span class="p">,</span> <span class="nx">WP_SITEURL</span> <span class="o">.</span> <span class="nx">WP_CONTENT_FOLDERNAME</span> <span class="p">);</span>
-</pre></div>
+        <pre><code class="php">define ( 'WP_CONTENT_FOLDERNAME', 'media' );
+define ( 'WP_CONTENT_DIR', ABSPATH . WP_CONTENT_FOLDERNAME );
+define ( 'WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] . '/' );
+define ( 'WP_CONTENT_URL', WP_SITEURL . WP_CONTENT_FOLDERNAME );
+</code></pre>
         
         <p>Then, simply rename your directory from wp-content to "media"</p>
         
