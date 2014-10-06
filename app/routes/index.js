@@ -56,7 +56,7 @@ router.param('postCat', function (req, res, next, catIn) {
 
 router.get('/cat/:postCat', function (req, res) {
     res.render('archive', {
-        title: "Posts about " + req.category,
+        title: "Articles on " + capitalizeFirstLetter(req.category),
         catPosts: req.catPosts,
         category: req.category,
         cats: getCats()
@@ -84,7 +84,7 @@ function getCategoryPosts(cat) {
  * capitalizeFirstLetter
  * Takes in a string, and depending on type returns capitalize.
  */
-function capitalizeCat(stringIn) {
+function capitalizeFirstLetter(stringIn) {
     return stringIn.charAt(0).toUpperCase() + stringIn.slice(1);
 }
 

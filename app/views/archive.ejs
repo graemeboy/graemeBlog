@@ -1,9 +1,9 @@
 <% include includes/header %>
-        <h1 class="page-title">Posts about <%= category %></h1>
-            
+        <h1 class="page-title"><%= title %></h1>
+        <p>Here are some articles that I have written on the topic of <%= category%>.</p>
         <% if (catPosts !== undefined) { %>
         <% for (var i in catPosts) { %>
-        <div class="archive-post-container container-fluid">
+        <div class="archive-post-container">
             <h3 class="archive-title pull-left">
                 <a href="/<%= catPosts[i].slug %>"><%= catPosts[i].title %></a>
             </h3>
