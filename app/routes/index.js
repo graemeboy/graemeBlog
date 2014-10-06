@@ -55,10 +55,9 @@ router.param('postCat', function (req, res, next, catIn) {
 }); // .cat
 
 router.get('/cat/:postCat', function (req, res) {
-	var catPosts = req.catPosts;
     res.render('archive', {
         title: "Posts about " + req.category,
-        catPosts: catPosts,
+        catPosts: req.catPosts,
         category: req.category,
         cats: getCats()
     });
@@ -69,10 +68,14 @@ router.get('/cat/:postCat', function (req, res) {
  * Loops through all posts and returns those that have a given category
  */
 function getCategoryPosts(cat) {
-	appPosts = {}; // appropriate posts
+	appPosts = []; // appropriate posts
 	for (var i =0; i < posts.length; i++) {
 		if (posts[i].cat === cat)
-			appPosts[posts[i].slug] = posts[i].title;
+			appPosts.push({
+				'slug': posts[i].slug,
+				'title': posts[i].title,
+				'tags': posts[i].tags
+			});
 	}
 	return appPosts;
 }

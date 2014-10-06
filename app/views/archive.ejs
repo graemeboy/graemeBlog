@@ -2,11 +2,17 @@
         <h1 class="page-title">Posts about <%= category %></h1>
             
         <% if (catPosts !== undefined) { %>
-        <% for (var slug in catPosts) { %>
+        <% for (var i in catPosts) { %>
         <div class="archive-post-container container-fluid">
-            <h3 class="archive-title">
-                <a href="/<%= slug %>"><%= catPosts[slug] %></a>
+            <h3 class="archive-title pull-left">
+                <a href="/<%= catPosts[i].slug %>"><%= catPosts[i].title %></a>
             </h3>
+            <% if (typeof catPosts[i].tags != 'undefined') {
+                for (var x = 0; x < catPosts[i].tags.length; x++) { %>
+                <div class="pull-right label label-info" style="margin:28px 5px 10px 0;background-color:#fff;border:1px solid #ccc;color:#777;font-weight:300"><%= catPosts[i].tags[x] %></div>
+            <% }
+            } %>
+            <div class="clearfix"></div>
         </div>
         <% } %>
             <% } else { %>

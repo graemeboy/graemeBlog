@@ -3,22 +3,22 @@ var posts = [
     slug: 'nodejs-chat-app',
     title: 'Build a Chat App in Node.js with Socket.io',
     cat: 'coding',
-    tags: ['node.js']
+    tags: ['node.js', 'javascript']
   },
   { slug: 'node-child-processes',
     title: 'Node.js External and Child Processes',
     cat: 'coding',
-    tags: ['node.js']
+    tags: ['node.js', 'javascript']
   },
   { slug: 'validating-https-nodejs',
     title: 'Validating HTTPS Connections in Node.js',
     cat: 'coding',
-    tags: ['node.js']
+    tags: ['node.js', 'javascript']
    },
   { slug: 'node-udp',
     title: 'Sending UDP Datagrams with Node.js',
     cat: 'coding',
-    tags: ['node.js']
+    tags: ['node.js', 'javascript']
    },
   { slug: 'nuts-bolts-problem',
     title: 'The Nuts and Bolts Problem (An Approach)',
@@ -28,26 +28,34 @@ var posts = [
   { slug: 'node-fs',
     title: 'Using the Node.js FS Module',
     cat: 'coding',
-    tags: ['node.js']
+    tags: ['node.js', 'javascript']
    },
-  { slug: 'frontend-crawler',
+  { 
+    slug: 'frontend-crawler',
     title: 'How to Build a Frontend Web Crawler',
     cat: 'coding',
     tags: ['javascript', 'webcrawler']
    },
-  { slug: 'php-vs-node', title: 'PHP vs Node.js', cat: 'coding' },
+  { 
+    slug: 'php-vs-node', 
+    title: 'PHP vs Node.js', 
+    cat: 'coding',
+    tags: ['PHP', 'node.js']
+  },
   { slug: 'logout-button-css',
     title: 'Logout Buttons with CSS',
     cat: 'coding',
-    tags: ['css']
+    tags: ['CSS']
    },
   { slug: 'software-cliche',
     title: 'Design Pattern or Cliché?',
-    cat: 'product' },
+    cat: 'product',
+    tags: ['UX']
+  },
   { slug: 'modern-css-buttons',
     title: 'Modern CSS Buttons',
     cat: 'coding',
-    tags: ['css']
+    tags: ['CSS']
    },
   { slug: 'php-good',
     title: 'PHP is a Good Language',
@@ -57,7 +65,7 @@ var posts = [
   { slug: 'css-buttons',
     title: '12 Professional CSS Buttons',
     cat: 'coding',
-    tags: ['css']
+    tags: ['CSS']
    },
   { slug: 'wordpress-plugins',
     title: '6 Tips for Building Premium Wordpress Plugins',
@@ -110,7 +118,9 @@ var posts = [
     cat: 'psychology',
     tags: ['neuroscience']
    },
-  { slug: 'gurus', title: 'The Modern Guru', cat: 'psychology',
+  { slug: 'gurus', 
+    title: 'The Modern Guru', 
+    cat: 'psychology',
     tags: ['leadership']
    } ];
 
