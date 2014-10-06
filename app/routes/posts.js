@@ -70,12 +70,12 @@ var posts = [
   { slug: 'wordpress-plugins',
     title: '6 Tips for Building Premium Wordpress Plugins',
     cat: 'coding',
-    tags: ['wordpress']
+    tags: ['Wordpress']
    },
   { slug: 'how-to-hide-that-you-use-wordpress',
     title: 'How to Hide that You Use Wordpress',
     cat: 'coding',
-    tags: ['wordpress']
+    tags: ['Wordpress']
    },
   { slug: 'jan-smuts-legacy',
     title: 'The Legacy of Jan Smuts in South Africa',
