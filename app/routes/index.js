@@ -164,7 +164,13 @@ router.get('/search-request', function (req, res) {
 	}
 });
 
-router.get('/about', index.about);
+router.get('/about', function (req, res) {
+	res.render('pages/about', {
+        cats: getCats(),
+        title: "About Graeme Boy",
+        category: "none"
+    });
+});
 // Pages
 router.get('/ocean-voyages', index.oceanVoyages);
 router.get('/ocean-voyages-sum', index.oceanVoyagesSum);
