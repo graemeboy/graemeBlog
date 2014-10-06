@@ -23,7 +23,7 @@
               hashtags = '&hashtags=' + tags.replace('.', '');
             }
             console.log(hashtags);
-            callAction.innerHTML = '<strong>If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on <%- title.toLowerCase() %>' + hashtags + '">send me a tweet.</a></strong>';
+            callAction.innerHTML = '<strong>If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on <%- title.toLowerCase() %>' + hashtags + '&related=graeme_boy">send me a tweet.</a></strong>';
             aNode.appendChild(callAction);
           </script>
         <% } %>
