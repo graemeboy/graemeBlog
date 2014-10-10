@@ -1,7 +1,7 @@
 var posts = [ 
   {
     slug: 'chars-string-unique',
-    title: 'Check if All Characters in String are Unique - Problem and Solution',
+    title: 'Checking if the Characters in a String are Unique (Four Approaches)',
     cat: 'coding',
     tags: ['algorithms']
   },
