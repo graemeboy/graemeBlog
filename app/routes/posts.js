@@ -1,5 +1,11 @@
 var posts = [ 
   {
+    slug: 'chars-string-unique',
+    title: 'Check if All Characters in String are Unique - Problem and Solution',
+    cat: 'coding',
+    tags: ['algorithms']
+  },
+  {
     slug: 'nodejs-chat-app',
     title: 'Build a Chat App in Node.js with Socket.io',
     cat: 'coding',

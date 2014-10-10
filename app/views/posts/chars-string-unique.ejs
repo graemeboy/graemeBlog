@@ -1,0 +1,313 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<div class="page-content">
+<p>One common starter tech interview question is to write a program that checks if all of the characters in a string are unique - I.E. that there are no repeating characters.</p>
+
+<p>There are a few solutions to this problem, and I will go through them in order of complexity, starting from simplest, as far as I see them.</p>
+
+<h3>Solution using a Data Structure to Track Characters</h3>
+
+<p>The easiest algorithm to devise is one that uses a structure, such as an array list, or a hash table, to store each character as you encounter it in the string. If the character is already in the structure, then you know that the string contains duplicate characters. For example:</p>
+
+<pre><code>/**
+ * Returns true if all the characters in the string are unique
+ */
+function allUnique(str) {
+    // Decide how to handle garbage input
+    if (!str) return false;
+
+    var table = {}, //  A structure to store characters
+        i = 0; // An index to iterate through the string
+        strLen = str.length;
+
+    // Walk through the string
+    // Check that the table doesn't include the char
+    while (i &lt; strLen &amp;&amp; table[str[i]] === undefined)
+        table[str[i]] = 1; // Save the char to the table
+
+    /*  If there was a duplicate character, the loop
+        would not have made it to the end of the string,
+        so all we have to do is check the index
+        against the length of the string to check for dups. */
+    if (i &lt; strLen) return false;
+    return true;    
+}
+
+// Read a string from standard input and run the function
+process.stdi.n.on('readable', function () {
+    var str = process.stdin.read();
+    console.log(allUnique(str));
+});
+</code></pre>
+
+<p>There are about 8 lines of code in that function, without the comments. It's also O(n) efficiency, because we loop through the string once. How could we test this to make sure that it works properly?</p>
+
+<ul>
+<li>Test garbage, other types, and empty strings</li>
+<li>Test various lengths of strings, from single characters to much longer inputs</li>
+<li>Test for duplication, test for all unique</li>
+<li>Test for duplicates at the beginning, test for duplicates at the end</li>
+<li>Test for uppercase and lower case letters</li>
+</ul>
+
+
+<h4>Using an Array of Character Codes</h4>
+
+<p>Another variation of this approach is to create an array of a fixed size, with an position for each letter in the alphabet. Then use the ASCII value of each character in the string as an index at which to check the value of that array. For example:</p>
+
+<pre><code>function allUniqueAlphabetMap(str) {
+    var alphabet = new Array(26); // There are 26 characters in the alphabet
+    var arrIndex; // We will use this later to access the alphabet array.
+
+    for (var i = 0; i &lt; str.length; i++) {
+        /*  Get the ASCII value for this string, and
+            subtract 64 from it to get its place in the array */
+        arrIndex = str[i].charCodeAt(0) - 
+            'a'.charCodeAt(0);
+        if (alphabet[arrIndex])
+            return false; // We have already encountered this character.
+        alphabet[arrIndex] = true; // We have no encountered it, so update alphabet.
+    }
+    // We have not encountered any duplicates.
+    return true;
+}
+
+process.stdin.on('readable', function () {
+    var str = process.stdin.read();
+    if (str)
+        console.log(
+                allUniqueAlphabetMap(str.toString('utf-8')
+                                                    .trim()));
+});
+</code></pre>
+
+<p>We will come back later to a more efficient way of using this approach, by using a <em>bit vector</em>.</p>
+
+<h3>Solutions without using another Data Structure</h3>
+
+<p>An interesting spin on this question is to require that no further data structures are created. Here are some approaches towards a solution.</p>
+
+<h4>Quadratic Approach</h4>
+
+<p>The least efficient method, but probably the first that one might think of, is to check each character against each other character in the string as you iterate. This is painfully inefficient in terms of number of ticks, but it won't use another data structure, and it's very easy to implement. For example:</p>
+
+<pre><code>function allUniqueQuad(str) {
+    // Handle garbage
+    if (!str) return false;
+
+    // Loop through the string
+    for (var i = 0; i &lt; str.length; i++)
+        for (var x = 0; x &lt; str.length; x++)
+            // Check different places but same
+            if (x !== i &amp;&amp; str[i] === str[x])
+                return false;
+    return true;
+}
+
+// Read in from stdin and call allUniqueQuad()
+// ...
+</code></pre>
+
+<p>Only 6 lines of code, but terribly inefficient, O(n^2). No data structure necessary though.</p>
+
+<h4>Sorting before Comparison</h4>
+
+<p> We can use the string as an array, and sort it before we begin our checking. In this way, all we have to do is check the next character to see whether or not it is the same (identical characters will be contiguous after sorting.) We can use quicksort for O(nlog(n)) efficiency, but then we will have to loop through the string again to make the check.</p>
+
+<p> Firstly, lets write a function that will check if all the characters in a string are unique, given a sorted string.</p>
+
+<pre><code>/**
+ * Takes in a sorted string, and check if
+ * all chars are unique.
+ * Precondition: string is sorted
+ */
+function allUniqueFromSorted(str) {
+    for (var i = 0; i &lt; str.length - 1; i++)
+        if (str[i] === str[i + 1])
+            return false;
+    return true;
+}
+</code></pre>
+
+<p>Then, we can implement quicksort to sort our input before calling this function. I will use my implementation of <a href="https://gist.github.com/graemeboy/e9d06c03325fac557778">quicksort in JavaScript</a>, which I created during my article on the <a href="http://www.graemeboy.com/nuts-bolts-problem">Nuts and Bolts Problem</a>, but I will add support for strings, and a callback parameter to it for the next step:</p>
+
+<pre><code>/**
+ * Uses the quicksort algorithm to sort
+ * an array or string.
+ */
+function quicksort ( arr, callback ) {
+    // We can also sort strings
+    var isString = false;
+    if (typeof arr == 'string') {
+        isString = true;
+        arr = new Buffer(arr);
+    }
+    // Launch the sorting process.
+    sort(arr, 0, arr.length - 1 );
+
+    /**
+     * swap
+     * takes in an array and two indicies,
+     * swaps the elements in the array at those indicies
+     */
+    function swap ( arr, a, b ) {
+        var temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    function partition ( arr, l, r) {
+        var p = arr[r],
+            i = l - 1,
+            j = l;
+        while ( j &lt; r) {
+            if (arr[j] &lt;= p) {
+                swap ( arr, ++i, j );
+            }
+            j++;
+        }
+        // Put the pivot in its correct place
+        swap (arr, i + 1, r);
+        return i + 1;
+    }
+
+    function sort ( arr, l, r ) {
+        var p;
+        if (l &lt; r) {
+            p = partition( arr, l, r );
+            sort( arr, l, p - 1);
+            sort( arr, p + 1, r);
+        } else if (r === arr.length - 1) {
+            if (isString) {
+                arr = arr.toString();
+            }
+            callback(arr);
+        }
+    }
+}
+</code></pre>
+
+<p>So, all together, this might look like the following:</p>
+
+<pre><code>/**
+ * Takes in a sorted string, and check if
+ * all chars are unique.
+ * Precondition: string is sorted
+ */
+function allUniqueFromSorted(str) {
+    for (var i = 0; i &lt; str.length - 1; i++)
+        if (str[i] === str[i + 1])
+            return false;
+    return true;
+}
+
+/**
+ * Uses the quicksort algorithm to sort
+ * an array or string.
+ */
+function quicksort ( arr, callback ) {
+    var isString = false;
+    if (typeof arr == 'string') {
+        isString = true;
+        arr = new Buffer(arr);
+    }
+    // Launch the sorting process.
+    sort(arr, 0, arr.length - 1 );
+
+    /**
+     * swap
+     * takes in an array and two indicies,
+     * swaps the elements in the array at those indicies
+     */
+    function swap ( arr, a, b ) {
+        var temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    function partition ( arr, l, r) {
+        var p = arr[r],
+            i = l - 1,
+            j = l;
+        while ( j &lt; r) {
+            if (arr[j] &lt;= p) {
+                swap ( arr, ++i, j );
+            }
+            j++;
+        }
+        // Put the pivot in its correct place
+        swap (arr, i + 1, r);
+        return i + 1;
+    }
+
+    function sort ( arr, l, r ) {
+        var p;
+        if (l &lt; r) {
+            p = partition( arr, l, r );
+            sort( arr, l, p - 1);
+            sort( arr, p + 1, r);
+        } else if (r === arr.length - 1) {
+            if (isString) {
+                arr = arr.toString();
+            }
+            callback(arr);
+        }
+    }
+}
+
+process.stdin.on('readable', function () {
+    var str = process.stdin.read();
+    if (str)
+        quicksort(str.toString('utf-8').trim(), 
+            allUniqueQuad);
+});
+</code></pre>
+
+<p>Not particularly efficient, but quite sufficient.</p>
+
+<h4>Using a Bit Vector</h4>
+
+<p>By far the most efficient way to perform this check is to use a bit vector, which can be done with a single integer.</p>
+
+<p>If every integer is composed of 32 bits, then we can use each bit of that integer as a flag for a character (given 26 characters in the alphabet). We can access each flag by using a unique integer, just as we did in the previous example with the alphabet map.</p>
+
+<p>To set a flag in an integer, we use lower-level logic, e.g.:</p>
+
+<pre><code>int flags = 0; // the vector of flags
+int flagIndex; // the index in the vector to change
+flags |= (1 &lt;&lt; flagIndex);
+// ^ Almsot like setting flags[flagIndex] to 1
+</code></pre>
+
+<p>In Javascript, it might look like this:</p>
+
+<pre><code>function allUniqueBitVector(str) {
+    var flags = 0, // interger as bit vector
+        flagIndex, // integer
+        isSet; // boolean
+
+    for (var i = 0; i &lt; str.length; i++) {
+        // Convert to integer code
+        flagIndex = str[i].charCodeAt(0) - 'a'.charCodeAt(0);
+        // Update isSet boolean as currently set
+        isSet = ((flags&gt;&gt;flagIndex) % 2 != 0);
+        if (isSet)
+            // Bit is set
+            return false;
+        else
+            // Not set, set now.
+            flags |= (1 &lt;&lt; flagIndex);
+    }
+    return true;
+}
+</code></pre>
+
+<p>And there you have it, a very efficient way to check if a string only contains unique characters, without using another data structure.</p>
+
+<p>Note, however, that there are limitations to this approach - for example, it will not work if the string contains whitespace ("flagIndex" in for whitespace would be -65.) Moreover, uppercase and lowercase values are equivalent (i.e. using "HelLo" as input would return false), when they probably ought not to be.</p>
+
+</div></div>
+
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>
