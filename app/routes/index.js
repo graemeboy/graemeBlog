@@ -249,7 +249,8 @@ router.get('/personal/categories', function (req, res) {
 	];
 
 	res.render('pages/personal/categories', {
-		categories: categories
+		categories: categories,
+		title: 'Personal/Life Categories'
 	});
 });
 router.get('/ocean-voyages', index.oceanVoyages);
