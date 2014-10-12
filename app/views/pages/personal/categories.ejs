@@ -1,0 +1,32 @@
+<% include ../../includes/header %>
+
+<h1 class="page-title">Categories of Focus</h1>
+
+<div class="page-content">
+	<div class="col-sm-6">
+		<h3>Personal</h3>
+		<ul>
+			<% categories[0]["Personal"].forEach(function (category) { %>
+				<li>
+					<strong><%= category["name"] %></strong>
+				</li>
+			<% }) %>
+		</ul>
+	</div>
+	<div class="col-sm-6">
+		<h3>Professional</h3>
+		<ul>
+			<% categories[1]["Professional"].forEach(function (category) { %>
+				<li>
+					<strong><%= category["name"] %></strong>
+				</li>
+			<% }) %>
+		</ul>
+	</div>
+</div>
+        <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+
+
+<% include ../../includes/footer %>

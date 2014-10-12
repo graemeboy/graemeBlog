@@ -183,6 +183,75 @@ router.get('/about', function (req, res) {
     });
 });
 // Pages
+router.get('/personal/categories', function (req, res) {
+
+	var categories = [
+		{'Personal': [
+			{ 
+				'name': 'Mood', 
+				'identity': 'Optimistic',
+			}, 
+			{ 
+				'name': 'Body',
+				'identity': '',
+			},
+			{ 
+				'name': 'Relationship',
+				'identity': '',
+			},
+			{ 
+				'name': 'Spiritual',
+				'identity': '',
+			},
+			{ 
+				'name': 'Contribution / Giving',
+				'identity': '',
+			},
+			{ 
+				'name': 'Family',
+				'identity': '',
+			},
+			{ 
+				'name': 'Finance',
+				'identity': '',
+			},
+		]},
+		{'Professional': [
+			{ 
+				'name': 'Algorithms', 
+				'identity': '',
+			}, 
+			{ 
+				'name': 'Math',
+				'identity': '',
+			},
+			{ 
+				'name': 'Open Source',
+				'identity': '',
+			},
+			{ 
+				'name': 'Income',
+				'identity': '',
+			},
+			{ 
+				'name': 'Technologies',
+				'identity': '',
+			},
+			{ 
+				'name': 'Personal Brand',
+				'identity': '',
+			},
+			{ 
+				'name': 'Networking' ,
+				'identity': '',
+			},
+		]}
+	];
+
+	res.render('pages/personal/categories', {
+		categories: categories
+	});
+});
 router.get('/ocean-voyages', index.oceanVoyages);
 router.get('/ocean-voyages-sum', index.oceanVoyagesSum);
 router.get('/global-renaissance', index.globalRenaissance);
