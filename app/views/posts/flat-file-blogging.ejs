@@ -1,0 +1,79 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<div class="page-content">
+
+<p>The last project that I worked on for a client was a "flat-file" content management system (a.k.a blogging software). This means that it does not use a database. Some engineers that I've spoken to seem suprised by this - after all, it's meant to store and access data, which is exactly what a database is for! But there are some <em>advantages</em> of a using flat-file system, if the dataset it not too big or widely distrubuted:</p>
+
+<ul>
+<li>Minimal time cost in initializing the CMS
+
+<ul>
+<li>Just put the executable files on your server and your platform is ready to go</li>
+</ul>
+</li>
+<li>Transferring content to a new server, or backing up the <em>entire</em> system is as simple as copying across some files</li>
+</ul>
+
+
+<p><strong>What are the disadvantages?</strong></p>
+
+<ul>
+<li>Less power to query lots of data</li>
+<li>No built-in caching mechanisms</li>
+<li>Probably implements a less optimized data strucutre</li>
+</ul>
+
+
+<p>But we're talking about a blogging platform here, where the major query (probably 90%+ of all server work done) is based on a linear relationship between slug and content. A relationship which really should equate to an onto, one-to-one matching of string to static file.</p>
+
+<pre><code class="php">"/hello-world" =&gt; "&lt;h3&gt;Hello&lt;/h3&gt;
+    &lt;div id="post-content"&gt;World&lt;/div&gt;"
+</code></pre>
+
+<p>What else do you need for a blogging platform? Commenting? Similarly logical to implement. Or you could use a third-party such as Disqus, which makes more sense. What else? Searching for posts? Keep in mind that search is a minor featured compared to the primary focus of a blog: Matching slugs to content. See what I've done in my blog:</p>
+
+<h3>The Current Blog</h3>
+
+<p>The current blog that you're reading, at the time of writing, (unless you're reading this on a feed), does not use a database. People often remark to me how fast it is, and while I don't have precise data on how the lack of database affects performance, I'm sure that it has does a small effect. Many people also remark on how well my search feature works, especially given that I have no database in place.</p>
+
+<p>So, how do I do it?</p>
+
+<p>Well, I have a JSON datastructure that I update whenever I add a new post. It's very simple, like this:</p>
+
+<pre><code class="javascript">var posts = [
+    {
+        "slug": "hello-world",
+        "tags": ["greeting", "world"],
+        "category": "first post"
+    }
+];
+</code></pre>
+
+<p>If I want to add a new post, all I do is add a new object like that one into the posts array. Then, in my views directory, I just add a file with the same name as the slug (since it's a one-to-one relationship between slug and content, there will never be duplicates.) I write out all my posts in markdown, and have a tool convert it to HTML and save it to the views folder for me. This entails practically zero overhead.</p>
+
+<p>Now, compare this process of writing to using a tool such as Wordpress. If I want to use WP, I have to navigate to my site's URL, enter in my username and password, find my way over to the fancy WYSIWYG editor, write out my post, add <em>all of the same information</em> as I do on my sites (slug, tags, categories), and then publish. So there are a few extra steps involved in that process that are clearly unnecessary for me. To back up that kind of blog, I probably have to install some external plugin that's unsafe and hope that works out. On <em>my</em> system, by contrast, I just push my update to git and I'm fully backed up in 30 seconds.</p>
+
+<p><strong>But how does search work?</strong></p>
+
+<p>I realized that search is a minor feature, and so I didn't worry too much about performance. Despite that, my search feature turns out to be faster than those of many CMS clients, which I find surpising.</p>
+
+<p>To implement a search response, I simply take in the request string from the user and decode it. Then, I initialize a results array, which will hold the summary data of the post, and some small text from the post to give context for the search term, e.g.:</p>
+
+<p><strong>Search for "node", might yield the following text:</strong></p>
+
+<pre><code>    "This is a post about *node* which uses an event loop."
+</code></pre>
+
+<p>I asynchronously load into memory each of my posts, parse the HTML, and scan the content div for the keyword. Of course, I also scan the title and tags of the post. If any of these match, I add the posts' summary to my results array. At the end of the process, I end my response to the browser with a search results template and give it the results array.</p>
+
+<p>I know that this approach can be improved upon, but it already works quite well and it only took me an hour to implement. Unless the blog were getting tens of thousands of search requests each month, which it is not, there is probably no reason even to add caching.</p>
+
+<h3>Conclusion</h3>
+
+<p>In this article, I've presented a case for creating blogging platforms that do not use databases. My reason for this that the primary feature on a blog is to provide a one-to-one relationship between slug and post content. Moreover, for smaller, non-distributed datasets, data is more easily backed up or transferred to new servers when they're just saved in a file.</p>
+
+</div></div>
+
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>
