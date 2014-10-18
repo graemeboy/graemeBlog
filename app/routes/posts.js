@@ -131,7 +131,12 @@ var posts = [
     cat: 'psychology',
     tags: ['gender']
    },
-  { slug: 'habits', title: 'Habit Formation', cat: 'psychology' },
+  { 
+    slug: 'habits', 
+    title: 'Habit Formation', 
+    cat: 'psychology',
+    tags: ['habits', 'positive psychology']
+   },
   { slug: 'gendered-graffiti',
     title: 'Collaborative and Depreciative: Gendered Graffiti in a College Bathroom',
     cat: 'psychology',
