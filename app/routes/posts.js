@@ -1,5 +1,11 @@
 var posts = [
   {
+    slug: 'social-drinking-genetic',
+    title: "Social Drinking - It's in Your Genes",
+    cat: 'psychology',
+    tags: ['genetics', 'alcohol']
+  },
+  {
     slug: 'sum-1000-primes',
     title: 'Sum the First 1000 Primes',
     cat: 'coding',
