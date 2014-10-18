@@ -55,13 +55,31 @@ router.param('postCat', function (req, res, next, catIn) {
 }); // .cat
 
 router.get('/cat/:postCat', function (req, res) {
+
+
     res.render('archive', {
         title: "Articles on " + capitalizeFirstLetter(req.category),
         catPosts: req.catPosts,
         category: req.category,
-        cats: getCats()
+        cats: getCats(),
+        tags: getTags(req.category)
     });
 });
+
+/**
+ * Returns an array of tags for a given category
+ */
+function getTags(category) {
+	var tags = [];
+	for (var i = 0; i < posts.length; i++)
+		if (posts[i].cat === category) {
+			var tagArr = posts[i].tags;
+			for (var j = 0; j < tagArr.length; j++)
+				if (tags.indexOf(tagArr[j]) === -1)
+					tags.push(tagArr[j]);
+		}
+	return tags
+}
 
 /**
  * getCategoryPosts

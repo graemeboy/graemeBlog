@@ -1,9 +1,27 @@
 <% include includes/header %>
         <h1 class="page-title"><%= title %></h1>
-        <p>Here are some articles that I have written on the topic of <%= category%>.</p>
+        <p class="lead">Here are some articles that I have written on the topic of <%= category%>.</p>
+
+        <div>
+            <h4>Filter by Tag</h4>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="toggle-checks" checked="checked"> Toggle all tags
+                </label>
+            </div>
+            
+        <% for (var i = 0; i < tags.length; i++) { %>
+            <div class="checkbox-inline">
+                <label>
+                    <input type="checkbox" class="tag-check" name="<%= tags[i] %>" value="show" checked="checked"> <%= tags[i] %>
+                </label>
+            </div>
+        <% } %>
+        </div>
+
         <% if (catPosts !== undefined) { %>
         <% for (var i in catPosts) { %>
-        <div class="archive-post-container">
+        <div class="archive-post-container" data-tags="<%= catPosts[i].tags %>">
             <h3 class="archive-title pull-left">
                 <a href="/<%= catPosts[i].slug %>"><%= catPosts[i].title %></a>
             </h3>
@@ -22,6 +40,58 @@
             </div>
         <!-- .container -->
     </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            var selectedTags = [];
+
+            function getSelectedTags() {
+                selectedTags = [];
+                $('.tag-check').each(function (i, el) {
+                    if ($(el).is(":checked"))
+                        selectedTags.push($(el).attr('name'));
+
+                });
+            }
+
+            function showSelected() {
+                // Hide all
+                $('.archive-post-container').hide();
+
+                // Show ones that contain one of the selected tag
+                $('.archive-post-container').each(function (i, el) {
+                    var tags = $(el).attr('data-tags').split(',');
+                    for (var j = 0; j < tags.length; j++) {
+                        if (selectedTags.indexOf(tags[j]) !== -1) {
+                            $(el).show();
+                        }
+                    }
+                });
+            }
+
+            $('#toggle-checks').change(function () {
+                var isChecked = $(this).is(':checked');
+                console.log(isChecked);
+                if (isChecked) {
+                    $('.tag-check').prop('checked', true);
+                    getSelectedTags();
+                    showSelected();
+                } else {
+                    $('.tag-check').prop('checked', false);
+                    selectedTags = [];
+                    showSelected();
+                }
+
+            });
+
+
+            $('.tag-check').change(function () {
+                getSelectedTags();
+                showSelected();
+            });
+        });
+    </script>
     <!-- .main .col-sm-9 -->
 <% include includes/sidebar %>
 <% include includes/footer %>

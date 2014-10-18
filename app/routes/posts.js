@@ -15,7 +15,7 @@ var posts = [
     slug: 'flat-file-blogging',
     title: 'Why Flat-File Blogs Make the Most Sense to Me',
     cat: 'coding',
-    tags: ['CMS', 'blogging']
+    tags: ['CMS']
   },
   {
     slug: 'chars-string-unique',
