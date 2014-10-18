@@ -1,5 +1,11 @@
 var posts = [
   {
+    slug: 'sum-1000-primes',
+    title: 'Sum the First 1000 Primes',
+    cat: 'coding',
+    tags: ['algorithms']
+  },
+  {
     slug: 'flat-file-blogging',
     title: 'Why Flat-File Blogs Make the Most Sense to Me',
     cat: 'coding',

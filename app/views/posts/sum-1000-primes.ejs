@@ -1,0 +1,125 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+    <div class="page-content">
+<p>This is a pretty simple algorithms question (with many solutions), but one that is particularly useful one for watching a candidate's approach to problem solving.</p>
+
+<p>Here is one straightforward approach to solving the problem. It consists of two steps: determining if a given number is a prime, and looping through and summing all primes until we have done so for a list of 1000.</p>
+
+<h4>1. Create a method to determine if a number is a prime</h4>
+<p>Start with an unoptimized approach that works.</p>
+<pre><code class="javascript">/**
+ * Determine if a given number is a prime
+ *
+ * @param num, a counting number
+ * @return Boolean, true if the number is a prime
+ */
+function isPrime(num) {
+    // Loop through all canidates of numbers that might divide
+    for (var x = 2; x &lt;= Math.round(num/2); x++)
+        // Check if it divides cleanly
+        if (num % x === 0)
+            return false
+    // Otherwise, it is a prime
+    return true
+}
+</code></pre>
+
+<h3>2. Loop through all numbers to find and sum 1000 primes</h3>
+
+<pre><code class="javascript">/**
+ * Keep track of the number of primes we have summed
+ * @type Number
+ */
+var numPrimes = 0;
+/**
+ * Keen track of the summation of primes
+ * @type Number
+ */
+var sumPrimes = 0;
+/**
+ * Keep track of the number we are on, as we loop through
+ * counting numbers &gt; 2
+ * @type Number
+ */
+var i = 2;
+
+while (numPrimes &lt; 1000) {
+    if (isPrime(i)) {
+        // Add this number to the sum of primes
+        sumPrimes += i;
+        numPrimes++;
+    }
+    i++;
+}
+</code></pre>
+
+<h4>3. Optimize Code</h4>
+
+<p>What's one way that we can optimize this code?</p>
+
+<p>Well, we know immediately that if a number is even, it's not a prime (besides the number 2, which is a special case.) So if we can start our count on two, then we only need to check odd numbers. Therefore, our isPrime function can look like the following:</p>
+
+<pre><code class="javascript">/**
+ * Determine if a given number is a prime
+ *
+ * @param num, a counting number
+ * @return Boolean, true if the number is a prime
+ */
+function isPrime(num) {
+    // Check if it's an even number
+    if (num % 2 === 0) return false;
+
+    // Loop through all odd numbers that might divide
+    for (var x = 3; x &lt;= Math.round(num/2); x += 2)
+        // Check if it divides cleanly
+        if (num % x === 0)
+            return false
+    // Otherwise, it is a prime
+    return true
+}
+</code></pre>
+
+<p>And our loop can look like this:</p>
+
+<pre><code class="javascript">/**
+ * Keep track of the number of primes we have summed. We start one 1
+ * because we know that 2 is a prime.
+ * @type Number
+ */
+var numPrimes = 1;
+/**
+ * Keen track of the summation of primes. We start on 2, which is
+ * the first prime.
+ * @type Number
+ */
+var sumPrimes = 2;
+/**
+ * Keep track of the number we are on, as we loop through
+ * counting numbers &gt; 2
+ * @type Number
+ */
+var i = 3;
+
+while (numPrimes &lt; 1000) {
+    if (isPrime(i)) {
+        // Add this number to the sum of primes
+        sumPrimes += i;
+        numPrimes++;
+    }
+    i++;
+}
+</code></pre>
+
+<h4>Conclusion</h4>
+
+<p>So that's a pretty straightforward solution to the problem.  If we run this loop, we will get <strong>3682913</strong> as the answer - that is the sum of the first 1000 primes.</p>
+
+<p>Of course, we could use a deviation of this approach to print out the first <em>N</em> primes, and other related problems.</p>
+
+</div>
+</div>
+    <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>
