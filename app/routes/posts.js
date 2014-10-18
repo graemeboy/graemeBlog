@@ -138,7 +138,7 @@ var posts = [
     tags: ['habits', 'positive psychology']
    },
   { slug: 'gendered-graffiti',
-    title: 'Collaborative and Depreciative: Gendered Graffiti in a College Bathroom',
+    title: 'Collaborative vs. Depreciative Genders: Analysis of Bathroom Graffiti ',
     cat: 'psychology',
     tags: ['gender']
    },
