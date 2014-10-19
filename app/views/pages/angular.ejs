@@ -1,0 +1,94 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container-fluid" data-ng-app="demoApp" data-ng-controller="SimpleController">
+		
+
+		<div class="container" data-ng-init="names=['Graeme Boy', 'Dave Johnson']">
+			<ul>
+				<li data-ng-repeat="personName in names">
+					{{ personName | uppercase }}
+				</li>
+			</ul>
+		</div>
+
+		Name:
+		<div>
+			<input type="text" data-ng-model="nameText">
+			{{ name }}
+		</div>
+		<div class="container">
+			<ul>
+				<li data-ng-repeat="person in customers | filter:nameText | orderBy:'city'">
+					{{ person.name | lowercase }} - {{ person.city | uppercase}}
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			Customer Name</br>
+			<input type="text" data-ng-model="newCustomer.name" />
+			<br />
+			Customer City</br>
+			<input type="text" data-ng-model="newCustomer.city" />
+			<br/>
+			<button data-ng-click="addCustomer()">Add Customer</button>
+		</div>
+	</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+
+
+<script>
+	// The array is for dependency injection, what modules does it rely on?
+	// Go and find those modules, and inject it in so that it's available within
+	// the following module!
+	var demoApp = angular.module('demoApp', []);
+
+	demoApp.config(function ($routeProvider) {
+		$routeProvider
+			.when('/',
+				{
+					controller: 'SimpleController',
+					//templateUrl: 'View1.html'
+				})
+			.when('/partial2',
+				{
+					controller: 'SimpleController',
+					//templateUrl: 'View2.html'
+				})
+			.otherwise(
+				{ 
+					redirectTo: '/' 
+				}
+			);
+	});
+
+	var controllers = {};
+
+	// $scope is the glue between the view and the controller
+	// Dependency injection $scope object built-into AngularJS
+	controllers.SimpleController = function ($scope) {
+		$scope.customers = [
+			{ name: 'David Jones', city: 'Phoenix' },
+			{ name: 'Jamie Riley', city: 'Atlanta' },
+			{ name: 'Thomas Winter', city: 'Seattle' }
+		];
+
+		$scope.addCustomer = function () {
+			$scope.customers.push({
+				name: $scope.newCustomer.name,
+				city: $scope.newCustomer.city,
+			});
+		};
+	}
+
+	demoApp.controller(controllers);
+
+</script>
+</body>
+</html>

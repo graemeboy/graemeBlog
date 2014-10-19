@@ -1,5 +1,11 @@
 var posts = [
   {
+    slug: 'habit-vs-creativity',
+    title: "Habit vs Creativity?",
+    cat: 'psychology',
+    tags: ['habit', 'creativity']
+  },
+  {
     slug: 'social-drinking-genetic',
     title: "Social Drinking - It's in Your Genes",
     cat: 'psychology',

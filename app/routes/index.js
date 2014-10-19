@@ -19,6 +19,12 @@ router.get('/', function (req, res) {
 
 });
 
+router.get('/angular', function (req, res) {
+	res.render('pages/angular', {
+		
+	})
+})
+
 // Search
 router.get('/search', function (req,res) {
 	var q;
