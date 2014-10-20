@@ -1,5 +1,11 @@
 var posts = [
   {
+    slug: 'coding-style',
+    title: 'Coding Style - How Much Does it Matter?',
+    cat: 'coding',
+    tags: ['style']
+  },
+  {
     slug: 'habit-vs-creativity',
     title: "Habit vs Creativity?",
     cat: 'psychology',

@@ -1,0 +1,43 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<div class="page-content">
+<p>Coding style matters a lot to me - perhaps more than is reasonable. I grew up wanting to be a literary writer, and I deeply appreciate well written natural language, but if the compiler doesn't care about your <em>programming</em> style, then why ought anyone to care about it?</p>
+
+<p>Coding and collaborating on good programs is really difficult, and any practice that makes it more difficult is unreasonable.</p>
+
+<p>Sure, there is a trade-off: efficiency vs. ease of maintaince. But one of these factors gets <em>less</em> important over time (as computers get more efficient), and one of those gets <em>more</em> important (as systems get more complicated, modules fade from memory, and languages change and go out of fashion.)</p>
+
+<p>So perhaps we should focus more on making code understandable than on code efficiency.</p>
+
+<p><strong>How do we improve code understandability?</strong></p>
+
+<p>I think this depends largely on the language. Not just because each community is used to reading the language is a certain way - but also because each community has created customs to overcome its language's flaws.</p>
+
+<p>For example, Douglas Crockford is well known evangelist for JavaScript, giving techincal talks around the world on the "good and bad parts" of JavaScript. In these talks and in his book, he mentions examples of known weakness in JS, such as automatic semicolon insertion.</p>
+
+<p>E.g. in JavaScript this:</p>
+
+<pre><code>return {
+    name: "Graeme"
+};
+</code></pre>
+
+<p>Is not the same as:</p>
+
+<pre><code>return
+{
+    name: "Graeme"
+};
+</code></pre>
+
+<p>Because in the second sample of code, automatic semicolon insertion will simply cause the code to return <em>null</em> ("return;"). This gives us a really good reason to put curly braces inline. In languages that don't have this problem, programmers have more options, but JavaScripts particularities recommends this as a standard in coding style. But each language should have a standard about this (even though it's quite trivial), because it will make reading and understanding the language easier (and quicker) to do, and therefore development and maintainance easier as well - hooray!</p>
+
+<p>This is like optimising <em>programmer</em> efficiency rather than computer efficiency. And let's face it, who really needs the optimization the most these days? The code is always going to get quicker, but we're probably going to get slower at reading it (until we get smart drugs that actually work.)</p>
+
+<p>This is a simple example that I've given, but I think that it illustrates the point really well.</p>
+
+</div></div>
+
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>
