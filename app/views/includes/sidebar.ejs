@@ -18,6 +18,14 @@
         		<input type="submit" id="search-button" class="btn btn-default" value="Find">
         </div>
 
+        <h4>Send me a tweet <small>It's sweet</small></h4>
+        <div>
+            <div class="form-group">
+                <textarea id="sidebar-tweet-text" class="form-control">Hey @graeme_boy, I'm reading your blog!</textarea>
+            </div>
+            <div><a id="sidebar-tweet-button" href="#" class="btn btn-default">Post Tweet</a></div>
+        </div>
+        <script>var tweetButton = document.getElementById('sidebar-tweet-button');var tweetText = document.getElementById('sidebar-tweet-text');tweetButton.addEventListener('click', function (evt) {tweetButton.href = 'http://twitter.com/share?text=' + tweetText.value + '&related=graeme_boy'; });</script>
         <h4>Natural Language Clock <small>Just for fun</small></h4>
         <a href="https://github.com/graemeboy/Qlock---natural-language-clock-interface">
             <div style="background-color:#fff;margin-top:15px">
