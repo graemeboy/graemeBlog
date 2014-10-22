@@ -1,0 +1,24 @@
+<% include includes/header %>
+        <h1 class="page-title"><%= title %></h1>
+        <p class="lead">Here are my most recent posts. There are <%= posts.length %> in total.</p>
+
+         <% for (var i in posts) { %>
+        <div class="archive-post-container" data-tags="<%= posts[i].tags %>">
+            <h3 class="archive-title">
+                <a href="/<%= posts[i].slug %>"><%= posts[i].title %></a>
+            </h3>
+            <div class="post-meta" style="margin-top:0;margin-left:10px">
+                <span style="margin-right:10px">Category: <a href="/cat/<%= posts[i].cat %>"><%= posts[i].cat %></a></span>
+            <% if (typeof posts[i].tags != 'undefined') { %>
+                <span>Tags: <%= posts[i].tags.join(", ") %></span>
+            <% } %>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <% } %>
+
+        <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+<% include includes/sidebar %>
+<% include includes/footer %>

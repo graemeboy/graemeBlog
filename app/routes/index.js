@@ -25,6 +25,8 @@ router.get('/angular', function (req, res) {
 	})
 })
 
+
+
 // Search
 router.get('/search', function (req,res) {
 	var q;
@@ -50,6 +52,15 @@ function getNumPosts () {
 
 // Load all of the post data
 posts = require('./posts.js').posts;
+
+router.get('/all-posts', function (req, res) {
+	res.render('all-posts', {
+		title: 'Posts from All Categories',
+		posts: posts,
+		cats: getCats(),
+		category: 'all',
+	})
+});
 
 /*
 	Category Archive

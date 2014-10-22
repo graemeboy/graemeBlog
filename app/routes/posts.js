@@ -1,5 +1,11 @@
 var posts = [
   {
+    slug: 'better-job-titles',
+    title: 'Revolutionize Job Titles - Improve Job Satisfaction  and Performance in One Creative Step',
+    cat: 'product',
+    tags: ['hiring', 'strategy']
+  },
+  {
     slug: 'coding-style',
     title: 'Coding Style - How Much Does it Matter?',
     cat: 'coding',
