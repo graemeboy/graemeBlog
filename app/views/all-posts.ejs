@@ -1,6 +1,8 @@
 <% include includes/header %>
-        <h1 class="page-title"><%= title %></h1>
-        <p class="lead">Here are my most recent posts. There are <%= posts.length %> in total.</p>
+<% title += '<br/><small>Showing ' + posts.length + ' recent posts</small>'; %>
+<% include includes/post-content-head %>
+
+
 
          <% for (var i in posts) { %>
         <div class="archive-post-container" data-tags="<%= posts[i].tags %>">

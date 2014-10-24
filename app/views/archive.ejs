@@ -1,6 +1,6 @@
 <% include includes/header %>
-        <h1 class="page-title"><%= title %></h1>
-        <p class="lead">Here are some articles that I have written on the topic of <%= category%>.</p>
+<% title += '<br/><small>Showing ' + catPosts.length + ' recent posts</small>'; %>
+<% include includes/post-content-head %>
 
         <div>
             <h4>Filter by Tag</h4>
