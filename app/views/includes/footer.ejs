@@ -2,14 +2,43 @@
         <!-- Clear before adding the footer -->
         <div class="clearfix"></div>
         <footer id="footer">
-            <div class="col-sm-12">
-                <div class="container">
-                    <p>Graeme Boy (Grinnell, IA, USA) - 2014 </p>
-                    <p class="footer-credit"></p>
+          
+            <div class="col-sm-3 col-sm-offset-2">
+              <% if (typeof cats != 'undefined') { %>
+                 <h4>Article Categories</h4>
+                    <ul class="cat-list" style="padding-left:0">
+                        <li <% if (typeof category != 'undefined' && category == 'all') { %> class="active" <% } %>>
+                            <a href="/all-posts" >Posts from all categories (<%= posts.length %>)</a>
+                        </li>  
+                    <% for (var cat in cats) { %>
+                      <li <% if (typeof category != 'undefined' && cat == category) { %> class="active" <% } %>>
+                        <a href="/cat/<%= cat %>"><%= cat %> (<%= cats[cat] %>)</a></li>
+                    <% } %>
+                    </ul>
+            <% } %>
+            </div>
+            
+            <div class="col-sm-3">
+              <h4>Search Articles</h4>
+                <div>
+                  <form method="get" action="/search" class="form-inline">
+                  <input type="text" id="search-input" class="form-control" value="<%if (typeof category != 'undefined' && category === 'search'){%><%=q%><%}%>" name="q" style="width:150px">
+                    <input type="submit" id="search-button" class="btn btn-default" value="Find">
                 </div>
             </div>
+            <div class="col-sm-2">
+                <h4>Send me a tweet <small>It's sweet</small></h4>
+                <div>
+                    <div class="form-group">
+                        <textarea style="border:1px solid #55AACE" id="sidebar-tweet-text" class="form-control">Hey @graeme_boy, I'm reading your blog!</textarea>
+                    </div>
+                    <div><a id="sidebar-tweet-button" href="#" class="btn btn-default">Post Tweet</a></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </footer>
         
+        <script>var tweetButton = document.getElementById('sidebar-tweet-button');var tweetText = document.getElementById('sidebar-tweet-text');tweetButton.addEventListener('click', function (evt) {tweetButton.href = 'http://twitter.com/share?text=' + tweetText.value + '&related=graeme_boy'; });</script>
 
         <% if (typeof category != 'undefined' && category !== 'none' && typeof tags != 'undefined') { %>
           <script>var y = document.getElementsByClassName('page-content'),

@@ -1,5 +1,11 @@
 <% include includes/header %>
-        <h1 class="page-title">Search results for "<%= q %>"</h1>
+<% title = 'Search results for "' + q + '"';
+if (qPosts !== undefined && qPosts.length > 0) {
+    title += '<br><small>'+qPosts.length+' articles were found</small>';
+}
+%>
+<% include includes/post-content-head %>
+        <h1 class="page-title"></h1>
             
         <% if (qPosts !== undefined && qPosts.length > 0) { %>
         <% for (var slug in qPosts) { %>

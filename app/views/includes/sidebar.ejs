@@ -1,36 +1,11 @@
-<div class="sidebar col-sm-3 col-sm-offset-1" role="complimentary">
-    <div class="container-fluid">
-        <h4>Article Categories</h4>
-        <ul class="cat-list" style="padding-left:0">
-            <li <% if (category == 'all') { %> class="active" <% } %>>
-                <a href="/all-posts" >Posts from all categories (<%= posts.length %>)</a>
-            </li>  
-        <% for (var cat in cats) { %>
-        	<li <% if (cat == category) { %> class="active" <% } %>>
-        		<a href="/cat/<%= cat %>"><%= cat %> (<%= cats[cat] %>)</a></li>
-        <% } %>
-        </ul>
-
-        <h4>Search Articles</h4>
-        <div>
-        	<form method="get" action="/search" class="form-inline">
-    			<input type="text" id="search-input" class="form-control" value="<%if (category === 'search'){%><%=q%><%}%>" name="q" style="width:150px">
-        		<input type="submit" id="search-button" class="btn btn-default" value="Find">
-        </div>
-
-        <h4>Send me a tweet <small>It's sweet</small></h4>
-        <div>
-            <div class="form-group">
-                <textarea style="border:1px solid #55AACE" id="sidebar-tweet-text" class="form-control">Hey @graeme_boy, I'm reading your blog!</textarea>
-            </div>
-            <div><a id="sidebar-tweet-button" href="#" class="btn btn-default">Post Tweet</a></div>
-        </div>
-        <script>var tweetButton = document.getElementById('sidebar-tweet-button');var tweetText = document.getElementById('sidebar-tweet-text');tweetButton.addEventListener('click', function (evt) {tweetButton.href = 'http://twitter.com/share?text=' + tweetText.value + '&related=graeme_boy'; });</script>
-        <h4>Natural Language Clock <small>Just for fun</small></h4>
+<div class="clearfix"></div>
+<!-- <div class="sidebar col-sm-offset-1" role="complimentary">
+    <div class="container-fluid"> -->
+        <!-- <h4>Natural Language Clock <small>Just for fun</small></h4>
         <a href="https://github.com/graemeboy/Qlock---natural-language-clock-interface">
             <div style="background-color:#fff;margin-top:15px">
                 <div id="qlock" class="qlock qlock-light"></div>
             </div>
-        </a>
-    </div>
-</div>
+        </a> -->
+    <!-- </div>
+</div> -->
