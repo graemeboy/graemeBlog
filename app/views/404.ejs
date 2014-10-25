@@ -1,13 +1,9 @@
 <% include includes/header %>
-    <div class="main col-sm-9">
-        <div class="container-fluid">
-            <h1 class="page-title">
-                <img height="46px" width="width:46px" src="/img/frown-o.svg" onerror="this.onerror=null; this.src='/img/frown-0.png'"> Page Not Found</h1>
-            <div class="page-content">
-                <p>Sorry, it seems that the page you're requesting is not available.</p>
-                <p>If you would like to let me know about this aweful incident, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just found a 404 on your blog!">send me a tweet</a> and I will gratefully get back to you!</p>
-            </div>
-        </div>
+<% title = '<img height="46px" width="width:46px" style="margin-right:5px" src="/img/frown-o.svg" onerror="this.onerror=null; this.src=\'/img/frown-0.png\'">' + 'Page not Found'; %>
+<% include includes/post-content-head %>
+    <div class="page-content" style="text-align:center">
+        <p>Sorry, it seems that the page you're requesting is not available.</p>
+        <p>If you would like to let me know about this aweful incident, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just found a 404 on your blog!">send me a tweet</a> and I will gratefully get back to you!</p>
     </div>
-
+<script>var tw = document.getElementById('twitterShare'); tw.style.display = 'none';</script>
     <% include includes/footer %>
