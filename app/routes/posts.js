@@ -1,5 +1,11 @@
 var posts = [
   {
+    slug: 'keypad-problem',
+    title: 'The Keypad Problem',
+    cat: 'coding',
+    tags: ['algorithms', 'javascript']
+  },
+  {
     slug: 'better-job-titles',
     title: 'Revolutionize Job Titles - Improve Job Satisfaction  and Performance in One Creative Step',
     cat: 'product',
