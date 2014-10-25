@@ -28,6 +28,44 @@ function getCharsForNumber(num) {
 }
 </code></pre>
 
+<p>The other approach, using character codes, would look like this:</p>
+
+<pre><code>/**
+ * Returns an array of characters for a given number
+ */
+function getCharsForNumber(num) {
+        var chars = [];
+        var i; // just an iterating variable
+
+        // The number of letters in a digit (3 or 4, usually 3)
+        var factor = 3;
+        // The offset from charcode to char
+        var numLettersOffset = -6; // skip 1 and 2
+
+        // Some conditionals for matching keypad numbers to chars
+        // E.g. 7 and 9 both have four letters to a digit
+        if (num === 1) {
+            factor = 0;
+        } else if (num === 7) {
+            factor = 4;
+        } else if (num === 8) {
+            numLettersOffset = -5;
+        } else if (num === 9) {
+            factor = 4;
+            numLettersOffset = -5;
+        }
+
+        // Add the letters to the word
+        for (i = 0; i &lt; factor; i += 1) {
+            // Convert to a character and then save to the letters 2d array
+            chars.push(String.fromCharCode(num * 3 + 
+                i + 'a'.charCodeAt(0) + numLettersOffset));
+        }
+
+        return chars;
+}
+</code></pre>
+
 <h4>Step 2: Write a function to combine chars recursively from arrays of possibilities</h4>
 
 <p>We know from the above function that we're going to end up with a bunch of arrays of characters, but we only want to combine exactly one character from each array for all possible combinations. #combinatorics</p>
