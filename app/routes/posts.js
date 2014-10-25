@@ -33,7 +33,7 @@ var posts = [
     slug: 'sum-1000-primes',
     title: 'Sum the First 1000 Primes',
     cat: 'coding',
-    tags: ['algorithms']
+    tags: ['algorithms', 'javascript']
   },
   {
     slug: 'flat-file-blogging',
@@ -45,7 +45,7 @@ var posts = [
     slug: 'chars-string-unique',
     title: 'Check if the Characters in a String are Unique (Five Approaches)',
     cat: 'coding',
-    tags: ['algorithms']
+    tags: ['algorithms', 'javascript']
   },
   {
     slug: 'nodejs-chat-app',
@@ -71,7 +71,7 @@ var posts = [
   { slug: 'nuts-bolts-problem',
     title: 'The Nuts and Bolts Problem (An Approach)',
     cat: 'coding',
-    tags: ['algorithms']
+    tags: ['algorithms', 'javascript']
   },
   { slug: 'node-fs',
     title: 'Using the Node.js FS Module',
