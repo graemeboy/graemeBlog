@@ -17,41 +17,14 @@
 
 <h4>Step 1. Get associated characters for a number</h4>
 
-<p>Write a function that takes in an integer, and returns all of the characters associated. You could use a hash table for this, or use the keycodes of characters (which is what I did):</p>
+<p>Write a function that takes in an integer, and returns all of the characters associated. You could use a some kind hash table for this, or use the keycodes of characters. I took a simple approach with an array:</p>
 
 <pre><code>/**
  * Returns an array of characters for a given number
  */
 function getCharsForNumber(num) {
-        var chars = [];
-        var i; // just an iterating variable
-
-        // The number of letters in a digit (3 or 4, usually 3)
-        var factor = 3;
-        // The offset from charcode to char
-        var numLettersOffset = -6; // skip 1
-
-        // Some conditionals for matching keypad numbers to chars
-        // E.g. 7 and 9 both have four letters to a digit
-        if (num === 1) {
-            factor = 0;
-        } else if (num === 7) {
-            factor = 4;
-        } else if (num === 8) {
-            numLettersOffset = -5;
-        } else if (num === 9) {
-            factor = 4;
-            numLettersOffset = -5;
-        }
-
-        // Add the letters to the word
-        for (i = 0; i &lt; factor; i += 1) {
-            // Convert to a character and then save to the letters 2d array
-            chars.push(String.fromCharCode(num * 3 + 
-                i + 'a'.charCodeAt(0) + numLettersOffset));
-        }
-
-        return chars;
+    var letters = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'];
+    return letters[num - 2];
 }
 </code></pre>
 
