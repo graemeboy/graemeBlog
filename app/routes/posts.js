@@ -1,4 +1,10 @@
 var posts = [
+{
+  slug: 'problematic-coding-interviews',
+  title: 'The Problem with Techinical Interviews',
+  cat: 'coding',
+  tags: ['hiring', 'interviews']
+},
   {
     slug: 'keypad-problem',
     title: 'The Keypad Problem',
