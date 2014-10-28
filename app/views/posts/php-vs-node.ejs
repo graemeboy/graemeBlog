@@ -23,11 +23,11 @@
         <p>There is a problem with saying that Node.js is faster than PHP. It&rsquo;s not. There is a trivial and humorous proof: No programming language in the world is, or will ever be, faster than the PHP &ldquo;Hello World&rdquo; app:</p>
         <p>Hello world in PHP:</p>
         <p>
-            <code>Hello world</code>
+            <pre><code class="php">Hello world</code></pre>
         </p>
         <p>Hello world in JavaScript (without creating the server):</p>
         <p>
-            <code>console.log('Hello World');</code>
+            <pre><code class="javascript">console.log('Hello World');</code></pre>
         </p>
         <p>However, this is sort of a cheat, and for most common implementations and third-party packages, it is true that Node.js will out perform PHP. In one test between Ghost and Wordpress, for example,
             <a href="http://www.appdynamics.com/blog/nodejs/an-example-of-how-node-js-is-faster-than-php/">Ghost on NginX was over 6 times faster for certain operations than Wordpress on Apache</a>. The reason for this is that JavaScript is non-blocking, while PHP waits for each task to complete before it begins its next task (which also requires more memory). Similarly, for &ldquo;web scraping,&rdquo; a common Node.js library
