@@ -1,7 +1,7 @@
 var posts = [
 {
   slug: 'problematic-coding-interviews',
-  title: 'The Problem with Techinical Interviews',
+  title: 'The Problem with Technical Interviews',
   cat: 'coding',
   tags: ['hiring', 'interviews']
 },
