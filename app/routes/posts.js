@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'joy',
+  title: 'The Joy Drill',
+  cat: 'psychology',
+  tags: ['happiness', 'positive psychology']
+},
+{
   slug: 'problematic-coding-interviews',
   title: 'The Problem with Technical Interviews',
   cat: 'coding',

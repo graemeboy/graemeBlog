@@ -25,11 +25,11 @@ router.get('/angular', function (req, res) {
 	})
 })
 
-router.get('/joy', function (req, res) {
-	res.render('pages/joy-drill', {
-		'title': 'The Joy Drill'
-	});
-});
+// router.get('/joy', function (req, res) {
+// 	res.render('pages/joy-drill', {
+// 		'title': 'The Joy Drill'
+// 	});
+// });
 
 
 router.use(function(req, res, next) {
