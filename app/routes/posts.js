@@ -1,7 +1,7 @@
 var posts = [
 {
   slug: 'joy',
-  title: 'The Joy Drill',
+  title: 'The Joy Supplement',
   cat: 'psychology',
   tags: ['happiness', 'positive psychology']
 },
