@@ -1,5 +1,17 @@
 var posts = [
 {
+  slug: 'beautiful-2',
+  title: 'Beautiful Moment #2 - Enough',
+  cat: 'beautiful moments',
+  tags: ['happiness', 'enough']
+},
+{
+  slug: 'beautiful-1',
+  title: 'Beautiful Moment #1 - Freedom and Oneness',
+  cat: 'beautiful moments',
+  tags: ['happiness', 'oneness', 'nature']
+},
+{
   slug: 'joy',
   title: 'The Joy Supplement',
   cat: 'psychology',
