@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'stoic-sentence-completion',
+  title: 'Stoic Sentence Completion Exercises',
+  cat: 'psychology',
+  tags: ['stoicism', 'sentence completion']
+},
+{
   slug: 'beautiful-2',
   title: 'Beautiful Moment #2 - Enough',
   cat: 'beautiful moments',
@@ -15,7 +21,7 @@ var posts = [
   slug: 'joy',
   title: 'The Joy Supplement',
   cat: 'psychology',
-  tags: ['happiness', 'positive psychology']
+  tags: ['happiness', 'positive psychology', 'sentence completion']
 },
 {
   slug: 'problematic-coding-interviews',
