@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'css-table-styles',
+  title: 'Beautiful CSS for Tables',
+  cat: 'coding',
+  tags: ['css', 'design']
+},
+{
   slug: 'stoic-sentence-completion',
   title: 'Stoic Sentence Completion Exercises',
   cat: 'psychology',

@@ -1,0 +1,701 @@
+<% include ../includes/header %>
+<% title += '<br/><small>Spice up your tables with these elegant CSS styles</small>'; %>
+<% include ../includes/post-content-head %>
+
+<style>
+/* Border styles */
+#table-1 thead, #table-1 tr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(168, 192, 221);
+}
+#table-1 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(168, 192, 221);
+}
+
+/* Padding and font style */
+#table-1 td, #table-1 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	color: rgb(92, 125, 162);
+}
+
+/* Alternating background colors */
+#table-1 tr:nth-child(even) {
+	background: rgb(211, 223, 237)
+}
+#table-1 tr:nth-child(odd) {
+	background: #FFF
+}
+
+/* Border styles */
+#table-2 thead, #table-2 tr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(230, 189, 189);
+}
+#table-2 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(230, 189, 189);
+}
+
+/* Padding and font style */
+#table-2 td, #table-2 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	color: rgb(177, 106, 104);
+}
+
+/* Alternating background colors */
+#table-2 tr:nth-child(even) {
+	background: rgb(238, 211, 210)
+}
+#table-2 tr:nth-child(odd) {
+	background: #FFF
+}
+
+/* Border styles */
+#table-3 thead, #table-3 tr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(235, 242, 224);
+}
+#table-3 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(235, 242, 224);
+}
+
+/* Padding and font style */
+#table-3 td, #table-3 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	color: rgb(149, 170, 109);
+}
+
+/* Alternating background colors */
+#table-3 tr:nth-child(even) {
+	background: rgb(230, 238, 214)
+}
+#table-3 tr:nth-child(odd) {
+	background: #FFF
+}
+
+/* Border styles */
+#table-4 thead, #table-4 tr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(211, 202, 221);
+}
+#table-4 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(211, 202, 221);
+}
+
+/* Padding and font style */
+#table-4 td, #table-4 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	color: rgb(95, 74, 121);
+}
+
+/* Alternating background colors */
+#table-4 tr:nth-child(even) {
+	background: rgb(223, 216, 232)
+}
+#table-4 tr:nth-child(odd) {
+	background: #FFF
+}
+
+/* Table Head */
+#table-5 thead th {
+	background-color: rgb(156, 186, 95);
+	color: #fff;
+	border-bottom-width: 0;
+}
+
+/* Column Style */
+#table-5 td {
+	color: #000;
+}
+/* Heading and Column Style */
+#table-5 tr, #table-5 th {
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(156, 186, 95);
+}
+
+/* Padding and font style */
+#table-5 td, #table-5 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	font-weight: bold;
+}
+
+/* Table Head */
+#table-6 thead th {
+	background-color: rgb(128, 102, 160);
+	color: #fff;
+	border-bottom-width: 0;
+}
+
+/* Column Style */
+#table-6 td {
+	color: #000;
+}
+/* Heading and Column Style */
+#table-6 tr, #table-6 th {
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(128, 102, 160);
+}
+
+/* Padding and font style */
+#table-6 td, #table-6 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	font-weight: bold;
+}
+
+/* Table Head */
+#table-7 thead th {
+	background-color: rgb(81, 130, 187);
+	color: #fff;
+	border-bottom-width: 0;
+}
+
+/* Column Style */
+#table-7 td {
+	color: #000;
+}
+/* Heading and Column Style */
+#table-7 tr, #table-7 th {
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(81, 130, 187);
+}
+
+/* Padding and font style */
+#table-7 td, #table-7 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	font-weight: bold;
+}
+</style>
+
+<div class="post-content">
+
+<div class="col-md-6">
+	<h4>Design Preview</h4>
+<table id="table-1">
+	<thead>
+		<th>Name</th>
+		<th>City</th>
+		<th>Phone</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Albert Ellis</td>
+			<td>New York</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Marcus Aurelius</td>
+			<td>Rome</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Epictetus</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Aristotle</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="col-md-6">
+	<h4>CSS Code</h4>
+<pre><code class="css">/* Border styles */
+#table-1 thead, #table-1 tr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(230, 189, 189);
+}
+#table-1 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(230, 189, 189);
+}
+
+/* Padding and font style */
+#table-1 td, #table-1 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	color: rgb(177, 106, 104);
+}
+
+/* Alternating background colors */
+#table-1 tr:nth-child(even) {
+	background: rgb(238, 211, 210)
+}
+#table-1 tr:nth-child(odd) {
+	background: #FFF
+}
+</code></pre>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="col-md-6">
+	<h4>Design Preview</h4>
+<table id="table-2">
+	<thead>
+		<th>Name</th>
+		<th>City</th>
+		<th>Phone</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Albert Ellis</td>
+			<td>New York</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Marcus Aurelius</td>
+			<td>Rome</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Epictetus</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Aristotle</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="col-md-6">
+	<h4>CSS Code</h4>
+<pre><code class="css">/* Border styles */
+#table-2 thead, #table-2 tr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(230, 189, 189);
+}
+#table-2 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(230, 189, 189);
+}
+
+/* Padding and font style */
+#table-2 td, #table-2 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	color: rgb(177, 106, 104);
+}
+
+/* Alternating background colors */
+#table-2 tr:nth-child(even) {
+	background: rgb(238, 211, 210)
+}
+#table-2 tr:nth-child(odd) {
+	background: #FFF
+}
+</code></pre>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="col-md-6">
+	<h4>Design Preview</h4>
+<table id="table-3">
+	<thead>
+		<th>Name</th>
+		<th>City</th>
+		<th>Phone</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Albert Ellis</td>
+			<td>New York</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Marcus Aurelius</td>
+			<td>Rome</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Epictetus</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Aristotle</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="col-md-6">
+	<h4>CSS Code</h4>
+<pre><code class="css">/* Border styles */
+#table-3 thead, #table-3 tr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(235, 242, 224);
+}
+#table-3 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(235, 242, 224);
+}
+
+/* Padding and font style */
+#table-3 td, #table-3 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	color: rgb(149, 170, 109);
+}
+
+/* Alternating background colors */
+#table-3 tr:nth-child(even) {
+	background: rgb(230, 238, 214)
+}
+#table-3 tr:nth-child(odd) {
+	background: #FFF
+}
+</code></pre>
+</div>
+
+
+<div class="clearfix"></div>
+
+<div class="col-md-6">
+	<h4>Design Preview</h4>
+<table id="table-4">
+	<thead>
+		<th>Name</th>
+		<th>City</th>
+		<th>Phone</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Albert Ellis</td>
+			<td>New York</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Marcus Aurelius</td>
+			<td>Rome</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Epictetus</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Aristotle</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="col-md-6">
+	<h4>CSS Code</h4>
+<pre><code class="css">/* Border styles */
+#table-4 thead, #table-4 tr {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(211, 202, 221);
+}
+#table-4 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(211, 202, 221);
+}
+
+/* Padding and font style */
+#table-4 td, #table-4 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	color: rgb(95, 74, 121);
+}
+
+/* Alternating background colors */
+#table-4 tr:nth-child(even) {
+	background: rgb(223, 216, 232)
+}
+#table-4 tr:nth-child(odd) {
+	background: #FFF
+}
+</code></pre>
+</div>
+
+
+<div class="clearfix"></div>
+
+<div class="col-md-6">
+	<h4>Design Preview</h4>
+<table id="table-5">
+	<thead>
+		<th>Name</th>
+		<th>City</th>
+		<th>Phone</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Albert Ellis</td>
+			<td>New York</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Marcus Aurelius</td>
+			<td>Rome</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Epictetus</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Aristotle</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="col-md-6">
+	<h4>CSS Code</h4>
+<pre><code class="css">/* Table Head */
+#table-5 thead th {
+	background-color: rgb(156, 186, 95);
+	color: #fff;
+	border-bottom-width: 0;
+}
+
+/* Column Style */
+#table-5 td {
+	color: #000;
+}
+/* Heading and Column Style */
+#table-5 tr, #table-5 th {
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(156, 186, 95);
+}
+
+/* Padding and font style */
+#table-5 td, #table-5 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	font-weight: bold;
+}
+</code></pre>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="col-md-6">
+	<h4>Design Preview</h4>
+<table id="table-6">
+	<thead>
+		<th>Name</th>
+		<th>City</th>
+		<th>Phone</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Albert Ellis</td>
+			<td>New York</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Marcus Aurelius</td>
+			<td>Rome</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Epictetus</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Aristotle</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="col-md-6">
+	<h4>CSS Code</h4>
+<pre><code class="css">/* Table Head */
+#table-6 thead th {
+	background-color: rgb(128, 102, 160);
+	color: #fff;
+	border-bottom-width: 0;
+}
+
+/* Column Style */
+#table-6 td {
+	color: #000;
+}
+/* Heading and Column Style */
+#table-6 tr, #table-6 th {
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(128, 102, 160);
+}
+
+/* Padding and font style */
+#table-6 td, #table-6 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	font-weight: bold;
+}
+</code></pre>
+</div>
+
+
+<div class="clearfix"></div>
+
+<div class="col-md-6">
+	<h4>Design Preview</h4>
+<table id="table-7">
+	<thead>
+		<th>Name</th>
+		<th>City</th>
+		<th>Phone</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Albert Ellis</td>
+			<td>New York</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Marcus Aurelius</td>
+			<td>Rome</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Epictetus</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+		<tr>
+			<td>Aristotle</td>
+			<td>Greece</td>
+			<td>+1 718 000000</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="col-md-6">
+	<h4>CSS Code</h4>
+<pre><code class="css">/* Table Head */
+#table-7 thead th {
+	background-color: rgb(81, 130, 187);
+	color: #fff;
+	border-bottom-width: 0;
+}
+
+/* Column Style */
+#table-7 td {
+	color: #000;
+}
+/* Heading and Column Style */
+#table-7 tr, #table-7 th {
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(81, 130, 187);
+}
+
+/* Padding and font style */
+#table-7 td, #table-7 th {
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Verdana;
+	font-weight: bold;
+}
+</code></pre>
+</div>
+
+<div class="cleafix"></div>
+
+<h3 style="margin-top:15px">Table Code</h3>
+<p>The code that I've used for all of these tables is as follows</h3>
+
+<pre><code class="html">&#x3C;table id=&#x22;table-1&#x22;&#x3E; &#x3C;!-- Replace "table-1" with any of the design numbers --&#x3E;
+    &#x3C;thead&#x3E;
+        &#x3C;th&#x3E;Name&#x3C;/th&#x3E;
+        &#x3C;th&#x3E;City&#x3C;/th&#x3E;
+        &#x3C;th&#x3E;Phone&#x3C;/th&#x3E;
+    &#x3C;/thead&#x3E;
+    &#x3C;tbody&#x3E;
+        &#x3C;tr&#x3E;
+            &#x3C;td&#x3E;Albert Ellis&#x3C;/td&#x3E;
+            &#x3C;td&#x3E;New York&#x3C;/td&#x3E;
+            &#x3C;td&#x3E;+1 718 000000&#x3C;/td&#x3E;
+        &#x3C;/tr&#x3E;
+        &#x3C;tr&#x3E;
+            &#x3C;td&#x3E;Marcus Aurelius&#x3C;/td&#x3E;
+            &#x3C;td&#x3E;Rome&#x3C;/td&#x3E;
+            &#x3C;td&#x3E;+1 718 000000&#x3C;/td&#x3E;
+        &#x3C;/tr&#x3E;
+        &#x3C;tr&#x3E;
+            &#x3C;td&#x3E;Epictetus&#x3C;/td&#x3E;
+            &#x3C;td&#x3E;Greece&#x3C;/td&#x3E;
+            &#x3C;td&#x3E;+1 718 000000&#x3C;/td&#x3E;
+        &#x3C;/tr&#x3E;
+        &#x3C;tr&#x3E;
+            &#x3C;td&#x3E;Aristotle&#x3C;/td&#x3E;
+            &#x3C;td&#x3E;Greece&#x3C;/td&#x3E;
+            &#x3C;td&#x3E;+1 718 000000&#x3C;/td&#x3E;
+        &#x3C;/tr&#x3E;
+    &#x3C;/tbody&#x3E;
+&#x3C;/table&#x3E;</code></pre>
+
+</div>
+</div>
+
+<% include ../includes/footer %>
