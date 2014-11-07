@@ -107,21 +107,163 @@ color: #fff;
 </style>
 
     <div class="page-content">
-        <p>Here are some creative logout buttons that I put together. They don't <i>do</i> anything fancy, but they're statically pretty cool. To get darker shades for colors (e.g. for box shadowing), I used one of my favorite sources: <a href="http://0to255.com">0to255.com</a>. Colors themselves were inspired by buttons on Twitter, Stackoverflow, and Lob.
+        <p>Here are some creative logout buttons that I put together. They don't <i>do</i> anything fancy, but they're statically pretty cool. You will need to have bootstrap glyphicons for these.</p>
 
-          <div>
+<div>
+<button class="exit-btn exit-btn-1">Exit</button>
+<button class="exit-btn exit-btn-2">Sign Off</button>
+<button class="exit-btn exit-btn-3">Log Out</button>
+<button class="exit-btn exit-btn-4">Quit</button>
+</div>
+
+<h3>Code for Buttons</h3>
+<div>
+  <p>All buttons have this CSS style first:</p>
+  <pre><code class="css">.exit-btn:after {
+content: '';
+position: absolute;
+z-index: -1;
+-webkit-transition: all 0.3s;
+-moz-transition: all 0.3s;
+transition: all 0.3s;
+}
+.exit-btn { border: none;
+font-family: inherit;
+font-size: inherit;
+color: inherit;
+background: none;
+cursor: pointer;
+padding: 25px 80px;
+display: inline-block;
+margin: 15px 30px;
+text-transform: uppercase;
+letter-spacing: 1px;
+font-weight: 700;
+outline: none;
+position: relative;
+-webkit-transition: all 0.3s;
+-moz-transition: all 0.3s;
+transition: all 0.3s; 
+}</code></pre>
+</div>
+
+<p>Following is the specific CSS code that you need for each button on top of this general CSS. But first, this is what the HTML looks like:</p>
+
+<pre><code class="html">&#x3C;button class=&#x22;exit-btn exit-btn-1&#x22;&#x3E; &#x3C;!-- replace "btn-1" with "btn-2", etc. --&#x3E;
+    Exit
+&#x3C;/button&#x3E;</code></pre>
+
+      <div class="col-sm-6">
+        <h4>Button #1 Preview</h4>
         <button class="exit-btn exit-btn-1">Exit</button>
       </div>
-      <div>
+      <div class="col-sm-6">
+        <h4>Button CSS</h4>
+        <pre class="css"><code>.exit-btn-1 {
+background: #f90;
+color: #fff;
+box-shadow: 0 6px #dd8500;
+-webkit-transition: none;
+-moz-transition: none;
+transition: none;
+border-radius: 50%;
+width: 90px;
+height: 90px;
+padding: 0;
+}
+        </code></pre>
+      </div>
+
+      <div class="clearfix"></div>
+
+
+      <div class="col-sm-6">
+        <h4>Button #2 Preview</h4>
          <button class="exit-btn exit-btn-2">Sign Off</button>
       </div>
+       <div class="col-sm-6">
+        <h4>Button CSS</h4>
+          <pre class="css"><code>
+.exit-btn-2 {
+padding: 25px 60px 25px 120px;
+border-radius: 10px;
+}
+.exit-btn-2 {
+background-color: #6f5499;
+color: #fff;
+}
+.exit-btn-2:before {
+position: absolute;
+height: 100%;
+left: 0;
+top: 0;
+line-height: 3;
+font-size: 140%;
+width: 60px;
+}
+.exit-btn-2:before {
+border-right: 2px solid rgba(255,255,255,0.5);
+content: "\e017";
+font-family: 'Glyphicons Halflings';
+}
+          </code></pre>
+       </div>
 
-       <div>
+       <div class="clearfix"></div>
+
+       <div class="col-sm-6">
+        <h4>Button #3 Preview</h4>
          <button class="exit-btn exit-btn-4">Quit</button>
       </div>
-
-       <div>
+      <div class="col-sm-6">
+        <h4>CSS Code</h4>
+        <pre><code class="css">.exit-btn-4:before {
+height: 60px;
+width: 100%;
+line-height: 60px;
+background: #fff;
+color: #3399cc;
+border-radius: 10px 10px 0 0;
+position: absolute;
+left: 0;
+top: 0;
+font-size: 140%;
+font-family: 'Glyphicons Halflings';
+content: "\e017";
+}
+.exit-btn-4 {
+padding: 80px 20px 20px 20px;
+border-radius: 10px;
+box-shadow: 0 3px #2c85b1;
+background: #3399cc;
+color: #fff;
+}</code></pre>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-sm-6">
+        <h4>Button #4 Preview</h4>
          <button class="exit-btn exit-btn-3">Log Out</button>
+      </div>
+      <div class="col-sm-6">
+        <h4>CSS Code</h4>
+        <pre><code class="css">.exit-btn-3 {
+background-color: #282F8A;
+color: #fff;
+border-radius: 7px;
+box-shadow: 0 5px #202670;
+padding: 25px 60px 25px 90px;
+}
+
+.exit-btn-3:before {
+position: absolute;
+left: 0;
+width: 40%;
+font-size: 160%;
+line-height: 0.8;
+color: #fff;
+content: "\e163";
+font-family: 'Glyphicons Halflings';
+}</code></pre>
       </div>
 
         
