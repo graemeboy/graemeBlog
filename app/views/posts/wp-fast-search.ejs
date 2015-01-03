@@ -1,0 +1,257 @@
+<% include ../includes/header %>
+<% title = 'WP Fast Search<br/><small>A blazingly fast drop-down search widget for Wordpress</small>'; %>
+<% include ../includes/post-content-head %>
+
+    <div class="page-content">
+      <div class="row">
+        <div class="col-sm-4">
+            <img src="/img/posts/wpFastDropdown.jpg" class="pull-left" style="width:100%">
+        </div>
+        <div class="col-sm-8">
+          <p>It's Saturday morning, and I'm bored, so I made this super fast 
+              drop-down search widget for Wordpress.</p>
+          <p>The plugin makes one call to get post data when the search input
+              is created, thus can provide an instantly responding search service.</p>
+          <p>The image on the left (or below) is a preview, but you can do a live
+            search example further down this page.</p>
+        </div>
+      </div>
+      
+
+      <h3>Installing the Plugin</h3>
+      <div class="row">
+        <div class="col-sm-7">
+          <p>Getting the plugin working is as simple as installing it and dragging
+          the widget into a given sidebar.</p>
+          <p>An example of typical settings are shown on the right.</p>
+        </div>
+        <div class="col-sm-5">
+          <img src="/img/posts/wpFastWidget.jpg" class="pull-right" style="width:100%">
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <h3>Fast Search Example</h3>
+      <p>So that you might get a feel of how the search works in the plugin,
+        before actually installing it on Wordpress, use the example below.</p>
+      <div class="wpfs-wrapper">
+        <input type="text" class="wpfs-input" placeholder="Example of WP Fast Search" >
+        <div class="wpfs-results-wrapper">
+          <ul class="wpfs-results"></ul>
+        </div>
+      </div>
+
+
+<style>
+  .wpfs-input {
+    width:100%;
+  }
+  .wpfs-input:focus {
+    outline:none;
+  }
+    .wpfs-results {
+      display:none;
+      position:absolute;
+      left:0;
+      z-index:3;
+      padding:0;
+      top:100%;
+      background-color: white;
+      transition-property: display;
+      transition-duration: 1s;
+      transition-timing-function: ease-out;
+      margin:2px 0 0 0;
+    }
+    .wpfs-open .wpfs-results {
+      display: block;
+    }
+    li.wpfs-result-item {
+      width:100%;
+      padding:0;
+      margin:0;
+      display:block;
+      background-color: white;
+    }
+    li.wpfs-result-item a {
+      text-align: left;
+      padding:10px 10px 10px 15px;
+      margin:0;
+      display:block;
+      list-style: none;
+      width:100%;
+      curssor:pointer;
+    }
+    li.wpfs-result-item a:hover {
+      text-decoration: none;
+    }
+    li.wpfs-selected a {
+      background-color: #f3f3f3;
+    }
+    .wpfs-results-wrapper {
+      position:relative;
+    }
+  </style>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script>
+  jQuery(document).ready(function ($) {
+    var postTitles = {
+"Never Let Me Go – Kazuo Ishiguro": '#',
+"Saturday – Ian McEwan": '#',
+"On Beauty – Zadie Smith": '#',
+"Slow Man – J.M. Coetzee": '#',
+"Adjunct: An Undigest – Peter Manson": '#',
+"The Sea – John Banville": '#',
+"The Red Queen – Margaret Drabble": '#',
+"The Plot Against America – Philip Roth": '#',
+"The Master – Colm Tóibín": '#',
+"Vanishing Point – David Markson": '#',
+"The Lambs of London – Peter Ackroyd": '#',
+ "Dining on Stones – Iain Sinclair": '#',
+ "Cloud Atlas – David Mitchell": '#',
+ "Drop City – T. Coraghessan Boyle": '#',
+ "The Colour – Rose Tremain": '#',
+ "Thursbitch – Alan Garner": '#',
+ "The Light of Day – Graham Swift": '#',
+ "What I Loved – Siri Hustvedt": '#',
+ "The Curious Incident of the Dog in the Night-Time – Mark Haddon": '#',
+ "Islands – Dan Sleigh": '#',
+ "Elizabeth Costello – J.M. Coetzee": '#',
+ "London Orbital – Iain Sinclair": '#',
+ "Family Matters – Rohinton Mistry": '#',
+ "Fingersmith – Sarah Waters": '#',
+ "The Double – José Saramago": '#',
+ "Everything is Illuminated – Jonathan Safran Foer": '#',
+ "Unless – Carol Shields": '#',
+ "Kafka on the Shore – Haruki Murakami": '#',
+ "The Story of Lucy Gault – William Trevor": '#',
+ "That They May Face the Rising Sun – John McGahern": '#',
+ "In the Forest – Edna O’Brien": '#',
+ "Shroud – John Banville": '#',
+ "Middlesex – Jeffrey Eugenides": '#',
+ "Youth – J.M. Coetzee": '#',
+ "Dead Air – Iain Banks": '#',
+ "Nowhere Man – Aleksandar Hemon": '#',
+ "The Book of Illusions – Paul Auster": '#',
+ "Gabriel’s Gift – Hanif Kureishi": '#',
+ "Austerlitz – W.G. Sebald": '#',
+ "Platform – Michael Houellebecq": '#',
+ "Schooling – Heather McGowan": '#',
+ "Atonement – Ian McEwan": '#',
+ "The Corrections – Jonathan Franzen": '#',
+ "Don’t Move – Margaret Mazzantini": '#',
+ "The Body Artist – Don DeLillo": '#',
+ "Fury – Salman Rushdie": '#',
+ "Two Boys – Jamie O’Neill": '#',
+ "Choke – Chuck Palahniuk": '#',
+ "Life of Pi – Yann Martel": '#',
+ "The Feast of the Goat – Mario Vargos Llosa": '#',
+ "An Obedient Father – Akhil Sharma": '#',
+ "The Devil and Miss Prym – Paulo Coelho": '#',
+ "Spring Frost – Ismail Kadare": '#',
+ "White Teeth – Zadie Smith": '#',
+ "The Heart of Redness – Zakes Mda": '#',
+ "Under the Skin – Michel Faber": '#',
+ "Ignorance – Milan Kundera": '#',
+ "Nineteen Seventy Seven – David Peace": '#',
+ "Celestial Harmonies – Péter Esterházy": '#',
+ "City of God – E.L. Doctorow": '#',
+ "How the Dead Live – Will Self": '#',
+ "The Human Stain – Philip Roth": '#',
+ "The Blind Assassin – Margaret Atwood": '#',
+ "After the Quake – Haruki Murakami": '#',
+ "Small Remedies – Shashi Deshpande": '#',
+ "Super-Cannes – J.G. Ballard": '#',
+ "House of Leaves – Mark Z. Danielewski": '#',
+ "Blonde – Joyce Carol Oates": '#',
+ "Pastoralia – George Saunders": '#'
+},
+      searchInput,
+      resultsLimit = 10,
+      results = [],
+      resultsEasyIndex = [],
+      numResults = 0,
+      wpfsWrapper,
+      resultsEl,
+      resultItem,
+      selectedIndex = -1;
+    $('.wpfs-input').focus(function () {
+      wpfsWrapper = $(this).parent();
+    }).keyup(function (e) {
+      var input = this;
+      if (e.which === 13 || e.keyCode === 13) {
+        if ($('.wpfs-selected').length > 0) {
+          var clicked = $('.wpfs-selected a').first();
+          $(input).val(clicked.text());
+          window.location.href=clicked.attr('href');
+        }
+      } else if (e.which === 38 || e.keyCode === 38) { // up
+        if (selectedIndex > 0) {
+          selectedIndex -= 1;
+          $('.wpfs-selected').removeClass('wpfs-selected');
+          $('.wpfs-result-' + selectedIndex).addClass('wpfs-selected');
+        }
+      } else if (e.which === 40 || e.keyCode === 40) { // down arrow
+        if (selectedIndex < numResults - 1) {
+          selectedIndex += 1;
+          $('.wpfs-selected').removeClass('wpfs-selected');
+          $('.wpfs-result-' + selectedIndex).addClass('wpfs-selected');
+        }
+      } else {
+        selectedIndex = -1;
+        searchInput = $(this).val().toLowerCase();
+        resultsEl = wpfsWrapper.find('.wpfs-results');
+        resultsEl.html('');
+        results = [];
+        resultsEasyIndex = [];
+        if (searchInput !== '') {
+          Object.keys(postTitles).forEach(function (key) {
+            if (key.toLowerCase().indexOf(searchInput) === 0 &&
+                results.length <= resultsLimit) {
+              results.push({key:postTitles[key],title:key});
+              resultsEasyIndex.push(postTitles[key]);
+            }
+          });
+          Object.keys(postTitles).forEach(function (key) {
+            if (key.toLowerCase().indexOf(searchInput) > -1 &&
+                results.length <= resultsLimit &&
+                resultsEasyIndex.indexOf(postTitles[key]) === -1) {
+                results.push({key:postTitles[key],title:key});
+            }
+          });
+          if ((numResults = results.length) > 0) {
+            wpfsWrapper.addClass("wpfs-open");
+            for (var i = 0; i < numResults; i++) {
+              resultItem = document.createElement('li');
+              resultItem.className = 'wpfs-result-item wpfs-result-' + i;
+              $(resultItem).attr('data-index', i)
+                           .append('<a href="' + results[i].key + '">' + 
+                                 results[i].title + '</a>')
+              resultsEl.append(resultItem);
+              $(resultItem).mouseover(function (e){
+                selectedIndex = parseInt($(e.currentTarget).attr('data-index'));
+                $('.wpfs-selected').removeClass('wpfs-selected');
+                $(this).addClass('wpfs-selected');
+              }).on('click', function (e) {
+                var clicked = $(this).find('a').first();
+                $(input).val(clicked.text());
+                window.location.href=clicked.attr('href');
+              });
+            }
+          }
+        }
+      }
+    }).blur(function (e) {
+      results = [];
+      resultsEasyIndex = [];
+      var self = $(this);
+      setTimeout(function () {
+        self.parent().removeClass('wpfs-open');
+      }, 150);
+    });
+  });
+  </script>
+
+  </div>
+        <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+<% include ../includes/footer %>

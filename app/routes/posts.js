@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'wp-fast-search',
+  title: 'WP Fast Search - Plugin',
+  cat: 'coding',
+  tags: ['wordpress']
+},
+{
   slug: 'css-table-styles',
   title: 'Beautiful CSS for Tables',
   cat: 'coding',
