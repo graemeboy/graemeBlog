@@ -52,37 +52,38 @@
   .wpfs-input:focus {
     outline:none;
   }
-    .wpfs-results {
+    ul.wpfs-results {
       display:none;
       position:absolute;
       left:0;
       z-index:3;
       padding:0;
-      top:100%;
+      margin:0;
+      top:0;
+      width:100%;
       background-color: white;
       transition-property: display;
       transition-duration: 1s;
       transition-timing-function: ease-out;
-      margin:2px 0 0 0;
     }
     .wpfs-open .wpfs-results {
       display: block;
     }
-    li.wpfs-result-item {
+    ul.wpfs-results li {
       width:100%;
       padding:0;
       margin:0;
       display:block;
       background-color: white;
+      list-style: none;
     }
-    li.wpfs-result-item a {
+    li.wpfs-result-item a, span.wpfs-no-results{
       text-align: left;
       padding:10px 10px 10px 15px;
       margin:0;
       display:block;
-      list-style: none;
       width:100%;
-      curssor:pointer;
+      cursor:pointer;
     }
     li.wpfs-result-item a:hover {
       text-decoration: none;
@@ -240,6 +241,10 @@
                 window.location.href=clicked.attr('href');
               });
             }
+          } else {
+            resultItem = document.createElement('li');
+            $(resultItem).append('<span class="wpfs-no-results">No results</span>');
+            resultsEl.append(resultItem);
           }
         }
       }
