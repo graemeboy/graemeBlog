@@ -319,11 +319,6 @@ exports.showPost = function (req, res) {
     }); // render
 } // show
 
-// Qlock
-exports.qlock = function (req, res) {
-    res.render('qlock/qlock'); // render
-} // show
-
 
 function capitaliseFirstLetter(string)
 {

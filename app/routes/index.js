@@ -307,7 +307,6 @@ router.get('/global-renaissance', index.globalRenaissance);
 router.get('/global-renaissance/about', index.globalRenaissanceAbout);
 router.get('/cbt', index.cbt);
 router.get('/opa', index.opa);
-router.get('/qlock', index.qlock);
 router.get('/portfolio', index.portfolio);
 router.get('/trawalter', index.trawalter);
 

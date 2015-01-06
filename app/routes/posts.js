@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'natural-language-clock',
+  title: 'Natural Language Javascript Clock',
+  cat: 'coding',
+  tags: ['fun', 'javascript']
+},
+{
   slug: 'bulk-convert-progressive-jpeg',
   title: 'Bulk Convert Images to Progressive JPEG',
   cat: 'coding',
