@@ -1,0 +1,66 @@
+<% include ../includes/header %>
+<% title = 'Bulk Convert Images to Progressive JPEG<br/><small>Convert all images in a directory to progressive JPEG, even from PNG.</small>'; %>
+<% include ../includes/post-content-head %>
+
+<div class="page-content">
+
+<h3>Key UNIX Commands for Manipulating Images</h3>
+
+<p><strong>Convert all PNG files in a directory to JPEG files:</strong></p>
+
+<p><code>mogrify -format jpg *.png</code></p>
+
+<p><strong>Convert all JPEG files in a directory to progressive:</strong></p>
+
+<p><code>mogrify -interlace line *.jpg</code></p>
+
+<p><strong>Check if a JPEG image is progressive:</strong></p>
+
+<p><code>identify -verbose file.jpg | grep Interlace</code></p>
+
+<p><strong>Resize all images (in the way that webkit does in the browser):</strong></p>
+
+<p><code>mogrify -resize 1500x480^ -gravity center -extent 1500x480 *.jpg</code></p>
+
+<p>In the above example, replace the numbers 1500x480 with your ideal image size.</p>
+
+<h3>"But what is a progressive JPEG, and why should I care?"</h3>
+
+<p>The typical way that browsers load images is top-down, piece by piece.</p>
+
+<div class="row" style="margin-bottom:10px">
+  <div class="col-sm-4" style="height:175px;border:1px solid black"></div>
+  <div class="col-sm-8" style="float:left;padding-left:10px">
+    0% complete - no image</br>
+    25% complete - shows the top quarter of the image<br/>
+    50% complete - shows the top half of the image<br/>
+    ... and so on
+  </div>
+</div>
+
+<p>By contrast, the progressive JPEG filetype tells the browser to load a low-quality version of the entire image first, and then progressively increases the quality of this image.</p>
+
+<div class="row" style="margin-bottom:10px">
+  <div class="col-sm-4" style="height:175px;border:1px solid black"></div>
+  <div class="col-sm-8" style="float:left;padding-left:10px">
+   <br/>1% complete - very low quality version of image<br/>
+    25% complete - 25% quality version<br/>
+    100% complete - full res image</br>
+  </div>
+</div>
+
+<p>By instructing the browser to load the image progressively, sites appear to load faster, supposedly for two reasons:</p>
+
+<p>1) because the difference between 90% resolution images and 100% resolution is so small that users think the images are fully loaded when they aren't</p>
+
+<p>2) because having more content on the page, even blury images, is better than white space</p>
+
+<p>The downside to this is that for some time, depending on the user's internet speed, a low-res version of the banner image will appear (though shortly thereafter rapidly improve in quality.)</p>
+
+<p>Only 7% of images on the web are progressive JPEG, and it's somewhat controversial. However, it's a highly regarded technique among professional front-end engineers, and seems to be where the internet is heading (source: <a href="http://www.amazon.com/gp/product/1118487524/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1118487524&linkCode=as2&tag=graemeboyword-20&linkId=VBLUSKAG5PGFH3UF">Professional Website Performance: Optimizing the Front-End and Back-End</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=graemeboyword-20&l=as2&o=1&a=1118487524" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+ by Peter Smith, <a href="http://www.yuiblog.com/blog/2008/12/05/imageopt-4">YUI on Image Optimization</a>, <a href="http://blog.patrickmeenan.com/2013/06/progressive-jpegs-ftw.html">Patrick Meenan on Progressives</a>.</p>
+
+ </div>
+
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>
