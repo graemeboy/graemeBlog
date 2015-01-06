@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'bulk-convert-progressive-jpeg',
+  title: 'Bulk Convert Images to Progressive JPEG',
+  cat: 'coding',
+  tags: ['performance', 'unix']
+},
+{
   slug: 'wp-fast-search',
   title: 'WP Fast Search - Plugin',
   cat: 'coding',
