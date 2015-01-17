@@ -1,0 +1,118 @@
+<% include ../includes/header %>
+<% title += "<br><small>A Tool for Converting Lowercase English Sentences to Title Case</small>"; %>
+<% include ../includes/post-content-head %>
+    <div class="page-content">
+<div class="row" style="margin-top:15px;">
+  <div class="form-group">
+    <label class="col-sm-3">Enter Your Title</label>
+    <div class="col-sm-5">
+      <input type="text" id="title" class="form-control" placeholder="the unbearable lightness of being">
+    </div>
+  </div>
+</div>
+<div class="row" style="margin-top:15px;">
+  <div class="form-group">
+    <label class="col-sm-3">Titleized Title</label>
+    <div id="title-response"><em style="color:#aaa">Your title will appear here as you type into the box above</em></div>
+  </div>
+</div>
+
+<h3>Notes on Errors</h3>
+<p>There are some cases where this titlize feature is imperfect. I would draw your attention
+  to a few of these cases. For example: </p>
+<ul>
+<li>A lowercase version of the title <em>Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley</em> 
+  will be rendered as <em>Frankenstein; Or, the Modern Prometheus by Mary Wollstonecraft Shelley</em>. In the second
+  version, rendered by this tool, "Or, The Modern" comes out as "Or, the Modern".</li>
+  <li><em>A Doll's House : a play by Henrik Ibsen</em> will be rendered as <em>A Doll's House : a Play by Henrik Ibsen</em></li>
+  <li><em>Jane Eyre: An Autobiography by Charlotte Brontë</em> will be rendered as <em>Jane Eyre: an Autobiography by Charlotte Brontë</em></li>
+  <li><em>The Romance of Lust: A Classic Victorian erotic novel by Anonymous</em> wil be rendered as <em>The Romance of Lust: a Classic Victorian Erotic Novel by Anonymous</em></li>
+</ul>
+<p>Rather than fix such specific cases, I would rather you be aware of the types of conflicts that may occur.</p>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+jQuery(document).ready(function () {
+  //test();
+
+  $('#title').keyup(function () {
+    $('#title-response').html(titleize($('#title').val().toLowerCase().replace( '_', ' ' )));
+  });
+
+  function titleize(str) {
+    var non_titlecased_words = [
+      'and', 'or', 'nor', 'a', 'an', 'the', 'so', 'but', 'to', 'of', 'at','by',
+      'from', 'into', 'on', 'onto', 'off', 'out', 'in', 'over', 'with', 'for', ' '
+    ];
+
+    var str_arr = str.split( ' ' );
+    var j = str_arr.length;
+
+    for( var i = 0; i < j; i++ ) {
+      d = str_arr[ i ].split( '-' );
+      l = d.length;
+      if( typeof str_arr[ i ][0] != 'undefined' && non_titlecased_words.indexOf( str_arr[ i ].toLowerCase()) === -1 ){
+        str_arr[i] = str_arr[i].substring( 0, 1 ).toUpperCase() + str_arr[i].substring( 1 );
+      }
+    }
+
+    str = str_arr.join( ' ' );
+    str = str.substring( 0, 1 ).toUpperCase() + str.substring( 1 );
+    return str;
+  }
+
+  function test() {
+    var booksTest = [
+    "Pride and Prejudice by Jane Austen",
+    "Adventures of Huckleberry Finn by Mark Twain",
+    "Alice's Adventures in Wonderland by Lewis Carroll",
+    "The Yellow Wallpaper by Charlotte Perkins Gilman ",
+    "The Adventures of Sherlock Holmes by Arthur Conan Doyle ",
+    "The Adventures of Tom Sawyer by Mark Twain ",
+    "Narrative of the Life of Frederick Douglass, an American Slave by Frederick Douglass ",
+    "The Kama Sutra of Vatsyayana by Vatsyayana ",
+    "The Prince by Niccolò Machiavelli ",
+    "Metamorphosis by Franz Kafka",
+    "Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley ",
+    "A Tale of Two Cities by Charles Dickens ",
+    "Grimms' Fairy Tales by Jacob Grimm and Wilhelm Grimm ",
+    "Beowulf",
+    "Les Misérables by Victor Hugo ",
+    "The Importance of Being Earnest: A Trivial Comedy for Serious People by Oscar Wilde ",
+    "Ulysses by James Joyce ",
+    "The Picture of Dorian Gray by Oscar Wilde ",
+    "A Modest Proposal by Jonathan Swift ",
+    "A Christmas Carol in Prose; Being a Ghost Story of Christmas by Charles Dickens ",
+    "Great Expectations by Charles Dickens ",
+    "Dracula by Bram Stoker ",
+    "Moby Dick; Or, The Whale by Herman Melville ",
+    "The Romance of Lust: A Classic Victorian erotic novel by Anonymous ",
+    "Peter Pan by J. M. Barrie ",
+    "A Doll's House : a play by Henrik Ibsen ",
+    "The Awakening, and Selected Short Stories by Kate Chopin ",
+    "Leaves of Grass by Walt Whitman ",
+    "Siddhartha by Hermann Hesse ",
+    "Jane Eyre: An Autobiography by Charlotte Brontë"
+    ];
+    console.log("Testing titleize");
+    var len, original, lower,title;
+    for (var i = 0; i < (len = booksTest.length); i++) {
+      original = booksTest[i].trim();
+      lower = original.toLowerCase();
+      title = titleize(lower);
+      if (title !== original){
+        console.log("Found problem with " + original + " as " + title);
+      }
+      
+    }
+
+  }
+  
+});
+</script>
+<div class="clearfix"></div>
+</div>
+<!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+        <% include ../includes/footer %>

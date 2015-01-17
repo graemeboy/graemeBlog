@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'surviving-san-francisco',
+  title: 'How I Survived as an Unemployeed 20-year-old in San Francisco',
+  cat: 'personal',
+  tags: ['lifestyle']
+},
+{
   slug: 'natural-language-clock',
   title: 'Natural Language Javascript Clock',
   cat: 'coding',
@@ -229,6 +235,14 @@ var posts = [
     title: 'The Modern Guru', 
     cat: 'psychology',
     tags: ['leadership']
-   } ];
+   },
+   {
+    slug: 'titleizer',
+    title: 'Online Titleizer',
+    cat: 'tools',
+    tags: ['javascript','titleizer']
+  } 
+
+];
 
 exports.posts = posts;
