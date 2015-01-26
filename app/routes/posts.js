@@ -1,4 +1,11 @@
 var posts = [
+
+{
+  slug: 'writing-software',
+  title: 'How to Write Best Selling Software',
+  cat: 'coding',
+  tags: ['writing', 'software design']
+},
 {
   slug: 'surviving-san-francisco',
   title: 'How I Survived as an Unemployeed 20-year-old in San Francisco',
