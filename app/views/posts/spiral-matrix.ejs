@@ -1,0 +1,34 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+<div class="page-content">
+
+<p>One interesting, though fairly simple, challenge is to print out a matrix in spiral fashion. For example, take the following matrix:</p>
+
+<pre style="width: 110px;font-size: 14px;"><code>1   2   3
+4   5   6
+7   8   9
+</code></pre>
+
+<p>To read it out in a spiral, we would say: "1, 2, 3, 6, 9, 8, 7, 4, 5."</p>
+
+<p>Let's read a string of numbers in and create a matrix:</p>
+
+<script src="https://gist.github.com/graemeboy/0473f69818a61bcaeef2.js"></script>
+
+<p>This gives us the following matrix:</p>
+
+<pre><code>[ [ '1', '2', '3', '4' ],
+  [ '5', '6', '7', '8' ],
+  [ '9', '10', '11', '12' ],
+  [ '13', '14', '15', '16' ] ]
+</code></pre>
+
+<p>Now, given this matrix, how can we traverse it in a spiral, and print out the numbers as we go along?</p>
+
+<h3>Print 2D Matrix in a Spiral</h3>
+
+<script src="https://gist.github.com/graemeboy/dc6654c8a272dfeb85b3.js"></script>
+
+<p>Since this is not necessary a 2D matrix, I put in checks at each new loop of printing to make sure that we wouldn't print anything twice.</p>
+</div></div>
+<% include ../includes/footer %>

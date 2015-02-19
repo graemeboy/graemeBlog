@@ -1,5 +1,10 @@
 var posts = [
-
+{
+  slug: 'spiral-matrix',
+  title: 'Spiral Traverse a Matrix',
+  cat: 'coding',
+  tags: ['javascript', 'algorithms']
+},
 {
   slug: 'writing-software',
   title: 'How to Write Best Selling Software',
