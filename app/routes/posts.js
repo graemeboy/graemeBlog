@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'longest-common-subsequence',
+  title: 'Longest Common Subsequence in JavaScript',
+  cat: 'coding',
+  tags: ['javascript', 'algorithms']
+},
+{
   slug: 'spiral-matrix',
   title: 'Spiral Traverse a Matrix',
   cat: 'coding',
