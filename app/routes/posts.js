@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'string-permutations',
+  title: 'Compute All Permutations of a String (JavaScript)',
+  cat: 'coding',
+  'tags': ['javascript', 'algorithms']
+},
+{
   slug: 'longest-common-subsequence',
   title: 'Longest Common Subsequence in JavaScript',
   cat: 'coding',

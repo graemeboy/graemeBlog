@@ -1,0 +1,37 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+<div class="page-content">
+    <p>A common problem in dynamic programming (DP) is creating a list
+        of all the combinations of a given set of characters or numbers.</p>
+        <h3>Examples:</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th>Input</th>
+                <th>Output</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>hat</td>
+                    <td>aht, ath, hat, hta, tah, tha</td>
+                </tr>
+                <tr>
+                    <td>abc</td>
+                    <td>aht, ath, hat, hta, tah, tha</td>
+                </tr>
+                <tr>
+                    <td>123</td>
+                    <td>123, 132, 213, 231, 312, 321</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The solution for this problem is usually recursive, and takes O(n!) time. Here is an implementation in JavaScript</p>
+        <script src="https://gist.github.com/graemeboy/6ea360f2630892e47452.js"></script>
+
+        <h3>Reference</h3>
+        <ul>
+            <li><em>Cracking the Coding Interview</em> - Gayle Laakmann McDowell (p. 109, 325)</li>
+        </ul>
+
+    </div>
+</div>
+<% include ../includes/footer %>
