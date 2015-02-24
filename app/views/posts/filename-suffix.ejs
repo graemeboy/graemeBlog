@@ -1,0 +1,40 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<div class="page-content">
+
+<p>Oftentimes, I have a problem where I want to manipulate multiple filenames within a directory. For example, say I have a directory full of flags from around the world, but they're all missing a file extension, or need a prefix or suffix. Specifically, I'm often faced with a directory that looks like this:</p>
+
+<div class="row">
+<div class="col-sm-6">
+<p><strong>What I have:</strong></p>
+
+<pre><code>jamaica.png
+japan.png
+south-africa.png    
+united-kingdom.png
+united-states.png
+</code></pre>
+</div>
+<div class="col-sm-6">
+<p><strong>What what I really want:</strong></p>
+
+<pre><code>jamaica-flag.png
+japan-flag.png
+south-africa-flag.png   
+united-kingdom-flag.png
+united-states-flag.png
+</code></pre>
+</div>
+</div>
+
+<p>The suffix "@2x" for retina versions of files would fall into a similar category. Whenever I've finished a task like this though, I immediately forget how I achieved it, and then I have to figure it all out again next time. So I'm blogging the solution for posterity:</p>
+
+<h3>Add a suffix to a filename before extension</h3>
+
+<p><code>find . -type f -name '*.png' | while read f; do mv "$f" "${f%.png}-flag.png"; done</code></p>
+
+<p>This will iterate though all the .pngs in a directory and add the "-flag" suffix into the filename.</p>
+
+</div></div>
+<% include ../includes/footer %>

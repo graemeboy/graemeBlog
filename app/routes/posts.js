@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'filename-suffix',
+  title: 'Append String to Multiple Filenames Before Extension on Command Line',
+  cat: 'coding',
+  'tags': ['unix', 'bash']
+},
+{
   slug: 'string-permutations',
   title: 'Compute All Permutations of a String (JavaScript)',
   cat: 'coding',
