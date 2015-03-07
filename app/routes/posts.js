@@ -1,4 +1,11 @@
 var posts = [
+
+{
+  slug: 'search-matrix',
+  title: 'Search an Ordered 2D Matrix',
+  cat: 'coding',
+  'tags': ['javascript', 'algorithms']
+},
 {
   slug: 'filename-suffix',
   title: 'Append String to Multiple Filenames Before Extension on Command Line',

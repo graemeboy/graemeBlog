@@ -1,0 +1,131 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<style type="text/css">
+    .c0 {
+        widows: 2;
+        orphans: 2;
+        direction: ltr
+    }
+    .c12 {
+        max-width: 468pt;
+        background-color: #ffffff;
+        padding: 72pt 72pt 72pt 72pt
+    }
+    .c4 {
+        vertical-align: sub;
+        font-style: italic
+    }
+    .c10 {
+        color: #ff0000;
+        text-decoration: underline
+    }
+    .c11 {
+        color: #0000ff;
+        text-decoration: underline
+    }
+    .c3 {
+        text-align: center
+    }
+    .c8 {
+        color: #9900ff
+    }
+    .c5 {
+        margin-left: 72pt
+    }
+    .c13 {
+        text-decoration: underline
+    }
+    .c9 {
+        font-weight: bold
+    }
+    .c1 {
+        height: 11pt
+    }
+    .c7 {
+        margin-left: 36pt
+    }
+    .c2 {
+        text-indent: 36pt
+    }
+    .c6 {
+        font-style: italic
+    }
+    </style>
+<p class="c0"><span>Imagine you have a 2D array that is ordered ascendingly both vertically and horizontally, such that x[0][0] &lt;= x[0][1], and x[0][0] &lt;= x[1][0]. Such an array would be organized as follows:</span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0 c3"><span class="c6">X</span><span class="c4">0,0 </span><span class="c6">X</span><span class="c4">0,1 </span><span class="c6">X</span><span class="c4">0,2 </span><span class="c6">&hellip; X</span><span class="c4">0,n</span>
+    </p>
+    <p class="c0 c3"><span class="c6">X</span><span class="c4">1,0 </span><span class="c6">X</span><span class="c4">1,1 </span><span class="c6">X</span><span class="c4">1,2 </span><span class="c6">&hellip; X</span><span class="c4">1,n</span>
+    </p>
+    <p class="c0 c3"><span class="c6">X</span><span class="c4">2,0 </span><span class="c6">X</span><span class="c4">2,1 </span><span class="c6">X</span><span class="c4">2,2 </span><span class="c6">&hellip; X</span><span class="c4">2,n</span>
+    </p>
+    <p class="c0 c3"><span class="c4">.</span>
+    </p>
+    <p class="c0 c3"><span class="c4">.</span>
+    </p>
+    <p class="c0 c3"><span class="c4">.</span>
+    </p>
+    <p class="c0 c3"><span class="c6">X</span><span class="c4">n,0 </span><span class="c6">X</span><span class="c4">n,1 </span><span class="c6">X</span><span class="c4">n,2 </span><span class="c6">&hellip; X</span><span class="c4">n,m</span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0"><span>An example of such an array would be:</span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0 c3"><span>1 1 1 2 2 3</span>
+    </p>
+    <p class="c0 c3"><span>2 3 3 4 4 6</span>
+    </p>
+    <p class="c0 c3"><span>3 5 6 6 7 7</span>
+    </p>
+    <p class="c0 c3"><span>4 5 6 6 8 8</span>
+    </p>
+    <p class="c0 c3"><span>5 7 7 8 8 9</span>
+    </p>
+    <p class="c0 c3 c1"><span></span>
+    </p>
+    <p class="c0"><span>As an exercise, let&rsquo;s try to create an efficient algorithm to determine where a given number is within this array. Let&rsquo;s take the number 6 - can we find the index of the number 6 in this array with better efficiency than O(n * m)? An algorithm that just went through the 2D array in sequential order would be O(n * m), because it would have to traverse every row and every column before it would find the number 9.</span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0"><span>One way that we could look at this matrix is by grouping it into squares of values below a certain number. For example, all elements from x[0][0] to x[0][2] are &lt; 2. Likewise, all elements from x[0][0] to x[1][2] are &lt; 4. Visually, we could look at it like this:</span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0 c3"><span class="c11">1 1 1</span><span class="c13">&nbsp;</span><span class="c8">2 2 3</span>
+    </p>
+    <p class="c0 c3"><span class="c10">2 3 3</span><span>&nbsp;</span><span class="c8">4 4 6</span>
+    </p>
+    <p class="c0 c3"><span class="c8 c13">3 5 6 6 7 7</span>
+    </p>
+    <p class="c0 c3"><span>4 5 6 6 8 8</span>
+    </p>
+    <p class="c0 c3"><span>5 7 7 8 8 9</span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0"><span>In the above example, all of the blue elements are &lt; 2, all of the red and blue elements are &lt; 4, and all of the purple + red + blue elements are &lt; 8.</span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0"><span>In the above example, you will notice that on the left-most side of the matrix, the progression of numbers goes from 1 to 5 in steps of 1. For all numbers to the right of these starting points, the numbers are &gt;= the starting number. So if we were looking for the number 3, we would know that the last two rows, that start with 4 and 5, could not contain the number we are looking for. This seems like a good strategy that we could use to skip over rows, and we&rsquo;ll end up finding 6 in 4 iterations of a loop: check 5, </span><span class="c9">move down a row</span><span>, check 4, </span><span class="c9">move across one column</span><span>, check 5, </span><span class="c9">move across one column</span><span>, check 6 and return its position.)</span>
+    </p>
+    <p class="c0 c1"><span></span>
+    </p>
+    <p class="c0"><span class="c9">Implementation in JavaScript:</span>
+    </p>
+
+    <script src="https://gist.github.com/graemeboy/62d411e1b5cc29a77121.js"></script>
+
+
+    <p class="c0"><span>When I fun this using Node.js, I get the output: 6 found at matrix[3][2]. Found in 4 steps.</span>
+    </p>
+
+    </div></div>
+        <% include ../includes/footer %>
