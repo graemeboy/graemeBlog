@@ -38,7 +38,7 @@ var posts = [
 },
 {
   slug: 'surviving-san-francisco',
-  title: 'How I Survived as an Unemployeed 20-year-old in San Francisco',
+  title: 'How I Survived as a 20-year-old Tourist in San Francisco',
   cat: 'personal',
   tags: ['lifestyle']
 },
