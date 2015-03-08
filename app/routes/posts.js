@@ -14,7 +14,7 @@ var posts = [
 },
 {
   slug: 'string-permutations',
-  title: 'Compute All Permutations of a String (JavaScript)',
+  title: 'Compute All Permutations of a String in JavaScript ',
   cat: 'coding',
   'tags': ['javascript', 'algorithms']
 },
