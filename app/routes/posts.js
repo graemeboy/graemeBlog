@@ -39,7 +39,7 @@ var posts = [
   slug: 'writing-software',
   title: 'How to Write Best Selling Software',
   cat: 'coding',
-  tags: ['writing', 'software design']
+  tags: ['software design']
 },
 {
   slug: 'surviving-san-francisco',
