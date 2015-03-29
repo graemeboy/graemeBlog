@@ -1,5 +1,10 @@
 var posts = [
-
+{
+  slug: 'review-continuous-integration',
+  title: 'Book Review: Continuous Integration: Improving Software Quality and Reducing Risk',
+  cat: 'coding',
+  'tags': ['book review', 'development process']
+},
 {
   slug: 'search-matrix',
   title: 'Search an Ordered 2D Matrix',
@@ -175,15 +180,15 @@ var posts = [
     cat: 'coding',
     tags: ['node.js']
    },
-  { 
+  {
     slug: 'frontend-crawler',
     title: 'How to Build a Frontend Web Crawler',
     cat: 'coding',
     tags: ['javascript', 'webcrawler']
    },
-  { 
-    slug: 'php-vs-node', 
-    title: 'PHP vs Node.js', 
+  {
+    slug: 'php-vs-node',
+    title: 'PHP vs Node.js',
     cat: 'coding',
     tags: ['PHP', 'node.js']
   },
@@ -252,9 +257,9 @@ var posts = [
     cat: 'psychology',
     tags: ['gender']
    },
-  { 
-    slug: 'habits', 
-    title: 'Habit Formation', 
+  {
+    slug: 'habits',
+    title: 'Habit Formation',
     cat: 'psychology',
     tags: ['habits', 'positive psychology']
    },
@@ -268,8 +273,8 @@ var posts = [
     cat: 'psychology',
     tags: ['neuroscience']
    },
-  { slug: 'gurus', 
-    title: 'The Modern Guru', 
+  { slug: 'gurus',
+    title: 'The Modern Guru',
     cat: 'psychology',
     tags: ['leadership']
    },
@@ -278,7 +283,7 @@ var posts = [
     title: 'Online Titleizer',
     cat: 'tools',
     tags: ['javascript','titleizer']
-  } 
+  }
 
 ];
 

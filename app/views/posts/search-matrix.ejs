@@ -47,6 +47,7 @@
         font-style: italic
     }
     </style>
+    <div class="page-content">
 <p><span>Imagine you have a 2D array that is ordered ascendingly both vertically and horizontally, such that x[0][0] &lt;= x[0][1], and x[0][0] &lt;= x[1][0]. Such an array would be organized as follows:</span>
     </p>
     <p class="c0 c3"><span class="c6">X</span><span class="c4">0,0 </span><span class="c6">X</span><span class="c4">0,1 </span><span class="c6">X</span><span class="c4">0,2 </span><span class="c6">&hellip; X</span><span class="c4">0,n</span>
@@ -63,10 +64,10 @@
     </p>
     <p class="c0 c3"><span class="c6">X</span><span class="c4">m,0 </span><span class="c6">X</span><span class="c4">m,1 </span><span class="c6">X</span><span class="c4">m,2 </span><span class="c6">&hellip; X</span><span class="c4">m,n</span>
     </p>
-    
+
     <p><span>An example of such an array would be:</span>
     </p>
-    
+
     <p class="c0 c3"><span>1 1 1 2 2 3</span>
     </p>
     <p class="c0 c3"><span>2 3 3 4 4 6</span>
@@ -81,11 +82,11 @@
     </p>
     <p><span>As an exercise, let&rsquo;s try to create an efficient algorithm to determine where a given number is within this array. Let&rsquo;s take the number 6 - can we find, with an efficiency better than O(n*m), the index of the number 6 in this array? An algorithm that just went through the 2D array in sequential order would have an efficiency of O(n*m), because it would have to traverse every row and every column before it would find the number 9. We can do better if we find a way to skip whole rows or columns.</span>
     </p>
-    
+
     <p><span>One way that we could look at this matrix is by grouping it into squares of values below a certain number. For example, all elements from x[0][0] to x[0][2] are &lt; 2. Likewise, all elements from x[0][0] to x[1][2] are &lt; 4. Visually, we could look at it like this:</span>
     </p>
-    
-    
+
+
     <p class="c0 c3"><span class="c11">1 1 1</span><span class="c13">&nbsp;</span><span class="c8">2 2 3</span>
     </p>
     <p class="c0 c3"><span class="c10">2 3 3</span><span>&nbsp;</span><span class="c8">4 4 6</span>
@@ -96,13 +97,13 @@
     </p>
     <p class="c0 c3"><span>5 7 7 8 8 9</span>
     </p>
-    
+
     <p><span>In the above example, all of the blue elements are &lt; 2, all of the red and blue elements are &lt; 4, and all of the purple and red and blue elements are &lt; 8.</span>
     </p>
-    
+
     <p><span>In the above example, you will notice that on the left-most side of the matrix, the progression of numbers goes from 1 to 5 in steps of 1. For all numbers to the right of these starting points, the numbers are &gt;= the starting number. So if we were looking for the number 3, we would know that the last two rows, which start with 4 and 5 respectively, could not contain the number we are looking for. This seems like a good strategy that we could use to skip over rows, and we&rsquo;ll end up finding 6 in just 4 iterations of a loop: check 5, </span><span class="c9">move down a row</span><span>, check 4, </span><span class="c9">move across one column</span><span>, check 5, </span><span class="c9">move across one column</span><span>, check 6 and return its position.</span>
     </p>
-    
+
     <h3>Implementation in JavaScript:</h3>
 
     <script src="https://gist.github.com/graemeboy/62d411e1b5cc29a77121.js"></script>

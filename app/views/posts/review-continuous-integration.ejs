@@ -1,0 +1,27 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+<div class="page-content">
+<p>This book was written in 2008, so it's by no means cutting edge. However, it's exactly because of the time in which it was written that it provides a good foundation for the concepts it covers. Modern software systems are so complex that it can be difficult to get to the basics in such a straightfoward manner; <em>Continuous Integration</em> by Paul M. Duvail provides this opportunity.</p>
+
+<p>The book begins by outlining an ideal development process:</p>
+
+<ul>
+<li>Multiple developers run private builds of the software on their own workstations</li>
+<li>Developers commit their code to a version control repository</li>
+<li>Each developer commits code at least once per day</li>
+<li>Each commit triggers integration and testing using the latest version of software</li>
+<li>Code passes all tests before it can be checked out by other developers</li>
+<li>Developers receive immediate feedback on failed tests</li>
+<li>Code is inspected to ensure that design/style standards are upheld</li>
+<li>All integration and testing is automated, since it is triggered via each code commit (hence responsibility for running tests is removed from developer)</li>
+</ul>
+
+
+<p>The proposed solution is the <strong>continuous integration server</strong>,  a dedicated machine or cluster that tracks the latest version of software in the repository (either by polling the repository for changes, or when triggered by the commit event). The machine contains only the resources and assets included in the respository, and is a mirror of the typical production environment. Hence, it is provides a more accurate test than local builds do (as local workstations are often different for each developer, and differ in their versions of libraries, etc.)</p>
+
+<p><em>Continuous Integration</em> also suggests best practices, such as failing fast by executing tests that are more likely to fail first, in order to receive feedback as quickly as possible.</p>
+
+<p>Overall, the book is a good introduction to the concept of continuous integration, and supports a solid foundation for thinking about testing and development practices.</p>
+
+</div></div>
+<% include ../includes/footer %>
