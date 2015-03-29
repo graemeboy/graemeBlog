@@ -2,6 +2,7 @@
         <!-- Clear before adding the footer -->
         <div class="clearfix"></div>
 
+        <% if (title !== 'Graeme Boy') { %>
         <div class="col-sm-8 col-sm-offset-2" style="padding:0 5%;margin-top:40px;margin-bottom:20px;">
           <h4>My Favorite Software Engineering Resources</h4>
           <SCRIPT charset="utf-8" type="text/javascript" src="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fgraemeboyword-20%2F8010%2F8ca65c5d-e790-442d-a481-8e630aa19793&Operation=GetScriptTemplate"> </SCRIPT> <NOSCRIPT><A HREF="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fgraemeboyword-20%2F8010%2F8ca65c5d-e790-442d-a481-8e630aa19793&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>
@@ -10,6 +11,8 @@
         <div class="clearfix"></div>
 
         <div class="comments-container col-sm-8 col-sm-offset-2" style="padding:0 5%;margin-top:40px;margin-bottom:20px;">
+
+
         <!-- add comments -->
         <div id="disqus_thread"></div>
         <script type="text/javascript">
@@ -23,17 +26,20 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+
       </div>
+
+      <% } %>
       <div class="clearfix"></div>
-        <footer id="footer">
-          
+        <footer id="footer" style="margin-top:10px">
+
             <div class="col-sm-3 col-sm-offset-2">
               <% if (typeof cats != 'undefined') { %>
                  <h4>Article Categories</h4>
                     <ul class="cat-list" style="padding-left:0">
                         <li <% if (typeof category != 'undefined' && category == 'all') { %> class="active" <% } %>>
                             <a href="/all-posts" >Posts from all categories (<%= posts.length %>)</a>
-                        </li>  
+                        </li>
                     <% for (var cat in cats) { %>
                       <li <% if (typeof category != 'undefined' && cat == category) { %> class="active" <% } %>>
                         <a href="/cat/<%= cat %>"><%= cat %> (<%= cats[cat] %>)</a></li>
@@ -41,7 +47,7 @@
                     </ul>
             <% } %>
             </div>
-            
+
             <div class="col-sm-3">
               <h4>Search Articles</h4>
                 <div>
@@ -61,7 +67,7 @@
             </div>
             <div class="clearfix"></div>
         </footer>
-        
+
         <script>var tweetButton = document.getElementById('sidebar-tweet-button');var tweetText = document.getElementById('sidebar-tweet-text');tweetButton.addEventListener('click', function (evt) {tweetButton.href = 'http://twitter.com/share?text=' + tweetText.value + '&related=graeme_boy'; });</script>
 
         <% if (typeof category != 'undefined' && category !== 'none' && typeof tags != 'undefined') { %>
@@ -81,10 +87,10 @@
           </script>
         <% } %>
 
-        <% if (typeof scripts != 'undefined') { 
+        <% if (typeof scripts != 'undefined') {
             for (var i = 0; i < scripts.length; i++) { %>
                 <script src="<%= scripts[i] %>"></script>
-            <% } 
+            <% }
         } %>
         <% if (typeof inlineScripts != 'undefined') { for (i = 0; i < inlineScripts.length; i++) { %>
             <script><%= inlineScripts[i] %></script>

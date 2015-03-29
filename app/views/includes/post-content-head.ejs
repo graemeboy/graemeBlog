@@ -4,16 +4,13 @@
 
 <div class="main row-fluid">
     <div class="post-container col-sm-8 col-sm-offset-2">
-
-
     <% if (typeof category != 'undefined' && category !== 'all' &&  category !== 'none' && category !== 'search') { %>
-
 <div class="post-meta">
 
         <span style="margin-right:15px">Category: <a href="/cat/<%=category%>"><%= category %></a></span>
     <% } %>
     <% if (typeof tags != 'undefined') { %>
-    Tags: 
+    Tags:
     <%
     for (var x = 0; x < tags.length; x++) { %>
         <span><%= tags[x] %><% if (x !== tags.length -1) {
