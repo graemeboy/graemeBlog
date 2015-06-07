@@ -25,6 +25,31 @@
             </tbody>
         </table>
         <p>The solution for this problem is usually recursive, and takes O(n!) time. Here is an implementation in JavaScript</p>
+        
+<pre><code>
+recPerm(input, '');
+
+function recPerm(rest, soFar) {
+    var rest;
+    var remaining;
+
+    if (rest == '') {
+        console.log(soFar);
+    } else {
+
+        for (var i = 0; i < rest.length; i++) {
+            remaining = rest.substr(0,i) + rest.substr(i+1,rest.length-1);
+            next = soFar + rest[i];
+
+            recPerm(remaining, next);
+        }
+
+    }   
+
+}
+</code></pre>
+
+        <p>Or here is another way:</p>
         <script src="https://gist.github.com/graemeboy/6ea360f2630892e47452.js"></script>
 
         <h3>Reference</h3>
