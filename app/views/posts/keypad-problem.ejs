@@ -40,268 +40,162 @@
   'bol',
   'col' ]</p>
 
-<h3>My Solution (in JavaScript)</h3>
 
-<p>I would be interested to hear what your solution to this is as well, but here are the steps in my approach (full code available at bottom of this page):</p>
+<p>I would be interested to hear what your solution to this is as well, but is my recursive approach:</p>
 
-<h4>Step 1. Get associated characters for a number</h4>
 
-<p>Write a function that takes in an integer, and returns all of the characters associated. You could use a some kind hash table for this, or use the keycodes of characters. I took a simple approach with an array:</p>
+<h4>JavaScript</h4>
+<pre><code>
+(function (){
+  'use strict';
 
-<pre><code>/**
- * Returns an array of characters for a given number
- */
-function getCharsForNumber(num) {
-    var letters = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'];
-    return letters[num - 2];
+  /*
+   * Keypad which maps numbers to letters, as in the example: http://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Telephone-keypad.png/351px-Telephone-keypad.png
+   */
+  var NUMBER_TO_LETTER_MAP = [
+    [],
+    [],
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f'],
+    ['g', 'h', 'i'],
+    ['j', 'k', 'l'],
+    ['m', 'n', 'o'],
+    ['p', 'q', 'r', 's'],
+    ['t', 'u', 'v'],
+    ['w', 'x', 'y', 'z']
+  ];
+
+  var exampleInput = '223';
+
+  // Runs the program.
+  (function (input) {
+    // Generate some combinations and print them.
+    generateCombinations(input).forEach(function (s) {
+      console.log(s);
+    });
+  }(exampleInput));
+
+  // A helper function to generate the final combinations.
+  function generateCombinations(number) {
+    // An empty array which will get filled as we calculate each permutation.
+    var finalCombinations = [];
+    // Starts with an empty array, empty prefix and the complete number.
+    combineWords(finalCombinations, '', number);
+    return finalCombinations;
+  }
+
+  // Combines the characters into the final combinations.
+  function combineWords(finalCombinations, prefix, remaining) {
+    // Get all of the characters for the first digit in the remaining digits.
+    // E.g., ['a', 'b', 'c'].
+    var letters = NUMBER_TO_LETTER_MAP[remaining.substr(0, 1)];
+
+    // If this is the last digit, then push the prefix + each remaining letter.
+    if (remaining.length === 1) {
+      letters.forEach(function (letter) {
+        finalCombinations.push(prefix + letter);
+      });
+    } else {
+      // If this is not the last digit, recurse on this function, switching
+      // the first remaining character to the end of the prefix.
+      // E.g. prefix '' and remaining 'abc' becomes prefix 'a' and remaining 'bc'.
+      letters.forEach(function (letter) {
+        combineWords(finalCombinations, prefix + letter, remaining.substr(1));
+      });
+    }
+  }
+}());
+</code></pre>
+
+<h4>Go</h4>
+
+<pre><code>
+package main
+
+import (
+  "fmt"
+  "strconv"
+)
+
+var permutations []string
+var numToChar [10][4]string
+
+func main() {
+  numToChar = [10][4]string{
+    [4]string{},
+    [4]string{},
+    [4]string{"a", "b", "c"},
+    [4]string{"d", "e", "f"},
+    [4]string{"g", "h", "i"},
+    [4]string{"j", "k", "l"},
+    [4]string{"m", "n", "o"},
+    [4]string{"p", "q", "r", "s"},
+    [4]string{"t", "u", "v"},
+    [4]string{"w", "x", "y", "z"},
+  }
+
+  recCombinations("", "223")
+  fmt.Println(permutations)
+}
+
+func recCombinations(prefix string, remaining string) {
+  digit, _ := strconv.ParseInt(string(remaining[0]), 0, 64)
+  letters := numToChar[digit]
+  var i int
+
+  // Base case
+  if len(remaining) == 1 {
+    for i = 0; i < len(letters); i++ {
+      if letters[i] != "" {
+        permutations = append(permutations, prefix+string(letters[i]))
+      }
+    }
+  } else {
+    for i = 0; i < len(letters); i++ {
+      if letters[i] != "" {
+        recCombinations(prefix+letters[i], remaining[1:len(remaining)])
+      }
+    }
+  }
 }
 </code></pre>
 
-<p>The other approach, using character codes, would look like this:</p>
+<h4>Ruby</h4>
 
-<pre><code>/**
- * Returns an array of characters for a given number
- */
-function getCharsForNumber(num) {
-        var chars = [];
-        var i; // just an iterating variable
+<pre><code>
+class KeyPad
+  LETTER_MAP = [
+    [],
+    [],
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f'],
+    ['g', 'h', 'i'],
+    ['j', 'k', 'l'],
+    ['m', 'n', 'o'],
+    ['p', 'q', 'r', 's'],
+    ['t', 'u', 'v'],
+    ['w', 'x', 'y', 'z']
+  ]
 
-        // The number of letters in a digit (3 or 4, usually 3)
-        var factor = 3;
-        // The offset from charcode to char
-        var numLettersOffset = -6; // skip 1 and 2
+  def self.rec_perm(permutations, prefix, remaining)
+    letters = LETTER_MAP[remaining[0].to_i]
 
-        // Some conditionals for matching keypad numbers to chars
-        // E.g. 7 and 9 both have four letters to a digit
-        if (num === 1) {
-            factor = 0;
-        } else if (num === 7) {
-            factor = 4;
-        } else if (num === 8) {
-            numLettersOffset = -5;
-        } else if (num === 9) {
-            factor = 4;
-            numLettersOffset = -5;
-        }
+    if remaining.size == 1
+      letters.each { |letter| permutations.push(prefix + letter) } && return
+    end
 
-        // Add the letters to the word
-        for (i = 0; i &lt; factor; i += 1) {
-            // Convert to a character and then save to the letters 2d array
-            chars.push(String.fromCharCode(num * 3 + 
-                i + 'a'.charCodeAt(0) + numLettersOffset));
-        }
+    letters.each do |letter|
+      rec_perm(permutations, prefix + letter, remaining[1..remaining.size])
+    end
+  end
 
-        return chars;
-}
-</code></pre>
+  def self.calculate_permutations(input)
+    rec_perm((permutations = []), '', input)
+    puts permutations
+  end
+end
 
-<h4>Step 2: Write a function to combine chars recursively from arrays of possibilities</h4>
-
-<p>We know from the above function that we're going to end up with a bunch of arrays of characters, but we only want to combine exactly one character from each array for all possible combinations. #combinatorics</p>
-
-<pre><code>/**
- * Recursively combine the letters for form permutations
- */
-function combineWords(letters) {
-    var i, j; // iterators
-
-    // Define a base case
-    if (letters.length &lt;= 1) {
-        return letters[0];
-    }
-
-    // A list of the combinations
-    var combination = [];
-    // The "rest" of the combinations
-    var nextLetters = combineWords(letters.slice(1));
-
-    for (i = 0; i &lt; nextLetters.length; i++) {
-
-        for (j = 0; j &lt; letters[0].length; j++) {
-            combination.push(letters[0][j] + nextLetters[i]);
-        }
-
-    }
-
-    return combination;
-}
-</code></pre>
-
-<h4>Step 3: Write a function to iterate through a given input of numbers and combine the associated digits for all possibilities</h4>
-
-<pre><code>/**
- * Returns all of the character permutations of chars 
- * for a sequence of keypad digits
- * @param num, precodition: must be a valid number
- */
-function numToWords(num) {
-
-    if (isNaN(num)) {
-        return "Please enter a number";
-    }
-
-    // Split into single digits
-    var nums = num.toString().split("");
-    // Now we have e.g. [2,3,4]
-
-    // Keep track of the number of items we have
-    var numsLen = nums.length;
-
-    // A 2d array of chars
-    var charsContainer = []; 
-    // An array of chars
-    var chars = [];
-
-    var x = 0,
-        i = 0;
-
-    // Go through the length of the component numbers
-    // which will equal the length of each word
-    for (i = 0; i &lt; numsLen; i += 1) {
-        num = parseInt(nums[i]);
-
-        // Add all the chars to the letters array
-        chars = getCharsForNumber(num);
-        if (chars.length &gt; 0) {
-            charsContainer[x] = chars;
-            x += 1;
-        }
-    }
-
-    /*
-        charsContainer now contains something like this matrix:
-        [ [ 'a', 'b', 'c' ], [ 'd', 'e', 'f' ], [ 'g', 'h', 'i' ] ]
-    */
-
-    return combineWords(charsContainer);
-}
-</code></pre>
-
-<p>If you want to, you can add some code to take in the number from standard input:</p>
-
-<pre><code>process.stdin.on('readable', function () {
-    var str = process.stdin.read();
-    if (str)
-        console.log(numToWords(str.toString('utf-8').trim()));
-});
-</code></pre>
-
-<p>So this will work in Node.js. Here is the full code:</p>
-
-<pre><code>/**
- * Returns all of the character permutations of chars 
- * for a sequence of keypad digits
- * @param num, precodition: must be a valid number
- */
-function numToWords(num) {
-
-    if (isNaN(num)) {
-        return "Please enter a number";
-    }
-
-    // Split into single digits
-    var nums = num.toString().split("");
-    // Now we have e.g. [2,3,4]
-
-    // Keep track of the number of items we have
-    var numsLen = nums.length;
-
-    // A 2d array of chars
-    var charsContainer = []; 
-    // An array of chars
-    var chars = [];
-
-    var x = 0,
-        i = 0;
-
-    // Go through the length of the component numbers
-    // which will equal the length of each word
-    for (i = 0; i &lt; numsLen; i += 1) {
-        num = parseInt(nums[i]);
-
-        // Add all the chars to the letters array
-        chars = getCharsForNumber(num);
-        if (chars.length &gt; 0) {
-            charsContainer[x] = chars;
-            x += 1;
-        }
-    }
-
-    /*
-        charsContainer now contains something like this matrix:
-        [ [ 'a', 'b', 'c' ], [ 'd', 'e', 'f' ], [ 'g', 'h', 'i' ] ]
-    */
-
-    return combineWords(charsContainer);
-}
-
-/**
- * Returns an array of characters for a given number
- */
-function getCharsForNumber(num) {
-        var chars = [];
-        var i; // just an iterating variable
-
-        // The number of letters in a digit
-        var factor = 3;
-        // The offset from charcode to char
-        var numLettersOffset = -6;
-
-        // Some conditionals for matching keypad numbers to chars
-        // E.g. 7 and 9 both have four letters to a digit
-        if (num === 1) {
-            factor = 0;
-        } else if (num === 7) {
-            factor = 4;
-        } else if (num === 8) {
-            numLettersOffset = -5;
-        } else if (num === 9) {
-            factor = 4;
-            numLettersOffset = -5;
-        }
-
-        // Add the letters to the word
-        for (i = 0; i &lt; factor; i += 1) {
-            // Convert to a character and then save to the letters 2d array
-            chars.push(String.fromCharCode(num * 3 + 
-                i + 'a'.charCodeAt(0) + numLettersOffset));
-        }
-
-        return chars;
-}
-
-/**
- * Recursively combine the letters for form permutations
- */
-function combineWords(letters) {
-    var i, j; // iterators
-
-    // Define a base case
-    if (letters.length &lt;= 1) {
-        return letters[0];
-    }
-
-    // A list of the combinations
-    var combination = [];
-    // The "rest" of the combinations
-    var nextLetters = combineWords(letters.slice(1));
-
-    for (i = 0; i &lt; nextLetters.length; i++) {
-
-        for (j = 0; j &lt; letters[0].length; j++) {
-            combination.push(letters[0][j] + nextLetters[i]);
-        }
-
-    }
-
-    return combination;
-}
-
-process.stdin.on('readable', function () {
-    var str = process.stdin.read();
-    if (str)
-        console.log(numToWords(str.toString('utf-8').trim()));
-});
+KeyPad.calculate_permutations('332')
 </code></pre>
 
 </div>
