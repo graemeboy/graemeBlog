@@ -1,0 +1,46 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<p>The <em>Fibonacci Sequence</em> is a series of numbers, where each number is determined by the sum of the two numbers before it (starting with 0 and 1). The first 9 numbers are:</p>
+
+<p><code>1, 1, 2, 3, 5, 8, 13, 21, 34</code></p>
+
+<p>There are many algorithms for printing a given element in the sequence - some of  which are particularly beautiful. Here is one concise example:</p>
+
+<pre><code>var fib = function (n) {
+  return (function kernel (n, a, b) {
+    return (n &gt; 0) ? kernel(n - 1, a + b, a) : a;
+  }(n, 0, 1));
+};
+
+fib(12); // =&gt; 144
+</code></pre>
+
+<p>In the above example, the <code>fib</code> function invokes another function, named <code>kernal</code> (named so because it is the core that does all the work!)</p>
+
+<p>The <code>kernal</code> function recursively calls itself until it has summed up each number, from 0 to n, with the number in the series that comes before it. It knows that it has achieved this when its parameter <code>n</code>, which decrements with each call to <code>kernal</code>, reaches zero. At this point, the function returns the last element that it summed, which is returned again by the outer function, <code>fib</code>.</p>
+
+<h2>Keeping Track of the Series in an Array</h2>
+
+<p>The approach can easily be modified to keep (or "cache") all of the numbers in an array. However, there are neater ways to computing this array.</p>
+
+<pre><code>var fibArr = function (n) {
+  fibArr.cache = fibArr.cache || [1, 1];
+  if (!fibArr.cache[n]) {
+      fibArr.cache[n] = fibArr(n - 1) + fibArr(n - 2);
+  }
+  return fibArr.cache[n];
+}
+
+fibAr = fibArr(12)
+=> 233
+fibArr.cache
+=> [ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ]
+</code></pre>
+
+</div>
+        <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>

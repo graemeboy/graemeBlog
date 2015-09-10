@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'fibonacci-sequence',
+  title: 'Fibonacci Sequence in JavaScript',
+  cat: 'coding',
+  'tags': ['javascript', 'algorithms']
+},
+{
   slug: 'review-continuous-integration',
   title: 'Book Review: Continuous Integration: Improving Software Quality and Reducing Risk',
   cat: 'coding',
