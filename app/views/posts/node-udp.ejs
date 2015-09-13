@@ -79,7 +79,7 @@ server.bind(port);
 
 <p>Let's finish this off by created a real command-line client that can communicate with any UDP host. From the command line, we want to be able to write a command such as udpClient.js <host> <port>, following which we can type messages that are sent straight away to that host and port. The code for creating a client such as this would look like the following:</p>
 
-<pre><code>#! /user/bin/env node
+<pre><code>#!/user/bin/env node
 
 // Require the dgram module     
 var dgram = require('dgram');
