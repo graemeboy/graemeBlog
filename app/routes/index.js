@@ -8,6 +8,9 @@ var Emitter = require('events').EventEmitter
 // Index
 var index = require('../controllers/index');
 
+// Load all of the post data
+var posts = require('./posts.js').posts;
+
 // Home Page
 router.get('/', function (req, res) {
 
@@ -15,28 +18,21 @@ router.get('/', function (req, res) {
         title: "Graeme Boy",
         cats: getCats(),
         numPosts: getNumPosts()
-    }); // render
+    });
 
 });
 
 router.get('/angular', function (req, res) {
-	res.render('pages/angular', {
-		
-	})
-})
-
-// router.get('/joy', function (req, res) {
-// 	res.render('pages/joy-drill', {
-// 		'title': 'The Joy Drill'
-// 	});
-// });
+	res.render('pages/angular', {})
+});
 
 
 router.use(function(req, res, next) {
-   if(req.url.substr(-1) == '/' && req.url.length > 1)
-       res.redirect(301, req.url.slice(0, -1));
-   else
-       next();
+   if (req.url.substr(-1) == '/' && req.url.length > 1) {
+   	res.redirect(301, req.url.slice(0, -1));
+   } else {
+   	next();
+   }
 });
 
 
@@ -62,9 +58,6 @@ router.get('/search', function (req,res) {
 function getNumPosts () {
 	return Object.keys(posts).length;
 }
-
-// Load all of the post data
-posts = require('./posts.js').posts;
 
 router.get('/all-posts', function (req, res) {
 	res.render('all-posts', {
