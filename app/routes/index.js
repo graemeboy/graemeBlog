@@ -9,7 +9,7 @@ var Emitter = require('events').EventEmitter
 var index = require('../controllers/index');
 
 // Load all of the post data
-var posts = require('./posts.js').posts;
+posts = require('./posts.js').posts;
 
 // Home Page
 router.get('/', function (req, res) {
