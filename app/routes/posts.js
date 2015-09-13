@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: '7-easy-interview-questions',
+  title: '7 Easy Coding Interview Questions',
+  cat: 'coding',
+  tags: ['interviews', 'javascript', 'algorithms']
+},
+{
   slug: 'fibonacci-sequence',
   title: 'Fibonacci Sequence in JavaScript',
   cat: 'coding',

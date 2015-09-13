@@ -1,0 +1,423 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<p>I work as a software engineer at a startup in San Francisco, and one of my responsibilities has been to design programming challenges for interviewing candidates.</p>
+
+<p>Here's a list of 7 example questions that are quite fun and easy to solve.</p>
+
+<h3>1. Determine if a given letter is uppercase</h3>
+
+<p>Can you write a function that, when given a letter, can tell whether it's uppercase? This is a fairly basic question, and there are a few different approaches.</p>
+
+<p>The first approach is called a "brute-force" method, where you list all of the uppercase letters, and return true if the given letter is in that list.</p>
+
+<pre><code class="javascript">/**
+ * Returns true if a given letter is uppercase.
+ * 
+ * letter - a character a-z, or A-Z.
+ * 
+ * Examples:
+ * 
+ *  isUppercase('a')
+ *  =&gt; false
+ *  isUppercase('A')
+ *  =&gt; true
+ * 
+ * Returns boolean.
+ */
+function isUpperCase(letter) {
+    var uppercaseLetters =  [
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 
+        'H', 'I', 'J',  'K', 'M', 'N', 'O', 
+        'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+        'W', 'X', 'Y', 'Z'];
+
+    for (var i = 0; i &lt; uppercaseLetters.length; i++) {
+        if (letter === uppercaseLetters[i]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+</code></pre>
+
+<p>The good thing about this approach is that it's very reliable. The only way that it wouldn't work is if you made a typo in your list of uppercase letters!</p>
+
+<p>This same approach can be done much more concisely as well, for example:</p>
+
+<pre><code class="javascript">// A more concise version of isUppercase.
+function isUpperCaseTwo(letter) {
+    return ['A', 'B', 'C', 'D', 'E', 'F', 'G', 
+            'H', 'I', 'J',  'K', 'M', 'N', 'O', 
+            'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+            'W', 'X', 'Y', 'Z'].indexOf(letter) &gt;= 0;
+}
+</code></pre>
+
+<p>Another approach is simple to convert the given letter into an uppercase character, and then compare the original input the uppercase version. For example:</p>
+
+<pre><code class="javascript">// Precondition: letter is always a-z or A-Z.
+function isUpperCaseThree(letter) {
+    return (letter === letter.toUpperCase());
+}
+</code></pre>
+
+<p>This is the most concise example that we've seen so far, and it's a good answer if we're always sure that the input is a letter. This approach has the disadvantage that if a string is passed in that in not a letter, such as '3', it will return true. It returns true because JavaScript's <code>toUpperCase</code> function returns unchanged any character that isn't a letter (the input '3' will yield '3' back.)</p>
+
+<p>A third approach requires more knowledge about how numbers are represented in computers, using the ASCII character-encoding scheme. In the ASCII scheme, every symbol is represented as a number - for example, 'a' is 97, and 'b' is 98. Uppercase letters have different ASCII codes, and uppercase and lowercase letters are grouped together. This means that there is a range of ASCII numbers that represent uppercase letters (65-90, inclusive), and a range of numbers that represent lowercase letters (97-122, inclusive). Our method will check whether the ASCII representation of the given letter is within the ASCII range of uppercase letters.</p>
+
+<pre><code class="javascript">function isUpperCaseFour(letter) {
+    var asciiCode = letter.charCodeAt(0);
+    return (asciiCode &gt;= 65 &amp;&amp; asciiCode &lt;= 90);
+}
+</code></pre>
+
+<p>The last approach is concise and demonstrates some computing knowledge.</p>
+
+<h3>2. Implement an <code>indexOf</code> Method for Strings</h3>
+
+<p>The <code>indexOf</code> function is common to many languages. The method's purpose is to find the position of a given element in a list, such as 'b' in the list `['a', 'b', 'c']. Some languages also allow the method to find characters in strings, such as 'b' in "abc", treating the string as an array of characters.</p>
+
+<p>In this question, we ask the candidate to write a function, without using the language's native <code>indexOf</code> method, that finds the first position of a given string within another string. For example, it finds "aba" in the string "aabbabaa", and returns 4 (the index of string starting from 0.)</p>
+
+<pre><code class="javascript">/**
+ * Returns the index of a given string within another 
+ * string, or -1 if the string is not found.
+ * 
+ * needle - the string to find
+ * haystack - the larger string to be searched
+ * 
+ * Examples
+ * 
+ *   stringIndexOf('aba', 'aba');
+ *   =&gt; 0
+ *   stringIndexOf('aba', 'caba');
+ *   =&gt; 1
+ *   stringIndexOf('aba', 'abca');
+ *   =&gt; -1
+ * 
+ * Returns integer
+ */
+ function stringIndexOf(needle, haystack) {
+     // Iterators for traversing haystack and needle.
+     var i;
+     var j;
+
+     for (i = 0; i &lt; haystack.length; i++) {
+         j = 0;
+         while (haystack[i + j] === needle[j]) {
+             j++;
+             if (j === needle.length) {
+                 return i;
+             }
+         }
+     }
+     return -1;
+ }
+</code></pre>
+
+<h3>3. Find the First Non-Repeated Character in a String</h3>
+
+<p>This is a question that we often ask in phone screening interview. The candidate must write a function that takes a given string, and returns the first character in the string that is not repeated anywhere else in that string.</p>
+
+<p>A good approach here is to make a hash table to store the number of times that each letter in the string is used. Then, go over the string again and return the first letter that has a 1 stored in the hash. For example:</p>
+
+<pre><code class="javascript">/**
+ * Returns the first letter in a word that 
+ * is not repeated again in that word.
+ * If every character was repeated, a blank
+ * string is returned.
+ * 
+ * word - some string of characters
+ * 
+ * Examples
+ *  
+ *  firstNonRepeating('tooth')
+ *   =&gt; 'h'
+ *  firstNonRepeating('acascasba')
+ *   =&gt; 'b'
+ * 
+ * Returns string.
+ */
+function firstNonRepeating(word) {
+    var hash = {};
+    var answer = '';
+    word = word.split('');
+    word.forEach(function (letter) {
+        hash[letter] = hash[letter] + 1 || 1;
+    });
+
+    word.forEach(function (letter) {
+        if (hash[letter] == 1) {
+            answer = letter;
+            return;
+        }
+    });
+    return answer;
+}
+</code></pre>
+
+<p>It is important to return inside of the second forEach loop, after the answer if found, so that the answer isn't overwritten by another non-repeating character that appears later in the given word.</p>
+
+<h3>4. String to 2D Array</h3>
+
+<p>This problem involves some string and array manipulation, so it's good for assessing competence in fundamental programming concepts. The task is to take a string of characters, the length of which is a perfect square (4, 9, 16, etc), and turn it into a square 2D array.</p>
+
+<p>Here is an example of how that would look:</p>
+
+<pre><code class="javascript">/**
+ * Takes a string and returns a 2D array containing
+ * the characters in the string.
+ * 
+ * string - a string
+ * 
+ * Preconditions:
+ *  The length of string is a perfect square.
+ * 
+ * Examples:
+ *  
+ *  stringToMatrix('123456789')
+ *  =&gt; [ [ '1', '2', '3' ], 
+ *       [ '4', '5', '6' ], 
+ *       [ '7', '8', '9' ] ]
+ * 
+ * Returns array
+ */
+ function stringToMatrix(string) {
+     var matrix = [];
+     var row = [];
+     var root = Math.sqrt(string.length);
+
+     for (var i = 0; i &lt; string.length; i++) {
+         row.push(string[i]);
+         // Check if the next char should start
+         // on a new line.
+         if ((i + 1) % root === 0) {
+             matrix.push(row);
+             row = [];
+         }
+     }
+     return matrix;
+ }
+</code></pre>
+
+<h3>5. String A Ends with String B</h3>
+
+<p>In this question, a candidate is asked to write a simple function that takes in two strings as arguments, and returns true if the first arguments ends in the second argument.</p>
+
+<p>For example, "Hello world" ends in "world", so passing those two strings as arguments would yield <code>true</code>.</p>
+
+<pre><code class="javascript">/**
+ * Given two arguments, word and suffix, returns
+ * true if word ends in suffix.
+ * 
+ * word - string
+ * suffix - string of length &gt; 0
+ * 
+ * Examples
+ * 
+ * endsWith('hello', 'llo')
+ * =&gt; true
+ * 
+ * endsWith('1111', '1')
+ * =&gt; true
+ * 
+ * endsWith('San Francisco', 'San Jose')
+ * =&gt; false
+ */
+function endsWith(word, suffix) {
+    var wordLen = word.length;
+    var suffixLen = suffix.length;
+    // Base case:
+    if (suffixLen === 0 || wordLen &lt; suffixLen) {
+        return false;
+    }
+
+    for (var i = 0; i &lt;= suffixLen; i++) {
+      if (word[wordLen - i] !== suffix[suffixLen - i]) {
+        return false      
+      }
+    }
+
+    return true;
+}
+</code></pre>
+
+<p>If the above solution, we begin by checking our "base cases", where the suffix is longer than the word (which will always be false), or the suffix is empty (which should also return false.) Next, we check each character from the end of the word for the length of suffix to make sure that each character is the same. If they are not the same, then it returns <code>false</code> right then. If it makes it to the end of the method, the we know that the suffix occurred at the end of the word and we return <code>true</code>.</p>
+
+<p>A poor solution here would be to rely on an operation such as indexOf, which will return the first index of the substring and thus potentially return <code>false</code> for '111' and '1'. Make sure you check for that example!</p>
+
+<h3>6. Print a 2D Array in Zig-Zag Order</h3>
+
+<p>Remember the earlier question, where we turned a string of characters into a square 2D array? In this question the candidate must take a 2D array and print out each row alternatingly left-to-right and right-to-left.</p>
+
+<p>For example:</p>
+
+<pre><code class="javascript">[[1, 2, 3], 
+ [4, 5, 6],
+ [7, 8, 9]]
+</code></pre>
+
+<p>Gets printed as:</p>
+
+<pre><code class="javascript">1 2 3
+6 5 4 
+7 8 9
+</code></pre>
+
+<p>Here's an example solution:</p>
+
+<pre><code class="javascript">/**
+ * Prints rows of a 2D array alternatingly 
+ * left-to-right and right-to-left.
+ * 
+ * matrix - a 2D array
+ * 
+ * Examples:
+ *  
+ *  printZigZag([[1,2,3],[4,5,6],[7,8,9]])
+ *  =&gt; 123
+ *  =&gt; 654
+ *  =&gt; 789
+ * 
+ * Returns nothing.
+ */
+function printZigZag(matrix) {
+    for (var i = 0; i &lt; matrix.length; i++) {
+        if (i % 2 === 0) {
+            // Print the row left-to-right.
+            console.log(matrix[i].join(''));
+        } else {
+            // Print the row right-to-left.
+            console.log(matrix[i].reverse().join(''));
+        }
+    }
+}
+</code></pre>
+
+<p>This problem is very simple to solve, and resembles challenges like "FizzBuzz".</p>
+
+<h3>7. Efficiently Find the First Index of an Element in a Sorted 2D Array of Numbers</h3>
+
+<p>This question has two layers: First the candidate must be able to move through the matrix in order to find the element in order to solve the problem. Secondly, because the arrray is ordered, the candidate could see an <em>efficient</em> way to solve the problem, by skipping elements as the algorithm iterates through the matrix.</p>
+
+<p>Let's visualize an example array:</p>
+
+<pre><code class="javascript">[1, 1, 1],
+[1, 2, 2],
+[3, 4, 5],
+[6, 7, 7],
+[7, 8, 8]
+</code></pre>
+
+<p>Finding the first index should be as simple as iterating through the arrays:</p>
+
+<pre><code class="javascript">/**
+ * Uses a brute-force method to find
+ * the index of needle in matrix,
+ * as well as the numebr of elements the 
+ * algorithm had to pass in order to find it.
+ * 
+ * Examples:
+ * 
+ *   var matrix = [[1, 1, 1], 
+ *                 [1, 2, 2], 
+ *                 [3, 4, 5],
+ *                 [6, 7, 7], 
+ *                 [7, 8, 8]];
+ * 
+ *   matrixIndexOf(matrix, 2)
+ *   =&gt; [1, 1] in 5 steps
+ * 
+ *   matrixIndexOf(matrix, 4)
+ *   =&gt; [2, 1] in 7 steps
+ * 
+ *   matrixIndexOf(matrix, 8)
+ *   =&gt; [4, 1] in 14 steps
+ * 
+ * Returns nothing.
+ */
+function matrixIndexOf(matrix, needle) {
+    var counter = 0;
+
+    for (var i = 0; i &lt; matrix.length; i++) {
+        for (var j = 0; j &lt; matrix[i].length; j++) {
+            counter++;
+            if (matrix[i][j] === needle) {
+                console.log('[' +  i +
+                            ', ' + j + '] in ' + 
+                            counter + ' steps')
+                return;
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>But finding the element in an efficient way requires knowing which elements can be skipped safely. Let's take another look at that example matrix:</p>
+
+<pre><code class="javascript">[1, 1, 1],
+[1, 2, 2],
+[3, 4, 5],
+[6, 7, 7],
+[7, 8, 8]
+</code></pre>
+
+<p>If we're looking for <code>4</code> within this array, we can safely skip the first and second rows, because the array is ordered, and we can see that the last character of both of these rows are smaller than the number we're looking for, <code>4</code>.</p>
+
+<p>Example:</p>
+
+<pre><code class="javascript">/**
+ * Takes in an ordered 2D array of numbers, and a
+ * number to find, and print the first index of 
+ * that number, as well as the number of elements
+ * the algorithm had to pass in order to find it. 
+ * 
+ * Examples:
+ * 
+ *   var matrix = [[1, 1, 1], 
+ *                 [1, 2, 2], 
+ *                 [3, 4, 5],
+ *                 [6, 7, 7], 
+ *                 [7, 8, 8]];
+ * 
+ *   efficientMatrixIndexOf(matrix, 4)
+ *   =&gt; [2, 1] in 4 steps
+ * 
+ *   efficientMatrixIndexOf(matrix, 2)
+ *   =&gt; [1, 1] in 3 steps
+ * 
+ *   efficientMatrixIndexOf(matrix, 8)
+ *   =&gt; [4, 1] in 6 steps
+ * 
+ * Returns nothing.
+ */
+function efficientMatrixIndexOf(matrix, needle) {
+   var counter = 0;
+
+   for (var i = 0; i &lt; matrix.length; i++) {
+       counter++;
+       // Check the last element in the row to determine
+       // whether needle will be in that row.
+       if (matrix[i][matrix[i].length - 1] &gt;= needle) {
+           counter++;
+           for (var j = 0; j &lt; matrix[i].length; j++) {
+               if (matrix[i][j] == needle) {
+                    console.log('[' +  i +
+                            ', ' + j + '] in ' + 
+                            counter + ' steps')
+                    return;  
+               }
+           }
+       }
+   }
+}
+</code></pre>
+
+</div>
+        <!-- .container -->
+    </div>
+    <!-- .main .col-sm-9 -->
+<% include ../includes/sidebar %>
+<% include ../includes/footer %>
