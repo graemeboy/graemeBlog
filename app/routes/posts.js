@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'computer-science-art-not-science',
+  title: 'Computer Science is an Art - Not a Science',
+  cat: 'coding',
+  tags: ['computer science']
+},
+{
   slug: '7-easy-interview-questions',
   title: '7 Easy Coding Interview Questions',
   cat: 'coding',
