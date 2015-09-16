@@ -1,46 +1,157 @@
 <% include ../includes/header %>
-<% title += "<div class='header-subtitle'><blockquote><p>Beautiful code is really meant to help the programmer be happy and productive. This is the metric I use to evaluate the beauty of a program.</p><footer>Yukihiro “Matz” Matsumoto (founder of Ruby)</footer></blockquote></div>"; %>
 <% include ../includes/post-content-head %>
 
-<div class="page-content">
-	
-<p>Coding style matters a lot to me - perhaps more than is reasonable. I grew up wanting to be a literary writer, and I deeply appreciate the aesthetic effect of well written natural language, but if the compiler doesn't care about your <em>programming</em> style, then why ought anyone to care about it?</p>
+<p>By "code style", we are referring to the elements of a program that makes no difference to a compiler or interpreter. The use of "snake case" (<code class="javascript">my_variable</code>) or "camel-case" (<code class="javascript">myVariable</code>) for variable names serves as an example.</p>
 
-<p>Simply, <strong>coding and collaborating on programs is really difficult</strong>, and any practice that makes it more difficult is unreasonable. Writing code that is messy, tricky, or unstructured (I.E. not conforming to good style), even if efficient, is something that makes it more difficult.</p>
+<p><strong>a) Software programs are highly complex</strong></p>
 
-<h4>Efficiency vs Readability Trade-off</h4>
-<p>Sure, there is often a trade-off: computer efficiency vs. ease of maintaince. But one of these factors gets <em>less</em> important over time (as computers become faster), and one of those gets <em>more</em> important (as systems get more complicated, modules fade from memory, and languages change and go out of fashion.)</p>
+<p>Software systems are the most complex formal structures created by humankind. Modern software applications (such as a web browser) include up to tens of millions of lines of code, and integrate with other libraries of software, built by other people. Moreover, these systems communicate through independent layers of software (such the language is is written in, or the operating system upon which it runs), which often have little resemblance to the application itself.</p>
 
-<h4>How do we improve code understandability?</h4>
+<p>The engineer of an application needs to understand how those other libraries operate, so that he or she can itegrate them, and diagnose and solve problems when they occur.</p>
 
-<p>This depends largely on the language - not just because each community is used to reading the language is a certain way, but also because <strong>each community has created customs to overcome its language's flaws</strong>.</p>
+<p><strong>b) Code is a medium for communication to other engineers</strong></p>
 
-<p>For example, Douglas Crockford is well known evangelist for JavaScript, giving techincal talks around the world on the "good and bad parts" of JavaScript. In these talks and in his book, he mentions examples of known weakness in JS, such as automatic semicolon insertion.</p>
+<p>Engineers understand how other software works by reading documentation, or the code itself. When things go wrong, often it's the code that requires perusing - therefore the human intelligibility of code is important. The compiler is not the only audience for code.</p>
 
-<p>E.g. in JavaScript this:</p>
+<p>"The only important thing is that it works" is, for this reason, a sentence heard too often at software companies.</p>
 
-<pre><code>return {
-    name: "Graeme"
-};
+<p>Take the following code as an example:</p>
+
+<pre><code class="javascript">#include "stdio.h"
+#define e 3
+#define g (e/e)
+#define h ((g+e)/2)
+#define f (e-g-h)
+#define j (e*e-g)
+#define k (j-h)
+#define l(x) tab2[x]/h
+#define m(n,a) ((n&amp;(a))==(a))
+
+long tab1[]={ 989L,5L,26L,0L,88319L,123L,0L,9367L };
+int tab2[]={ 4,6,10,14,22,26,34,38,46,58,62,74,82,86 };
+
+main(m1,s) char *s; {
+    int a,b,c,d,o[k],n=(int)s;
+    if(m1==1){ char b[2*j+f-g]; main(l(h+e)+h+e,b); printf(b); }
+    else switch(m1-=h){
+        case f:
+            a=(b=(c=(d=g)&lt;&lt;g)&lt;&lt;g)&lt;&lt;g;
+            return(m(n,a|c)|m(n,b)|m(n,a|d)|m(n,c|d));
+        case h:
+            for(a=f;a&lt;j;++a)if(tab1[a]&amp;&amp;!(tab1[a]%((long)l(n))))return(a);
+        case g:
+            if(n&lt;h)return(g);
+            if(n&lt;j){n-=g;c='D';o[f]=h;o[g]=f;}
+            else{c='\r'-'\b';n-=j-g;o[f]=o[g]=g;}
+            if((b=n)&gt;=e)for(b=g&lt;&lt;g;b&lt;n;++b)o[b]=o[b-h]+o[b-g]+c;
+            return(o[b-g]%n+k-h);
+        default:
+            if(m1-=e) main(m1-g+e+h,s+g); else *(s+g)=f;
+            for(*s=a=f;a&lt;e;) *s=(*s&lt;&lt;e)|main(h+a++,(char *)m1);
+        }
+}
 </code></pre>
 
-<p>Is not the same as:</p>
+<p>This is an exaggerated example from <a href="https://www.cise.ufl.edu/~manuel/obfuscate/obfuscate.html">https://www.cise.ufl.edu/~manuel/obfuscate/obfuscate.html</a> to carry the point. If we were only programming for the compiler, then obfuscated code would be just as good as readable code (provided the two performed equally quickly). But the fact is that we're coding half for the compiler, and half for other programmers.</p>
 
-<pre><code>return
-{
-    name: "Graeme"
-};
+<p>Sometimes, it is more important for code to be understandable by other programmers than it is to be highly performant. One example might be a data transformation, where it is more important that engineers who modify the transformations (which may happen whenever a field is changed) understand how each step works, and why the step is in place, than for the transformation to finish quickly.</p>
+
+<p>Therefore, there is a balance between how much of the code is written with the compiler in mind, and how much is written with other programmers in mind. The balance shifts more towards the compiler when the code will not be read or changed frequently, or when the algorithm is well known. An example of this might be an image optimization library, or a well-known sorting algorithm. On the other hand, when the code is likely to be read and modified more frequently, then the balance shifts towards programming for other engineers. Examples of such components abound in web startup environments, where much of the technology stack is being read and worked on at any one point - features are being changed and enlarged, rather than optimized.</p>
+
+<p><strong>c) A consistent style is significantly quicker to read and comprehended than an inconsistent style</strong></p>
+
+<p>A codebase has a consistent style when it employs only one set of conventions. A set of style conventions can be appropriately thought of as a table, for example:</p>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>  Property       </th>
+<th> Convention           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> variable casing      </td>
+<td>  lower camel case, <code class="javascript">myVariable</code> </td>
+</tr>
+<tr>
+<td> constructor casing </td>
+<td> upper camel case, <code class="javascript">new SomeExample()</code>      </td>
+</tr>
+<tr>
+<td> constant casing </td>
+<td> upper snake case, <code class="javascript">LIGHT_SPEED = 299792458</code></td>
+</tr>
+<tr>
+<td> indentation    </td>
+<td> two spaces      </td>
+</tr>
+<tr>
+<td> quotes </td>
+<td> single quotes unless JSON </td>
+</tr>
+<tr>
+<td> braces </td>
+<td> same line as block, e.g. <code class="javascript">if (x) {</code> </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>When one set of conventions is always used, engineers are be more productive, as they can skim through code more quickly, without concern for trivial differences (this is similar to differences among dialects of a natural languages.)</p>
+
+<p><strong> d) Simpler code is easier to read and comprehend </strong></p>
+
+<p>Consider the following peice of code:</p>
+
+<pre><code class="javascript">// Returns true if age is between 12 and 20 years.
+var isTeenager = function(age) {
+  var isTeen;
+
+  if (age &lt; 13) {
+      isTeen = false;
+  } else if (age &gt; 19) {
+      isTeen = false;
+  } else {
+      isTeen = true;
+  }
+
+  return isTeen;
+}
 </code></pre>
 
-<p>Because in the second sample of code, automatic semicolon insertion will simply cause the code to return <em>null</em> ("return;"). This gives us a really good reason to put curly braces inline. In languages that don't have this problem, programmers have more options, but the particularities of JavaScript recommend this as a standard in coding style. In any case, each language should have a standard about this (and most do, even though it's quite trivial), because it will make reading and understanding the language easier (and quicker) to perform, and therefore allow more effective development and maintainance - hooray!</p>
+<p>Now consider an equivalent rendition of the function:</p>
 
-<p class="lead">This is like optimising <em>programmer</em> efficiency rather than computer efficiency.</p>
+<pre><code class="javascript">var isTeenager1 = function (age) {
+    if (age &lt; 13) {
+        return false;
+    }
 
-<p>And let's face it, who really needs the optimization the most these days? The code is always going to get quicker, but we're probably going to get slower at reading it (until we get smart drugs that actually work.)</p>
+    if (age &gt; 19) {
+        return false;
+    }
 
-<p>This is a simple example that I've given, but I think that it illustrates the point really well.</p>
+    return true;
+}
+</code></pre>
 
-</div></div>
+<p>Finally, consider the function in its simplest form:</p>
+
+<pre><code class="javascript">// Returns true if age is between 12 and 20 years.
+var isTeenager = function(age) {
+    return (age &gt; 12 &amp;&amp; age &lt; 20);
+}
+</code></pre>
+
+<p>In the first example, there were unnecessary conditions (<code class="javascript">else if</code>, <code class="javascript">else</code>) that made the function more complicated than it had to be. An engineer had to spend time understanding those conditional branches in order to decipher a bug in the program.</p>
+
+<p>The second example is a surprisingly large improvement upon the first, even though they are both fairly simple. The second function only contains two necessary branches, which makes the function's behavior easier to reason about.</p>
+
+<p>The final function is even simpler, and looks like elementary math. At this point, an engineer spends almost no time at all understanding the workings of this function, and can immediately amend any problem that he or she discovers in its operation.</p>
+
+<p><strong> e) Code that is easier to read and comprehend makes engineers happier  and more at ease</strong></p>
+
+<p>Walking into a dirty, unkept room is uncomfortable for most people. Eventually, one might get used to being in such a room, but always a diseased feeling lingers. On the other hand, walking into well arranged room can give the sense of intelligibility - that this is the home of a well-functioning mind. It is just so in computer programming.</p>
 
 <% include ../includes/sidebar %>
 <% include ../includes/footer %>

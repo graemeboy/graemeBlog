@@ -127,7 +127,7 @@ var posts = [
   },
   {
     slug: 'coding-style',
-    title: 'Coding Style - How Much Does it Matter?',
+    title: 'On the Important of Coding Style',
     cat: 'coding',
     tags: ['style']
   },
