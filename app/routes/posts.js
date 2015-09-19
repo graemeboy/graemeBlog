@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'simple-javascript-closure',
+  title: 'A Simple Explanation of JavaScript Closures',
+  cat: 'coding',
+  tags: ['javascript']
+},
+{
   slug: 'computer-science-art-not-science',
   title: 'Computer Science is an Art - Not a Science',
   cat: 'coding',

@@ -1,0 +1,52 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<p>A closure creates a "safety bubble" of scope for a function when it was created (p. 92, <em>Secrets of the JavaScript Ninja</em>)</p>
+
+<p>Example:</p>
+
+<pre><code class="javascript">// A function that prints a greeting a name.
+var printGreeting;
+
+(function () {
+  // The current state of greeting.
+  var greeting = 'hello';
+
+  // printGreeting accesses the greeting variable.
+  printGreeting = function (someName) {
+   console.log(greeting, someName);
+  }
+}());
+
+// innerFunc will also have access to someName.
+printGreeting('world'); // prints "hello world"
+
+var greeting = 'good bye';
+printGreeting('world'); // still prints "hello world"
+</code></pre>
+
+<p>This is somewhat like having an object in Object-Oriented Programming to store the state of greeting, e.g.</p>
+
+<pre><code class="ruby">class Outer
+    attr_accessor :greeting
+
+    def initialize
+        self.greeting = 'hello'
+    end
+
+    def print_greeting(name)
+        puts "#{greeting} #{name}"
+    end
+end
+
+outer = Outer.new()
+some_name = 'world'
+outer.print_greeting(some_name) # prints "hello world"
+
+some_name = 'Graeme'
+outer.print_greeting(some_name) # prints "hello Graeme"
+</code></pre>
+
+</div>
+</div>
+<% include ../includes/footer %>
