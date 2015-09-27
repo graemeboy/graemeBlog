@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'perceptual-control-theory-in-neuroscience',
+  title: 'Introduction to Perceptual Control Theory',
+  cat: 'psychology',
+  tags: ['perceptual control theory', 'psychology', 'neuroscience']
+},
+{
   slug: 'simple-javascript-closure',
   title: 'A Simple Explanation of JavaScript Closures',
   cat: 'coding',
