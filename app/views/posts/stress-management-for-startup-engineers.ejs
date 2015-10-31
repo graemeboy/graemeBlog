@@ -1,0 +1,38 @@
+<% include ../includes/header %>
+<% include ../includes/post-content-head %>
+
+<p>Working in a startup can be extremely stressful primarily for three reasons:</p>
+
+<ul>
+<li>Seemingly small mistakes can become critical very quickly</li>
+<li>Shared responsibility means that you're always on call</li>
+<li>Everything is in flux</li>
+</ul>
+
+
+<p>The first two of these factors are somewhat under our influence. The third problem is less tracktable, since it's a natural part of experiencing high growth.</p>
+
+<h3>Take your time, and do it right</h3>
+
+<p>While "premature optimization is the root of all evil", it's also true that rushed jobs (a.k.a. "hacky" code or design) really cause startup engineers a lot of pain.</p>
+
+<p>For example, not making a module extensible in the beginning when you had the time can lead another engineer, who doesn't understand your module as well, to duplicate (as opposed to extend) your design when product needs similar features. Months later, when the system is in crisis because that design needs optimization, the takes days to refactor, test, and improve each of the components.</p>
+
+<p>Neglecting integration and unit testing is a prime example of rushing a process, and always results in pain. Copy-and-pasted code is another unspeakable example. Take the time, while your mind is focused on the feature, to do it properly.</p>
+
+<h3>Do fewer things; make prototypes</h3>
+
+<p>Push back on building new things. Only invest time in building something if there is clear reason for it - and evidence if possible.</p>
+
+<p>My startup did this well when product wanted to redesign a core page on the website. We started by using high definition images of the new design, and only coding the interactive parts (buttons and forms), while tracking user engagement across the old and new designs. We analyzed the data later and found no influence on user engagement from the older design, thus relieving us of the necessity to build the new design, and saving a lot of engineering time. Writing that page from scratch, creating integration tests, optimizing and refactoring might have taken days, where only a few hours was needed to prove a point.</p>
+
+<h3>Cut off from the Matrix During the Week</h3>
+
+<p>Find a way to take yourself off of constant vigilance for a few hours every week.</p>
+
+<p> One of the most stressful aspects of being an engineer is knowing that at any point, New Relic might send a notification that puts you into panic mode. Find a way to share this responsibility among your team, or to cascade notifications such that during your "time out," you are only ever interrupted if a bug is affecting a significant percentage of users. With this in place, you might decide that on Saturdays you are completely unplugged from the project, except for dire situations.</p>
+
+</div>
+    <!-- .main .col-sm-9 -->
+    <% include ../includes/sidebar %>
+        <% include ../includes/footer %>

@@ -1,5 +1,11 @@
 var posts = [
 {
+  slug: 'stress-management-for-startup-engineers',
+  title: 'Stress Management for Startup Engineers',
+  cat: 'coding',
+  tags: ['startups']
+},
+{
   slug: 'perceptual-control-theory-in-neuroscience',
   title: 'Introduction to Perceptual Control Theory',
   cat: 'psychology',
