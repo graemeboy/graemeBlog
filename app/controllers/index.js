@@ -1,25 +1,65 @@
-// Fields
+var helper = require('../helpers/index');
 
-exports.viperchill = function (req, res)
-{
-    res.render('viperchill/index', {
-        title: "Rishan Test Location and Device",
-    }); // render
+/**
+ * getCategoryPosts
+ * Loops through all posts and returns those that have a given category
+ */
+exports.getCategoryPosts = function(cat) {
+    return posts.filter(function (post) {
+        return (post.cat === cat);
+    });
+};
+
+/**
+ * capitalizeFirstLetter
+ * Takes in a string, and depending on type returns capitalize.
+ */
+exports.capitalizeFirstLetter = function(stringIn) {
+    return stringIn.charAt(0).toUpperCase() + stringIn.slice(1);
+};
+
+/**
+ * Returns an array of tags for a given category
+ */
+exports.getTags = function(category) {
+    var tags = [];
+    var tagArr;
+
+    posts.forEach(function(post){
+        if (post.cat === category) {
+            tagArr = post.tags;
+
+            tagArr.forEach(function(tag) {
+                if (tags.indexOf(tag) === -1) {
+                    tags.push(tag);
+                }
+            });
+        }
+    });
+
+    return tags;
+};
+
+/**
+ * getCats
+ * @return an array of unique categories
+ */
+exports.getCats = function () {
+    var cats = {},
+        cat;
+    for (var i =0; i < posts.length; i++) {
+        cat = posts[i].cat;
+        if (cats[cat] === undefined) {
+            cats[cat] = 1;
+        } else {
+            cats[cat] += 1;
+        }
+    }
+    return cats;
 }
 
-// exports.home = function (req, res, next) {
-//     // Decide what to do here
-    
-    
-// }; // .home
-
-
-
-exports.opa = function (req, res) {
-    // Render the home page
-    res.render('pages/opa', {
-        title: "OPA Planner",
-    }); // render
+exports.getNumPosts = function () {
+    return Object.keys(posts).length;
 };
 
 exports.rishan = function (req, res) {
@@ -35,18 +75,6 @@ exports.validMan = function (req, res) {
         title: "Show a validation man",
     }); // render
 };
-
-function getCats ()
-{
-    var cats = [
-        { name: "coding", count: 10},
-        { name: "psychology", count: 5},
-        { name: "product", count: 3},
-        { name: "travel", count: 2}
-    ];
-    return cats;
-} // getCat()
-        
 
 
 exports.nodeUDP = function (req, res) {
@@ -141,18 +169,17 @@ exports.globalRenaissanceAbout = function (req, res) {
 // Show posts from category (Not necessrily about cats)
 exports.showCatPosts = function (req, res) {
     var catPosts = req.catPosts;
+    var catTitle = helper.capitaliseFirstLetter(req.category);
+
     res.render('archive', {
-        title: "Posts about " +
-            capitaliseFirstLetter(req.category),
+        title: "Posts about " + catTitle,
         catPosts: catPosts,
-        category: capitaliseFirstLetter(req.category),
+        category: catTitle,
         cats: getCats()
-    }); // render
-} // show
+    });
+};
 
 // Specific posts
-
-
 exports.fadsTrends = function (req, res) {
     var callToAction = 'If you enjoyed this post or have something to say about it, <a href="http://twitter.com/share?text=Hey @graeme_boy, I just read your post on fads vs trends">send me a tweet.</a>';
     
@@ -300,8 +327,6 @@ exports.googleWebDesigner = function (req, res) {
     }); // render
 };
 
-
-
 exports.showPost = function (req, res) {
     var post = req.post;
     
@@ -316,18 +341,5 @@ exports.showPost = function (req, res) {
         postTags: post.tags,
         cats: getCats(),
         callToAction: callToAction
-    }); // render
-} // show
-
-
-function capitaliseFirstLetter(string)
-{
-    if (string === 'css') {
-        return 'CSS';
-    } else if (string == 'nodejs') {
-        return 'Node.js';   
-    } else if (string == 'product') {
-        return 'Product Development';   
-    }
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+    });
+};

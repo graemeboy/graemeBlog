@@ -4,14 +4,14 @@
  * Creates an API for searching through posts
  */
 
-var posts = require('./posts').posts,
-	fs = require('fs');
+var posts = require('../models/post').allPosts;
+var fs = require('fs');
 var Emitter = require('events').EventEmitter
-    eventEmitter = new Emitter(),
-    cheerio = require('cheerio');
+var eventEmitter = new Emitter();
+var cheerio = require('cheerio');
 
 /**
- * fundPosts
+ * findPosts
  *
  * Searches through all posts, seeking the keyword in title and content.
  * Returns a JSON object with relevant posts
