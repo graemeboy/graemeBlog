@@ -9,64 +9,68 @@ eventEmitter = new Emitter();
 
 router.use(function(req, res, next) {
    if (req.url.substr(-1) == '/' && req.url.length > 1) {
-   	res.redirect(301, req.url.slice(0, -1));
+     res.redirect(301, req.url.slice(0, -1));
    } else {
-   	next();
+     next();
    }
 });
 
 // Home Page
 router.get('/', function (req, res) {
-	res.render('index', {
+  res.render('index', {
         title: "Graeme Boy",
         cats: index.getCats(),
         numPosts: index.getNumPosts()
     });
 });
 
+router.get('/node-child-processes', function (req, res) {
+  res.redirect(301, 'https://medium.com/@graeme_boy/how-to-optimize-cpu-intensive-work-in-node-js-cdc09099ed41');
+});
+
 // Search
 router.get('/search', function (req,res) {
-	var q;
-	if ((q = req.query.q) !== undefined && q !== '') {
-		searchAPI.find(q);
+  var q;
+  if ((q = req.query.q) !== undefined && q !== '') {
+    searchAPI.find(q);
 
-		eventEmitter.on('searchComplete', function (relevantPosts) {
-			res.render('search', {
-				cats: index.getCats(),
-				category: 'search',
-				qPosts: relevantPosts,
-				q: q
-			});
-		});
-	} else {
-		res.end("Please enter a real request for searching. " + 
-		        "Received an empty string.");
-	}
+    eventEmitter.on('searchComplete', function (relevantPosts) {
+      res.render('search', {
+        cats: index.getCats(),
+        category: 'search',
+        qPosts: relevantPosts,
+        q: q
+      });
+    });
+  } else {
+    res.end("Please enter a real request for searching. " +
+            "Received an empty string.");
+  }
 });
 
 // Search Request
 router.get('/search-request', function (req, res) {
-	var q;
-	var relevantPosts;
+  var q;
+  var relevantPosts;
 
-	if (q = req.query.q) {
-		searchAPI.find(q);
-		eventEmitter.on('searchComplete', function (relevantPosts) {
-			res.end(JSON.stringify(relevantPosts));
-		});
-	} else {
-		res.end('No query found.');
-	}
+  if (q = req.query.q) {
+    searchAPI.find(q);
+    eventEmitter.on('searchComplete', function (relevantPosts) {
+      res.end(JSON.stringify(relevantPosts));
+    });
+  } else {
+    res.end('No query found.');
+  }
 });
 
 // A list of all posts
 router.get('/all-posts', function (req, res) {
-	res.render('all-posts', {
-		title: 'Posts from All Categories',
-		posts: posts,
-		cats: index.getCats(),
-		category: 'all',
-	});
+  res.render('all-posts', {
+    title: 'Posts from All Categories',
+    posts: posts,
+    cats: index.getCats(),
+    category: 'all',
+  });
 });
 
 // Index of Category Archive
@@ -88,7 +92,7 @@ router.get('/cat/:postCat', function (req, res) {
 });
 
 router.get('/about', function (req, res) {
-	res.render('pages/about', {
+  res.render('pages/about', {
         cats: index.getCats(),
         title: "About Graeme Boy",
         category: "none"
@@ -104,47 +108,47 @@ router.get('/valid-man', index.validMan);
 
 // Add routes for each post
 (function addRoutes() {
-	var postData = {};
-	var slug;
-	var tags;
-	
-	posts.forEach(function(post) {
-		slug = post.slug;
-		
-		if (!(tags = post.tags)) {
-			tags = [];
-		}
+  var postData = {};
+  var slug;
+  var tags;
 
-		postData[slug] = {
-			'title': post.title,
-			'cat' : post.cat,
-			'tags': tags
-		};
+  posts.forEach(function(post) {
+    slug = post.slug;
 
-		router.get('/' + slug, function (req, res) {
-			var givenSlug = req.url.slice(1);
-			var cat = postData[givenSlug].cat;
-			var scripts = [];
-			var styles = [];
-			var inlineScripts = [];
-			
-			if (cat === 'coding') {
-				scripts.push('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js');
-				styles.push('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css');
-				inlineScripts.push('hljs.initHighlightingOnLoad();');
-			}
+    if (!(tags = post.tags)) {
+      tags = [];
+    }
 
-			res.render('posts/' + givenSlug, {
-	        	title: postData[givenSlug].title,
-	        	category: cat,
-	        	cats: index.getCats(),
-	        	scripts: scripts,
-	        	styles: styles,
-	        	inlineScripts: inlineScripts,
-	        	tags: postData[givenSlug].tags
-	    	});
-		});
-	});
+    postData[slug] = {
+      'title': post.title,
+      'cat' : post.cat,
+      'tags': tags
+    };
+
+    router.get('/' + slug, function (req, res) {
+      var givenSlug = req.url.slice(1);
+      var cat = postData[givenSlug].cat;
+      var scripts = [];
+      var styles = [];
+      var inlineScripts = [];
+
+      if (cat === 'coding') {
+        scripts.push('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js');
+        styles.push('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css');
+        inlineScripts.push('hljs.initHighlightingOnLoad();');
+      }
+
+      res.render('posts/' + givenSlug, {
+            title: postData[givenSlug].title,
+            category: cat,
+            cats: index.getCats(),
+            scripts: scripts,
+            styles: styles,
+            inlineScripts: inlineScripts,
+            tags: postData[givenSlug].tags
+        });
+    });
+  });
 }());
 
 module.exports = router;
